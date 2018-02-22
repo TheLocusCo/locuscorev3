@@ -1,0 +1,7 @@
+.notifications-container {
+  position: fixed;
+  max-width: 45%;
+  min-width: 30%;
+  top: 10px;
+  right: 10px;
+}

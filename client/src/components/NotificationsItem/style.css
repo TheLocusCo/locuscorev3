@@ -1,0 +1,35 @@
+.notification-indiv {
+  margin-top: 10px;
+  cursor: pointer;
+  clear: both;
+  padding: 20px;
+  position: relative;
+  display: block;
+  border-radius: 5px;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.notification-indiv .ico {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.notification-indiv h2 {
+  display: inline-block;
+}
+
+.notification-indiv p {
+  margin-left: 56px;
+  margin-top: -10px;
+}
+
+.notification-indiv .notification-indiv-link {
+  position: absolute;
+  top: 0;
+  max-height: 10%;
+  right: 5px;
+  font-size: 20px;
+}

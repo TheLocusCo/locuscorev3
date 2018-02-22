@@ -1,0 +1,22 @@
+.photo {
+  max-width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px 5px 0px 5px;
+  position: relative;
+  background: #fff;
+  border: 1px solid #d2d3d6;
+  border-bottom-color: #b7b9be;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(33,33,33,0.05);
+}
+
+.photo .helper {
+  display: block;
+  width: 59px;
+  height: 35px;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background: url(./images/tape.png);
+}

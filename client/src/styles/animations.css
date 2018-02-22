@@ -1,0 +1,169 @@
+.fade-wait-leave, .slide-header-leave, .slide-up-from-nothing-leave, .grow-right-leave, .grow-right-leave, .group-fade-wait-leave, .long-fade-leave, .cross-fade-leave {
+  opacity: 1;
+}
+
+.fade-wait-appear {
+  opacity: 0;
+}
+
+.fade-wait-leave.fade-wait-leave-active {
+  opacity: 0;
+  transition: opacity .4s ease-in;
+}
+
+.fade-wait-appear.fade-wait-appear-active {
+  opacity: 1;
+  /* Delay the enter animation until the leave completes */
+  transition: opacity .4s ease-in .6s;
+}
+
+.slide-header-leave.slide-header-leave-active {
+  opacity: 0;
+  transition: opacity 1.6s ease-in;
+}
+
+.slide-header-enter, .slide-header-appear {
+  margin-top: -150px;
+  transition: margin-top 3.6s ease-in-out;
+}
+
+.slide-header-enter.slide-header-enter-active, .slide-header-appear.slide-header-appear-active {
+  margin-top: 0;
+  /* Delay the enter animation until the leave completes */
+  transition: margin-top 2.4s ease-in-out;
+}
+
+.slide-up-from-nothing-leave.slide-up-from-nothing-leave-active {
+  opacity: 0;
+  transition: opacity 1.6s ease-in;
+}
+
+.slide-up-from-nothing-enter, .slide-up-from-nothing-appear {
+  margin-top: 300px;
+  opacity: 0;
+  transition: margin-top 3.6s ease-in-out, opacity 3.6s ease-in-out;
+}
+
+.slide-up-from-nothing-enter.slide-up-from-nothing-enter-active, .slide-up-from-nothing-appear.slide-up-from-nothing-appear-active {
+  margin-top: 0;
+  opacity: 1;
+  /* Delay the enter animation until the leave completes */
+  transition: margin-top 2.4s ease-in-out, opacity 2.4s ease-in-out;
+}
+
+.grow-right-leave.grow-right-leave-active {
+  opacity: 0;
+  transition: opacity 1.6s ease-in;
+}
+
+.grow-right-enter, .grow-right-appear {
+  left: -50vw;
+  opacity: 0;
+  transition: left 3.6s ease-in-out, opacity 3.6s ease-in-out;
+}
+
+.grow-right-enter.grow-right-enter-active, .grow-right-appear.grow-right-appear-active {
+  left: 0;
+  opacity: 1;
+  /* Delay the enter animation until the leave completes */
+  transition: left 2.4s ease-in-out, opacity 2.4s ease-in-out;
+}
+
+.grow-left-leave.grow-left-leave-active {
+  opacity: 0;
+  transition: opacity 1.6s ease-in;
+}
+
+.grow-left-enter, .grow-left-appear {
+  left: 100vw;
+  opacity: 0;
+  transition: left 3.6s ease-in-out, opacity 3.6s ease-in-out;
+}
+
+.grow-left-enter.grow-left-enter-active, .grow-left-appear.grow-left-appear-active {
+  left: 50vw;
+  opacity: 1;
+  /* Delay the enter animation until the leave completes */
+  transition: left 2.4s ease-in-out, opacity 2.4s ease-in-out;
+}
+
+.group-fade-wait-leave.group-fade-wait-leave-active {
+  opacity: 0;
+  transition: opacity .4s ease-in;
+}
+
+.group-fade-wait-enter, .group-fade-wait-appear {
+  opacity: 0;
+  transition: height .3s ease-in-out;
+}
+
+.group-fade-wait-enter.group-fade-wait-enter-active, .group-fade-wait-appear.group-fade-wait-appear-active {
+  opacity: 1;
+  /* Delay the enter animation until the leave completes */
+  transition: opacity .2s ease-in .3s;
+}
+
+.long-fade-leave.long-fade-leave-active {
+  opacity: 0;
+  transition: opacity 1.2s ease-in;
+}
+
+.long-fade-enter, .long-fade-appear {
+  opacity: 0;
+  transition: height .9s ease-in-out;
+}
+
+.long-fade-enter.long-fade-enter-active, .long-fade-appear.long-fade-appear-active {
+  opacity: 1;
+  /* Delay the enter animation until the leave completes */
+  transition: opacity .6s ease-in .9s;
+}
+
+.cross-fade-leave.cross-fade-leave-active {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+
+.cross-fade-enter {
+  opacity: 0;
+}
+.cross-fade-enter.cross-fade-enter-active {
+  opacity: 1;
+  transition: opacity 1s ease-in;
+}
+
+.cross-fade-height {
+  transition: height .5s ease-in-out;
+}
+
+.slider .items {
+  -webkit-transition: height 0.15s;
+  -moz-transition: height 0.15s;
+  -o-transition: height 0.15s;
+  -ms-transition: height 0.15s;
+  transition: height 0.15s;
+}
+
+.page-appear, .page-leave {
+  position: absolute;
+  -webkit-transition: transform 250ms ease-in-out, opacity 250ms ease-in-out;
+  transition: transform 250ms ease-in-out, opacity 250ms ease-in-out;
+}
+
+.page-appear {
+  left: 100vw;
+}
+
+.page-appear.page-appear-active {
+  -webkit-transform: translate3d(-100vw, 0, 0);
+  transform: translate3d(-100vw, 0, 0);
+}
+
+.page-leave {
+  left: 0;
+}
+
+.page-leave.page-leave-active {
+  -webkit-transform: translate3d(-100vw, 0, 0);
+  transform: translate3d(-100vw, 0, 0);
+}

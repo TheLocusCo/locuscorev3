@@ -1,0 +1,46 @@
+dl.timeline {
+  line-height: 150%;
+}
+
+dl.timeline dt {
+  margin-left: -30px;
+  width: 160px;
+  float: left;
+  clear: both;
+  text-align: center;
+}
+
+dl.timeline dd {
+  margin: 0;
+  padding: 0 0 0 148px;
+  position: relative;
+}
+
+dl.timeline dd h4 {
+  margin: 0;
+  text-transform: none;
+  font-size: 15px;
+  color: #626366;
+}
+
+dl.timeline dd p {
+  margin: 0;
+}
+
+dl.timeline dt strong {
+  display: block;
+  font-weight: bold;
+  font-style: italic;
+  color: #626366;
+}
+
+dl.timeline dt p {
+  margin: 0;
+  font-style: italic;
+  color: #444;
+}
+
+.timeline .timeline-right {
+  float: right;
+  margin-top: -25px;
+}

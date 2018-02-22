@@ -1,0 +1,64 @@
+.slider {
+  padding: 55px 0 0;
+  position: relative;
+}
+
+.pager {
+    position: absolute;
+    z-index: 110;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.pager div {
+  display: inline-block;
+  height: 20px;
+  margin: 0;
+  padding: 6px 10px 6px;
+  position: relative;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0d…IxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+PC9zdmc+);
+  background-image: -moz-linear-gradient(top, #fdfdfd 0%, #fafafa 100%);
+  background-image: -webkit-linear-gradient(top, #fdfdfd 0%, #fafafa 100%);
+  background-image: -o-linear-gradient(top, #fdfdfd 0%, #fafafa 100%);
+  background-image: linear-gradient(to top, #fdfdfd 0%, #fafafa 100%);
+  border-radius: 10px;
+  line-height: 20px;
+  box-shadow: 0 1px 0 rgba(33,33,33,0.2), 0 1px 1px rgba(33,33,33,0.15);
+  font-size: 0;
+}
+
+.pager div::before, .pager div::after {
+  content: "";
+  display: block;
+  width: 200px;
+  height: 1px;
+  position: absolute;
+  top: 10px;
+  left: -215px;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0d…IxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+PC9zdmc+);
+  background-image: -moz-linear-gradient(left, rgba(187,192,207,0) 0%, rgba(187,192,207,0.5) 100%);
+  background-image: -webkit-linear-gradient(left, rgba(187,192,207,0) 0%, rgba(187,192,207,0.5) 100%);
+  background-image: -o-linear-gradient(left, rgba(187,192,207,0) 0%, rgba(187,192,207,0.5) 100%);
+  background-image: linear-gradient(to right, rgba(187,192,207,0) 0%, rgba(187,192,207,0.5) 100%);
+}
+
+.pager div::after {
+  left: auto;
+  right: -215px;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0d…IxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+PC9zdmc+);
+  background-image: -moz-linear-gradient(left, rgba(187,192,207,0.5) 0%, rgba(187,192,207,0) 100%);
+  background-image: -webkit-linear-gradient(left, rgba(187,192,207,0.5) 0%, rgba(187,192,207,0) 100%);
+  background-image: -o-linear-gradient(left, rgba(187,192,207,0.5) 0%, rgba(187,192,207,0) 100%);
+  background-image: linear-gradient(to right, rgba(187,192,207,0.5) 0%, rgba(187,192,207,0) 100%);
+}
+
+.portfolio-item>figure .item-slider .pager {
+  top: auto;
+  bottom: 10px;
+  -webkit-transition: opacity 0.15s;
+  -moz-transition: opacity 0.15s;
+  -o-transition: opacity 0.15s;
+  -ms-transition: opacity 0.15s;
+  transition: opacity 0.15s;
+}

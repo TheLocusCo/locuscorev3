@@ -1,0 +1,175 @@
+/*
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+*/
+
+/* animation: App-logo-spin infinite 20s linear; */
+
+.main-background {
+  background: #373635 url(./images/bg.png) repeat-y center top;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -999999;
+}
+
+.flowers {
+  background-image: url(./images/bg2.png);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: -999998;
+}
+
+.maze {
+  background-image: url(./images/mazebg.png);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: -999998;
+}
+
+.header {
+  padding: 0 0 150px 0;
+  position: relative;
+  text-align: center;
+  transition: margin 0.5s;
+  z-index: 0
+}
+
+.header-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  z-index: -2;
+}
+
+.header-top-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50vw;
+  z-index: -1;
+}
+
+.header-top-right {
+  position: absolute;
+  left: 50vw;
+  top: 0;
+  width: 50vw;
+  z-index: -1;
+}
+
+.header-top-left-center {
+  background: url(./images/top_bg_l.png) no-repeat right top;
+  margin: 0 140px 0 0;
+  z-index: 1001;
+  height: 38px;
+}
+
+.header-top-right-center {
+  background: url(./images/top_bg_r.png) no-repeat left top;
+  margin: 0 0px 0 140px;
+  height: 38px;
+  z-index: -1;
+}
+
+.logo-background {
+  background: url(./images/logo_bg.png) no-repeat center top;
+  position: absolute;
+  top: 0;
+  right: -168px;
+  height: 150px;
+  width: 337px;
+  text-align: center;
+  padding: 0px 0 0 0;
+  z-index: -1;
+}
+
+.logo-background img {
+  margin-top: 6px;
+}
+
+.left-background {
+  z-index: -1;
+  height: 100vh;
+  width: 50vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  float: left;
+  background: url(./images/bg3.png) repeat-x left center;
+  background-clip: content-box;
+}
+
+.right-background {
+  z-index: -1;
+  height: 100vh;
+  width: 50vw;
+  position: fixed;
+  top: 0;
+  left: 50vw;
+  float: right;
+  background: url(./images/bg3.png) repeat-x right center;
+  background-clip: content-box;
+}
+
+.main-container {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  min-width: 0%;
+  width: 960px;
+  margin: 0 auto;
+  padding: 35px 53px 20px;
+  position: relative;
+  z-index: 0;
+  background: #fafafa;
+  border-radius: 3px;
+  box-shadow: 0 1px 10px rgba(0,0,0,0.2);
+}
+
+.page-content-wrapper {
+  overflow: hidden;
+  min-height: 0;
+  margin: -35px -53px -20px;
+  padding: 35px 53px 20px;
+  position: relative;
+  -webkit-transition: min-height 0.3s;
+  -moz-transition: min-height 0.3s;
+  -o-transition: min-height 0.3s;
+  -ms-transition: min-height 0.3s;
+  transition: min-height 0.3s;
+  background: #d0d4db;
+  min-height: 400px;
+}
+
+footer {
+  opacity: 1;
+  width: 960px;
+  margin: 40px auto 0;
+  overflow: hidden;
+  text-align: center;
+  font-size: 12px;
+  color: #fff;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+footer p {
+  opacity: .5;
+  margin: 40px 0;
+  line-height: 1;
+}

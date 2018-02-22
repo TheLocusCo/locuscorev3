@@ -1,0 +1,16 @@
+.ltbx-comment-box .user-comment {
+  border: 1px solid #c5c6ca;
+  border-radius: 3px;
+  box-shadow: inset 0px 0px 3px rgba(33,33,33,0.1);
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.comment p, .user-comment p {
+  margin: 0;
+}
+
+.comment {
+  margin-bottom: 15px;
+  margin-left: 12px;
+}

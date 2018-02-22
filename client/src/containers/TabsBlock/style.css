@@ -1,0 +1,11 @@
+.tabs-vertical {
+  width: 262px;
+  margin: 0;
+  float: left;
+  position: relative;
+}
+
+.tabs-vertical+.panes {
+  margin: 0 0 0 296px;
+  min-height: 200px;
+}

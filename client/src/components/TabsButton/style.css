@@ -1,0 +1,65 @@
+
+.tabs-vertical li {
+  padding: 0;
+}
+
+.tabs-vertical div {
+    display: block;
+    cursor: pointer;
+    height: 44px;
+    padding: 0 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    white-space: nowrap;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 44px;
+    color: #444;
+    -webkit-tap-highlight-color: transparent;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-transition: color 0.15s;
+    -moz-transition: color 0.15s;
+    -o-transition: color 0.15s;
+    -ms-transition: color 0.15s;
+    transition: color 0.15s;
+}
+
+.tabs-vertical li::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  position: relative;
+  top: 0;
+  left: 0;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0d…IxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+PC9zdmc+);
+  background-image: -moz-linear-gradient(left, rgba(187,192,207,0) 0%, rgba(187,192,207,0.7) 50%, rgba(187,192,207,0) 100%);
+  background-image: -webkit-linear-gradient(left, rgba(187,192,207,0) 0%, rgba(187,192,207,0.7) 50%, rgba(187,192,207,0) 100%);
+  background-image: -o-linear-gradient(left, rgba(187,192,207,0) 0%, rgba(187,192,207,0.7) 50%, rgba(187,192,207,0) 100%);
+  background-image: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 100%);
+  border: none;
+}
+
+.tabs-vertical .active div {
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0d…IxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+PC9zdmc+);
+  background-image: -moz-linear-gradient(top, #eff2fa 0%, #dfe5f4 100%);
+  background-image: -webkit-linear-gradient(top, #eff2fa 0%, #dfe5f4 100%);
+  background-image: -o-linear-gradient(top, #eff2fa 0%, #dfe5f4 100%);
+  background-image: linear-gradient(to bottom, #eff2fa 0%, #dfe5f4 100%);
+  border-color: #a3aabc;
+  border-bottom-color: #9da5b8;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), inset 0 0 0 1px rgba(255,255,255,0.5), 0 1px 1px rgba(33,33,33,0.05);
+  color: #7888af;
+}
+
+.tabs-vertical div [class^=icon-] {
+  opacity: .7;
+  margin: 0 0.5em 0 -0.15em;
+  font-weight: normal;
+  color: inherit;
+}

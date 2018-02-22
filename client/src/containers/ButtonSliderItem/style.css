@@ -1,0 +1,17 @@
+.slider .items>div {
+  width: 100%;
+}
+
+.display-none {
+  display: none;
+}
+
+.box-dark .cols::before, .box-dark .cols::after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+
+.details {
+  margin-bottom: 30px;
+}

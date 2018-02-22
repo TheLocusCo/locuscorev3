@@ -1,0 +1,27 @@
+.pagination-container {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  bottom: 0;
+  margin-bottom: 87px;
+}
+
+.pagination-container .pagination {
+  display: inline-block;
+}
+
+.pagination-container .pagination .current-page {
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0d…IxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+PC9zdmc+);
+  background-image: -moz-linear-gradient(top, silver 0%, #f2f2f2 100%);
+  background-image: -webkit-linear-gradient(top, silver 0%, #f2f2f2 100%);
+  background-image: -o-linear-gradient(top, silver 0%, #f2f2f2 100%);
+  background-image: linear-gradient(to bottom, silver 0%, #f2f2f2 100%);
+}
+
+.pagination-container .pagination .pagination-tooltip {
+  margin-right: 3px;
+}
+
+.pagination-container .pagination .pagination-tooltip:last-child {
+  margin-right: 0px;
+}
