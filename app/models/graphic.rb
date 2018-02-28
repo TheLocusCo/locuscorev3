@@ -1,0 +1,2 @@
+class Graphic < ApplicationRecord
+end
