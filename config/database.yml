@@ -12,7 +12,7 @@ default: &default
 
 development:
   <<: *default
-  database: locuscorev3-dev
+  database: locuscorev3
   username: locuscorev2
   password: locuscorev2
   host: localhost

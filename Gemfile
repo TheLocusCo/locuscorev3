@@ -22,6 +22,7 @@ gem 'nokogiri'
 gem 'rest-client'
 gem 'devise_token_auth'
 gem 'omniauth'
+gem 'rack-cors', :require => 'rack/cors'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
