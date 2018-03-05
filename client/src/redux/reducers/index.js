@@ -1,6 +1,7 @@
 //import merge from 'lodash/merge'
 //import paginate from './paginate'
 import { combineReducers } from 'redux'
+import { reduxTokenAuthReducer } from 'redux-token-auth'
 import { reducer as formReducer } from 'redux-form'
 
 import {
@@ -1198,7 +1199,8 @@ const rootReducer = combineReducers({
   welcomeTabs,
   errorMessages,
   successMessages,
-  errorLog
+  errorLog,
+  reduxTokenAuth: reduxTokenAuthReducer
 })
 
 export default rootReducer

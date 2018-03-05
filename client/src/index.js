@@ -11,6 +11,7 @@ import './styles/silver_skin.css'
 import registerServiceWorker from './registerServiceWorker';
 import Root from './containers/Root'
 //import WebGraphic from "./components/WebGraphic"
+import { verifyCredentials } from './reduxTokenAuthConfig'
 import configureStore from "./redux/store/configureStore"
 
 //console.log("????store" + JSON.stringify(store.getState()))
@@ -19,6 +20,7 @@ import configureStore from "./redux/store/configureStore"
 //const history = syncHistoryWithStore(browserHistory, store)
 
 const store = configureStore()
+verifyCredentials(store)
 
 ReactDOM.render((
   <Router>

@@ -1,0 +1,1 @@
+PG::UniqueViolation: ERROR:  could not create unique index "index_users_on_uid_and_provider"

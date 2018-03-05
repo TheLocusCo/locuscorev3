@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180222102505) do
+ActiveRecord::Schema.define(version: 20180303105037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
     t.string "name", limit: 255, null: false
-    t.datetime "inserted_at", null: false
+    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "categories_name_index", unique: true
   end
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20180222102505) do
     t.text "content", default: ""
     t.boolean "approved", default: false
     t.integer "user_id", default: 0
-    t.datetime "inserted_at"
+    t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "commentable_id"
     t.string "commentable_type", limit: 255
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20180222102505) do
     t.text "content_description"
     t.text "basic_description"
     t.string "extra_params", limit: 255
-    t.datetime "inserted_at"
+    t.datetime "created_at"
     t.datetime "updated_at"
     t.string "library", limit: 255
     t.index ["title"], name: "graphics_title_index", unique: true
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20180222102505) do
     t.text "downloaded_chapters", default: ""
     t.text "licensed_at", default: ""
     t.text "chapters_at", default: "{}"
-    t.datetime "inserted_at"
+    t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["name"], name: "mangas_name_index", unique: true
   end
@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 20180222102505) do
     t.string "local_media", limit: 255
     t.string "arc_media", limit: 255
     t.string "arc_media_generic", limit: 255
-    t.datetime "inserted_at", null: false
+    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "media_name_index", unique: true
   end
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 20180222102505) do
     t.integer "viewed_users", array: true
     t.string "n_type", limit: 255, default: "admin"
     t.string "icon", limit: 255, default: "mail"
-    t.datetime "inserted_at", null: false
+    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(version: 20180222102505) do
     t.text "content"
     t.bigint "author_id"
     t.string "icon", limit: 255, default: "star"
-    t.datetime "inserted_at"
+    t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean "hidden", default: false
     t.datetime "published_at", default: -> { "now()" }
@@ -173,7 +173,7 @@ ActiveRecord::Schema.define(version: 20180222102505) do
     t.string "client", limit: 255
     t.string "role", limit: 255
     t.string "link", limit: 255
-    t.datetime "inserted_at"
+    t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["name"], name: "projects_name_index", unique: true
   end
@@ -204,7 +204,7 @@ ActiveRecord::Schema.define(version: 20180222102505) do
     t.string "title", limit: 255, null: false
     t.text "prawn_content", default: "This is a blank pdf"
     t.string "company", limit: 255, default: ""
-    t.datetime "inserted_at"
+    t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["title"], name: "resumes_title_index", unique: true
   end
@@ -218,7 +218,7 @@ ActiveRecord::Schema.define(version: 20180222102505) do
     t.string "pf_users", limit: 255, default: ""
     t.string "pf_categories", limit: 255, default: "crud"
     t.string "pf_roles", limit: 255, default: ""
-    t.datetime "inserted_at", null: false
+    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "pf_resumes", limit: 255, default: ""
     t.string "pf_media", limit: 255, default: "cr"
@@ -230,18 +230,34 @@ ActiveRecord::Schema.define(version: 20180222102505) do
   create_table "users", force: :cascade do |t|
     t.string "username", limit: 255, null: false
     t.string "email", limit: 255, null: false
-    t.string "encrypted_password", limit: 255
+    t.string "encrypted_password", default: "", null: false
     t.integer "sign_in_count", default: 0
     t.string "current_sign_in_ip", limit: 255
     t.text "agent_list"
     t.integer "failed_attempts", default: 0
     t.string "name", limit: 255
     t.text "security_hash", default: "{}"
-    t.datetime "inserted_at"
+    t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "role_id"
     t.string "ip_list", limit: 255, array: true
+    t.string "provider", default: "email", null: false
+    t.string "uid", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.json "tokens"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "users_email_index", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
   add_foreign_key "graphics_categories", "categories", name: "graphics_categories_category_id_fkey"
