@@ -91,7 +91,8 @@ import {
   USER_AUTH_DESTROY,
   USER_AUTH,
   USER_LOGIN,
-  USER_LOGIN_FAILURE
+  USER_LOGIN_FAILURE,
+  USER_LOGOUT_FAILURE,
 } from '../actions'
 
 function activeCategory(
@@ -1128,7 +1129,7 @@ function errorMessages(
   switch (action.type) {
     case USER_AUTH_FAILURE:
       return state
-    case USER_LOGIN_FAILURE: case FETCH_RESOURCE_FAILURE: case CREATE_RESOURCE_FAILURE: case EDIT_RESOURCE_FAILURE: case DESTROY_RESOURCE_FAILURE: case UPDATE_ERROR_MESSAGES:
+    case USER_LOGIN_FAILURE: case USER_LOGOUT_FAILURE: case FETCH_RESOURCE_FAILURE: case CREATE_RESOURCE_FAILURE: case EDIT_RESOURCE_FAILURE: case DESTROY_RESOURCE_FAILURE: case UPDATE_ERROR_MESSAGES:
       return Object.assign({}, state, {
         items: action.errorMessages,
       })

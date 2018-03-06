@@ -10,12 +10,12 @@ import AuthedContainer from "../AuthedContainer"
 import AuthedLightBoxContainer from "../AuthedLightBoxContainer"
 import NotificationsBlock from "../NotificationsBlock"
 
-//import { userAuth } from "../../redux/actions"
+import { userAuth } from "../../redux/actions"
 
 class App extends Component {
-  //componentDidMount() {
-  //  this.props.dispatch(userAuth())
-  //}
+  componentDidMount() {
+    this.props.dispatch(userAuth())
+  }
 
   render() {
     return (

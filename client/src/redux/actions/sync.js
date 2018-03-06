@@ -74,6 +74,7 @@ export const USER_AUTH_DESTROY = 'USER_AUTH_DESTROY'
 export const USER_AUTH = 'USER_AUTH'
 export const USER_LOGIN = 'USER_LOGIN'
 export const USER_LOGIN_FAILURE = 'USER_LOGIN_FAILURE'
+export const USER_LOGOUT_FAILURE = 'USER_LOGOUT_FAILURE'
 export const USER_NEW = 'USER_NEW'
 
 export function cleanupAfterGallery(mode) {
@@ -518,6 +519,14 @@ export function userAuthSuccess(user) {
     payload: {
       user
     }
+  }
+}
+
+export function userLogoutFailure(data) {
+  //console.log("TESTING IN FAILURE" + JSON.stringify(data))
+  return {
+    type: USER_LOGOUT_FAILURE,
+    errorMessages: [data.error]
   }
 }
 
