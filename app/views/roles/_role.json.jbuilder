@@ -1,2 +1,4 @@
-json.extract! role, :id, :created_at, :updated_at
-json.url role_url(role, format: :json)
+json.merge! role.attributes
+json.href "/roles/#{role.id}"
+json.meta_title role.name
+json.field_meta Post.map_field_metadata

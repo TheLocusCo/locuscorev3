@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'http://0.0.0.0:3000', "#{ENV["REACT_APP_BASE_ENDPOINT"]}"
+    origins 'http://0.0.0.0:3000', "#{ENV["REACT_APP_BASE_ENDPOINT"]}:#{ENV["FRONTEND_PORT"]}"
     resource '*',
       headers: :any,
       expose:  ['access-token', 'expiry', 'token-type', 'uid', 'client'],

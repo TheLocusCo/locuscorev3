@@ -4,7 +4,7 @@ import { TextField } from 'redux-form-material-ui'
 
 const validate = values => {
   const errors = {}
-  const requiredFields = [ 'username', 'password' ]
+  const requiredFields = [ 'email', 'password' ]
   requiredFields.forEach(field => {
     if (!values[ field ]) {
       errors[ field ] = 'Required'
@@ -27,7 +27,7 @@ const LoginForm = props => {
   return (
     <form className="centered" onSubmit={handleSubmit}>
       <div>
-        <Field name="username" component={renderTextField} label="Username"/>
+        <Field name="email" component={renderTextField} label="Email"/>
       </div>
       <div>
         <Field name="password" type="password" component={renderTextField} label="Password"/>

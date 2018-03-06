@@ -366,15 +366,28 @@ export function userAuth() {
 }
 
 export function userLogin(user) {
-  return fetch(`${fetchAPIURL()}/auth/identity/callback`, {
+  return fetch(`${fetchAPIURL()}/auth/sign_in`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      username: user.username,
+      email: user.email,
       password: user.password
     })
+  })
+}
+
+export function userRoleFetch(user) {
+  return fetch(`${fetchAPIURL()}/authed/roles/${user.role_id}`, {
+    method: "GET",
+    headers: {
+      "access-token": localStorage.accessToken || "",
+      "token-type":   "Bearer",
+      "client":       localStorage.tokenClient || "",
+      "expiry":       localStorage.tokenExpiry || "",
+      "uid":          localStorage.uid || ""
+    }
   })
 }

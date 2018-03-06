@@ -9,7 +9,7 @@ function fetchAPIAuthURL() {
 }
 
 const config = {
-  fetchAPIAuthURL() {},
+  authUrl: `${process.env.REACT_APP_BASE_ENDPOINT}:${process.env.REACT_APP_API_PORT}/auth`,
   userAttributes: {
     username: 'username',
     email: 'email',

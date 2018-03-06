@@ -870,7 +870,10 @@ export function updateCurrentPage(resourceType, currentPage) {
 export function userAuthDestroy(user) {
   return dispatch => {
     // Possibly connect to API to let it know about the logout here
-    localStorage.token = ""
+    localStorage.accessToken = ""
+    localStorage.tokenClient = ""
+    localStorage.tokenExpiry = ""
+    localStorage.uid = ""
     return dispatch(sync.userAuthDestroy())
   }
 }
@@ -891,12 +894,33 @@ export function userAuth() {
 
 export function userLogin(user) {
   return dispatch =>
-    http.userLogin(user).then(
-      response => response.json()
-    ).then(response => {
+    http.userLogin(user).then(function(response) {
+      localStorage.accessToken = response.headers.get("access-token")
+      localStorage.tokenClient = response.headers.get("client")
+      localStorage.tokenExpiry = response.headers.get("expiry")
+      return response.json()
+    }).then(response => {
       if (Object.keys(response).includes("data") && Object.keys(response.data).includes("id")) {
-        localStorage.token = response.data.token
-        dispatch(sync.userAuthSuccess(response.data))
+        localStorage.uid = response.data.email
+        dispatch(userRoleForAuthSuccess(response.data))
+      } else {
+        dispatch(sync.userLoginFailure(response))
+      }
+    })
+}
+
+export function userRoleForAuthSuccess(user) {
+  return dispatch =>
+    http.userRoleFetch(user).then(function(response) {
+      localStorage.accessToken = response.headers.get("access-token")
+      localStorage.tokenClient = response.headers.get("client")
+      localStorage.tokenExpiry = response.headers.get("expiry")
+
+      return response.json()
+    }).then(response => {
+      if (Object.keys(response).includes("data") && Object.keys(response.data).includes("id")) {
+        user.role = response.data
+        dispatch(sync.userAuthSuccess(user))
         dispatch(sync.successMessage("Successfully Logged In"))
       } else {
         dispatch(sync.userLoginFailure(response))
