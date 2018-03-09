@@ -4,7 +4,11 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = case params["mode"]
+                when "all"       then Project.fetch_ordered
+                when "paginated" then Project.fetch_ordered_by_page(params["page"], %i(categories media))
+                else                  Project.fetch_ordered
+                end
   end
 
   # GET /projects/1

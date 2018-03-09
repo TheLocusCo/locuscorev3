@@ -1,2 +1,8 @@
-json.extract! medium, :id, :created_at, :updated_at
-json.url medium_url(medium, format: :json)
+json.(medium, :id, :name, :description, :globally_visible, :user_ids_who_can_view, :user_id)
+
+json.categories medium.categories_as_basic_with_all
+
+json.creator medium.user.username
+json.href "/media/#{medium.id}"
+json.meta_title medium.name
+json.field_meta Medium.map_field_metadata

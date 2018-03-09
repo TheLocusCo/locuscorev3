@@ -1,2 +1,8 @@
-json.extract! user, :id, :created_at, :updated_at
-json.url user_url(user, format: :json)
+json.(user, :id, :username, :email, :sign_in_count, :current_sign_in_ip, :failed_attempts, :ip_list)
+
+json.href "/users/#{user.id}"
+json.created_at user.created_at.strftime("%B %d (%H:%M %P), %Y")
+json.updated_at user.updated_at.strftime("%B %d (%H:%M %P), %Y")
+json.role user.role.name
+json.meta_title user.name
+json.field_meta User.map_field_metadata

@@ -882,7 +882,7 @@ export function updateCurrentPage(resourceType, currentPage) {
 export function userAuthDestroy(user) {
   return dispatch =>
     http.userLogout().then(function(response) {
-      if(response.status == 200) {
+      if(response.status === 200) {
         localStorage.accessToken = ""
         localStorage.tokenClient = ""
         localStorage.tokenExpiry = ""

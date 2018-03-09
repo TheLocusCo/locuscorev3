@@ -21,6 +21,10 @@ module ActiveRecordExtension
 
   # add your static(class) methods here
   class_methods do
+    def fetch_ordered(preload_associations = [])
+      order("created_at DESC").preload(*preload_associations)
+    end
+
     def fetch_ordered_by_page(current_page, preload_associations = [])
       offset = 10 * ((current_page.to_i) - 1)
 
