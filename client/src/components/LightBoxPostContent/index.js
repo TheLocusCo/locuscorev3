@@ -3,6 +3,8 @@ import './style.css'
 import AuthedContentFooter from '../../containers/AuthedContentFooter'
 import SliderMediaContainer from '../../containers/SliderMediaContainer'
 
+import { Markdown } from 'react-showdown'
+
 export const LightBoxPostContent = props => {
   return (
     <article className="portfolio-item">
@@ -12,7 +14,7 @@ export const LightBoxPostContent = props => {
       </h3>
       <SliderMediaContainer media={props.media} type="slider_big" hideOnNoMedia={true}/>
       <div className="post-content" style={{display: "block"}}>
-        <div dangerouslySetInnerHTML={{ __html: props.content }} />
+        <Markdown markup={ props.content } />
       </div>
       <AuthedContentFooter location={props.location} displayWebkitBox={true} />
     </article>

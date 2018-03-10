@@ -4,7 +4,18 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
+    @categories = case params["type"] do
+                  when "posts" then Category.belonging_to("posts")
+                  when "projects" then Category.belonging_to("projects")
+                  when "graphics" then Category.belonging_to("graphics")
+                  when "mangas" then Category.belonging_to("mangas")
+                  when "media" then Category.belonging_to("media")
+                  else              Category.ordered_by_name
+                  end
+
+    @categories = case params["mode"] do
+                  when "withAllCat" then @categories.uniq.to_a.insert(0, Category.new({id: 0, name: "All Categories"}))
+                  end
   end
 
   # GET /categories/1
@@ -48,6 +59,6 @@ class CategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.fetch(:category, {})
+      params.require(:category).permit(:name)
     end
 end

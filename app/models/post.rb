@@ -7,7 +7,7 @@ class Post < ApplicationRecord
 
   belongs_to :user, foreign_key: :author_id
   has_and_belongs_to_many :categories, join_table: :posts_categories
-  has_and_belongs_to_many :comments
+  has_and_belongs_to_many :comments, join_table: :posts_comments
   has_and_belongs_to_many :media, join_table: :posts_media
 
   scope :not_hidden_and_is_published, -> { where.not(hidden: true).where("published_at < ?", Time.now) }

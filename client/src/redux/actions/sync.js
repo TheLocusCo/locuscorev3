@@ -201,9 +201,11 @@ export function errorMessage(message) {
 }
 
 export function errorMessageAsObject(messageObject) {
+  let retObj = {}
+  retObj[messageObject.error] = messageObject.exception
   return {
     type: UPDATE_ERROR_MESSAGES,
-    errorMessages: [messageObject.error]
+    errorMessages: [retObj]
   }
 }
 
