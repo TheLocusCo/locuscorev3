@@ -26,7 +26,7 @@ module ActiveRecordExtension
     end
 
     def fetch_ordered_by_page(current_page, preload_associations = [])
-      offset = 10 * ((current_page.to_i) - 1)
+      offset = 10 * (current_page.to_i - 1)
 
       limit(10).offset(offset).order("created_at DESC").preload(*preload_associations)
     end
@@ -40,6 +40,38 @@ module ActiveRecordExtension
       returned = self.respond_to?(:tooltips) ? returned.merge(self.tooltips) : returned.merge({tooltips: {}})
       returned = self.respond_to?(:select_fields) ? returned.merge(self.select_fields) : returned.merge({select: {}})
       returned.merge!({resource_type: self.to_s.downcase, resource_plural: self.to_s.pluralize.downcase})
+    end
+
+    def get_total_pages
+      (pluck(:id).count / 10.to_f).ceil
+    end
+
+    def map_pagination_meta(field)
+      total_pages = get_total_pages
+
+      meta_map = case total_pages
+                 when 0.0 then {}
+                 else
+                   base_map = {}
+                   (1..total_pages.round).each do |i|
+                     objects = get_meta_titles_for_page(i)
+                     meta_title = if %i(created_at updated_at).include?(field)
+                                    first_meta_title = objects.first.send(field).strftime("%B %d (%H:%M %P), %Y")
+                                    last_meta_title  = objects.last.send(field).strftime("%B %d (%H:%M %P), %Y")
+
+                                    "\"#{first_meta_title}\" to \"#{last_meta_title}\""
+                                  else
+                                    first_meta_title = objects.first.send(field)
+                                    last_meta_title  = objects.last.send(field)
+
+                                    "\"#{first_meta_title}\" to \"#{last_meta_title}\""
+                                  end
+                      base_map[i] = meta_title
+                    end
+                    base_map
+                  end
+
+      {total_pages: total_pages, pagination_meta: meta_map}
     end
   end
 end

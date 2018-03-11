@@ -4,7 +4,10 @@ class NotificationsController < ApplicationController
   # GET /notifications
   # GET /notifications.json
   def index
-    @notifications = Notification.all
+    @notifications = case params["mode"] do
+                     when "forUser" then Notification.fetch_ordered.has_not_been_seen_by(params["forUser"]).check_authorization(params["forUser"])
+                     else                Notification.fetch_ordered_by_page(params["page"])
+                     end
   end
 
   # GET /notifications/1

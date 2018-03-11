@@ -377,9 +377,11 @@ export function fetchCategories(type) {
 
 export function fetchComment(id) {
   return dispatch =>
-    http.commentFetch(id).then(
-      response => response.json()
-    ).then(response => {
+    http.commentFetch(id).then(function(response) {
+      setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
       if (Object.keys(response).includes("data")) {
         dispatch(receiveComment(response))
       } else if (Object.keys(response).includes("error")) {
@@ -428,9 +430,11 @@ export function fetchGraphic(id) {
 
 export function fetchManga(id) {
   return dispatch =>
-    http.mangaFetch(id).then(
-      response => response.json()
-    ).then(response => {
+    http.mangaFetch(id).then(function(response) {
+      setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
       if (Object.keys(response).includes("data")) {
         dispatch(receiveManga(response))
       } else if (Object.keys(response).includes("error")) {
@@ -442,9 +446,11 @@ export function fetchManga(id) {
 
 export function fetchMangas(fetchMode, page) {
   return dispatch =>
-    http.mangasFetch(fetchMode, page).then(
-      response => response.json()
-    ).then(response => {
+    http.mangasFetch(fetchMode, page).then(function(response) {
+      setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
       if (Object.keys(response).includes("data")) {
         dispatch(receiveMangas(response))
       } else if (Object.keys(response).includes("error")) {
@@ -456,9 +462,11 @@ export function fetchMangas(fetchMode, page) {
 
 export function fetchMedium(id) {
   return dispatch =>
-    http.mediumFetch(id).then(
-      response => response.json()
-    ).then(response => {
+    http.mediumFetch(id).then(function(response) {
+      setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
       if (Object.keys(response).includes("data")) {
         dispatch(receiveMedium(response))
         dispatch(receiveUploadItem(response))
@@ -471,9 +479,11 @@ export function fetchMedium(id) {
 
 export function fetchMedia(mode, page) {
   return dispatch =>
-    http.mediaFetch(mode, page).then(
-      response => response.json()
-    ).then(response => {
+    http.mediaFetch(mode, page).then(function(response) {
+      setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
       if (Object.keys(response).includes("data")) {
         dispatch(receiveMedia(response))
       } else if (Object.keys(response).includes("error")) {
@@ -491,9 +501,11 @@ export function fetchNavigation() {
 
 export function fetchNotification(id) {
   return dispatch =>
-    http.notificationFetch(id).then(
-      response => response.json()
-    ).then(response => {
+    http.notificationFetch(id).then(function(response) {
+      setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
       if (Object.keys(response).includes("data")) {
         dispatch(receiveNotification(response))
       } else if (Object.keys(response).includes("error")) {
@@ -505,9 +517,11 @@ export function fetchNotification(id) {
 
 export function fetchNotifications(page) {
   return dispatch =>
-    http.notificationsFetch(page).then(
-      response => response.json()
-    ).then(response => {
+    http.notificationsFetch(page).then(function(response) {
+      setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
       if (Object.keys(response).includes("data")) {
         dispatch(receiveNotifications(response))
       } else if (Object.keys(response).includes("error")) {
@@ -572,9 +586,11 @@ export function fetchRoleNavigation(user) {
 export function fetchNewResource(resource) {
   return dispatch => {
     dispatch(sync.requestNewItem())
-    http.resourceNewFetch(resource).then(
-      response => response.json()
-    ).then(response => {
+    http.resourceNewFetch(resource).then(function(response) {
+      setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
       if (Object.keys(response).includes("data") && Object.keys(response.data).includes("field_meta")) {
         dispatch(receiveNewItem(resource, response))
       } else {
@@ -587,9 +603,11 @@ export function fetchNewResource(resource) {
 export function fetchResource(resource, id) {
   return dispatch => {
     dispatch(sync.requestEditItem())
-    http.resourceFetch(resource, id).then(
-      response => response.json()
-    ).then(response => {
+    http.resourceFetch(resource, id).then(function(response) {
+      setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
       if (Object.keys(response).includes("data") && Object.keys(response.data).includes("id")) {
         dispatch(receiveEditItem(resource, response))
       } else {
@@ -601,9 +619,11 @@ export function fetchResource(resource, id) {
 
 export function fetchResources(resourceType, currentPage) {
   return dispatch =>
-    http.resourcesFetch(resourceType, currentPage).then(
-      response => response.json()
-    ).then(response => {
+    http.resourcesFetch(resourceType, currentPage).then(function(response) {
+      setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
       if (Object.keys(response).includes("data")) {
         dispatch(receiveResources(resourceType, response))
       } else if (Object.keys(response).includes("error")) {
@@ -615,9 +635,11 @@ export function fetchResources(resourceType, currentPage) {
 
 export function fetchResume(id) {
   return dispatch =>
-    http.resumeFetch(id).then(
-      response => response.json()
-    ).then(response => {
+    http.resumeFetch(id).then(function(response) {
+      setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
       if (Object.keys(response).includes("data")) {
         dispatch(receiveResume(response))
         dispatch(sync.receiveResumeHost())
@@ -636,9 +658,11 @@ export function fetchResumeHost() {
 
 export function fetchResumes(page) {
   return dispatch =>
-    http.resumesFetch(page).then(
-      response => response.json()
-    ).then(response => {
+    http.resumesFetch(page).then(function(response) {
+      setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
       if (Object.keys(response).includes("data")) {
         dispatch(receiveResumes(response))
       } else if (Object.keys(response).includes("error")) {
@@ -650,9 +674,11 @@ export function fetchResumes(page) {
 
 export function fetchRole(id) {
   return dispatch =>
-    http.roleFetch(id).then(
-      response => response.json()
-    ).then(response => {
+    http.roleFetch(id).then(function(response) {
+      setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
       if (Object.keys(response).includes("data")) {
         dispatch(receiveRole(response))
       } else if (Object.keys(response).includes("error")) {
@@ -664,9 +690,11 @@ export function fetchRole(id) {
 
 export function fetchRoles(page) {
   return dispatch =>
-    http.rolesFetch(page).then(
-      response => response.json()
-    ).then(response => {
+    http.rolesFetch(page).then(function(response) {
+      setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
       if (Object.keys(response).includes("data")) {
         dispatch(receiveRoles(response))
       } else if (Object.keys(response).includes("error")) {
@@ -692,9 +720,11 @@ export function fetchShowMedium(id, type) {
 
 export function fetchUser(id) {
   return dispatch =>
-    http.userFetch(id).then(
-      response => response.json()
-    ).then(response => {
+    http.userFetch(id).then(function(response) {
+      setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
       if (Object.keys(response).includes("data")) {
         dispatch(receiveUser(response))
       } else if (Object.keys(response).includes("error")) {
@@ -706,9 +736,11 @@ export function fetchUser(id) {
 
 export function fetchUsers(page) {
   return dispatch =>
-    http.usersFetch(page).then(
-      response => response.json()
-    ).then(response => {
+    http.usersFetch(page).then(function(response) {
+      setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
       if (Object.keys(response).includes("data")) {
         dispatch(receiveUsers(response))
       } else if (Object.keys(response).includes("error")) {
@@ -720,9 +752,11 @@ export function fetchUsers(page) {
 
 export function fetchUserNotifications(userId) {
   return dispatch =>
-    http.userNotificationsFetch(userId).then(
-      response => response.json()
-    ).then(response => {
+    http.userNotificationsFetch(userId).then(function(response) {
+      setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
       if (Object.keys(response).includes("data")) {
         dispatch(receiveUserNotifications(response))
       } else if (Object.keys(response).includes("error")) {
@@ -747,9 +781,11 @@ export function createComment(comment, resourceTypeToFetch, resourceId) {
   comment[resourceTypeToFetch] = {}
   comment[resourceTypeToFetch].id = resourceId
   return dispatch =>
-    http.commentCreate(comment).then(
-      response => response.json()
-    ).then(response => {
+    http.commentCreate(comment).then(function(response) {
+      setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
       if (Object.keys(response).includes("data") && Object.keys(response.data).includes("id")) {
         let message = "A comment was added to the system by " + comment.poster_name + "!"
         dispatch(setupAndCreateNotification(message, comment.poster_name, comment.poster_email, "chat"))
@@ -780,9 +816,11 @@ export function previewComment(comment) {
 
 export function resourceDestroy(resource, history) {
   return dispatch =>
-    http.resourceDestroy(resource.field_meta.resource_plural, resource).then(
-      response => response
-    ).then(response => {
+    http.resourceDestroy(resource.field_meta.resource_plural, resource).then(function(response) {
+      setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
       if (response.ok) {
         dispatch(sync.destroyResourceSuccess(resource.field_meta.resource_type, resource))
         if (resource.meta_title) {
@@ -812,9 +850,11 @@ export function removePreviewCommentAndSetCommentFormVisibility() {
 
 export function resourceEdit(resource, history) {
   return dispatch =>
-    http.resourcePatch(resource.field_meta.resource_plural, resource.field_meta.resource_type, resource).then(
-      response => response.json()
-    ).then(response => {
+    http.resourcePatch(resource.field_meta.resource_plural, resource.field_meta.resource_type, resource).then(function(response) {
+      setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
       if (Object.keys(response).includes("data") && Object.keys(response.data).includes("id")) {
         dispatch(sync.editResourceSuccess(resource.field_meta.resource_type, response.data))
         dispatch(sync.deleteEditItem())
@@ -828,9 +868,11 @@ export function resourceEdit(resource, history) {
 
 export function resourceNew(resource, history) {
   return dispatch =>
-    http.resourceCreate(resource.field_meta.resource_plural, resource.field_meta.resource_type, resource).then(
-      response => response.json()
-    ).then(response => {
+    http.resourceCreate(resource.field_meta.resource_plural, resource.field_meta.resource_type, resource).then(function(response) {
+      setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
       if (Object.keys(response).includes("data") && Object.keys(response.data).includes("id")) {
         dispatch(sync.createResourceSuccess(resource.field_meta.resource_type, response.data))
         dispatch(sync.deleteNewItem())
@@ -844,9 +886,11 @@ export function resourceNew(resource, history) {
 
 export function resourceUpload(resource) {
   return dispatch =>
-    http.resourceUpload(resource.field_meta.resource_plural, resource.field_meta.resource_type, resource).then(
-      response => response.json()
-    ).then(response => {
+    http.resourceUpload(resource.field_meta.resource_plural, resource.field_meta.resource_type, resource).then(function(response) {
+      setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
       if (Object.keys(response).includes("data") && Object.keys(response.data).includes("id")) {
         // dispatch(sync.editResourceSuccess(resource.field_meta.resource_type, response.data))
         dispatch(receiveResource(resource.field_meta.resource_type, response))

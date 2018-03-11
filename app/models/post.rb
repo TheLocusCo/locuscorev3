@@ -1,8 +1,7 @@
 class Post < ApplicationRecord
   before_save :titleize
 
-  validates :title, uniqueness: true
-  validates :title, presence: true
+  validates :title, uniqueness: true, presence: true
   validates :content, presence: true
 
   belongs_to :user, foreign_key: :author_id
@@ -11,6 +10,7 @@ class Post < ApplicationRecord
   has_and_belongs_to_many :media, join_table: :posts_media
 
   scope :not_hidden_and_is_published, -> { where.not(hidden: true).where("published_at < ?", Time.now) }
+  scope :get_meta_titles_for_page, -> (page) { order("created_at DESC").select(:id, :created_at, :title).limit(10).offset(10 * (page - 1)) }
 
   def self.many_to_many_as
     {categories: :categories, media: :media}
@@ -30,5 +30,9 @@ class Post < ApplicationRecord
 
   def self.select_fields
     {select: {}, author_id: :hidden, hidden: {author_id: "currentUser"}}
+  end
+
+  def titleize
+    self.title.capitalize
   end
 end
