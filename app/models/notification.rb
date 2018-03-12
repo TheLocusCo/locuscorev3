@@ -4,7 +4,7 @@ class Notification < ApplicationRecord
   validates :starts_displaying_at, presence: true
   validates :stops_displaying_at, presence: true
 
-  scope :has_not_been_seen_by, -> (user_id) { where.not("? IN viewed_users", user_id) }
+  scope :has_not_been_seen_by, -> (user_id) { where.not("? != ANY (viewed_users)", user_id) }
   scope :check_authorization, -> (user_id) { User.is_admin?(user_id) ? where(true) : where.not(n_type: 'admin') }
 
   def self.fields_to_not_show

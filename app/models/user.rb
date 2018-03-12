@@ -17,7 +17,7 @@ class User < ApplicationRecord
   belongs_to :role
 
   def self.is_admin?(user_id)
-    User.find(user_id.to_i).preload(:role).role.name == "Admin"
+    User.find(user_id.to_i).role.name == "Admin"
   end
 
   def self.fields_to_not_show

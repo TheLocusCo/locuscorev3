@@ -1,5 +1,5 @@
 class MediaController < ApplicationController
-  before_action :set_medium, only: [:show, :update, :destroy]
+  before_action :set_medium, only: %i(edit show update destroy)
 
   # GET /media
   # GET /media.json
@@ -10,6 +10,12 @@ class MediaController < ApplicationController
   # GET /media/1
   # GET /media/1.json
   def show
+  end
+
+  def new
+  end
+
+  def edit
   end
 
   # POST /media

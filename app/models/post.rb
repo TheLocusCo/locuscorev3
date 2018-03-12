@@ -17,7 +17,7 @@ class Post < ApplicationRecord
   end
 
   def self.fields_to_not_show
-    [:id, :inserted_at, :updated_at]
+    [:id, :created_at, :updated_at]
   end
 
   def self.text_fields

@@ -1,5 +1,5 @@
 class GraphicsController < ApplicationController
-  before_action :set_graphic, only: [:show, :update, :destroy]
+  before_action :set_graphic, only: %i(edit show update destroy)
 
   # GET /graphics
   # GET /graphics.json
@@ -10,6 +10,12 @@ class GraphicsController < ApplicationController
   # GET /graphics/1
   # GET /graphics/1.json
   def show
+  end
+
+  def new
+  end
+
+  def edit
   end
 
   # POST /graphics

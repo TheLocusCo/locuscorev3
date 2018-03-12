@@ -1,6 +1,6 @@
 class RolesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_role, only: [:show, :update, :destroy]
+  before_action :set_role, only: %i(edit show update destroy)
 
   # GET /roles
   # GET /roles.json
@@ -11,6 +11,12 @@ class RolesController < ApplicationController
   # GET /roles/1
   # GET /roles/1.json
   def show
+  end
+
+  def new
+  end
+
+  def edit
   end
 
   # POST /roles

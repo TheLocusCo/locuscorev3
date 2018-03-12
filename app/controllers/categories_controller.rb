@@ -1,10 +1,10 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :update, :destroy]
+  before_action :set_category, only: %i(edit show update destroy)
 
   # GET /categories
   # GET /categories.json
   def index
-    @categories = case params["type"] do
+    @categories = case params["type"]
                   when "posts" then Category.belonging_to("posts")
                   when "projects" then Category.belonging_to("projects")
                   when "graphics" then Category.belonging_to("graphics")
@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
                   else              Category.ordered_by_name
                   end
 
-    @categories = case params["mode"] do
+    @categories = case params["mode"]
                   when "withAllCat" then @categories.uniq.to_a.insert(0, Category.new({id: 0, name: "All Categories"}))
                   end
   end
@@ -21,6 +21,12 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+  end
+
+  def new
+  end
+
+  def edit
   end
 
   # POST /categories

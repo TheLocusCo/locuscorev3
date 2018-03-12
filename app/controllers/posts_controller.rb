@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i(show update destroy)
+  before_action :authenticate_user!, except: %i(index show)
+  before_action :set_post, only: %i(edit show update destroy)
 
   def index
     @posts = case params["mode"]
@@ -11,6 +12,12 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+  end
+
+  def new
+  end
+
+  def edit
   end
 
   # POST /posts

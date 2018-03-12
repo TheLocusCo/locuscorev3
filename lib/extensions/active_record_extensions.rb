@@ -22,13 +22,21 @@ module ActiveRecordExtension
   # add your static(class) methods here
   class_methods do
     def fetch_ordered(preload_associations = [])
-      order("created_at DESC").preload(*preload_associations)
+      if preload_associations.empty?
+        order("created_at DESC")
+      else
+        order("created_at DESC").preload(*preload_associations)
+      end
     end
 
     def fetch_ordered_by_page(current_page, preload_associations = [])
       offset = 10 * (current_page.to_i - 1)
 
-      limit(10).offset(offset).order("created_at DESC").preload(*preload_associations)
+      if preload_associations.empty?
+        limit(10).offset(offset).order("created_at DESC")
+      else
+        limit(10).offset(offset).order("created_at DESC").preload(*preload_associations)
+      end
     end
 
     def map_field_metadata

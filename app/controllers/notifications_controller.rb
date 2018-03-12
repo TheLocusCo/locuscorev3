@@ -1,10 +1,10 @@
 class NotificationsController < ApplicationController
-  before_action :set_notification, only: [:show, :update, :destroy]
+  before_action :set_notification, only: %i(edit show update destroy)
 
   # GET /notifications
   # GET /notifications.json
   def index
-    @notifications = case params["mode"] do
+    @notifications = case params["mode"]
                      when "forUser" then Notification.fetch_ordered.has_not_been_seen_by(params["forUser"]).check_authorization(params["forUser"])
                      else                Notification.fetch_ordered_by_page(params["page"])
                      end
@@ -13,6 +13,12 @@ class NotificationsController < ApplicationController
   # GET /notifications/1
   # GET /notifications/1.json
   def show
+  end
+
+  def new
+  end
+
+  def edit
   end
 
   # POST /notifications

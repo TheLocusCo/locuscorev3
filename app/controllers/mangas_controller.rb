@@ -1,5 +1,5 @@
 class MangasController < ApplicationController
-  before_action :set_manga, only: [:show, :update, :destroy]
+  before_action :set_manga, only: %i(edit show update destroy)
 
   # GET /mangas
   # GET /mangas.json
@@ -10,6 +10,12 @@ class MangasController < ApplicationController
   # GET /mangas/1
   # GET /mangas/1.json
   def show
+  end
+
+  def new
+  end
+
+  def edit
   end
 
   # POST /mangas

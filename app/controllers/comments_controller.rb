@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :update, :destroy]
+  before_action :set_comment, only: %i(edit show update destroy)
 
   # GET /comments
   # GET /comments.json
@@ -10,6 +10,12 @@ class CommentsController < ApplicationController
   # GET /comments/1
   # GET /comments/1.json
   def show
+  end
+
+  def new
+  end
+
+  def edit
   end
 
   # POST /comments
