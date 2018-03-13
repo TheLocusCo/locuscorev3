@@ -15,6 +15,7 @@ class CategoriesController < ApplicationController
 
     @categories = case params["mode"]
                   when "withAllCat" then @categories.uniq.to_a.insert(0, Category.new({id: 0, name: "All Categories"}))
+                  else                   @categories
                   end
   end
 

@@ -4,7 +4,11 @@ class MediaController < ApplicationController
   # GET /media
   # GET /media.json
   def index
-    @media = Medium.all
+    @media = case params["mode"]
+             when "all" then  Medium.fetch_ordered
+             when "paginated" then Medium.fetch_ordered_by_page(params["page"])
+             else                  Medium.fetch_ordered_by_page(params["page"])
+             end
   end
 
   # GET /media/1

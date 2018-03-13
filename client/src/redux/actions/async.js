@@ -948,6 +948,7 @@ export function userAuth() {
     }).then(response => {
       if (Object.keys(response).includes("data") && Object.keys(response.data).includes("id")) {
         dispatch(userRoleForAuthSuccess(response.data))
+        dispatch(sync.successMessage("Welcome Back!"))
       } else {
         dispatch(sync.userAuthFailure(response))
       }
@@ -965,6 +966,7 @@ export function userLogin(user) {
       if (Object.keys(response).includes("data") && Object.keys(response.data).includes("id")) {
         localStorage.uid = response.data.email
         dispatch(userRoleForAuthSuccess(response.data))
+        dispatch(sync.successMessage("Successfully Logged In"))
       } else {
         dispatch(sync.userLoginFailure(response))
       }
@@ -981,7 +983,6 @@ export function userRoleForAuthSuccess(user) {
       if (Object.keys(response).includes("data") && Object.keys(response.data).includes("id")) {
         user.role = response.data
         dispatch(sync.userAuthSuccess(user))
-        dispatch(sync.successMessage("Successfully Logged In"))
       } else {
         dispatch(sync.userLoginFailure(response))
       }

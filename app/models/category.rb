@@ -8,6 +8,12 @@ class Category < ApplicationRecord
   has_and_belongs_to_many :mangas, join_table: :mangas_categories
   has_and_belongs_to_many :media, join_table: :media_categories
 
+  accepts_nested_attributes_for :projects, allow_destroy: true
+  accepts_nested_attributes_for :posts, allow_destroy: true
+  accepts_nested_attributes_for :graphics, allow_destroy: true
+  accepts_nested_attributes_for :mangas, allow_destroy: true
+  accepts_nested_attributes_for :projects, allow_destroy: true
+
   scope :ordered_by_name, -> { order("name ASC") }
   scope :belonging_to, -> (name) { ordered_by_name.joins(name) } # :projects, etc
 

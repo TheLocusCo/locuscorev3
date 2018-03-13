@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      render :show, status: :created, location: @post.preload(:categories, :user)
+      render :show, status: :created, location: @post
     else
       render json: {errors: @post.errors}, status: :unprocessable_entity
     end
@@ -36,7 +36,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     if @post.update(post_params)
-      render :show, status: :ok, location: @post.preload(:categories, :comments, :user)
+      render :show, status: :ok, location: @post
     else
       render json: {errors: @post.errors}, status: :unprocessable_entity
     end
@@ -56,6 +56,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :content, :author_id, :icon, :hidden, :published_at)
+      params.require(:post).permit(:title, :content, :author_id, :icon, :hidden, :published_at, categories_attributes: %i(id name), media_attributes: %i(id name))
     end
 end

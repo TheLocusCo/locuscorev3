@@ -1,1 +1,2 @@
 PG::UniqueViolation: ERROR:  could not create unique index "index_users_on_uid_and_provider"
+ActiveRecord::RecordNotFound (Couldn't find Category with ID=99 for Post with ID=)

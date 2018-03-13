@@ -9,4 +9,5 @@ json.basic_description truncate(post.content.html_safe, length: 140, separator: 
 json.href "/posts/#{post.id}"
 json.author post.user.name
 json.date post.published_at.strftime("%B %d, %Y")
+json.meta_title post.title
 json.field_meta Post.map_field_metadata

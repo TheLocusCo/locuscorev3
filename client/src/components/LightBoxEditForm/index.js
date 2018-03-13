@@ -164,7 +164,7 @@ let LightBoxEditForm = props => {
               <i className={"icon-info form-tooltip-icon " + (fieldMeta.tooltips[indivField[0]] ? "" : "display-none")} data-tip={fieldMeta.tooltips[indivField[0]]} />
               <br/>
               <p className="form-description">{humanize(indivField[0])}</p>
-              <Field name={indivField[0]} component={renderMultiselect} valueField='id' textField='name' id={id} changeFunc={change} data={categories}/>
+              <Field name={`${indivField[0]}_attributes`} component={renderMultiselect} valueField='id' textField='name' id={id} changeFunc={change} data={categories}/>
             </div>
           )
         case "commentable_select":
@@ -220,7 +220,7 @@ let LightBoxEditForm = props => {
                 <i className={"icon-info form-tooltip-icon " + (fieldMeta.tooltips[indivField[0]] ? "" : "display-none")} data-tip={fieldMeta.tooltips[indivField[0]]} />
                 <br/>
                 <p className="form-description">{humanize(indivField[0])}</p>
-                <Field name={indivField[0]} component={renderMultiselectWithoutChange} valueField='id' textField='name' id={id} data={media}/>
+                <Field name={`${indivField[0]}_attributes`} component={renderMultiselectWithoutChange} valueField='id' textField='name' id={id} data={media}/>
               </div>
             )
           }
