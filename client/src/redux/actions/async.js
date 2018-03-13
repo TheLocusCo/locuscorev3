@@ -819,7 +819,7 @@ export function resourceDestroy(resource, history) {
     http.resourceDestroy(resource.field_meta.resource_plural, resource).then(function(response) {
       setLocalStorageFromHeaders(response.headers)
 
-      return response.json()
+      return response
     }).then(response => {
       if (response.ok) {
         dispatch(sync.destroyResourceSuccess(resource.field_meta.resource_type, resource))
