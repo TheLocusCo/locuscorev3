@@ -23,12 +23,13 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+    service_result = Organizers::BuildJoinTableObjects.call(post_params, 'post', 'new')
+    @post = service_result.main_object
 
-    if @post.save
-      render :show, status: :created, location: @post
+    if service_result.failure?
+      render json: {errors: service_result.message}, status: :unprocessable_entity
     else
-      render json: {errors: @post.errors}, status: :unprocessable_entity
+      render :show, status: :created, location: @post
     end
   end
 
@@ -56,6 +57,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :content, :author_id, :icon, :hidden, :published_at, categories_attributes: %i(id name), media_attributes: %i(id name))
+      params.require(:post).permit(:title, :content, :author_id, :icon, :hidden, :published_at, categories: %i(id name), media: %i(id name))
     end
 end

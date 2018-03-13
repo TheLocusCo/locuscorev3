@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180307030657) do
+ActiveRecord::Schema.define(version: 20180313170603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20180307030657) do
   create_table "graphics_categories", force: :cascade do |t|
     t.bigint "graphic_id"
     t.bigint "category_id"
-    t.datetime "inserted_at", null: false
+    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["graphic_id", "category_id"], name: "graphics_categories_graphic_id_category_id_index", unique: true
   end
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20180307030657) do
   create_table "mangas_categories", force: :cascade do |t|
     t.bigint "manga_id"
     t.bigint "category_id"
-    t.datetime "inserted_at", null: false
+    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["manga_id", "category_id"], name: "mangas_categories_manga_id_category_id_index", unique: true
   end
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 20180307030657) do
   create_table "media_categories", force: :cascade do |t|
     t.bigint "medium_id"
     t.bigint "category_id"
-    t.datetime "inserted_at", null: false
+    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["medium_id", "category_id"], name: "media_categories_medium_id_category_id_index", unique: true
   end
@@ -156,7 +156,7 @@ ActiveRecord::Schema.define(version: 20180307030657) do
   create_table "posts_categories", force: :cascade do |t|
     t.bigint "post_id"
     t.bigint "category_id"
-    t.datetime "inserted_at", null: false
+    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id", "category_id"], name: "posts_categories_post_id_category_id_index", unique: true
   end
@@ -170,7 +170,7 @@ ActiveRecord::Schema.define(version: 20180307030657) do
   create_table "posts_media", force: :cascade do |t|
     t.bigint "post_id"
     t.bigint "medium_id"
-    t.datetime "inserted_at", null: false
+    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id", "medium_id"], name: "posts_media_post_id_medium_id_index", unique: true
   end
@@ -189,7 +189,7 @@ ActiveRecord::Schema.define(version: 20180307030657) do
   create_table "projects_categories", force: :cascade do |t|
     t.bigint "project_id"
     t.bigint "category_id"
-    t.datetime "inserted_at", null: false
+    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id", "category_id"], name: "projects_categories_project_id_category_id_index", unique: true
   end
@@ -203,7 +203,7 @@ ActiveRecord::Schema.define(version: 20180307030657) do
   create_table "projects_media", force: :cascade do |t|
     t.bigint "project_id"
     t.bigint "medium_id"
-    t.datetime "inserted_at", null: false
+    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id", "medium_id"], name: "projects_media_project_id_medium_id_index", unique: true
   end

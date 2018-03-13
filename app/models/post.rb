@@ -9,9 +9,6 @@ class Post < ApplicationRecord
   has_and_belongs_to_many :comments, join_table: :posts_comments
   has_and_belongs_to_many :media, join_table: :posts_media
 
-  accepts_nested_attributes_for :categories, allow_destroy: true
-  accepts_nested_attributes_for :media, allow_destroy: true
-
   scope :not_hidden_and_is_published, -> { where.not(hidden: true).where("published_at < ?", Time.now) }
   scope :get_meta_titles_for_page, -> (page) { order("created_at DESC").select(:id, :created_at, :title).limit(10).offset(10 * (page - 1)) }
 
