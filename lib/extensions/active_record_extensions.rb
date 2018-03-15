@@ -21,6 +21,10 @@ module ActiveRecordExtension
 
   # add your static(class) methods here
   class_methods do
+    def get_users_for_select
+      User.select(:id, :username).map {|u| { name: u.username, value: u.id } }
+    end
+
     def fetch_ordered(preload_associations = [])
       if preload_associations.empty?
         order("created_at DESC")

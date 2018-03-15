@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i(index show)
-  before_action :set_post, only: %i(edit show update destroy)
+  before_action :set_post, only: %i(edit show destroy)
 
   def index
     @posts = case params["mode"]

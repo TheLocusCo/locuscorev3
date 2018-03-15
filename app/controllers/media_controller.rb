@@ -58,6 +58,6 @@ class MediaController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def medium_params
-      params.fetch(:medium, {})
+      params.require(:medium).permit(:id, :name, :description, :globally_visable, :user_ids_who_can_view, :user_id, :image, :generic)
     end
 end

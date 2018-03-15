@@ -47,6 +47,10 @@ Rails.application.routes.draw do
     resources :comments
     get 'comments/:id/edit', to: 'comments#edit'
 
+    get 'projects/new', to: 'projects#new'
+    resources :projects
+    get 'projects/:id/edit', to: 'projects#edit'
+
     get 'posts/new', to: 'posts#new'
     resources :posts
     get 'posts/:id/edit', to: 'posts#edit'

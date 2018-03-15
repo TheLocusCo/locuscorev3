@@ -25,22 +25,26 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(project_params)
+    service_result = Organizers::BuildJoinTableObjects.call(project_params, 'project', :new)
+    @project = service_result.main_object
 
-    if @project.save
-      render :show, status: :created, location: @project
+    if service_result.failure?
+      render json: {errors: service_result.message}, status: :unprocessable_entity
     else
-      render json: @project.errors, status: :unprocessable_entity
+      render :show, status: :created, location: @project
     end
   end
 
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
-    if @project.update(project_params)
-      render :show, status: :ok, location: @project
+    service_result = Organizers::BuildJoinTableObjects.call(project_params, 'project', :update)
+    @project = service_result.main_object
+
+    if service_result.failure?
+      render json: {errors: service_result.message}, status: :unprocessable_entity
     else
-      render json: @project.errors, status: :unprocessable_entity
+      render :show, status: :ok, location: @project
     end
   end
 
@@ -58,6 +62,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.fetch(:project, {})
+      params.require(:project).permit(:id, :name, :main_description, :client, :role, :link, categories: %i(id name), media: %i(id name))
     end
 end
