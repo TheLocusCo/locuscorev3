@@ -23,8 +23,8 @@ gem 'rest-client'
 gem 'devise_token_auth'
 gem 'omniauth'
 gem 'rack-cors', :require => 'rack/cors'
-gem 'paperclip'
-gem 'aws-sdk'
+gem 'paperclip', '>= 6.0.0'
+gem 'aws-sdk-s3'
 gem 'light-service'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -4,6 +4,7 @@ Paperclip::Attachment.default_options[:s3_credentials] = {
   :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
   :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'],
 }
+Paperclip::Attachment.default_options[:s3_region] = 'us-west-1'
 
 #Paperclip::Attachment.default_options[:fog_directory] = ""
 #Paperclip::Attachment.default_options[:fog_host] = "http://localhost:3000"

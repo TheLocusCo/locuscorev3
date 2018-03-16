@@ -25,22 +25,26 @@ class MediaController < ApplicationController
   # POST /media
   # POST /media.json
   def create
-    @medium = Medium.new(medium_params)
+    service_result = Organizers::BuildJoinTableObjects.call(medium_params, 'medium', :create)
+    @medium = service_result.main_object
 
-    if @medium.save
-      render :show, status: :created, location: @medium
+    if service_result.failure?
+      render json: {errors: service_result.message}, status: :unprocessable_entity
     else
-      render json: @medium.errors, status: :unprocessable_entity
+      render :show, status: :created, location: @medium
     end
   end
 
   # PATCH/PUT /media/1
   # PATCH/PUT /media/1.json
   def update
-    if @medium.update(medium_params)
-      render :show, status: :ok, location: @medium
+    service_result = Organizers::BuildJoinTableObjects.call(medium_params, 'medium', :update)
+    @medium = service_result.main_object
+
+    if service_result.failure?
+      render json: {errors: service_result.message}, status: :unprocessable_entity
     else
-      render json: @medium.errors, status: :unprocessable_entity
+      render :show, status: :ok, location: @medium
     end
   end
 
@@ -58,6 +62,6 @@ class MediaController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def medium_params
-      params.require(:medium).permit(:id, :name, :description, :globally_visable, :user_ids_who_can_view, :user_id, :image, :generic)
+      params.require(:medium).permit(:id, :name, :description, :globally_visible, :user_ids_who_can_view, :user_id, :image, :generic, categories: %i(id name))
     end
 end

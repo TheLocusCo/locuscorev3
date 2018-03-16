@@ -91,12 +91,13 @@ export const LightBoxMediumContent = props => {
           </tbody>
         </table>
       </div>
-      {renderMedia(props.arc_media.original, "image", "")}
-      {renderMedia(props.arc_media_generic, "generic", props.arc_media_generic_name)}
       <LightBoxUploadForm {...props}/>
       <AuthedContentFooter location={props.location} />
     </article>
   )
 }
+
+//{renderMedia(props.arc_media.original, "image", "")}
+//{renderMedia(props.arc_media_generic, "generic", props.arc_media_generic_name)}
 
 export default LightBoxMediumContent

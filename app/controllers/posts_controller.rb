@@ -23,7 +23,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    service_result = Organizers::BuildJoinTableObjects.call(post_params, 'post', :new)
+    service_result = Organizers::BuildJoinTableObjects.call(post_params, 'post', :create)
     @post = service_result.main_object
 
     if service_result.failure?

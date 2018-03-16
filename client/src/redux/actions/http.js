@@ -177,14 +177,16 @@ export function resourceUpload(resourcePlural, resourceType, resource) {
   Object.keys(resource).forEach((key) => {
     if (resource[key] instanceof FileList) {
       form_data.append(`${resourceType}[${key}]`, resource[key][0], resource[key][0].name)
+      console.log(`TESTING::${resourceType}[${key}]::${resource[key][0]}::${resource[key][0].name}`)
     }
   })
+
+  form_data.append(`${resourceType}[id]`, resource.id)
 
   return fetch(`${fetchAPIURL()}/authed/${resourcePlural}/${resource.id}`, {
     method: "PATCH",
     headers: {
       Accept: "application/json",
-      "Content-Type": "application/json",
       "access-token": localStorage.accessToken || "",
       "token-type":   "Bearer",
       "client":       localStorage.tokenClient || "",
