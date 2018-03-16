@@ -1,6 +1,6 @@
 class Medium < ApplicationRecord
   has_attached_file :image, styles: { thumb: "250x180#", slider_show: "480x367#", slider_big: "640x390#", slider_small: "200x280#" }# , default_url: "/images/:style/missing.png"
-  has_attached_file :generic
+  has_attached_file :generic, s3_permissions: :private, path: "/uploads2/:class/:id_partition/:style/:filename"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   belongs_to :user
@@ -39,5 +39,21 @@ class Medium < ApplicationRecord
 
   def self.select_fields
     {user_ids_who_can_view: :multiselect, select: {user_ids_who_can_view: Medium.get_users_for_select}, user_id: :hidden, hidden: {user_id: "currentUser"}}
+  end
+
+  def image_urls
+    {
+      original: image.url.gsub("s3.amazonaws.com/#{ENV['S3_BUCKET']}", "#{ENV['S3_BUCKET']}.s3.amazonaws.com"),
+      thumb: image.url(:thumb).gsub("s3.amazonaws.com/#{ENV['S3_BUCKET']}", "#{ENV['S3_BUCKET']}.s3.amazonaws.com"),
+      slider_show: image.url(:slider_show).gsub("s3.amazonaws.com/#{ENV['S3_BUCKET']}", "#{ENV['S3_BUCKET']}.s3.amazonaws.com"),
+      slider_big: image.url(:slider_big).gsub("s3.amazonaws.com/#{ENV['S3_BUCKET']}", "#{ENV['S3_BUCKET']}.s3.amazonaws.com"),
+      slider_small: image.url(:slider_small).gsub("s3.amazonaws.com/#{ENV['S3_BUCKET']}", "#{ENV['S3_BUCKET']}.s3.amazonaws.com"),
+    }
+  end
+
+  def generic_url
+    {
+      original: generic.expiring_url(60).gsub("s3.amazonaws.com/#{ENV['S3_BUCKET']}", "#{ENV['S3_BUCKET']}.s3.amazonaws.com")
+    }
   end
 end

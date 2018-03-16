@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     resources :categories, only: [:index]
     resources :notifications, only: [:create]
     resources :comments, only: [:create]
+
+    get 'media/:id/show_image', to: 'media#show_image'
+    get 'media/:id/show_download', to: 'media#show_download'
   end
 
   scope '/authed' do
@@ -54,5 +57,8 @@ Rails.application.routes.draw do
     get 'posts/new', to: 'posts#new'
     resources :posts
     get 'posts/:id/edit', to: 'posts#edit'
+
+    get 'media/:id/show_image', to: 'media#show_image'
+    get 'media/:id/show_download', to: 'media#show_download'
   end
 end

@@ -7,7 +7,7 @@ export const LightBoxMediumContent = props => {
   const downloadMedia = (url) => {
     setTimeout(() => {
       const response = {
-        file: url
+        file: url.original
       }
       window.open(response.file)
     }, 100)
@@ -91,13 +91,12 @@ export const LightBoxMediumContent = props => {
           </tbody>
         </table>
       </div>
+      {renderMedia(props.image.original, "image", "")}
+      {props.generic_name && renderMedia(props.generic, "generic", props.generic_name)}
       <LightBoxUploadForm {...props}/>
       <AuthedContentFooter location={props.location} />
     </article>
   )
 }
-
-//{renderMedia(props.arc_media.original, "image", "")}
-//{renderMedia(props.arc_media_generic, "generic", props.arc_media_generic_name)}
 
 export default LightBoxMediumContent
