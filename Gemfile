@@ -26,6 +26,7 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'paperclip', '>= 6.0.0'
 gem 'aws-sdk-s3'
 gem 'light-service'
+gem 'cancancan'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -1,4 +1,5 @@
 class MangasController < ApplicationController
+  load_and_authorize_resource
   before_action :set_manga, only: %i(edit show update destroy)
 
   # GET /mangas

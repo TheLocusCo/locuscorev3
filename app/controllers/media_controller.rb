@@ -1,4 +1,5 @@
 class MediaController < ApplicationController
+  load_and_authorize_resource
   before_action :set_medium, only: %i(edit show update destroy show_download show_image)
 
   # GET /media
