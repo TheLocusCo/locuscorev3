@@ -14,7 +14,7 @@ module ActiveRecordExtension
   end
 
   def media_with_urls(returned = [])
-    returned << media.map { |x| { id: x.id, name: x.name } }
+    returned << media.map { |x| { id: x.id, name: x.name, image: x.image_urls } }
 
     returned.flatten(1)
   end

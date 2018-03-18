@@ -9,7 +9,7 @@ class Category < ApplicationRecord
   has_and_belongs_to_many :media, join_table: :media_categories
 
   scope :ordered_by_name, -> { order("name ASC") }
-  scope :belonging_to, -> (name) { ordered_by_name.joins(name) } # :projects, etc
+  scope :belonging_to, -> (name) { ordered_by_name.joins(name.to_sym) } # :projects, etc
 
   def capitalize_name
     self.name = self.name.split(" ").map { |s| s.capitalize }.join(" ")

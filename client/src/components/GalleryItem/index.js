@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom'
 
 export const GalleryItem = props => {
   const renderMedia = (props) => {
-    if (props.media[0]) {
-      return <img src={props.media[0].arc_media.thumb} alt={props.media[0].name} />
+    if (props.media.length > 0) {
+      return <img src={props.media[0].image.thumb} alt={props.media[0].name} />
     } else {
       return <img src={placeholder} alt="placeholder" />
     }

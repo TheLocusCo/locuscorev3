@@ -4,6 +4,8 @@ import { Route } from 'react-router-dom'
 import AuthedContentFooter from '../../containers/AuthedContentFooter'
 import SliderMediaContainer from '../../containers/SliderMediaContainer'
 
+import { Markdown } from 'react-showdown'
+
 export const LightBoxProjectContent = props => {
   return (
     <Route render={({location}) => (
@@ -24,7 +26,7 @@ export const LightBoxProjectContent = props => {
           </dl>
         </div>
         <div className="project-content">
-          <div dangerouslySetInnerHTML={{ __html: props.main_description }} />
+          <Markdown markup={ props.main_description } />
         </div>
         {"site" in props &&
           <p className="centered" style={{marginTop: "20px"}}>

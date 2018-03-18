@@ -6,11 +6,11 @@ class CategoriesController < ApplicationController
   # GET /categories.json
   def index
     @categories = case params["type"]
-                  when "posts" then Category.belonging_to("posts")
-                  when "projects" then Category.belonging_to("projects")
-                  when "graphics" then Category.belonging_to("graphics")
-                  when "mangas" then Category.belonging_to("mangas")
-                  when "media" then Category.belonging_to("media")
+                  when "posts" then Category.belonging_to(:posts)
+                  when "projects" then Category.belonging_to(:projects)
+                  when "graphics" then Category.belonging_to(:graphics)
+                  when "mangas" then Category.belonging_to(:mangas)
+                  when "media" then Category.belonging_to(:media)
                   else              Category.ordered_by_name
                   end
 
