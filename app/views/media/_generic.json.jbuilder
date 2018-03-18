@@ -1,4 +1,4 @@
-if medium.generic.url == "/images/original/missing.png"
+if medium.generic.url == "/generics/original/missing.png"
   json.generic {}
   json.generic_name ''
 else

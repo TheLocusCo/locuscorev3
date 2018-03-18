@@ -64,6 +64,8 @@ class Ability
       can :edit_update, Medium, user_id: user.id
       can :destroy, Medium, user_id: user.id
 
+      can :read, Notification
+
       cannot :destroy, User, id: user.id
 
       unless user.role_id.nil?
@@ -104,6 +106,9 @@ class Ability
 
         can(:edit_update, Medium) if user.role.pf_media.include?('u')
         can(:destroy, Medium) if user.role.pf_media.include?('d')
+
+        can(:edit_update, Notification) if user.role.pf_notifications.include?('u')
+        can(:destroy, Notification) if user.role.pf_notifications.include?('d')
       end
     end
   end

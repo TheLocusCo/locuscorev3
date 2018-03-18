@@ -91,7 +91,7 @@ export const LightBoxMediumContent = props => {
           </tbody>
         </table>
       </div>
-      {renderMedia(props.image.original, "image", "")}
+      {props.image && renderMedia(props.image.original, "image", "")}
       {props.generic_name && renderMedia(props.generic, "generic", props.generic_name)}
       <LightBoxUploadForm {...props}/>
       <AuthedContentFooter location={props.location} />
