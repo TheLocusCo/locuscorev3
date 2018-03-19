@@ -29,7 +29,7 @@ gem 'light-service'
 gem 'cancancan'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'locuscorev3_mangas', path: '../locuscorev3_mangas'
+
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
@@ -39,12 +39,17 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
+group :production do
+  gem 'locuscorev3_mangas', git: "https://#{ENV['locuscore_deploy']}:#{ENV['locuscore_deploy_password']}@github.com/TheLocusCo/locuscorev3_mangas.git"
+end
+
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pry'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'locuscorev3_mangas', path: '../locuscorev3_mangas'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
