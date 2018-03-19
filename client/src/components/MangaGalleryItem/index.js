@@ -5,10 +5,9 @@ import placeholder from './manga_placeholder.png'
 import { Link } from 'react-router-dom'
 
 export const MangaGalleryItem = props => {
-  const mangaImage = require(`../../images/manga_covers${props.image_location}`)
   const renderMedia = (props) => {
     if (props.image_location) {
-      return <img style={{width: "285px"}} src={mangaImage} alt={props.image_location} />
+      return <img style={{width: "285px"}} src={props.image_location} alt={props.image_location} />
     } else {
       return <img style={{width: "285px"}} src={placeholder} alt="placeholder" />
     }

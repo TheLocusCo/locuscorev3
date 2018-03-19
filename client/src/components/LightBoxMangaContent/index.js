@@ -4,12 +4,11 @@ import { Route } from 'react-router-dom'
 import AuthedContentFooter from '../../containers/AuthedContentFooter'
 
 export const LightBoxMangaContent = props => {
-  const mangaImage = require(`../../images/manga_covers${props.image_location}`)
   return (
     <Route render={({location}) => (
       <article className="portfolio-item">
         <figure style={{width: "400px", marginBottom: "100px"}}>
-          <img style={{width: "400px", height: "500px"}} src={mangaImage} alt={props.image_location}/>
+          <img style={{width: "400px", height: "500px"}} src={props.image_location} alt={props.image_location}/>
         </figure>
         <div style={{marginLeft: "20px"}}>
           <h1>{props.name}</h1>

@@ -29,6 +29,7 @@ gem 'light-service'
 gem 'cancancan'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'locuscorev3_mangas', path: '../locuscorev3_mangas'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'

@@ -9,7 +9,7 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "action_view/railtie"
 require "action_cable/engine"
-# require "sprockets/railtie"
+require "sprockets/railtie"
 require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -30,5 +30,6 @@ module Locuscorev3
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
     config.eager_load_paths << Rails.root.join("lib")
+    Rails.application.config.assets.precompile += %w( locuscorev3_mangas/manga_covers/*.jpg locuscorev3_mangas/manga_covers/*.png )
   end
 end

@@ -1,3 +1,12 @@
+PATH
+  remote: ../locuscorev3_mangas
+  specs:
+    locuscorev3_mangas (0.1.0)
+      nokogiri
+      pg
+      rails (~> 5.1.5)
+      rest-client
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -200,6 +209,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   light-service
   listen (>= 3.0.5, < 3.2)
+  locuscorev3_mangas!
   nokogiri
   omniauth
   paperclip (>= 6.0.0)
