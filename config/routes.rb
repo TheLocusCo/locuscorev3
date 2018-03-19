@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
-  mount Locuscorev3Mangas::Engine, at: "/extra"
+  mount Locuscorev3Mangas::Engine, at: "/"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   scope '/api' do
@@ -34,10 +34,6 @@ Rails.application.routes.draw do
     get 'media/new', to: 'media#new'
     resources :media
     get 'media/:id/edit', to: 'media#edit'
-
-    get 'mangas/new', to: 'mangas#new'
-    resources :mangas
-    get 'mangas/:id/edit', to: 'mangas#edit'
 
     get 'graphics/new', to: 'graphics#new'
     resources :graphics
