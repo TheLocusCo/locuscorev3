@@ -3,7 +3,7 @@ import * as helpers from "./helpers"
 
 function fetchResumesURL() {
   if (process.env.NODE_ENV === 'production') {
-    return "http://resumes.thelocus.co"
+    return "http://thelocus.co"
   } else {
     return `${process.env.REACT_APP_BASE_ENDPOINT}:${process.env.REACT_APP_RESUMES_PORT}`
   }

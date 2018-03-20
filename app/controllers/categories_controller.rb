@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   load_and_authorize_resource
+  before_action :authenticate_user!, except: %i(index)
   before_action :set_category, only: %i(edit show update destroy)
 
   # GET /categories

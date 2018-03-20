@@ -378,7 +378,7 @@ export function fetchCategories(type) {
 export function fetchComment(id) {
   return dispatch =>
     http.commentFetch(id).then(function(response) {
-      setLocalStorageFromHeaders(response.headers)
+      //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
     }).then(response => {
@@ -431,7 +431,7 @@ export function fetchGraphic(id) {
 export function fetchManga(id) {
   return dispatch =>
     http.mangaFetch(id).then(function(response) {
-      setLocalStorageFromHeaders(response.headers)
+      //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
     }).then(response => {
@@ -447,7 +447,7 @@ export function fetchManga(id) {
 export function fetchMangas(fetchMode, page) {
   return dispatch =>
     http.mangasFetch(fetchMode, page).then(function(response) {
-      setLocalStorageFromHeaders(response.headers)
+      //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
     }).then(response => {
@@ -463,7 +463,7 @@ export function fetchMangas(fetchMode, page) {
 export function fetchMedium(id) {
   return dispatch =>
     http.mediumFetch(id).then(function(response) {
-      setLocalStorageFromHeaders(response.headers)
+      //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
     }).then(response => {
@@ -480,7 +480,7 @@ export function fetchMedium(id) {
 export function fetchMedia(mode, page) {
   return dispatch =>
     http.mediaFetch(mode, page).then(function(response) {
-      setLocalStorageFromHeaders(response.headers)
+      //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
     }).then(response => {
@@ -502,7 +502,7 @@ export function fetchNavigation() {
 export function fetchNotification(id) {
   return dispatch =>
     http.notificationFetch(id).then(function(response) {
-      setLocalStorageFromHeaders(response.headers)
+      //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
     }).then(response => {
@@ -518,7 +518,7 @@ export function fetchNotification(id) {
 export function fetchNotifications(page) {
   return dispatch =>
     http.notificationsFetch(page).then(function(response) {
-      setLocalStorageFromHeaders(response.headers)
+      //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
     }).then(response => {
@@ -587,7 +587,7 @@ export function fetchNewResource(resource) {
   return dispatch => {
     dispatch(sync.requestNewItem())
     http.resourceNewFetch(resource).then(function(response) {
-      setLocalStorageFromHeaders(response.headers)
+      //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
     }).then(response => {
@@ -604,7 +604,7 @@ export function fetchResource(resource, id) {
   return dispatch => {
     dispatch(sync.requestEditItem())
     http.resourceFetch(resource, id).then(function(response) {
-      setLocalStorageFromHeaders(response.headers)
+      //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
     }).then(response => {
@@ -620,7 +620,7 @@ export function fetchResource(resource, id) {
 export function fetchResources(resourceType, currentPage) {
   return dispatch =>
     http.resourcesFetch(resourceType, currentPage).then(function(response) {
-      setLocalStorageFromHeaders(response.headers)
+      //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
     }).then(response => {
@@ -636,7 +636,7 @@ export function fetchResources(resourceType, currentPage) {
 export function fetchResume(id) {
   return dispatch =>
     http.resumeFetch(id).then(function(response) {
-      setLocalStorageFromHeaders(response.headers)
+      //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
     }).then(response => {
@@ -659,7 +659,7 @@ export function fetchResumeHost() {
 export function fetchResumes(page) {
   return dispatch =>
     http.resumesFetch(page).then(function(response) {
-      setLocalStorageFromHeaders(response.headers)
+      //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
     }).then(response => {
@@ -675,7 +675,7 @@ export function fetchResumes(page) {
 export function fetchRole(id) {
   return dispatch =>
     http.roleFetch(id).then(function(response) {
-      setLocalStorageFromHeaders(response.headers)
+      //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
     }).then(response => {
@@ -691,7 +691,7 @@ export function fetchRole(id) {
 export function fetchRoles(page) {
   return dispatch =>
     http.rolesFetch(page).then(function(response) {
-      setLocalStorageFromHeaders(response.headers)
+      //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
     }).then(response => {
@@ -721,7 +721,7 @@ export function fetchShowMedium(id, type) {
 export function fetchUser(id) {
   return dispatch =>
     http.userFetch(id).then(function(response) {
-      setLocalStorageFromHeaders(response.headers)
+      //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
     }).then(response => {
@@ -737,7 +737,7 @@ export function fetchUser(id) {
 export function fetchUsers(page) {
   return dispatch =>
     http.usersFetch(page).then(function(response) {
-      setLocalStorageFromHeaders(response.headers)
+      //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
     }).then(response => {
@@ -753,7 +753,7 @@ export function fetchUsers(page) {
 export function fetchUserNotifications(userId) {
   return dispatch =>
     http.userNotificationsFetch(userId).then(function(response) {
-      setLocalStorageFromHeaders(response.headers)
+      //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
     }).then(response => {
@@ -782,7 +782,7 @@ export function createComment(comment, resourceTypeToFetch, resourceId) {
   comment[resourceTypeToFetch].id = resourceId
   return dispatch =>
     http.commentCreate(comment).then(function(response) {
-      setLocalStorageFromHeaders(response.headers)
+      //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
     }).then(response => {
@@ -817,7 +817,7 @@ export function previewComment(comment) {
 export function resourceDestroy(resource, history) {
   return dispatch =>
     http.resourceDestroy(resource.field_meta.resource_plural, resource).then(function(response) {
-      setLocalStorageFromHeaders(response.headers)
+      //setLocalStorageFromHeaders(response.headers)
 
       return response
     }).then(response => {
@@ -851,7 +851,7 @@ export function removePreviewCommentAndSetCommentFormVisibility() {
 export function resourceEdit(resource, history) {
   return dispatch =>
     http.resourcePatch(resource.field_meta.resource_plural, resource.field_meta.resource_type, resource).then(function(response) {
-      setLocalStorageFromHeaders(response.headers)
+      //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
     }).then(response => {
@@ -869,7 +869,7 @@ export function resourceEdit(resource, history) {
 export function resourceNew(resource, history) {
   return dispatch =>
     http.resourceCreate(resource.field_meta.resource_plural, resource.field_meta.resource_type, resource).then(function(response) {
-      setLocalStorageFromHeaders(response.headers)
+      //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
     }).then(response => {
@@ -887,7 +887,7 @@ export function resourceNew(resource, history) {
 export function resourceUpload(resource) {
   return dispatch =>
     http.resourceUpload(resource.field_meta.resource_plural, resource.field_meta.resource_type, resource).then(function(response) {
-      setLocalStorageFromHeaders(response.headers)
+      //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
     }).then(response => {
@@ -976,7 +976,7 @@ export function userLogin(user) {
 export function userRoleForAuthSuccess(user) {
   return dispatch =>
     http.userRoleFetch(user).then(function(response) {
-      setLocalStorageFromHeaders(response.headers)
+      //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
     }).then(response => {

@@ -39,7 +39,7 @@ class Ability
     can :read, Project
     can :show_image, Medium, globally_visible: true
     can :show_download, Medium, globally_visible: true
-    can :read, Resume, company: 'thelocusco'
+    can :read, Resume
     can :read, Category
     can :read, Graphic
     can :create_new, Notification
@@ -57,6 +57,7 @@ class Ability
       can :read, User, id: user.id
       can :edit_update, User, id: user.id
       can :read, Role, id: user.role_id
+      can :read, Resume
       cannot :edit_update, :user, [:failed_attempts, :locked_at]
 
       can :create_new, Medium
@@ -87,7 +88,6 @@ class Ability
         can(:destroy, Project) if user.role.pf_projects.include?('d')
 
         can(:create_new, Resume) if user.role.pf_resumes.include?('c')
-        can(:read, Resume) if user.role.pf_resumes.include?('r')
         can(:edit_update, Resume) if user.role.pf_resumes.include?('u')
         can(:destroy, Resume) if user.role.pf_resumes.include?('d')
 

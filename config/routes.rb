@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
     get 'media/:id/show_image', to: 'media#show_image'
     get 'media/:id/show_download', to: 'media#show_download'
+    get 'primary_resume_download', to: 'resumes#primary_resume_download'
   end
 
   scope '/authed' do

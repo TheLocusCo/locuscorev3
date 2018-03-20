@@ -1,1 +1,3 @@
-json.partial! "resumes/resume", resume: @resume
+json.data do
+  json.partial! "resumes/resume", resume: @resume
+end

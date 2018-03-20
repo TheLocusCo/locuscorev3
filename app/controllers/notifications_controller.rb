@@ -1,5 +1,6 @@
 class NotificationsController < ApplicationController
   load_and_authorize_resource
+  before_action :authenticate_user!, except: %i(create)
   before_action :set_notification, only: %i(edit show update destroy)
 
   # GET /notifications

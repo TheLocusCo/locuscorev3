@@ -4,7 +4,7 @@ import AuthedContentFooter from '../../containers/AuthedContentFooter'
 
 export const LightBoxResumeContent = props => {
   const generateResumeLink = (props, type) => {
-    return(props.resumeHost + "/resumes/" + props.id + "?" + type + "=true")
+    return(props.resumeHost + "/authed/resumes/" + props.id + "?" + type + "=true")
   }
 
   return (
@@ -23,15 +23,15 @@ export const LightBoxResumeContent = props => {
             </tr>
             <tr>
               <td>Last Updated At</td>
-              <td>{props.inserted_at}</td>
+              <td>{props.updated_at}</td>
             </tr>
             <tr>
               <td>Created At</td>
-              <td>{props.inserted_at}</td>
+              <td>{props.created_at}</td>
             </tr>
             <tr>
-              <td>Lines</td>
-              <td>{props.lines}</td>
+              <td>Length</td>
+              <td>{props.length}</td>
             </tr>
           </tbody>
         </table>
