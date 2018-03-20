@@ -30,7 +30,7 @@ class LightBoxComment extends Component {
               }
               {this.props.comment.id &&
                 <article className="portfolio-item">
-                  <h4 className="section-heading">Owned By {this.humanize(this.props.commentable_type)}: {this.props.owned_by}</h4>
+                  <h4 className="section-heading">Owned By {this.humanize(this.props.comment.commentable_type)}: {this.props.comment.owned_by}</h4>
                   <div className="box-dark" style={{marginTop: "30px", paddingTop: "47px"}}>
                     <LightBoxCommentContent {...this.props.comment} location={this.props.location} currentUser={this.props.currentUser}/>
                   </div>

@@ -177,7 +177,6 @@ export function resourceUpload(resourcePlural, resourceType, resource) {
   Object.keys(resource).forEach((key) => {
     if (resource[key] instanceof FileList) {
       form_data.append(`${resourceType}[${key}]`, resource[key][0], resource[key][0].name)
-      console.log(`TESTING::${resourceType}[${key}]::${resource[key][0]}::${resource[key][0].name}`)
     }
   })
 

@@ -27,6 +27,9 @@ gem 'paperclip', '>= 6.0.0'
 gem 'aws-sdk-s3'
 gem 'light-service'
 gem 'cancancan'
+
+gem 'locuscorev3_mangas', path: '../locuscorev3_mangas'
+# gem 'locuscorev3_mangas', git: "https://#{ENV['locuscore_deploy']}:#{ENV['locuscore_deploy_password']}@github.com/TheLocusCo/locuscorev3_mangas.git"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -39,17 +42,12 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
-group :production do
-  gem 'locuscorev3_mangas', git: "https://#{ENV['locuscore_deploy']}:#{ENV['locuscore_deploy_password']}@github.com/TheLocusCo/locuscorev3_mangas.git"
-end
-
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pry'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'locuscorev3_mangas', path: '../locuscorev3_mangas'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

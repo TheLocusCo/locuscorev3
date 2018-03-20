@@ -47,15 +47,7 @@ export const LightBoxCommentContent = props => {
         </div>
       )
     } else {
-      return(props.inserted_at_date + " | " + props.inserted_at_time)
-    }
-  }
-
-  const renderContent = (props) => {
-    if (props.isPreview) {
-      return <Markdown markup={ props.content } />
-    } else {
-      return <div dangerouslySetInnerHTML={{ __html: props.content }} />
+      return(props.created_at_date + " | " + props.created_at_time)
     }
   }
 
@@ -64,7 +56,7 @@ export const LightBoxCommentContent = props => {
       <h3>
         {renderNameWithWebsite(props)} | {renderDates(props)}
       </h3>
-      {renderContent(props)}
+      <Markdown markup={ props.content } />
 
     </div>
   )

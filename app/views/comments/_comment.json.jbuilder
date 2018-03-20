@@ -5,8 +5,8 @@ json.created_at comment.created_at.strftime("%B %d (%H:%M %P), %Y")
 json.updated_at comment.updated_at.strftime("%B %d (%H:%M %P), %Y")
 json.created_at_date comment.created_at.strftime("%B %d, %Y")
 json.updated_at_date comment.updated_at.strftime("%B %d, %Y")
-json.created_at_time comment.created_at.strftime("%H:%M:%S %P")
-json.updated_at_time comment.updated_at.strftime("%H:%M:%S %P")
+json.created_at_time comment.created_at.strftime("%I:%M:%S %P")
+json.updated_at_time comment.updated_at.strftime("%I:%M:%S %P")
 
 json.href "/comments/#{comment.id}"
 json.meta_title "#{comment.poster_name} (#{comment.poster_email})"

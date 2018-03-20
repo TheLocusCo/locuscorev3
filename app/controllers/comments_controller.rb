@@ -5,7 +5,13 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    @comments = case params["type"]
+                when "post" then Comment.belonging_to(:posts)
+                when "projects" then Comment.belonging_to(:projects)
+                when "graphics" then Comment.belonging_to(:graphics)
+                when "manga" then Comment.belonging_to(:manga)
+                else              Comment.fetch_ordered_by_page(params["page"])
+                end
   end
 
   # GET /comments/1
@@ -22,22 +28,27 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = Comment.new(comment_params)
+    comment_params["poster_ip"] = request.remote_ip
+    service_result = Organizers::BuildJoinTableObjectsForComment.call(comment_params, :create)
+    @comment = service_result.main_object
 
-    if @comment.save
-      render :show, status: :created, location: @comment
+    if service_result.failure?
+      render json: {errors: service_result.message}, status: :unprocessable_entity
     else
-      render json: @comment.errors, status: :unprocessable_entity
+      render :show, status: :created, location: @comment
     end
   end
 
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
-    if @comment.update(comment_params)
-      render :show, status: :ok, location: @comment
+    service_result = Organizers::BuildJoinTableObjectsForComment.call(comment_params, :update)
+    @comment = service_result.main_object
+
+    if service_result.failure?
+      render json: {errors: service_result.message}, status: :unprocessable_entity
     else
-      render json: @comment.errors, status: :unprocessable_entity
+      render :show, status: :ok, location: @comment
     end
   end
 
@@ -55,6 +66,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.fetch(:comment, {})
+      params.require(:category).permit(:poster_name, :poster_email, :poster_website, :content, :approved, :user_id, :commentable_type)
     end
 end
