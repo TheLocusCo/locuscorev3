@@ -73,7 +73,7 @@ class ResumesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def resume_params
-      params.require(:project).permit(:id, :title, :company, :prawn_content)
+      params.require(:resume).permit(:id, :title, :company, :prawn_content)
     end
 
     def send_pdf(download: false)

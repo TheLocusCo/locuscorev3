@@ -16,6 +16,8 @@ class User < ApplicationRecord
   has_many :comments
   belongs_to :role
 
+  scope :get_meta_titles_for_page, -> (page) { order("created_at DESC").select(:id, :created_at, :username).limit(10).offset(10 * (page - 1)) }
+
   def self.is_admin?(user_id)
     User.find(user_id.to_i).role.name == "Admin"
   end

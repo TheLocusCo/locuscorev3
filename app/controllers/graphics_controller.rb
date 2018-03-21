@@ -6,7 +6,7 @@ class GraphicsController < ApplicationController
   # GET /graphics
   # GET /graphics.json
   def index
-    @graphics = Graphic.all
+    @graphics = Graphic.fetch_ordered_by_page(params["page"]).where.not(library: "scenejs")
   end
 
   # GET /graphics/1
@@ -56,6 +56,6 @@ class GraphicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def graphic_params
-      params.fetch(:graphic, {})
+      params.require(:medium).permit(:id, :title, :script_content, :icon, :load_from_file, :canvas_id, :fullscreen_by_default, :content_description, :basic_description, :extra_params)
     end
 end

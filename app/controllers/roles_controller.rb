@@ -6,7 +6,7 @@ class RolesController < ApplicationController
   # GET /roles
   # GET /roles.json
   def index
-    @roles = Role.all
+    @roles = Role.fetch_ordered_by_page(params["page"])
   end
 
   # GET /roles/1
@@ -56,6 +56,6 @@ class RolesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def role_params
-      params.fetch(:role, {})
+      params.require(:role).permit(:id, :name, :description, :pf_graphics, :pf_projects, :pf_posts, :pf_users, :pf_categories, :pf_roles, :pf_resumes, :pf_media, :pf_mangas, :pf_notifications, :pf_comments)
     end
 end

@@ -6,6 +6,7 @@ class Notification < ApplicationRecord
 
   scope :has_not_been_seen_by, -> (user_id) { where.not("? != ANY (viewed_users)", user_id) }
   scope :check_authorization, -> (user_id) { User.is_admin?(user_id) ? where(true) : where.not(n_type: 'admin') }
+  scope :get_meta_titles_for_page, -> (page) { order("created_at DESC").select(:id, :created_at).limit(10).offset(10 * (page - 1)) }
 
   def self.fields_to_not_show
     [:id, :viewed_users, :created_at, :updated_at]

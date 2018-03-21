@@ -8,6 +8,8 @@ import mouseLightTrails from './p5/mouseLightTrails'
 import contrastMatrix from './p5/contrastMatrix'
 import AuthedContentFooter from '../../containers/AuthedContentFooter'
 
+import { Markdown } from 'react-showdown'
+
 class LightBoxGraphicContent extends Component {
   constructor(props) {
     super(props)
@@ -117,7 +119,7 @@ class LightBoxGraphicContent extends Component {
         }
         <h1 className="section-heading larger">{props.title}</h1>
         {this.renderGraphicBinding(this.props.library)}
-        <div dangerouslySetInnerHTML={{ __html: props.content_description}} />
+        <Markdown markup={ props.content_description } />
         {this.state.scriptLoaded &&
           <script type="text/javascript" dangerouslySetInnerHTML={{ __html: props.script_content }} />
         }

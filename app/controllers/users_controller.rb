@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.fetch_ordered_by_page(params["page"])
   end
 
   # GET /users/1
@@ -56,6 +56,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.fetch(:user, {})
+      params.require(:role).permit(:id, :username, :email, :name, :role_id, :password)
     end
 end
