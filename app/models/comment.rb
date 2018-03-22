@@ -2,6 +2,7 @@ class Comment < ApplicationRecord
   validates :content, presence: true, length: { minimum: 5 }
   validates :poster_name, presence: true
   validates :poster_email, presence: true
+  validates :commentable_type, presence: true
 
   has_and_belongs_to_many :projects, join_table: :projects_comments
   has_and_belongs_to_many :posts, join_table: :posts_comments

@@ -1,7 +1,7 @@
 class Notification < ApplicationRecord
   validates :from_name, presence: true
   validates :from_email, presence: true
-  validates :starts_displaying_at, presence: true
+  validates :start_displaying_at, presence: true
   validates :stops_displaying_at, presence: true
 
   scope :has_not_been_seen_by, -> (user_id) { where.not("? != ANY (viewed_users)", user_id) }

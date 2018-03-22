@@ -8,7 +8,7 @@ class Manga < ApplicationRecord
   scope :get_meta_titles_for_page, -> (page) { order("created_at DESC").select(:id, :created_at, :name).limit(10).offset(10 * (page - 1)) }
 
   def self.many_to_many_as
-    {categories: :categories, media: :media}
+    {categories: :categories}
   end
 
   def self.fields_to_not_show
@@ -16,11 +16,11 @@ class Manga < ApplicationRecord
   end
 
   def self.text_fields
-    {name: :text, sources: :text, header_image_location: :text, description: :text, downloaded_chapters: :text, licensed_at: :text, chapters_at: :text}
+    {name: :text, sources: :text, header_image_location: :text, description: :text, downloaded_chapters: :text, licensed_at: :text, chapters_at: :text, genres: :disabled}
   end
 
   def self.tooltips
-    {tooltips: {}}
+    {tooltips: {genres: "This field is only here for reference due to how the manga parser works, may remove someday"}}
   end
 
   def self.select_fields

@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   load_and_authorize_resource
   before_action :authenticate_user!, except: %i(create)
   before_action :set_comment, only: %i(edit show update destroy)
+  skip_load_resource only: :create
 
   # GET /comments
   # GET /comments.json
@@ -29,7 +30,7 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    comment_params["poster_ip"] = request.remote_ip
+    comment_params[:poster_ip] = request.remote_ip
     service_result = Organizers::BuildJoinTableObjectsForComment.call(comment_params, :create)
     @comment = service_result.main_object
 
@@ -67,6 +68,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:id, :poster_name, :poster_email, :poster_website, :content, :approved, :user_id, :commentable_type, owner: [:id])
+      params.require(:comment).permit(:id, :poster_name, :poster_email, :poster_website, :content, :approved, :user_id, :commentable_type, owner: [:id], manga: [:id], post: [:id], project: [:id], graphic: [:id])
     end
 end
