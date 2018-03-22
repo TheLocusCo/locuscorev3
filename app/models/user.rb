@@ -19,7 +19,7 @@ class User < ApplicationRecord
   scope :get_meta_titles_for_page, -> (page) { order("created_at DESC").select(:id, :created_at, :username).limit(10).offset(10 * (page - 1)) }
 
   def self.is_admin?(user_id)
-    User.find(user_id.to_i).role.name == "Admin"
+    User.find(user_id.to_i).role.name == "Super Admin"
   end
 
   def self.fields_to_not_show
