@@ -23,9 +23,13 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params.except(:role))
 
     if @user.save
+      if user_params[:role]
+        @user.role_id = Role.find_by_name(user_params[:role]).id
+        @user.save
+      end
       render :show, status: :created, location: @user
     else
       render json: @user.errors, status: :unprocessable_entity
@@ -35,7 +39,11 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    if @user.update(user_params)
+    if @user.update(user_params.except(:role))
+      if user_params[:role]
+        @user.role_id = Role.find_by_name(user_params[:role]).id
+        @user.save
+      end
       render :show, status: :ok, location: @user
     else
       render json: @user.errors, status: :unprocessable_entity
@@ -56,6 +64,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:role).permit(:id, :username, :email, :name, :role_id, :password)
+      params.require(:role).permit(:id, :username, :email, :name, :role, :password)
     end
 end

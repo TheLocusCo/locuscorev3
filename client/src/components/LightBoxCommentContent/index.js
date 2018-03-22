@@ -42,7 +42,7 @@ export const LightBoxCommentContent = props => {
       return (
         <div style={{display: "inline-block"}}>
           <Moment format="MMMM D, YYYY | H:mm:ss a">
-            {props.inserted_at}
+            {props.created_at}
           </Moment>
         </div>
       )

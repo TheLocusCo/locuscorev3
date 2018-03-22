@@ -17,7 +17,7 @@ class Comment < ApplicationRecord
   scope :get_meta_titles_for_page, -> (page) { order("created_at DESC").select(:id, :created_at).limit(10).offset(10 * (page - 1)) }
 
   def self.fields_to_not_show
-    [:id, :commentable_id, :inserted_at, :updated_at]
+    [:id, :commentable_id, :created_at, :updated_at]
   end
 
   def self.text_fields

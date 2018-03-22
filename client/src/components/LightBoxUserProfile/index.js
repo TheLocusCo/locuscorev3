@@ -27,7 +27,7 @@ export const LightBoxUserProfile = props => {
             </tr>
             <tr>
               <td>Created At</td>
-              <td>{props.inserted_at}</td>
+              <td>{props.created_at}</td>
             </tr>
             <tr>
               <td>Last Update</td>

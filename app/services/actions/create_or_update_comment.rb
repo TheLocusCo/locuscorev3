@@ -7,8 +7,8 @@ module Actions
     executed do |context|
       context.params[:approved] = true if context.params.key?(:user_id)
       main_object = case context.action
-                    when :create then Comment.send(:create, context.params)
-                    when :update then Comment.send(:update, context.params[:id], context.params)
+                    when :create then Comment.send(:create, context.params.except(:owner))
+                    when :update then Comment.send(:update, context.params[:id], context.params.except(:owner))
                     end
 
       main_object.save if context.action == :create

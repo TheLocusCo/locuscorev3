@@ -219,7 +219,7 @@ export function genericAPIError(data) {
 
 export function previewComment(comment) {
   comment.isPreview = true
-  comment.inserted_at = helpers.generateDate()
+  comment.created_at = helpers.generateDate()
   comment.receivedAt = Date.now()
   return {
     type: UPDATE_PREVIEW_COMMENT,

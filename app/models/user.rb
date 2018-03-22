@@ -35,7 +35,7 @@ class User < ApplicationRecord
   end
 
   def self.select_fields
-    {role: :select, select: { role: get_roles }}
+    {role: :select, select: { role: Role.pluck(:name) }}
   end
 
   def downcase
@@ -46,9 +46,4 @@ class User < ApplicationRecord
   def ensure_unique
     self.ip_list.uniq
   end
-
-  private
-    def get_roles
-      Role.pluck(:name)
-    end
 end
