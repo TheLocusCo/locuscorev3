@@ -20,3 +20,4 @@
 .byebug_history
 .env
 /client/.env.local
+/config/database.yml

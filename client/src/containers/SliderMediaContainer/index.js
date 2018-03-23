@@ -17,7 +17,7 @@ class SliderMediaContainer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.media.length > 0 && nextProps.media.length > 0 && this.props.media[0].name !== nextProps.media[0].name ) {
+    if (nextProps.media.length > 0) {
       this.setState({activeMedia: nextProps.media[0].name})
     }
   }
