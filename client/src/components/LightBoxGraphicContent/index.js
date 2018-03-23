@@ -2,10 +2,6 @@ import React, { Component } from 'react'
 import './style.css'
 import Script from 'react-load-script'
 import P5Wrapper from 'react-p5-wrapper'
-import JsxParser from 'react-jsx-parser'
-import mouseDrawingSpheres from './p5/mouseDrawingSpheres'
-import mouseLightTrails from './p5/mouseLightTrails'
-import contrastMatrix from './p5/contrastMatrix'
 import AuthedContentFooter from '../../containers/AuthedContentFooter'
 
 import { Markdown } from 'react-showdown'
@@ -15,10 +11,13 @@ class LightBoxGraphicContent extends Component {
     super(props)
     this.state = {
       scriptLoaded: false,
-      rainbow: false,
-      fullscreen: false,
-      fourTrails: false,
-      tracing: false,
+      paramZero: false,
+      paramOne: false,
+      paramTwo: false,
+      paramThree: false,
+      paramFour: false,
+      paramFive: false,
+      paramSix: false,
       width: "855",
       height: "700"
     }
@@ -57,50 +56,38 @@ class LightBoxGraphicContent extends Component {
     }
   }
 
-  renderGraphicBinding(library, script_content) {
-    let sketch = this.parsedSketch(script_content)
-    var { width, height, fullscreen, fourTrails, tracing, rainbow } = this.state
+  renderGraphicBinding(library, scriptContent) {
+    var { width, height, paramZero, paramOne, paramTwo, paramThree, paramFour, paramFive, paramSix } = this.state
     switch (library) {
       case "scenejs":
         return (<canvas height="700" id="theCanvas" width="855" tabIndex="0" style={{ imageRendering: "-webkit-optimize-contrast !important"}}></canvas>)
       case "processing":
-        switch (this.props.load_from_file) {
-          case "mouseDrawingSpheres":
-            return (<P5Wrapper width={width} height={height} sketch={mouseDrawingSpheres} fullscreen={fullscreen} rainbow={rainbow} />)
-          case "mouseLightTrails":
-            return (<P5Wrapper width={width} height={height} sketch={mouseLightTrails} fullscreen={fullscreen} tracing={tracing} fourTrails={fourTrails} />)
-          case "contrastMatrix":
-            return (<P5Wrapper width={width} height={height} sketch={sketch} fullscreen={fullscreen} />)
-          default:
-            return null
-        }
+        let sketch = this.parsedSketch(scriptContent)
+        return (<P5Wrapper width={width} height={height} sketch={sketch} paramZero={paramZero} paramOne={paramOne} paramTwo={paramTwo} paramThree={paramThree} paramFour={paramFour} paramFive={paramFive} paramSix={paramSix} />)
       default:
         return null
     }
   }
 
-  parsedSketch(script_content) {
-    return Function("processing", script_content);
+  parsedSketch(scriptContent) {
+    return Function("processing", scriptContent)
   }
 
   renderParamsButtons(params) {
-    var processingParams = []//["Fullscreen"]
-    processingParams.push(params.split(","))
-    var finalParams = [].concat.apply([], processingParams)
-    var count = 0
-    return finalParams.map(item => {
+    let count = 0
+    return Object.entries(params).map(param => {
       count++
       return(
-        <div className="button" onClick={(e) => this.toggleParam(item.replace(/_/gi, ''), e)} key={count}>
-          {this.renderButtonIcon(item)}
-          {item.charAt(0).toUpperCase() + item.slice(1).replace(/_/gi, ' ')}
+        <div className="button" onClick={(e) => this.toggleParam(param[0], e)} key={count}>
+          {this.renderButtonIcon(param[1])}
+          {param[1].charAt(0).toUpperCase() + param[1].slice(1).replace(/_/gi, ' ')}
         </div>
       )
     })
   }
 
   toggleParam(param, e) {
-    var miniState = {}
+    let miniState = {}
     if(this.state[param]) {
       miniState[param] = false
       this.setState(miniState)
@@ -128,9 +115,7 @@ class LightBoxGraphicContent extends Component {
         {this.state.scriptLoaded &&
           <script type="text/javascript" dangerouslySetInnerHTML={{ __html: props.script_content }} />
         }
-        {this.props.extra_params !== "" &&
-          this.renderParamsButtons(this.props.extra_params)
-        }
+        {this.renderParamsButtons(this.props.extra_params)}
         <AuthedContentFooter location={props.location} />
       </article>
     )

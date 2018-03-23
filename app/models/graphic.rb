@@ -12,7 +12,7 @@ class Graphic < ApplicationRecord
   end
 
   def self.fields_to_not_show
-    [:id, :category, :canvas_id, :created_at, :updated_at]
+    [:id, :category, :canvas_id, :load_from_file, :created_at, :updated_at]
   end
 
   def self.text_fields
@@ -20,7 +20,7 @@ class Graphic < ApplicationRecord
   end
 
   def self.tooltips
-    {tooltips: {load_from_file: "This file must exist in the p5 directory!"}}
+    {tooltips: {extra_params: "Must be a Ruby Hash IE {paramOne: 'rainbow', paramTwo: 'four_Trails'}"}}
   end
 
   def self.select_fields

@@ -20,9 +20,9 @@ export default function sketch(processing) {
   }
 
   processing.myCustomRedrawAccordingToNewPropsHandler = function (props) {
-    tracing = props.tracing
-    fourTrails = props.fourTrails
-    fullscreen = props.fullscreen
+    tracing = props.paramTwo
+    fourTrails = props.paramOne
+    fullscreen = props.paramZero
 
     if(tracing) {
       for(var i = 0; i < framesMaxLength; i++) {
