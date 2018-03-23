@@ -1,4 +1,4 @@
-json.(graphic, :id, :title, :icon, :library, :load_from_file, :fullscreen_by_default, :content_description, :basic_description, :extra_params)
+json.(graphic, :script_content, :id, :title, :icon, :library, :load_from_file, :fullscreen_by_default, :content_description, :basic_description, :extra_params)
 
 json.categories graphic.categories_as_basic_with_all
 # json.media graphic.media_with_urls

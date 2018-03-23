@@ -33,8 +33,8 @@ class LightBoxGraphicContent extends Component {
     }
   }
 
-  parseScriptContent(fileName) {
-    return (<JsxParser component={fileName} />)
+  parseScriptContent(content) {
+    return (<script type="text/javascript" dangerouslySetInnerHTML={{ __html: content }} />)
   }
 
   handleScriptCreate() {
@@ -57,9 +57,10 @@ class LightBoxGraphicContent extends Component {
     }
   }
 
-  renderGraphicBinding() {
+  renderGraphicBinding(library, script_content) {
+    let sketch = this.parsedSketch(script_content)
     var { width, height, fullscreen, fourTrails, tracing, rainbow } = this.state
-    switch (this.props.library) {
+    switch (library) {
       case "scenejs":
         return (<canvas height="700" id="theCanvas" width="855" tabIndex="0" style={{ imageRendering: "-webkit-optimize-contrast !important"}}></canvas>)
       case "processing":
@@ -69,13 +70,17 @@ class LightBoxGraphicContent extends Component {
           case "mouseLightTrails":
             return (<P5Wrapper width={width} height={height} sketch={mouseLightTrails} fullscreen={fullscreen} tracing={tracing} fourTrails={fourTrails} />)
           case "contrastMatrix":
-            return (<P5Wrapper width={width} height={height} sketch={contrastMatrix} fullscreen={fullscreen} />)
+            return (<P5Wrapper width={width} height={height} sketch={sketch} fullscreen={fullscreen} />)
           default:
             return null
         }
       default:
         return null
     }
+  }
+
+  parsedSketch(script_content) {
+    return Function("processing", script_content);
   }
 
   renderParamsButtons(params) {
@@ -118,7 +123,7 @@ class LightBoxGraphicContent extends Component {
           />
         }
         <h1 className="section-heading larger">{props.title}</h1>
-        {this.renderGraphicBinding(this.props.library)}
+        {this.renderGraphicBinding(props.library, props.script_content)}
         <Markdown markup={ props.content_description } />
         {this.state.scriptLoaded &&
           <script type="text/javascript" dangerouslySetInnerHTML={{ __html: props.script_content }} />

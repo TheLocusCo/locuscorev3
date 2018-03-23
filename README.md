@@ -1,24 +1,12 @@
-# README
+# LocusCoreV3
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## How to start locally
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. Frontend
+  1. edit .env to make sure the REACT_APP_BASE_ENDPOINT value matches your local ip
+  2. ONLY ONCE: create a symlink to .env from the frontend directory
+    1. `cd client && ln -s ../.env .env.local`
+2. API
+  1. `bundle install`
+  1. `foreman start -f Procfile.dev`
+3. Navigate to REACT_APP_BASE_ENDPOINT:FRONTEND_PORT to see if the app works

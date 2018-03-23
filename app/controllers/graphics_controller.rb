@@ -23,22 +23,26 @@ class GraphicsController < ApplicationController
   # POST /graphics
   # POST /graphics.json
   def create
-    @graphic = Graphic.new(graphic_params)
+    service_result = Organizers::BuildJoinTableObjects.call(graphic_params, 'graphic', :create)
+    @graphic = service_result.main_object
 
-    if @graphic.save
-      render :show, status: :created, location: @graphic
+    if service_result.failure?
+      render json: {errors: service_result.message}, status: :unprocessable_entity
     else
-      render json: @graphic.errors, status: :unprocessable_entity
+      render :show, status: :created, location: @graphic
     end
   end
 
   # PATCH/PUT /graphics/1
   # PATCH/PUT /graphics/1.json
   def update
-    if @graphic.update(graphic_params)
-      render :show, status: :ok, location: @graphic
+    service_result = Organizers::BuildJoinTableObjects.call(graphic_params, 'graphic', :update)
+    @graphic = service_result.main_object
+
+    if service_result.failure?
+      render json: {errors: service_result.message}, status: :unprocessable_entity
     else
-      render json: @graphic.errors, status: :unprocessable_entity
+      render :show, status: :ok, location: @graphic
     end
   end
 
@@ -56,6 +60,6 @@ class GraphicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def graphic_params
-      params.require(:medium).permit(:id, :title, :script_content, :icon, :load_from_file, :canvas_id, :fullscreen_by_default, :content_description, :basic_description, :extra_params)
+      params.require(:graphic).permit(:id, :title, :script_content, :icon, :load_from_file, :canvas_id, :fullscreen_by_default, :content_description, :basic_description, :extra_params, categories: %i(id name))
     end
 end
