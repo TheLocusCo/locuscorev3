@@ -211,6 +211,12 @@ body {
   line-height: 38px;
 }
 
+.button.full-width-button {
+  width: 100%;
+  display: block;
+  margin-bottom: 15px;
+}
+
 .button [class^=icon-].right.icon-right-open {
   margin-left: -0.3em;
 }

@@ -24,6 +24,7 @@ export const RECEIVE_RESUMES = 'RECEIVE_RESUMES'
 export const RECEIVE_RESUME = 'RECEIVE_RESUME'
 export const RECEIVE_ROLES = 'RECEIVE_ROLES'
 export const RECEIVE_ROLE = 'RECEIVE_ROLE'
+export const RECEIVE_SEARCH_ABILITY = 'RECEIVE_SEARCH_ABILITY'
 export const RECEIVE_USERS = 'RECEIVE_USERS'
 export const RECEIVE_USER = 'RECEIVE_USER'
 export const RECEIVE_USER_NOTIFICATIONS = 'RECEIVE_USER_NOTIFICATIONS'
@@ -258,6 +259,14 @@ function receiveRole(json) {
   return {
     type: RECEIVE_ROLE,
     role: json.data,
+    receivedAt: Date.now()
+  }
+}
+
+function receiveSearchAbility(json) {
+  return {
+    type: RECEIVE_SEARCH_ABILITY,
+    searchAbility: json.data,
     receivedAt: Date.now()
   }
 }
@@ -702,6 +711,15 @@ export function fetchRoles(page) {
         dispatch(receiveRoles({data: []}))
       }
     })
+}
+
+export function fetchSearchAbility(currentUserId) {
+  return dispatch => {
+    dispatch(sync.requestSearchAbility())
+    return http.searchAbilityFetch(currentUserId)
+      .then(response => response.json())
+      .then(json => dispatch(receiveSearchAbility(json)))
+  }
 }
 
 export function fetchShowMedium(id, type) {

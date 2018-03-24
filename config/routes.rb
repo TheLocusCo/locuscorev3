@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     get 'media/:id/show_image', to: 'media#show_image'
     get 'media/:id/show_download', to: 'media#show_download'
     get 'primary_resume_download', to: 'resumes#primary_resume_download'
+
+    get '/search_tree', to: 'search#search_tree'
   end
 
   scope '/authed' do
@@ -59,5 +61,7 @@ Rails.application.routes.draw do
 
     get 'media/:id/show_image', to: 'media#show_image'
     get 'media/:id/show_download', to: 'media#show_download'
+
+    get '/search_tree', to: 'search#search_tree'
   end
 end

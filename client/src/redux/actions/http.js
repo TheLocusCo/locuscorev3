@@ -115,6 +115,14 @@ export function rolesFetch(page) {
   return fetch(`${fetchAPIURL()}/authed/roles?page=${page}`, genericAuthedGet())
 }
 
+export function searchAbilityFetch(currentUserId) {
+  if(currentUserId !== "") {
+    return fetch(`${fetchAPIURL()}/authed/search_tree`, genericAuthedGet())
+  } else {
+    return fetch(`${fetchAPIURL()}/api/search_tree`)
+  }
+}
+
 export function userFetch(id) {
   return fetch(`${fetchAPIURL()}/authed/users/${id}`, genericAuthedGet())
 }

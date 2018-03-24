@@ -23,7 +23,13 @@ class User < ApplicationRecord
   end
 
   def self.fields_to_not_show
-    [:id, :current_sign_in_ip, :ip_list, :sign_in_count, :encrypted_password, :created_at, :updated_at]
+    [
+      :id, :current_sign_in_ip, :ip_list, :sign_in_count, :encrypted_password,
+      :agent_list, :security_hash, :role_id, :provider, :uid, :reset_password_token,
+      :reset_password_sent_at, :remember_created_at, :current_sign_in_at,
+      :last_sign_in_at, :last_sign_in_ip, :confirmation_token, :confirmed_at,
+      :confirmation_sent_at, :unconfirmed_email, :locked_at,:created_at, :updated_at
+    ]
   end
 
   def self.text_fields

@@ -21,6 +21,8 @@ const LightBoxManga = asyncComponent(() => import("../LightBoxManga"))
 const LightBoxEditResource = asyncComponent(() => import("../LightBoxEditResource"))
 const LightBoxNewResource = asyncComponent(() => import("../LightBoxNewResource"))
 
+const LightBoxSearch = asyncComponent(() => import("../LightBoxSearch"))
+
 class AuthedLightBox extends Component {
   render() {
     const { location } = this.props
@@ -34,6 +36,9 @@ class AuthedLightBox extends Component {
           <Switch location={location}>
             {// ORDER MATTERS:: MUST BE NEW THEN :id THEN edit
             }
+            <Route exact path="/search">
+              <LightBoxSearch location={location}/>
+            </Route>
             <Route exact path="/graphics/new">
               <LightBoxNewResource locationToPush="/graphics" location={location}/>
             </Route>

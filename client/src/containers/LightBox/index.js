@@ -12,6 +12,8 @@ const LightBoxGeneric = asyncComponent(() => import("../LightBoxGeneric"))
 const LightBoxShowMedium = asyncComponent(() => import("../LightBoxShowMedium"))
 const EmptyPage = asyncComponent(() => import("../../components/EmptyPage"))
 
+const LightBoxSearch = asyncComponent(() => import("../LightBoxSearch"))
+
 class LightBox extends Component {
   render() {
     return (
@@ -24,6 +26,9 @@ class LightBox extends Component {
           <Switch location={this.props.location}>
             {// Prevent new route paths from muddling up the authenticated part of the site (this gets parsed first)
             }
+            <Route exact path="/search">
+              <LightBoxSearch location={this.props.location}/>
+            </Route>
             <Route exact path="/posts/new" component={EmptyPage} />
             <Route exact path="/projects/new" component={EmptyPage} />
             <Route exact path="/graphics/new" component={EmptyPage} />

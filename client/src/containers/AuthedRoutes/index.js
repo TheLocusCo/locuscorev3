@@ -109,6 +109,7 @@ class AuthedRoutes extends Component {
             <Route path="/comments/:id" component={EmptyPage}/>
             <Route path="/media/:id" component={EmptyPage}/>
             <Route path="/google_maps_location" component={Contact}/>
+            <Route path="/search" component={EmptyPage}/>
             {
               // Authed Routes
             }

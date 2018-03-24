@@ -67,6 +67,8 @@ import {
   REQUEST_ROLES,
   RECEIVE_UPLOAD_ITEM,
   RECEIVE_ROLES,
+  REQUEST_SEARCH_ABILITY,
+  RECEIVE_SEARCH_ABILITY,
   REQUEST_USER,
   RECEIVE_USER,
   REQUEST_USERS,
@@ -88,6 +90,7 @@ import {
   RECEIVE_WELCOME_TABS,
   UPDATE_WELCOME_TABS,
   UPDATE_CURRENT_PAGE,
+  UPDATE_CURRENT_SEARCH,
   USER_AUTH_FAILURE,
   USER_AUTH_DESTROY,
   USER_AUTH,
@@ -959,6 +962,34 @@ function roles(
   }
 }
 
+function search(
+  state = {
+    searchAbility: {},
+    isFetching: false,
+    currentSearch: {}
+  },
+  action
+) {
+  switch(action.type) {
+    case REQUEST_SEARCH_ABILITY:
+      return Object.assign({}, state, {
+        isFetching: true
+      })
+    case RECEIVE_SEARCH_ABILITY:
+      return Object.assign({}, state, {
+        isFetching: false,
+        searchAbility: action.searchAbility,
+        lastUpdated: action.receivedAt
+      })
+    case UPDATE_CURRENT_SEARCH:
+      return Object.assign({}, state, {
+        currentSearch: Object.assign(action.currentSearch, state.currentSearch)
+      })
+    default:
+      return state
+  }
+}
+
 function uploadItem(
   state = {
     isFetching: false,
@@ -1207,6 +1238,7 @@ const rootReducer = combineReducers({
   resume,
   resumeHost,
   resumes,
+  search,
   role,
   roles,
   uploadItem,

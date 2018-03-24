@@ -42,7 +42,7 @@ class UsersController < ApplicationController
     if @user.update(user_params.except(:role))
       if user_params[:role]
         @user.role_id = Role.find_by_name(user_params[:role]).id
-        @user.save
+        @user.save if @user.changed?
       end
       render :show, status: :ok, location: @user
     else
@@ -64,6 +64,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:role).permit(:id, :username, :email, :name, :role, :password)
+      params.require(:user).permit(:id, :username, :email, :name, :role, :password)
     end
 end
