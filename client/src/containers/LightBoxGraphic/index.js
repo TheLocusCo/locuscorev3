@@ -5,7 +5,7 @@ import SuccessBlock from '../SuccessBlock'
 import LightBoxComments from '../LightBoxComments'
 import LightBoxErrorPage from '../../components/LightBoxErrorPage'
 import { connect } from "react-redux"
-import { fetchGraphic } from "../../redux/actions"
+import { fetchGraphic, toggleFullscreenLightBox } from "../../redux/actions"
 import { Route } from 'react-router-dom'
 
 class LightBoxGraphic extends Component {
@@ -14,25 +14,30 @@ class LightBoxGraphic extends Component {
     this.props.dispatch(fetchGraphic(id))
   }
 
+  parseFullscreenClass(fullscreen) {
+    return ("ltbx-content" + (fullscreen ? " ltbx-fullscreen-content" : ""))
+  }
+
   render() {
-    const { object, isFetching, errorContent, location, successContent, locationToPush } = this.props
+    const { object, isFetching, errorContent, location, successContent, locationToPush, showAsFullscreen } = this.props
     return (
       <Route render={({history}) => (
         <div className="ltbx-wrap" tabIndex="-1">
           <div className="ltbx-container">
-            <div className="ltbx-content">
+            <div className={this.parseFullscreenClass(showAsFullscreen)}>
               <SuccessBlock content={successContent}/>
               {isFetching && !object.id && <h1 className="section-heading larger">Loading...</h1>}
               {errorContent.length > 0 &&
                 <LightBoxErrorPage errorContent={errorContent}/>
               }
               {object.id &&
-                <LightBoxGraphicContent {...object} location={location}/>
+                <LightBoxGraphicContent {...object} location={location} fullscreen={showAsFullscreen}/>
               }
               {this.props.object.id &&
                 <LightBoxComments comments={object.comments} resourceType={object.field_meta.resource_type} resourceId={object.id} successContent={successContent}/>
               }
               <button onClick={() => history.push(locationToPush)} title="Close (Esc)" type="button" className="ltbx-close">×</button>
+              <button onClick={() => this.props.dispatch(toggleFullscreenLightBox())} title="Fullscreen" type="button" className="ltbx-fullscreen"><i className="icon-resize-full"></i></button>
             </div>
           </div>
           <div className="ltbx-bg" onClick={() => history.push(locationToPush)} />
@@ -46,7 +51,8 @@ const mapStateToProps = state => ({
   object: state.graphic.content,
   errorContent: state.errorMessages.items,
   successContent: state.successMessages.items,
-  isFetching: state.post.isFetching
+  isFetching: state.post.isFetching,
+  showAsFullscreen: state.lightbox.showAsFullscreen
 })
 
 export default connect(mapStateToProps)(LightBoxGraphic)

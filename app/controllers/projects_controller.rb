@@ -31,7 +31,7 @@ class ProjectsController < ApplicationController
     @project = service_result.main_object
 
     if service_result.failure?
-      render json: {errors: service_result.message}, status: :unprocessable_entity
+      render json: {errors: errors_as_array_hash(service_result.message)}, status: :unprocessable_entity
     else
       render :show, status: :created, location: @project
     end
@@ -44,7 +44,7 @@ class ProjectsController < ApplicationController
     @project = service_result.main_object
 
     if service_result.failure?
-      render json: {errors: service_result.message}, status: :unprocessable_entity
+      render json: {errors: errors_as_array_hash(service_result.message)}, status: :unprocessable_entity
     else
       render :show, status: :ok, location: @project
     end

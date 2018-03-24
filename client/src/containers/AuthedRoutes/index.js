@@ -8,11 +8,15 @@ import AboutMe from "../AboutMe"
 import ResumeWelcome from "../ResumeWelcome"
 import Blog from "../Blog"
 import Portfolio from "../Portfolio"
-import Graphics from "../Graphics"
 import Contact from "../Contact"
 import Login from "../Login"
 import EmptyPage from "../../components/EmptyPage"
 import UnknownPage from "../../components/UnknownPage"
+
+const Graphics = Loadable({
+  loader: () => import("../Graphics"),
+  loading: EmptyPage
+})
 
 const AuthedGraphics = Loadable({
   loader: () => import("../AuthedGraphics"),

@@ -1,17 +1,22 @@
 import React, { Component } from 'react'
 import ReactCSSTransitionReplace from 'react-css-transition-replace'
 import { Switch, Route } from 'react-router-dom'
+import Loadable from 'react-loadable'
 
 import Home from "../Home"
 import AboutMe from "../AboutMe"
 import ResumeWelcome from "../ResumeWelcome"
 import Blog from "../Blog"
 import Portfolio from "../Portfolio"
-import Graphics from "../Graphics"
 import Contact from "../Contact"
 import Login from "../Login"
 import EmptyPage from "../../components/EmptyPage"
 import UnknownPage from "../../components/UnknownPage"
+
+const Graphics = Loadable({
+  loader: () => import("../Graphics"),
+  loading: EmptyPage
+})
 
 class Routes extends Component {
   render() {

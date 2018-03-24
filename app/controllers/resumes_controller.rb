@@ -45,7 +45,7 @@ class ResumesController < ApplicationController
     if @resume.save
       render :show, status: :created, location: @resume
     else
-      render json: @resume.errors, status: :unprocessable_entity
+      render json: errors_as_array_hash(@resume.errors), status: :unprocessable_entity
     end
   end
 
@@ -55,7 +55,7 @@ class ResumesController < ApplicationController
     if @resume.update(resume_params)
       render :show, status: :ok, location: @resume
     else
-      render json: @resume.errors, status: :unprocessable_entity
+      render json: errors_as_array_hash(@resume.errors), status: :unprocessable_entity
     end
   end
 

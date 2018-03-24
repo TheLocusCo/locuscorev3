@@ -28,7 +28,7 @@ class RolesController < ApplicationController
     if @role.save
       render :show, status: :created, location: @role
     else
-      render json: @role.errors, status: :unprocessable_entity
+      render json: errors_as_array_hash(@role.errors), status: :unprocessable_entity
     end
   end
 
@@ -38,7 +38,7 @@ class RolesController < ApplicationController
     if @role.update(role_params)
       render :show, status: :ok, location: @role
     else
-      render json: @role.errors, status: :unprocessable_entity
+      render json: errors_as_array_hash(@role.errors), status: :unprocessable_entity
     end
   end
 

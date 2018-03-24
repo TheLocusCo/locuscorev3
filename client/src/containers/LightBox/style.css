@@ -57,6 +57,16 @@
   text-align: left;
   z-index: 505;
   cursor: default;
+  -webkit-transition: all 0.75s ease-in;
+  -moz-transition: all 0.75s ease-in;
+  -o-transition: all 0.75s ease-in;
+  -ms-transition: all 0.75s ease-in;
+  transition: all 0.75s ease-in;
+}
+
+.ltbx-fullscreen-content {
+  width: 100vw !important;
+  vertical-align: top !important;
 }
 
 .ltbx-content>article>.post-content {
@@ -67,6 +77,25 @@
 
 button.ltbx-back {
   right: 40px !important;
+}
+
+button.ltbx-fullscreen {
+  display: block;
+  width: 40px;
+  height: 40px;
+  opacity: 1;
+  padding: 0;
+  position: absolute;
+  z-index: 506;
+  top: 0px;
+  left: 0;
+  background: #fafafa;
+  border-top: none;
+  border-left: none;
+  border-radius: 0 0 5px 0;
+  font-size: 24px;
+  line-height: 1;
+  color: #626366;
 }
 
 button.ltbx-close {

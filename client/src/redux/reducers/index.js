@@ -81,6 +81,7 @@ import {
   RECEIVE_ADMIN_SHORTCUTS,
   RECEIVE_WELCOME_SHORTCUTS,
   RECEIVE_WELCOME_BUTTON_SLIDERS,
+  TOGGLE_FULLSCREEN_LIGHTBOX,
   UPDATE_COMMENT_FORM_VISIBILITY,
   UPDATE_WELCOME_BUTTON_SLIDERS,
   UPDATE_PREVIEW_COMMENT,
@@ -375,6 +376,22 @@ function editItem(
         isFetching: false,
         didInvalidate: false,
         content: {}
+      })
+    default:
+      return state
+  }
+}
+
+function lightbox(
+  state = {
+    showAsFullscreen: false
+  },
+  action
+) {
+  switch(action.type) {
+    case TOGGLE_FULLSCREEN_LIGHTBOX:
+      return Object.assign({}, state, {
+        showAsFullscreen: !state.showAsFullscreen
       })
     default:
       return state
@@ -1173,6 +1190,7 @@ const rootReducer = combineReducers({
   form: formReducer,
   graphic,
   graphics,
+  lightbox,
   manga,
   mangas,
   media,

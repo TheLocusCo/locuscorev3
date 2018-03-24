@@ -11,7 +11,7 @@ class LightBoxGraphicContent extends Component {
     super(props)
     this.state = {
       scriptLoaded: false,
-      paramZero: false,
+      fullscreen: false,
       paramOne: false,
       paramTwo: false,
       paramThree: false,
@@ -20,6 +20,16 @@ class LightBoxGraphicContent extends Component {
       paramSix: false,
       width: "855",
       height: "700"
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.fullscreen !== this.props.fullscreen) {
+      if(nextProps.fullscreen) {
+        this.setState({width: (window.innerWidth * 0.9), height: (window.innerHeight * 0.86), fullscreen: true})
+      } else {
+        this.setState({width: "855", height: "700", fullscreen: false})
+      }
     }
   }
 
@@ -48,22 +58,14 @@ class LightBoxGraphicContent extends Component {
     this.setState({ scriptLoaded: true })
   }
 
-  renderButtonIcon(item) {
-    if(item === "fullscreen") {
-      return (<i className="icon-window"></i>)
-    } else {
-      return (<i className="icon-cog"></i>)
-    }
-  }
-
   renderGraphicBinding(library, scriptContent) {
-    var { width, height, paramZero, paramOne, paramTwo, paramThree, paramFour, paramFive, paramSix } = this.state
+    var { width, height, fullscreen, paramOne, paramTwo, paramThree, paramFour, paramFive, paramSix } = this.state
     switch (library) {
       case "scenejs":
         return (<canvas height="700" id="theCanvas" width="855" tabIndex="0" style={{ imageRendering: "-webkit-optimize-contrast !important"}}></canvas>)
       case "processing":
         let sketch = this.parsedSketch(scriptContent)
-        return (<P5Wrapper width={width} height={height} sketch={sketch} paramZero={paramZero} paramOne={paramOne} paramTwo={paramTwo} paramThree={paramThree} paramFour={paramFour} paramFive={paramFive} paramSix={paramSix} />)
+        return (<P5Wrapper width={width} height={height} sketch={sketch} fullscreen={fullscreen} paramOne={paramOne} paramTwo={paramTwo} paramThree={paramThree} paramFour={paramFour} paramFive={paramFive} paramSix={paramSix} />)
       default:
         return null
     }
@@ -79,7 +81,7 @@ class LightBoxGraphicContent extends Component {
       count++
       return(
         <div className="button" onClick={(e) => this.toggleParam(param[0], e)} key={count}>
-          {this.renderButtonIcon(param[1])}
+          <i className="icon-cog"></i>
           {param[1].charAt(0).toUpperCase() + param[1].slice(1).replace(/_/gi, ' ')}
         </div>
       )
@@ -101,7 +103,7 @@ class LightBoxGraphicContent extends Component {
     var props = this.props
     return (
       <article className="webgl-display">
-        {this.props.library === "scenejs" &&
+        {props.library === "scenejs" &&
           <Script
             url={this.buildUrl()}
             onCreate={this.handleScriptCreate.bind(this)}
@@ -115,7 +117,7 @@ class LightBoxGraphicContent extends Component {
         {this.state.scriptLoaded &&
           <script type="text/javascript" dangerouslySetInnerHTML={{ __html: props.script_content }} />
         }
-        {this.renderParamsButtons(this.props.extra_params)}
+        {this.renderParamsButtons(props.extra_params)}
         <AuthedContentFooter location={props.location} />
       </article>
     )

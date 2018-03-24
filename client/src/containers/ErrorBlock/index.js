@@ -11,6 +11,7 @@ class ErrorBlock extends Component {
   }
 
   renderRows(props) {
+    console.log("TESTING::" + JSON.stringify(props.content) + props.content.length)
     if (props.content.length > 0) {
       var count = 0
       return props.content.map(messageWithKey => {

@@ -75,7 +75,7 @@ export function navigation() {
     { id: 2, style: { width: "117px" }, href: "/about_me", icon: "user", title: "About Me", active: false },
     { id: 3, style: { width: "117px" }, href: "/resume_welcome", icon: "newspaper", title: "Resume", active: false },
     { id: 4, style: { width: "117px" }, href: "/portfolio", icon: "folder", title: "Portfolio", active: false },
-    //{ id: 5, style: { width: "117px" }, href: "/graphics_welcome", icon: "eye", title: "Web Graphics", active: false },
+    { id: 5, style: { width: "117px" }, href: "/graphics_welcome", icon: "eye", title: "Web Graphics", active: false },
     { id: 6, style: { width: "117px" }, href: "/blog", icon: "doc", title: "Blog", active: false },
     { id: 7, style: { width: "117px" }, href: "/contact", icon: "mail", title: "Contact", active: false },
     { id: 8, style: { width: "117px" }, href: "/login", icon: "login", title: "Login", active: false },
@@ -87,7 +87,7 @@ export function welcomeShortcuts() {
     { id: 1, title: "More About Louis Alridge", href: "/about_me", basic_description: "Basic overview of my interests and goals", icon: "user" },
     { id: 2, title: "More About What I Can Do", href: "/resume_welcome", basic_description: "Info about what skills I have", icon: "newspaper" },
     { id: 3, title: "More About What I've Done", href: "/portfolio", basic_description: "List of projects I've been a part of", icon: "folder" },
-    //{ id: 4, title: "My Javascript 3D Graphics", href: "/graphics_welcome", basic_description: "3D Graphics hosted here", icon: "eye" },
+    { id: 4, title: "My Javascript 3D Graphics", href: "/graphics_welcome", basic_description: "3D Graphics hosted here", icon: "eye" },
     { id: 5, title: "My Contact Information", href: "/contact", basic_description: "Basic Contact Info & a way to reach me on this site", icon: "mail" },
     { id: 6, title: "My Blog", href: "/blog", basic_description: "Checkout my blog on Ruby on Rails, React, Elixir, DevOps, and whatever else I feel like talking about", icon: "doc-text" }
   ]
