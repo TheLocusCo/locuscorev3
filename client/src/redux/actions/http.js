@@ -268,6 +268,57 @@ export function resourcePatch(resourcePlural, resourceType, resource) {
   })
 }
 
+export function searchSubmit(values) {
+  let params = new URLSearchParams(Object.entries(values))
+  if(localStorage.accessToken) {
+    return fetch(`${fetchAPIURL()}/authed/search_submit?${params}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "access-token": localStorage.accessToken || "",
+        "token-type":   "Bearer",
+        "client":       localStorage.tokenClient || "",
+        "expiry":       localStorage.tokenExpiry || "",
+        "uid":          localStorage.uid || ""
+      }
+    })
+  } else {
+    return fetch(`${fetchAPIURL()}/api/search_submit?${params}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    })
+  }
+}
+
+export function searchFieldDataFetch(model, field) {
+  if(localStorage.accessToken) {
+    return fetch(`${fetchAPIURL()}/authed/field_search?model=${model}&field=${field}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "access-token": localStorage.accessToken || "",
+        "token-type":   "Bearer",
+        "client":       localStorage.tokenClient || "",
+        "expiry":       localStorage.tokenExpiry || "",
+        "uid":          localStorage.uid || ""
+      }
+    })
+  } else {
+    return fetch(`${fetchAPIURL()}/api/field_search?model=${model}&field=${field}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    })
+  }
+}
+
 export function showMediumFetch(id, type) {
   return fetch(`${fetchAPIURL()}/api/media/${id}/${type}`)
 }

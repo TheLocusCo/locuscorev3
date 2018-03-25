@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     get 'primary_resume_download', to: 'resumes#primary_resume_download'
 
     get '/search_tree', to: 'search#search_tree'
+    get '/field_search', to: 'search#field_search'
+    get '/search_submit', to: 'search#search_submit'
   end
 
   scope '/authed' do
@@ -63,5 +65,7 @@ Rails.application.routes.draw do
     get 'media/:id/show_download', to: 'media#show_download'
 
     get '/search_tree', to: 'search#search_tree'
+    get '/field_search', to: 'search#field_search'
+    get '/search_submit', to: 'search#search_submit'
   end
 end

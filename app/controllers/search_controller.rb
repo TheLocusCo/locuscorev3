@@ -4,16 +4,20 @@ class SearchController < ApplicationController
   def index
   end
 
-  def search_scoping
-  end
-
-  def search_setup
-  end
-
-  def search_field
+  def field_search
+    if !params.key?(:model) || !params.key?(:field)
+      render json: {errors: [{params: "Missing model or field params for search query"}]}, status: :unprocessable_entity
+    end
+    @field_search_results = params[:model].capitalize.singularize.constantize.class_eval(
+      @master_hash[params[:model].to_sym][params[:field].to_sym][:nested_action][:select_from]
+    )
   end
 
   def search_tree
+  end
+
+  def search_submit
+    @search_results = {}
   end
 
   def search

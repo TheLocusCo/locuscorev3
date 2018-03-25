@@ -69,6 +69,8 @@ import {
   RECEIVE_ROLES,
   REQUEST_SEARCH_ABILITY,
   RECEIVE_SEARCH_ABILITY,
+  REQUEST_SELECTS_FOR_SEARCH,
+  RECEIVE_SELECTS_FOR_SEARCH,
   REQUEST_USER,
   RECEIVE_USER,
   REQUEST_USERS,
@@ -91,6 +93,8 @@ import {
   UPDATE_WELCOME_TABS,
   UPDATE_CURRENT_PAGE,
   UPDATE_CURRENT_SEARCH,
+  UPDATE_CURRENT_SEARCH_FIELDS,
+  UPDATE_CURRENT_SEARCH_MODEL,
   USER_AUTH_FAILURE,
   USER_AUTH_DESTROY,
   USER_AUTH,
@@ -962,11 +966,10 @@ function roles(
   }
 }
 
-function search(
+function searchAbility(
   state = {
-    searchAbility: {},
+    tree: {},
     isFetching: false,
-    currentSearch: {}
   },
   action
 ) {
@@ -978,12 +981,46 @@ function search(
     case RECEIVE_SEARCH_ABILITY:
       return Object.assign({}, state, {
         isFetching: false,
-        searchAbility: action.searchAbility,
+        tree: action.searchAbility,
         lastUpdated: action.receivedAt
       })
-    case UPDATE_CURRENT_SEARCH:
+    default:
+      return state
+  }
+}
+
+function currentSearch(
+  state = {
+    fields: [],
+    currentField: "",
+    model: "",
+    forSelects: {},
+    isFetching: false,
+  },
+  action
+) {
+  switch(action.type) {
+    case UPDATE_CURRENT_SEARCH_FIELDS:
       return Object.assign({}, state, {
-        currentSearch: Object.assign(action.currentSearch, state.currentSearch)
+        fields: state.fields.concat(action.field),
+        currentField: action.field
+      })
+    case UPDATE_CURRENT_SEARCH_MODEL:
+      return Object.assign({}, state, {
+        model: action.model
+      })
+    case REQUEST_SELECTS_FOR_SEARCH:
+      return Object.assign({}, state, {
+        isFetching: true
+      })
+    case RECEIVE_SELECTS_FOR_SEARCH:
+      let newForSelect = state.forSelects
+      newForSelect[action.field] = action.results
+      return Object.assign({}, state, {
+        forSelects: newForSelect,
+        fields:  state.fields.concat(action.field),
+        currentField: action.field,
+        isFetching: false
       })
     default:
       return state
@@ -1238,7 +1275,8 @@ const rootReducer = combineReducers({
   resume,
   resumeHost,
   resumes,
-  search,
+  searchAbility,
+  currentSearch,
   role,
   roles,
   uploadItem,

@@ -48,6 +48,7 @@ export const REQUEST_ROLES = 'REQUEST_ROLES'
 export const REQUEST_ROLE = 'REQUEST_ROLE'
 export const REQUEST_RESUMES = 'REQUEST_RESUMES'
 export const REQUEST_RESUME = 'REQUEST_RESUME'
+export const REQUEST_SELECTS_FOR_SEARCH = 'REQUEST_SELECTS_FOR_SEARCH'
 export const REQUEST_SEARCH_ABILITY = 'REQUEST_SEARCH_ABILITY'
 export const RECEIVE_RESUME_HOST = 'RECEIVE_RESUME_HOST'
 export const REQUEST_USERS = 'REQUEST_USERS'
@@ -68,7 +69,8 @@ export const UPDATE_ACTIVE_CATEGORY = 'UPDATE_ACTIVE_CATEGORY'
 export const UPDATE_ACTIVE_CONTACT_FORM = 'UPDATE_ACTIVE_CONTACT_FORM'
 export const UPDATE_COMMENT_FORM_VISIBILITY = 'UPDATE_COMMENT_FORM_VISIBILITY'
 export const UPDATE_CURRENT_PAGE = 'UPDATE_CURRENT_PAGE'
-export const UPDATE_CURRENT_SEARCH = 'UPDATE_CURRENT_SEARCH'
+export const UPDATE_CURRENT_SEARCH_MODEL = 'UPDATE_CURRENT_SEARCH_MODEL'
+export const UPDATE_CURRENT_SEARCH_FIELDS = 'UPDATE_CURRENT_SEARCH_FIELDS'
 export const UPDATE_ERROR_MESSAGES = 'UPDATE_ERROR_MESSAGES'
 export const UPDATE_PREVIEW_COMMENT = 'UPDATE_PREVIEW_COMMENT'
 export const UPDATE_SUCCESS_MESSAGES = 'UPDATE_SUCCESS_MESSAGES'
@@ -386,6 +388,12 @@ export function requestSearchAbility() {
   }
 }
 
+export function requestSearchFieldData() {
+  return {
+    type: REQUEST_SELECTS_FOR_SEARCH
+  }
+}
+
 export function requestUser() {
   return {
     type: REQUEST_USER
@@ -518,10 +526,17 @@ export function updateCurrentPage(resourceType, currentPage) {
   return currentPageObj
 }
 
-export function updateCurrentSearch(object) {
+export function updateCurrentSearchFields(field) {
   return {
-    type: UPDATE_CURRENT_SEARCH,
-    currentSearch: object
+    type: UPDATE_CURRENT_SEARCH_FIELDS,
+    field: field
+  }
+}
+
+export function updateCurrentSearchModel(model) {
+  return {
+    type: UPDATE_CURRENT_SEARCH_MODEL,
+    model: model
   }
 }
 

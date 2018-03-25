@@ -25,6 +25,7 @@ export const RECEIVE_RESUME = 'RECEIVE_RESUME'
 export const RECEIVE_ROLES = 'RECEIVE_ROLES'
 export const RECEIVE_ROLE = 'RECEIVE_ROLE'
 export const RECEIVE_SEARCH_ABILITY = 'RECEIVE_SEARCH_ABILITY'
+export const RECEIVE_SELECTS_FOR_SEARCH = 'RECEIVE_SELECTS_FOR_SEARCH'
 export const RECEIVE_USERS = 'RECEIVE_USERS'
 export const RECEIVE_USER = 'RECEIVE_USER'
 export const RECEIVE_USER_NOTIFICATIONS = 'RECEIVE_USER_NOTIFICATIONS'
@@ -268,6 +269,14 @@ function receiveSearchAbility(json) {
     type: RECEIVE_SEARCH_ABILITY,
     searchAbility: json.data,
     receivedAt: Date.now()
+  }
+}
+
+function receiveSelectsForSearch(field, json) {
+  return {
+    type: RECEIVE_SELECTS_FOR_SEARCH,
+    field: field,
+    results: json.data
   }
 }
 
@@ -919,6 +928,23 @@ export function resourceUpload(resource) {
     })
 }
 
+export function searchSubmit(values, history) {
+  return dispatch =>
+    http.searchSubmit(values).then(function(response) {
+      //setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
+      if (Object.keys(response).includes("data")) {
+        //dispatch(sync.deleteCurrentSearch())
+        //dispatch(sync.searchResults(response.data))
+        //history.push(response.data.href)
+      } else {
+        dispatch(sync.errorMessageAsObject(response))
+      }
+    })
+}
+
 export function setupAndCreateNotification(content, from_name, from_email, icon) {
   const currentDate = helpers.generateDate()
   const oneYearFromNow = helpers.generateDate("oneYearFromNow")
@@ -938,6 +964,35 @@ export function updateCurrentPage(resourceType, currentPage) {
   return dispatch => {
     dispatch(sync.updateCurrentPage(resourceType, currentPage))
     dispatch(fetchResources(resourceType, currentPage))
+  }
+}
+
+export function updateCurrentSearchFieldData(model, field, type, nestedAction, changeFunc) {
+  if (nestedAction != null && nestedAction.select_from != null) {
+    console.log("TESTING" + nestedAction.select_from)
+    return dispatch => {
+      dispatch(sync.requestSearchFieldData())
+      http.searchFieldDataFetch(model, field).then(function(response) {
+        //setLocalStorageFromHeaders(response.headers)
+
+        return response.json()
+      }).then(response => {
+        if (Object.keys(response).includes("data")) {
+          dispatch(receiveSelectsForSearch(field, response))
+        } else {
+          dispatch(sync.errorMessageAsObject(response))
+        }
+      })
+    }
+  } else {
+    return dispatch => {
+      if (type === "hidden") {
+        dispatch(changeFunc(field, true, null))
+        dispatch(sync.updateCurrentSearchFields(field))
+      } else {
+        dispatch(sync.updateCurrentSearchFields(field))
+      }
+    }
   }
 }
 

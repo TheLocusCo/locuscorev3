@@ -57,7 +57,7 @@ class Search
       shash[:media] = {icon: 'picture'}
       shash[:media][:name]             = {icon: 'vcard',    type: s, logical: 'Search media by their name',                           nested_action: nil}
       shash[:media][:name_list]        = {icon: 'doc-text', type: s, logical: 'Search media by a list of their names',                nested_action: {select_from: 'Medium.pluck(:name).sort', overriding: 'name'}}
-      shash[:media][:user_id]          = {icon: 'user',     type: i, logical: 'Search media by who created them',                     nested_action: {select_from: 'User.select("username, id").load', returns: 'id', using: 'username'}} if ability.can? :manage, Medium
+      shash[:media][:user_id]          = {icon: 'user',     type: i, logical: 'Search media by who created them',                     nested_action: {select_from: 'User.select("username, id").load', returns: 'id', using: 'username'}} if ability.can? :edit_update, Medium
       shash[:media][:category]         = {icon: 'tag',      type: s, logical: 'Search media by their categories',                     nested_action: {select_from: 'Medium.get_uniq_array_of_nested_data("category")'}}
       shash[:media][:globally_visable] = {icon: 'search',   type: b, logical: 'Search media by whether it is globally visable',       nested_action: nil}
       shash[:media][:created_at]       = {icon: 'calendar', type: d, logical: 'Search media by when they were created',               nested_action: {select_from: 'Medium.get_uniq_array_of_dates("created_at")'}}
@@ -127,25 +127,5 @@ class Search
     end
 
     shash
-  end
-
-  def self.paramable_array(master_hash, params)
-    ret_arr = []
-    master_hash.each_pair do |tkey, thash|
-      if tkey.to_s == params[:model]
-        thash.each_pair do |term, midhash|
-          if midhash.is_a?(Hash)
-            if midhash[:type] == "date"
-              ret_arr << "#{params[:model]}-#{term}-#{midhash[:type]}-bq"
-              ret_arr << "#{params[:model]}-#{term}-#{midhash[:type]}-eq"
-            else
-              ret_arr << "#{params[:model]}-#{term}-#{midhash[:type]}"
-            end
-          end
-        end
-      end
-    end
-
-    ret_arr
   end
 end
