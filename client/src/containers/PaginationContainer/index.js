@@ -10,7 +10,7 @@ class PaginationContainer extends Component {
   }
 
   setCurrentPageFor(props, currentIndex) {
-    props.dispatch(updateCurrentPage(props.itemIndex, currentIndex))
+    props.dispatch(updateCurrentPage(props.itemIndex, currentIndex, this.props.params))
   }
 
   renderPaginationButtons(props) {

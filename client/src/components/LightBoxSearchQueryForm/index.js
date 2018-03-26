@@ -58,17 +58,24 @@ let LightBoxSearchQueryForm = props => {
                 )
               } else if (ability[1].nested_action.select_from) {
                 return (
-                  <div key={count-2}>
+                  <div className="text-field" key={count-2}>
                     <i className="icon-cancel-circled farther-form-tooltip-icon" onClick={() => dispatch(deleteFieldFromCurrentSearch(ability[0]))} />
-                    <Field className="text-field" name={ability[0]} component={SelectField} hintText={ability[1].logical} fullWidth={true} floatingLabelText={ability[1].logical + "..."}>
+                    <Field name={ability[0]} component={SelectField} hintText={ability[1].logical} fullWidth={true} floatingLabelText={ability[1].logical + "..."}>
                       {renderMenuItems(currentSearch.forSelects[ability[0]])}
                     </Field>
                   </div>
                 )
-
               } else {
                 return null
               }
+            case "boolean":
+              return (
+                <div style={{marginLeft: "14px", marginTop: "-25px", marginBottom: "14px"}} key={count-2}>
+                  <i className="icon-cancel-circled farther-form-tooltip-icon" style={{marginTop: "24px", marginLeft: "-29px"}} onClick={() => dispatch(deleteFieldFromCurrentSearch(ability[0]))} />
+                  <br/>
+                  <Field name={ability[0]} component={Checkbox} label={ability[1].logical} fullwidth={true}/>
+                </div>
+              )
             case "hidden": case "params":
               return (
                 <div key={count-2} className="text-field">

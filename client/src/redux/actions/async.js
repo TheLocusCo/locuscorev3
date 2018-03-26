@@ -226,6 +226,12 @@ function receiveResources(resourceType, json) {
   resourcesObj["totalPages"] = json.total_pages
   resourcesObj.paginationMeta = json.pagination_meta
 
+  if (resourcesObj.type === "RECEIVE_SEARCH_RESULTS") {
+    resourcesObj["model"] = json.data.model
+    resourcesObj["results"] = json.data.results
+    resourcesObj["params"] = json.data.params
+  }
+
   return resourcesObj
 }
 
@@ -647,9 +653,9 @@ export function fetchResource(resource, id) {
   }
 }
 
-export function fetchResources(resourceType, currentPage) {
+export function fetchResources(resourceType, currentPage, params) {
   return dispatch =>
-    http.resourcesFetch(resourceType, currentPage).then(function(response) {
+    http.resourcesFetch(resourceType, currentPage, params).then(function(response) {
       //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
@@ -965,6 +971,7 @@ export function searchCleanupCurrentSearch(field) {
 
 export function searchSubmit(values, history) {
   return dispatch => {
+    values.page = 1
     let params = new URLSearchParams(Object.entries(values))
     http.searchSubmit(params).then(function(response) {
       //setLocalStorageFromHeaders(response.headers)
@@ -997,10 +1004,10 @@ export function setupAndCreateNotification(content, from_name, from_email, icon)
     dispatch(createNotification(notification))
 }
 
-export function updateCurrentPage(resourceType, currentPage) {
+export function updateCurrentPage(resourceType, currentPage, params) {
   return dispatch => {
     dispatch(sync.updateCurrentPage(resourceType, currentPage))
-    dispatch(fetchResources(resourceType, currentPage))
+    dispatch(fetchResources(resourceType, currentPage, params))
   }
 }
 

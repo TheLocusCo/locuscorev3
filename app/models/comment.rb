@@ -1,4 +1,5 @@
 class Comment < ApplicationRecord
+  DEFAULT_PAGINATION_COLUMN = :created_at
   validates :content, presence: true, length: { minimum: 5 }
   validates :poster_name, presence: true
   validates :poster_email, presence: true

@@ -36,7 +36,7 @@ class SearchResults extends Component {
           <div>
             <ShortcutsBlock content={searchResults.items}/>
             {searchResults.totalPages > 1 &&
-              <PaginationContainer items={searchResults} itemIndex={searchResults.model} />
+              <PaginationContainer items={searchResults} itemIndex="search_results" params={this.props.location.search}/>
             }
           </div>
         )
@@ -61,7 +61,7 @@ class SearchResults extends Component {
           <div>
             <AuthedIndexTable items={searchResults.items} headers={headers[searchResults.model]} itemIndex={searchResults.model} />
             {searchResults.totalPages > 1 &&
-              <PaginationContainer items={searchResults} itemIndex={searchResults.model} />
+              <PaginationContainer items={searchResults} itemIndex="search_results" params={this.props.location.search}/>
             }
           </div>
         )

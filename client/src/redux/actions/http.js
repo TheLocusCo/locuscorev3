@@ -86,7 +86,7 @@ export function projectFetch(id) {
   return fetch(`${fetchAPIURL()}/api/projects/${id}`)
 }
 
-export function resourcesFetch(resourceType, currentPage) {
+export function resourcesFetch(resourceType, currentPage, params) {
   switch (resourceType) {
     case "graphics": case "posts":
       return fetch(`${fetchAPIURL()}/api/${resourceType}?page=${currentPage}`)
@@ -94,6 +94,12 @@ export function resourcesFetch(resourceType, currentPage) {
       return fetch(`${fetchAPIURL()}/api/projects?mode=paginated&page=${currentPage}`)
     case "mangas":
       return fetch(`${fetchAPIURL()}/authed/${resourceType}?mode=paginated&page=${currentPage}`, genericAuthedGet())
+    case "search_results":
+      if (localStorage.accessToken !== "") {
+        return fetch(`${fetchAPIURL()}/authed/search_submit${params.replace(/page=\d/gi, `page=${currentPage}`)}`, genericAuthedGet())
+      } else {
+        return fetch(`${fetchAPIURL()}/api/search_submit${params.replace(/page=\d/gi, `page=${currentPage}`)}`)
+      }
     default:
       return fetch(`${fetchAPIURL()}/authed/${resourceType}?page=${currentPage}`, genericAuthedGet())
   }

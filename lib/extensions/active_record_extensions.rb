@@ -25,6 +25,12 @@ module ActiveRecordExtension
       User.select(:id, :username).map {|u| { name: u.username, value: u.id } }
     end
 
+    def fetch_ordered_by_page_for_search(current_page, order_style = 'created_at DESC')
+      offset = 10 * (current_page.to_i - 1)
+
+      limit(10).offset(offset).order(order_style)
+    end
+
     def fetch_ordered(preload_associations = [])
       if preload_associations.empty?
         order("created_at DESC")
@@ -68,6 +74,7 @@ module ActiveRecordExtension
                    base_map = {}
                    (1..total_pages.round).each do |i|
                      objects = get_meta_titles_for_page(i) if objects.empty?
+                     objects = objects.get_meta_titles_for_page(i) unless objects.empty?
                      meta_title = if %i(created_at updated_at).include?(field)
                                     first_meta_title = objects.first.send(field).strftime("%B %d (%H:%M %P), %Y")
                                     last_meta_title  = objects.last.send(field).strftime("%B %d (%H:%M %P), %Y")

@@ -26,7 +26,7 @@ class Search
       shash[:comments] = {icon: 'comment'}
       shash[:comments][:poster_name]      = {icon: 'user',     type: s, logical: 'Search comments by who posted them',                nested_action: {select_from: 'Comment.pluck(:poster_name).uniq.sort'}}
       shash[:comments][:poster_ip]        = {icon: 'network',  type: s, logical: 'Search comments by the ip that posted them',        nested_action: {select_from: 'Comment.pluck(:poster_ip).uniq.sort'}}
-      shash[:comments][:approved]         = {icon: 'check',    type: b, logical: 'Search comments by if they are approved or not',    nested_action: nil}
+      shash[:comments][:approved]         = {icon: 'check',    type: b, logical: 'Search comments by if they are approved or not',    nested_action: {}}
       shash[:comments][:created_at]       = {icon: 'calendar', type: d, logical: 'Search comments by when they were created',         nested_action: {select_from: 'Comment.get_uniq_array_of_dates("created_at")'}}
       shash[:comments][:commentable_type] = {icon: 'tag',      type: s, logical: 'Search comments by what they were posted to',       nested_action: {select_from: 'Comment.pluck(:commentable_type).uniq.sort'}}
       shash[:comments][:posted_by_anon]   = {icon: 'help',     type: h, logical: 'Search comments by if they were posted by an anon', nested_action: {embedded: '.where("user_id = 0")'}}
@@ -38,7 +38,7 @@ class Search
     shash[:graphics][:haml_description]  = {icon: 'doc-text', type: s, logical: 'Search Web Graphics by their detailed description', nested_action: {search_type: 'basic'}}
     shash[:graphics][:index_description] = {icon: 'doc-text', type: s, logical: 'Search Web Graphics by their short description',    nested_action: {search_type: 'basic'}}
     shash[:graphics][:category]          = {icon: 'tag',      type: s, logical: 'Search Web Graphics by their categories',           nested_action: {select_from: 'Graphic.get_uniq_array_of_nested_data("category")'}}
-    shash[:graphics][:scenejs]           = {icon: 'globe',    type: b, logical: 'Search Web Graphics by whether it uses SceneJS',    nested_action: nil}
+    shash[:graphics][:scenejs]           = {icon: 'globe',    type: b, logical: 'Search Web Graphics by whether it uses SceneJS',    nested_action: {}}
     shash[:graphics][:created_at]        = {icon: 'calendar', type: d, logical: 'Search Web Graphics by when they were created',     nested_action: {select_from: 'Graphic.get_uniq_array_of_dates("created_at")'}}
 
     if ability.can? :read, Manga
@@ -60,7 +60,7 @@ class Search
       shash[:media][:name_list]        = {icon: 'doc-text', type: s, logical: 'Search media by a list of their names',                nested_action: {select_from: 'Medium.pluck(:name).sort', overriding: 'name'}}
       shash[:media][:user_id]          = {icon: 'user',     type: i, logical: 'Search media by who created them',                     nested_action: {select_from: 'User.select("username, id").load', returns: 'id', using: 'username'}} if ability.can? :edit_update, Medium
       shash[:media][:category]         = {icon: 'tag',      type: s, logical: 'Search media by their categories',                     nested_action: {select_from: 'Medium.get_uniq_array_of_nested_data("category")'}}
-      shash[:media][:globally_visable] = {icon: 'search',   type: b, logical: 'Search media by whether it is globally visable',       nested_action: nil}
+      shash[:media][:globally_visable] = {icon: 'search',   type: b, logical: 'Search media by whether it is globally visable',       nested_action: {}}
       shash[:media][:created_at]       = {icon: 'calendar', type: d, logical: 'Search media by when they were created',               nested_action: {select_from: 'Medium.get_uniq_array_of_dates("created_at")'}}
       shash[:media][:has_audio]        = {icon: 'music',    type: h, logical: 'Search media by if they have audio attached',          nested_action: {embedded: '.where("audio_file_name is not null")'}}
       shash[:media][:has_image]        = {icon: 'camera',   type: h, logical: 'Search media by if they have an image attached',       nested_action: {embedded: '.where("image_file_name is not null")'}}

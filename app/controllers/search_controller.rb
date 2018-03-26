@@ -23,7 +23,7 @@ class SearchController < ApplicationController
     @search_results[:model] = params[:model]
     @search_results[:params] = {}
 
-    params.except(:model, :search, :action, :controller).each_pair do |column, val|
+    params.except(:model, :search, :action, :controller, :page).each_pair do |column, val|
       c_h = @master_hash[params[:model].to_sym][column.to_sym]
       column = c_h[:nested_action][:overriding] if c_h[:nested_action].key?(:overriding)
 
@@ -48,8 +48,15 @@ class SearchController < ApplicationController
       end
     end
 
-    @search_results[:results] = prepared_model.constantize.class_eval(query_string)
-    @search_results.merge!(prepared_model.constantize.send(:map_pagination_meta, prepared_model.constantize::DEFAULT_PAGINATION_COLUMN, @search_results[:results]))
+    @search_results[:initial_results] = prepared_model.constantize.class_eval(query_string).order("created_at DESC")
+
+    if @search_results[:params][:fancyDisplay]
+      @search_results[:results] = @search_results[:initial_results]
+    else
+      @search_results[:results] = @search_results[:initial_results].dup.fetch_ordered_by_page_for_search(params[:page])
+    end
+
+    @search_results.merge!(prepared_model.constantize.send(:map_pagination_meta, prepared_model.constantize::DEFAULT_PAGINATION_COLUMN, @search_results[:initial_results]))
   end
 
   def search
