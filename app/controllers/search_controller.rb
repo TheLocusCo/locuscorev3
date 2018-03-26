@@ -49,7 +49,7 @@ class SearchController < ApplicationController
     end
 
     @search_results[:results] = prepared_model.constantize.class_eval(query_string)
-    @search_results.merge!(prepared_model.constantize.class_eval("map_pagination_meta(#{prepared_model}::DEFAULT_PAGINATION_COLUMN)"))
+    @search_results.merge!(prepared_model.constantize.send(:map_pagination_meta, prepared_model.constantize::DEFAULT_PAGINATION_COLUMN, @search_results[:results]))
   end
 
   def search

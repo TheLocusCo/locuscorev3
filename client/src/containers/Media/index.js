@@ -9,17 +9,6 @@ import ErrorBlock from '../ErrorBlock'
 import PaginationContainer from '../PaginationContainer'
 import { fetchMedia } from "../../redux/actions"
 
-const headers = {
-  id: "string",
-  name: "string",
-  //viewers: "string",
-  globally_visible: "custom_boolean",
-  creator: "string",
-  display: {
-    globally_visible: "Global?"
-  }
-}
-
 class Media extends Component {
   componentWillMount() {
     this.props.dispatch(fetchMedia("paginated", this.props.currentPage.media))
@@ -40,7 +29,7 @@ class Media extends Component {
             {isFetching && media.items.length === 0 && <h1 className="section-heading larger">Loading...</h1>}
             {media.items.length === 0 && <h1 className="section-heading larger">No media found!</h1>}
             {media.items.length > 0 &&
-              <AuthedIndexTable items={media.items} headers={headers} itemIndex="media" />
+              <AuthedIndexTable items={media.items} headers={this.props.headers.media} itemIndex="media" />
             }
             {media.items.length > 0 && media.totalPages > 1 &&
               <PaginationContainer items={media} itemIndex="media" />
@@ -56,6 +45,7 @@ const mapStateToProps = state => ({
   media: state.media,
   isFetching: state.posts.isFetching,
   successContent: state.successMessages.items,
+  headers: state.tableHeaders.tree,
   errorContent: state.errorMessages.items,
   currentPage: state.currentPage
 })

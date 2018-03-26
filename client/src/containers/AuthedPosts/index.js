@@ -10,12 +10,6 @@ import ErrorBlock from '../ErrorBlock'
 import PaginationContainer from '../PaginationContainer'
 import { fetchPosts } from "../../redux/actions"
 
-const headers = {
-  title: "string",
-  categories: "categories",
-  hidden: "boolean"
-}
-
 class AuthedPosts extends Component {
   componentWillMount() {
     this.props.dispatch(fetchPosts("withHidden", this.props.currentPage.posts))
@@ -42,7 +36,7 @@ class AuthedPosts extends Component {
             {isFetching && posts.items.length === 0 && <h1 className="section-heading larger">Loading...</h1>}
             {posts.items.length === 0 && <h1 className="section-heading larger">No posts found!</h1>}
             {posts.items.length > 0 &&
-              <AuthedIndexTable items={posts.items} headers={headers} itemIndex="posts" />
+              <AuthedIndexTable items={posts.items} headers={this.props.headers.posts} itemIndex="posts" />
             }
             {posts.items.length > 0 && posts.totalPages > 1 &&
               <PaginationContainer items={posts} itemIndex="posts" />
@@ -57,6 +51,7 @@ class AuthedPosts extends Component {
 const mapStateToProps = state => ({
   posts: state.posts,
   isFetching: state.posts.isFetching,
+  headers: state.tableHeaders.tree,
   successContent: state.successMessages.items,
   errorContent: state.errorMessages.items,
   currentPage: state.currentPage

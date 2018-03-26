@@ -10,12 +10,6 @@ import ErrorBlock from '../ErrorBlock'
 import PaginationContainer from '../PaginationContainer'
 import { fetchGraphics } from "../../redux/actions"
 
-const headers = {
-  title: "string",
-  categories: "categories",
-  library: "string"
-}
-
 class AuthedGraphics extends Component {
   componentWillMount() {
     this.props.dispatch(fetchGraphics(this.props.currentPage.graphics))
@@ -42,7 +36,7 @@ class AuthedGraphics extends Component {
             {isFetching && graphics.items.length === 0 && <h1 className="section-heading larger">Loading...</h1>}
             {graphics.items.length === 0 && <h1 className="section-heading larger">No web graphics found!</h1>}
             {graphics.items.length > 0 &&
-              <AuthedIndexTable items={graphics.items} headers={headers} itemIndex="graphics" />
+              <AuthedIndexTable items={graphics.items} headers={this.props.headers.graphics} itemIndex="graphics" />
             }
             {graphics.items.length > 0 && graphics.totalPages > 1 &&
               <PaginationContainer items={graphics} itemIndex="graphics" />
@@ -57,6 +51,7 @@ class AuthedGraphics extends Component {
 const mapStateToProps = state => ({
   graphics: state.graphics,
   isFetching: state.posts.isFetching,
+  headers: state.tableHeaders.tree,
   successContent: state.successMessages.items,
   errorContent: state.errorMessages.items,
   currentPage: state.currentPage

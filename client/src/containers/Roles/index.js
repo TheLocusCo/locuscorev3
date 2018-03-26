@@ -9,12 +9,6 @@ import ErrorBlock from '../ErrorBlock'
 import PaginationContainer from '../PaginationContainer'
 import { fetchRoles } from "../../redux/actions"
 
-const headers = {
-  name: "string",
-  pf_users: "string",
-  pf_roles: "string"
-}
-
 class Roles extends Component {
   componentWillMount() {
     this.props.dispatch(fetchRoles(this.props.currentPage.roles))
@@ -35,7 +29,7 @@ class Roles extends Component {
             {isFetching && roles.items.length === 0 && <h1 className="section-heading larger">Loading...</h1>}
             {roles.items.length === 0 && <h1 className="section-heading larger">No roles found!</h1>}
             {roles.items.length > 0 &&
-              <AuthedIndexTable items={roles.items} headers={headers} itemIndex="roles" />
+              <AuthedIndexTable items={roles.items} headers={this.props.headers.roles} itemIndex="roles" />
             }
             {roles.items.length > 0 && roles.totalPages > 1 &&
               <PaginationContainer items={roles} itemIndex="roles" />
@@ -50,6 +44,7 @@ class Roles extends Component {
 const mapStateToProps = state => ({
   roles: state.roles,
   isFetching: state.posts.isFetching,
+  headers: state.tableHeaders.tree,
   successContent: state.successMessages.items,
   errorContent: state.errorMessages.items,
   currentPage: state.currentPage

@@ -9,17 +9,6 @@ import ErrorBlock from '../ErrorBlock'
 import PaginationContainer from '../PaginationContainer'
 import { fetchComments } from "../../redux/actions"
 
-const headers = {
-  poster_email: "string",
-  poster_ip: "string",
-  commentable_type: "custom",
-  approved: "boolean",
-  length: "string",
-  display: {
-    commentable_type: "Type"
-  }
-}
-
 class Comments extends Component {
   componentWillMount() {
     this.props.dispatch(fetchComments(this.props.currentPage.comments))
@@ -40,7 +29,7 @@ class Comments extends Component {
             {isFetching && comments.items.length === 0 && <h1 className="section-heading larger">Loading...</h1>}
             {comments.items.length === 0 && <h1 className="section-heading larger">No comments found!</h1>}
             {comments.items.length > 0 &&
-              <AuthedIndexTable items={comments.items} headers={headers} itemIndex="comments" />
+              <AuthedIndexTable items={comments.items} headers={this.props.headers.comments} itemIndex="comments" />
             }
             {comments.items.length > 0 && comments.totalPages > 1 &&
               <PaginationContainer items={comments} itemIndex="comments" />
@@ -55,6 +44,7 @@ class Comments extends Component {
 const mapStateToProps = state => ({
   comments: state.comments,
   isFetching: state.posts.isFetching,
+  headers: state.tableHeaders.tree,
   successContent: state.successMessages.items,
   errorContent: state.errorMessages.items,
   currentPage: state.currentPage

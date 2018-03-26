@@ -9,13 +9,6 @@ import ErrorBlock from '../ErrorBlock'
 import PaginationContainer from '../PaginationContainer'
 import { fetchNotifications } from "../../redux/actions"
 
-const headers = {
-  from_name: "string",
-  from_email: "string",
-  parsed_start_displaying_at: "string",
-  n_type: "string"
-}
-
 class Notifications extends Component {
   componentWillMount() {
     this.props.dispatch(fetchNotifications(this.props.currentPage.notifications))
@@ -36,7 +29,7 @@ class Notifications extends Component {
             {isFetching && notifications.items.length === 0 && <h1 className="section-heading larger">Loading...</h1>}
             {notifications.items.length === 0 && <h1 className="section-heading larger">No notifications found!</h1>}
             {notifications.items.length > 0 &&
-              <AuthedIndexTable items={notifications.items} headers={headers} itemIndex="notifications" />
+              <AuthedIndexTable items={notifications.items} headers={this.props.headers.notifications} itemIndex="notifications" />
             }
             {notifications.items.length > 0 && notifications.totalPages > 1 &&
               <PaginationContainer items={notifications} itemIndex="notifications" />
@@ -50,7 +43,8 @@ class Notifications extends Component {
 
 const mapStateToProps = state => ({
   notifications: state.notifications,
-  isFetching: state.posts.isFetching,
+  isFetching: state.notifications.isFetching,
+  headers: state.tableHeaders.tree,
   successContent: state.successMessages.items,
   errorContent: state.errorMessages.items,
   currentPage: state.currentPage

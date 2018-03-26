@@ -10,11 +10,6 @@ import ErrorBlock from '../ErrorBlock'
 import PaginationContainer from '../PaginationContainer'
 import { fetchMangas } from "../../redux/actions"
 
-const headers = {
-  name: "string",
-  total_chapters: "string"
-}
-
 class Mangas extends Component {
   componentWillMount() {
     this.props.dispatch(fetchMangas("paginated", this.props.currentPage.mangas))
@@ -41,7 +36,7 @@ class Mangas extends Component {
             {isFetching && mangas.items.length === 0 && <h1 className="section-heading larger">Loading...</h1>}
             {mangas.items.length === 0 && <h1 className="section-heading larger">No manga found!</h1>}
             {mangas.items.length > 0 &&
-              <AuthedIndexTable items={mangas.items} headers={headers} itemIndex="mangas" />
+              <AuthedIndexTable items={mangas.items} headers={this.props.headers.mangas} itemIndex="mangas" />
             }
             {mangas.items.length > 0 && mangas.totalPages > 1 &&
               <PaginationContainer items={mangas} itemIndex="mangas" />
@@ -56,6 +51,7 @@ class Mangas extends Component {
 const mapStateToProps = state => ({
   mangas: state.mangas,
   isFetching: state.posts.isFetching,
+  headers: state.tableHeaders.tree,
   successContent: state.successMessages.items,
   errorContent: state.errorMessages.items,
   currentPage: state.currentPage

@@ -59,7 +59,7 @@ class SearchResults extends Component {
       } else {
         return (
           <div>
-            <AuthedIndexTable items={searchResults.items} headers={headers} itemIndex={searchResults.model} />
+            <AuthedIndexTable items={searchResults.items} headers={headers[searchResults.model]} itemIndex={searchResults.model} />
             {searchResults.totalPages > 1 &&
               <PaginationContainer items={searchResults} itemIndex={searchResults.model} />
             }
@@ -98,7 +98,7 @@ class SearchResults extends Component {
 const mapStateToProps = state => ({
   searchResults: state.currentSearchResults,
   currentUser: state.currentUser,
-  headers: state.tableHeaders,
+  headers: state.tableHeaders.tree,
   isFetching: state.currentSearchResults.isFetching,
   successContent: state.successMessages.items,
   errorContent: state.errorMessages.items,

@@ -9,13 +9,6 @@ import ErrorBlock from '../ErrorBlock'
 import PaginationContainer from '../PaginationContainer'
 import { fetchUsers } from "../../redux/actions"
 
-const headers = {
-  username: "string",
-  current_sign_in_ip: "string",
-  locked: "boolean",
-  role: "string"
-}
-
 class Users extends Component {
   componentWillMount() {
     this.props.dispatch(fetchUsers(this.props.currentPage.users))
@@ -36,7 +29,7 @@ class Users extends Component {
             {isFetching && users.items.length === 0 && <h1 className="section-heading larger">Loading...</h1>}
             {users.items.length === 0 && <h1 className="section-heading larger">No users found!</h1>}
             {users.items.length > 0 &&
-              <AuthedIndexTable items={users.items} headers={headers} itemIndex="users" />
+              <AuthedIndexTable items={users.items} headers={this.props.headers.users} itemIndex="users" />
             }
             {users.items.length > 0 && users.totalPages > 1 &&
               <PaginationContainer items={users} itemIndex="users" />
@@ -51,6 +44,7 @@ class Users extends Component {
 const mapStateToProps = state => ({
   users: state.users,
   isFetching: state.posts.isFetching,
+  headers: state.tableHeaders.tree,
   successContent: state.successMessages.items,
   errorContent: state.errorMessages.items,
   currentPage: state.currentPage

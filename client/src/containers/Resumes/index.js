@@ -9,12 +9,6 @@ import ErrorBlock from '../ErrorBlock'
 import PaginationContainer from '../PaginationContainer'
 import { fetchResumes } from "../../redux/actions"
 
-const headers = {
-  title: "string",
-  company: "string",
-  length: "string"
-}
-
 class Resumes extends Component {
   componentWillMount() {
     this.props.dispatch(fetchResumes(this.props.currentPage.resumes))
@@ -35,7 +29,7 @@ class Resumes extends Component {
             {isFetching && resumes.items.length === 0 && <h1 className="section-heading larger">Loading...</h1>}
             {resumes.items.length === 0 && <h1 className="section-heading larger">No resumes found!</h1>}
             {resumes.items.length > 0 &&
-              <AuthedIndexTable items={resumes.items} headers={headers} itemIndex="resumes" />
+              <AuthedIndexTable items={resumes.items} headers={this.props.headers.resumes} itemIndex="resumes" />
             }
             {resumes.items.length > 0 && resumes.totalPages > 1 &&
               <PaginationContainer items={resumes} itemIndex="resumes" />
@@ -50,6 +44,7 @@ class Resumes extends Component {
 const mapStateToProps = state => ({
   resumes: state.resumes,
   isFetching: state.posts.isFetching,
+  headers: state.tableHeaders.tree,
   successContent: state.successMessages.items,
   errorContent: state.errorMessages.items,
   currentPage: state.currentPage
