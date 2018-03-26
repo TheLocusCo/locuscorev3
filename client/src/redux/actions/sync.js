@@ -53,6 +53,7 @@ export const REQUEST_RESUME = 'REQUEST_RESUME'
 export const REQUEST_SELECTS_FOR_SEARCH = 'REQUEST_SELECTS_FOR_SEARCH'
 export const REQUEST_SEARCH_ABILITY = 'REQUEST_SEARCH_ABILITY'
 export const RECEIVE_RESUME_HOST = 'RECEIVE_RESUME_HOST'
+export const RECEIVE_TABLE_HEADERS = 'RECEIVE_TABLE_HEADERS'
 export const REQUEST_USERS = 'REQUEST_USERS'
 export const REQUEST_USER = 'REQUEST_USER'
 export const REQUEST_USER_NOTIFICATIONS = 'REQUEST_USER_NOTIFICATIONS'
@@ -440,6 +441,13 @@ export function receiveRoleNavigation(user) {
   return {
     type: RECEIVE_AUTHED_NAVIGATION,
     authedNavigation: db.authenticatedNavigation(user)
+  }
+}
+
+export function receiveTableHeaders() {
+  return {
+    type: RECEIVE_TABLE_HEADERS,
+    tree: db.tableHeaders()
   }
 }
 

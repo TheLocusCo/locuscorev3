@@ -17,7 +17,8 @@ class SearchController < ApplicationController
   end
 
   def search_submit
-    query_string = "#{params[:model].singularize.capitalize.camelize}"
+    prepared_model = "#{params[:model].singularize.capitalize.camelize}"
+    query_string = prepared_model
     @search_results = {}
     @search_results[:model] = params[:model]
     @search_results[:params] = {}
@@ -47,9 +48,9 @@ class SearchController < ApplicationController
       end
     end
 
-    @search_results[:results] = params[:model].capitalize.singularize.camelize.constantize.class_eval(
-      query_string
-    )
+    puts "TESTING???::#{query_string}"
+    @search_results[:results] = prepared_model.constantize.class_eval(query_string)
+    @search_results.merge!(prepared_model.constantize.class_eval("map_pagination_meta(#{prepared_model}::DEFAULT_PAGINATION_COLUMN)"))
   end
 
   def search
@@ -73,7 +74,7 @@ class SearchController < ApplicationController
         if h[:nested_action] == nil
           query_string << ".fuzzy_search(:#{term}=> \"#{val}\")"
         else
-          search_type = h[:nested_action][:search_type] ? h[:nested_action][:search_type] : 'basic'
+          search_type = h[:nested_action].key?(:search_type) ? h[:nested_action][:search_type] : 'basic'
           query_string << ".#{search_type}_search(:#{term}=> \"#{val}\")"
         end
       elsif h[:type] == "boolean"

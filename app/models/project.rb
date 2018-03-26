@@ -1,4 +1,6 @@
 class Project < ApplicationRecord
+  DEFAULT_PAGINATION_COLUMN = :name
+
   validates :name, presence: true
   validates :main_description, presence: true
   validates :client , presence: true

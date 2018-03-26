@@ -10,6 +10,7 @@ import Blog from "../Blog"
 import Portfolio from "../Portfolio"
 import Contact from "../Contact"
 import Login from "../Login"
+import SearchResults from "../SearchResults"
 import EmptyPage from "../../components/EmptyPage"
 import UnknownPage from "../../components/UnknownPage"
 
@@ -110,6 +111,7 @@ class AuthedRoutes extends Component {
             <Route path="/media/:id" component={EmptyPage}/>
             <Route path="/google_maps_location" component={Contact}/>
             <Route path="/search" component={EmptyPage}/>
+            <Route path="/search_results" component={SearchResults}/>
             {
               // Authed Routes
             }

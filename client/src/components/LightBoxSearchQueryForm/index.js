@@ -49,7 +49,7 @@ let LightBoxSearchQueryForm = props => {
         if (currentSearch.fields.includes(ability[0])) {
           switch (ability[1].type) {
             case "string":
-              if(ability[1].nested_action === null || ability[1].nested_action.search_type === 'basic') {
+              if(ability[1].nested_action.search_type === 'fuzzy' || ability[1].nested_action.search_type === 'basic') {
                 return (
                   <div className="text-field" key={count-2}>
                     <Field name={ability[0]} component={renderTextField} label={ability[1].logical} fullWidth={true}/>
@@ -67,7 +67,7 @@ let LightBoxSearchQueryForm = props => {
               } else {
                 return null
               }
-            case "hidden":
+            case "hidden": case "params":
               return (
                 <div key={count-2}>{ability[1].logical + "..."}</div>
               )

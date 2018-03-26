@@ -51,6 +51,7 @@ class Search
       shash[:mangas][:artists_list] = {icon: 'doc-text', type: s, logical: 'Search mangas by a list of their artists', nested_action: {select_from: "z = []; Manga.pluck(:artists).each {|s| z << s.gsub(' (Story & Art)', '') unless s.blank?}; z.uniq.sort", overriding: 'artists'}}
       shash[:mangas][:genres]       = {icon: 'tag',      type: s, logical: 'Search mangas by their genre',             nested_action: {select_from: 'Manga.get_uniq_array_of_nested_data("genres")'}}
       shash[:mangas][:created_at]   = {icon: 'calendar', type: d, logical: 'Search mangas by when they were created',  nested_action: {select_from: 'Manga.get_uniq_array_of_dates("created_at")'}}
+      shash[:mangas][:with_fancy]   = {icon: 'window',   type: p, logical: 'Use the fancy mangas Gallery',             nested_action: {params: {fancyDisplay: true}}}
     end
 
     unless user.id.nil?
@@ -90,6 +91,7 @@ class Search
     shash[:projects][:name_list]  = {icon: 'doc-text', type: s, logical: 'Search projects by a list of their titles', nested_action: {select_from: 'Project.pluck(:name).sort', overriding: 'name'}}
     shash[:projects][:category]   = {icon: 'tag',      type: s, logical: 'Search projects by their category',         nested_action: {select_from: 'Project.get_uniq_array_of_nested_data("category")'}}
     shash[:projects][:created_at] = {icon: 'calendar', type: d, logical: 'Search projects by when they were created', nested_action: {select_from: 'Project.get_uniq_array_of_dates("created_at")'}}
+    shash[:projects][:with_fancy] = {icon: 'window',   type: p, logical: 'Use the fancy projects gallery',            nested_action: {params: {fancyDisplay: true}}} unless user.id.nil?
 
     #if ability.can? :read, Request
     #  shash[:requests] = {icon: 'network'}

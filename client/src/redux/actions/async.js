@@ -278,7 +278,9 @@ function receiveSearchResults(json) {
     type: RECEIVE_SEARCH_RESULTS,
     results: json.data.results,
     model: json.data.model,
-    params: json.data.params
+    params: json.data.params,
+    totalPages: json.total_pages,
+    paginationMeta: json.pagination_meta
   }
 }
 
@@ -1002,7 +1004,7 @@ export function updateCurrentSearchFieldData(model, field, type, nestedAction, c
     }
   } else {
     return dispatch => {
-      if (type === "hidden") {
+      if (type === "hidden" || type === "params") {
         dispatch(changeFunc(field, true, null))
         dispatch(sync.updateCurrentSearchFields(field))
       } else {
@@ -1071,6 +1073,7 @@ export function userRoleForAuthSuccess(user) {
     }).then(response => {
       if (Object.keys(response).includes("data") && Object.keys(response.data).includes("id")) {
         user.role = response.data
+        dispatch(sync.receiveTableHeaders())
         dispatch(sync.userAuthSuccess(user))
       } else {
         dispatch(sync.userLoginFailure(response))

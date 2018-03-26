@@ -1,4 +1,6 @@
 class Notification < ApplicationRecord
+  DEFAULT_PAGINATION_COLUMN = :created_at
+
   validates :from_name, presence: true
   validates :from_email, presence: true
   validates :start_displaying_at, presence: true

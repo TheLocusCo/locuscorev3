@@ -82,6 +82,71 @@ export function navigation() {
   ]
 }
 
+export function tableHeaders() {
+  return {
+    comments: {
+      poster_email: "string",
+      poster_ip: "string",
+      commentable_type: "custom",
+      approved: "boolean",
+      length: "string",
+      display: {
+        commentable_type: "Type"
+      }
+    },
+    graphics: {
+      title: "string",
+      categories: "categories",
+      library: "string"
+    },
+    mangas: {
+      name: "string",
+      total_chapters: "string"
+    },
+    media: {
+      id: "string",
+      name: "string",
+      //viewers: "string",
+      globally_visible: "custom_boolean",
+      creator: "string",
+      display: {
+        globally_visible: "Global?"
+      }
+    },
+    notifications: {
+      from_name: "string",
+      from_email: "string",
+      parsed_start_displaying_at: "string",
+      n_type: "string"
+    },
+    posts: {
+      title: "string",
+      categories: "categories",
+      hidden: "boolean"
+    },
+    projects: {
+      name: "string",
+      categories: "categories"
+    },
+    resumes: {
+      title: "string",
+      company: "string",
+      length: "string"
+    },
+    roles: {
+      name: "string",
+      pf_users: "string",
+      pf_roles: "string"
+    },
+    users: {
+      username: "string",
+      current_sign_in_ip: "string",
+      locked: "boolean",
+      role: "string"
+    }
+  }
+}
+
 export function welcomeShortcuts() {
   return [
     { id: 1, title: "More About Louis Alridge", href: "/about_me", basic_description: "Basic overview of my interests and goals", icon: "user" },

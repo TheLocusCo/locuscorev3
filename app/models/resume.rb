@@ -2,6 +2,8 @@ require "open-uri"
 require 'fileutils'
 
 class Resume < ApplicationRecord
+  DEFAULT_PAGINATION_COLUMN = :title
+
   scope :get_meta_titles_for_page, -> (page) { order("created_at DESC").select(:id, :created_at, :title).limit(10).offset(10 * (page - 1)) }
 
   def self.text_fields

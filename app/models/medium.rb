@@ -1,4 +1,6 @@
 class Medium < ApplicationRecord
+  DEFAULT_PAGINATION_COLUMN = :created_at
+
   has_attached_file :image, styles: { thumb: "250x180#", slider_show: "480x367#", slider_big: "640x390#", slider_small: "200x280#" }# , default_url: "/images/:style/missing.png"
   has_attached_file :generic, s3_permissions: :private, path: "/uploads2/:class/:id_partition/:style/:filename"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/

@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  DEFAULT_PAGINATION_COLUMN = :title
+
   before_save :titleize
 
   validates :title, uniqueness: true, presence: true

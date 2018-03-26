@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  DEFAULT_PAGINATION_COLUMN = :username
+
   before_save :downcase
   before_save :ensure_unique
 

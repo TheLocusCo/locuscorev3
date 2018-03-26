@@ -74,6 +74,7 @@ import {
   RECEIVE_SEARCH_RESULTS,
   REQUEST_SELECTS_FOR_SEARCH,
   RECEIVE_SELECTS_FOR_SEARCH,
+  RECEIVE_TABLE_HEADERS,
   REQUEST_USER,
   RECEIVE_USER,
   REQUEST_USERS,
@@ -1041,7 +1042,10 @@ function currentSearchResults(
   state = {
     model: "",
     params: {},
-    items: []
+    items: [],
+    isFetching: false,
+    totalPages: 1,
+    paginationMeta: {}
   },
   action
 ) {
@@ -1050,7 +1054,26 @@ function currentSearchResults(
       return Object.assign({}, state, {
         model: action.model,
         items: action.results,
-        params: action.params
+        params: action.params,
+        totalPages: action.totalPages,
+        paginationMeta: action.paginationMeta,
+        isFetching: false
+      })
+    default:
+      return state
+  }
+}
+
+function tableHeaders(
+  state = {
+    tree: {}
+  },
+  action
+) {
+  switch(action.type) {
+    case RECEIVE_TABLE_HEADERS:
+      return Object.assign({}, state, {
+        tree: action.tree
       })
     default:
       return state
@@ -1310,6 +1333,7 @@ const rootReducer = combineReducers({
   searchAbility,
   role,
   roles,
+  tableHeaders,
   uploadItem,
   user,
   users,

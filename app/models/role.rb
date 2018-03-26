@@ -1,4 +1,6 @@
 class Role < ApplicationRecord
+  DEFAULT_PAGINATION_COLUMN = :name
+
   validates :name, presence: true
   validates :pf_graphics, format: { with: /\A[crud|\W]{1}\z/, message: "Please use 'c', 'r', 'u', 'd', or any combination thereof (or 'crud')" }
   validates :pf_projects, format: { with: /\A[crud|\W]{1}\z/, message: "Please use 'c', 'r', 'u', 'd', or any combination thereof (or 'crud')" }
