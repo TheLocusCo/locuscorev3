@@ -955,7 +955,7 @@ export function searchSubmit(values, history) {
     }).then(response => {
       if (Object.keys(response).includes("data")) {
         dispatch(sync.deleteCurrentSearch())
-        dispatch(receiveSearchResults(response.data))
+        dispatch(receiveSearchResults(response))
         history.push(`/search_results?${params}`)
       } else {
         dispatch(sync.errorMessageAsObject(response))
