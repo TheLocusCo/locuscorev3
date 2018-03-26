@@ -31,5 +31,6 @@ module Locuscorev3
     config.api_only = true
     config.eager_load_paths << Rails.root.join("lib")
     Rails.application.config.assets.precompile += %w( locuscorev3_mangas/manga_covers/*.jpg locuscorev3_mangas/manga_covers/*.png )
+    config.active_record.schema_format = :sql
   end
 end

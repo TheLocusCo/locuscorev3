@@ -8,7 +8,7 @@ class SearchController < ApplicationController
     if !params.key?(:model) || !params.key?(:field)
       render json: {errors: [{params: "Missing model or field params for search query"}]}, status: :unprocessable_entity
     end
-    @field_search_results = params[:model].capitalize.singularize.constantize.class_eval(
+    @field_search_results = params[:model].capitalize.singularize.camelize.constantize.class_eval(
       @master_hash[params[:model].to_sym][params[:field].to_sym][:nested_action][:select_from]
     )
   end
@@ -17,7 +17,39 @@ class SearchController < ApplicationController
   end
 
   def search_submit
+    query_string = "#{params[:model].singularize.capitalize.camelize}"
     @search_results = {}
+    @search_results[:model] = params[:model]
+    @search_results[:params] = {}
+
+    params.except(:model, :search, :action, :controller).each_pair do |column, val|
+      c_h = @master_hash[params[:model].to_sym][column.to_sym]
+      column = c_h[:nested_action][:overriding] if c_h[:nested_action].key?(:overriding)
+
+      case c_h[:type]
+      when "string"
+        if c_h[:nested_action] == nil
+          query_string << ".basic_search(:#{column.to_sym}=> \"#{val}\")"
+        else
+          search_type = c_h[:nested_action].key(:search_type) ? c_h[:nested_action][:search_type] : 'basic'
+          query_string << ".#{search_type}_search(:#{column.to_sym}=> \"#{val}\")"
+        end
+      when "boolean"
+        query_string << ".where(:#{column.to_sym}=> #{val})"
+      when "integer"
+        query_string << ".where(:#{column.to_sym}=> #{val})"
+      when 'hidden'
+        query_string << c_h[:nested_action][:embedded]
+      when 'params'
+        c_h[:nested_action][:params].each_pair do |k, v|
+          @search_results[:params][k.to_sym] = v
+        end
+      end
+    end
+
+    @search_results[:results] = params[:model].capitalize.singularize.camelize.constantize.class_eval(
+      query_string
+    )
   end
 
   def search

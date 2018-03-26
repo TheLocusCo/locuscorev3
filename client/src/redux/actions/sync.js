@@ -17,6 +17,8 @@ export const DELETE_EDIT_ITEM = 'DELETE_EDIT_ITEM'
 export const DELETE_NEW_ITEM = 'DELETE_NEW_ITEM'
 export const DELETE_PREVIEW_COMMENT = 'DELETE_PREVIEW_COMMENT'
 export const DELETE_UPLOAD_ITEM = 'DELETE_UPLOAD_ITEM'
+export const DELETE_CURRENT_SEARCH = 'DELETE_CURRENT_SEARCH'
+export const DELETE_FIELD_FROM_CURRENT_SEARCH = 'DELETE_FIELD_FROM_CURRENT_SEARCH'
 //export const DESTROY_RESOURCE_SUCCESS = 'DESTROY_RESOURCE_SUCCESS'
 export const EDIT_RESOURCE_FAILURE = 'EDIT_RESOURCE_FAILURE'
 export const EDIT_RESOURCE_SUCCESS = 'EDIT_RESOURCE_SUCCESS'
@@ -112,9 +114,22 @@ export function emptyCategories() {
   }
 }
 
+export function deleteCurrentSearch() {
+  return {
+    type: DELETE_CURRENT_SEARCH
+  }
+}
+
 export function deleteEditItem() {
   return {
     type: DELETE_EDIT_ITEM
+  }
+}
+
+export function deleteFieldFromCurrentSearch(field) {
+  return {
+    type: DELETE_FIELD_FROM_CURRENT_SEARCH,
+    fieldToRemove: field
   }
 }
 

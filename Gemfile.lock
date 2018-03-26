@@ -189,6 +189,8 @@ GEM
       sprockets (>= 3.0.0)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
+    textacular (5.0.1)
+      activerecord (>= 3.0, < 5.2)
     thor (0.20.0)
     thread_safe (0.3.6)
     ttfunk (1.5.1)
@@ -228,6 +230,7 @@ DEPENDENCIES
   rest-client
   spring
   spring-watcher-listen (~> 2.0.0)
+  textacular
   tzinfo-data
 
 BUNDLED WITH

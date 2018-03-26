@@ -25,6 +25,7 @@ export const RECEIVE_RESUME = 'RECEIVE_RESUME'
 export const RECEIVE_ROLES = 'RECEIVE_ROLES'
 export const RECEIVE_ROLE = 'RECEIVE_ROLE'
 export const RECEIVE_SEARCH_ABILITY = 'RECEIVE_SEARCH_ABILITY'
+export const RECEIVE_SEARCH_RESULTS = 'RECEIVE_SEARCH_RESULTS'
 export const RECEIVE_SELECTS_FOR_SEARCH = 'RECEIVE_SELECTS_FOR_SEARCH'
 export const RECEIVE_USERS = 'RECEIVE_USERS'
 export const RECEIVE_USER = 'RECEIVE_USER'
@@ -269,6 +270,15 @@ function receiveSearchAbility(json) {
     type: RECEIVE_SEARCH_ABILITY,
     searchAbility: json.data,
     receivedAt: Date.now()
+  }
+}
+
+function receiveSearchResults(json) {
+  return {
+    type: RECEIVE_SEARCH_RESULTS,
+    results: json.data.results,
+    model: json.data.model,
+    params: json.data.params
   }
 }
 
@@ -928,21 +938,28 @@ export function resourceUpload(resource) {
     })
 }
 
-export function searchSubmit(values, history) {
+export function searchCleanupCurrentSearch(field) {
   return dispatch =>
-    http.searchSubmit(values).then(function(response) {
+    dispatch(sync.deleteFieldFromCurrentSearch(field))
+}
+
+export function searchSubmit(values, history) {
+  return dispatch => {
+    let params = new URLSearchParams(Object.entries(values))
+    http.searchSubmit(params).then(function(response) {
       //setLocalStorageFromHeaders(response.headers)
 
       return response.json()
     }).then(response => {
       if (Object.keys(response).includes("data")) {
-        //dispatch(sync.deleteCurrentSearch())
-        //dispatch(sync.searchResults(response.data))
-        //history.push(response.data.href)
+        dispatch(sync.deleteCurrentSearch())
+        dispatch(receiveSearchResults(response.data))
+        history.push(`/search_results?${params}`)
       } else {
         dispatch(sync.errorMessageAsObject(response))
       }
     })
+  }
 }
 
 export function setupAndCreateNotification(content, from_name, from_email, icon) {
@@ -969,7 +986,6 @@ export function updateCurrentPage(resourceType, currentPage) {
 
 export function updateCurrentSearchFieldData(model, field, type, nestedAction, changeFunc) {
   if (nestedAction != null && nestedAction.select_from != null) {
-    console.log("TESTING" + nestedAction.select_from)
     return dispatch => {
       dispatch(sync.requestSearchFieldData())
       http.searchFieldDataFetch(model, field).then(function(response) {

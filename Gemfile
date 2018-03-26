@@ -28,6 +28,7 @@ gem 'aws-sdk-s3'
 gem 'light-service'
 gem 'cancancan'
 gem 'prawn'
+gem 'textacular'
 
 gem 'locuscorev3_mangas', path: '../locuscorev3_mangas'
 # gem 'locuscorev3_mangas', git: "https://#{ENV['locuscore_deploy']}:#{ENV['locuscore_deploy_password']}@github.com/TheLocusCo/locuscorev3_mangas.git"

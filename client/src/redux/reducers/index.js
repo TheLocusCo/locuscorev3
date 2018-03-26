@@ -12,6 +12,8 @@ import {
   DELETE_NEW_ITEM,
   DELETE_PREVIEW_COMMENT,
   DELETE_UPLOAD_ITEM,
+  DELETE_CURRENT_SEARCH,
+  DELETE_FIELD_FROM_CURRENT_SEARCH,
   EDIT_RESOURCE_FAILURE,
   EMPTY_CATEGORIES,
   FETCH_RESOURCE_FAILURE,
@@ -69,6 +71,7 @@ import {
   RECEIVE_ROLES,
   REQUEST_SEARCH_ABILITY,
   RECEIVE_SEARCH_ABILITY,
+  RECEIVE_SEARCH_RESULTS,
   REQUEST_SELECTS_FOR_SEARCH,
   RECEIVE_SELECTS_FOR_SEARCH,
   REQUEST_USER,
@@ -992,7 +995,6 @@ function searchAbility(
 function currentSearch(
   state = {
     fields: [],
-    currentField: "",
     model: "",
     forSelects: {},
     isFetching: false,
@@ -1002,8 +1004,7 @@ function currentSearch(
   switch(action.type) {
     case UPDATE_CURRENT_SEARCH_FIELDS:
       return Object.assign({}, state, {
-        fields: state.fields.concat(action.field),
-        currentField: action.field
+        fields: state.fields.concat(action.field)
       })
     case UPDATE_CURRENT_SEARCH_MODEL:
       return Object.assign({}, state, {
@@ -1019,8 +1020,37 @@ function currentSearch(
       return Object.assign({}, state, {
         forSelects: newForSelect,
         fields:  state.fields.concat(action.field),
-        currentField: action.field,
         isFetching: false
+      })
+    case DELETE_CURRENT_SEARCH:
+      return Object.assign({}, state, {
+        fields: [],
+        model: "",
+        forSelects: {}
+      })
+    case DELETE_FIELD_FROM_CURRENT_SEARCH:
+      return Object.assign({}, state, {
+        fields: state.fields.filter(fieldName => fieldName === action.fieldToRemove)
+      })
+    default:
+      return state
+  }
+}
+
+function currentSearchResults(
+  state = {
+    model: "",
+    params: {},
+    items: []
+  },
+  action
+) {
+  switch(action.type) {
+    case RECEIVE_SEARCH_RESULTS:
+      return Object.assign({}, state, {
+        model: action.model,
+        items: action.results,
+        params: action.params
       })
     default:
       return state
@@ -1249,6 +1279,8 @@ const rootReducer = combineReducers({
   authedNavigation,
   currentUser,
   currentPage,
+  currentSearch,
+  currentSearchResults,
   categories,
   comment,
   commentFormVisibility,
@@ -1276,7 +1308,6 @@ const rootReducer = combineReducers({
   resumeHost,
   resumes,
   searchAbility,
-  currentSearch,
   role,
   roles,
   uploadItem,

@@ -268,8 +268,7 @@ export function resourcePatch(resourcePlural, resourceType, resource) {
   })
 }
 
-export function searchSubmit(values) {
-  let params = new URLSearchParams(Object.entries(values))
+export function searchSubmit(params) {
   if(localStorage.accessToken) {
     return fetch(`${fetchAPIURL()}/authed/search_submit?${params}`, {
       method: "GET",
