@@ -743,6 +743,24 @@ export function fetchSearchAbility(currentUserId) {
   }
 }
 
+// This only gets called if the user manually navigates to the search_results page
+export function fetchSearchResults(params) {
+  return dispatch => {
+    dispatch(sync.requestSearchResults())
+    http.searchSubmit(params.replace(/\?/gi, '')).then(function(response) {
+      //setLocalStorageFromHeaders(response.headers)
+
+      return response.json()
+    }).then(response => {
+      if (Object.keys(response).includes("data")) {
+        dispatch(receiveSearchResults(response))
+      } else {
+        dispatch(sync.errorMessageAsObject(response))
+      }
+    })
+  }
+}
+
 export function fetchShowMedium(id, type) {
   return dispatch =>
     http.showMediumFetch(id, type).then(
@@ -1039,7 +1057,6 @@ export function userAuth() {
     }).then(response => {
       if (Object.keys(response).includes("data") && Object.keys(response.data).includes("id")) {
         dispatch(userRoleForAuthSuccess(response.data))
-        dispatch(sync.successMessage("Welcome Back!"))
       } else {
         dispatch(sync.userAuthFailure(response))
       }

@@ -14,6 +14,7 @@ import {
   DELETE_UPLOAD_ITEM,
   DELETE_CURRENT_SEARCH,
   DELETE_FIELD_FROM_CURRENT_SEARCH,
+  DELETE_SEARCH_RESULTS,
   EDIT_RESOURCE_FAILURE,
   EMPTY_CATEGORIES,
   FETCH_RESOURCE_FAILURE,
@@ -71,6 +72,7 @@ import {
   RECEIVE_ROLES,
   REQUEST_SEARCH_ABILITY,
   RECEIVE_SEARCH_ABILITY,
+  REQUEST_SEARCH_RESULTS,
   RECEIVE_SEARCH_RESULTS,
   REQUEST_SELECTS_FOR_SEARCH,
   RECEIVE_SELECTS_FOR_SEARCH,
@@ -1050,6 +1052,10 @@ function currentSearchResults(
   action
 ) {
   switch(action.type) {
+    case REQUEST_SEARCH_RESULTS:
+      return Object.assign({}, state, {
+        isFetching: true
+      })
     case RECEIVE_SEARCH_RESULTS:
       return Object.assign({}, state, {
         model: action.model,
@@ -1057,6 +1063,15 @@ function currentSearchResults(
         params: action.params,
         totalPages: action.totalPages,
         paginationMeta: action.paginationMeta,
+        isFetching: false
+      })
+    case DELETE_SEARCH_RESULTS:
+      return Object.assign({}, state, {
+        model: "",
+        items: [],
+        params: {},
+        totalPages: 1,
+        paginationMeta: {},
         isFetching: false
       })
     default:

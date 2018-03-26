@@ -58,15 +58,16 @@ module ActiveRecordExtension
       (pluck(:id).count / 10.to_f).ceil
     end
 
-    def map_pagination_meta(field)
-      total_pages = get_total_pages
+    def map_pagination_meta(field, objects=[])
+      total_pages = get_total_pages if objects.empty?
+      total_pages = ((objects.map {|x| x.id }.count) / 10.to_f).ceil unless objects.empty?
 
       meta_map = case total_pages
                  when 0.0 then {}
                  else
                    base_map = {}
                    (1..total_pages.round).each do |i|
-                     objects = get_meta_titles_for_page(i)
+                     objects = get_meta_titles_for_page(i) if objects.empty?
                      meta_title = if %i(created_at updated_at).include?(field)
                                     first_meta_title = objects.first.send(field).strftime("%B %d (%H:%M %P), %Y")
                                     last_meta_title  = objects.last.send(field).strftime("%B %d (%H:%M %P), %Y")

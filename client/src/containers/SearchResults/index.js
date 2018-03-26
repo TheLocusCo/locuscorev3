@@ -11,12 +11,20 @@ import ErrorBlock from '../ErrorBlock'
 import PaginationContainer from '../PaginationContainer'
 import EmptyPage from "../../components/EmptyPage"
 
+import { fetchSearchResults } from "../../redux/actions"
+
 const AuthedIndexTable = Loadable({
   loader: () => import("../AuthedIndexTable"),
   loading: EmptyPage
 })
 
 class SearchResults extends Component {
+  componentWillMount() {
+    if (this.props.searchResults.model === "") {
+      this.props.dispatch(fetchSearchResults(this.props.location.search))
+    }
+  }
+
   humanize(text) {
     return (text.charAt(0).toUpperCase() + text.slice(1).replace(/_/gi, ' '))
   }

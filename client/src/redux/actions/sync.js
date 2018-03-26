@@ -19,6 +19,7 @@ export const DELETE_PREVIEW_COMMENT = 'DELETE_PREVIEW_COMMENT'
 export const DELETE_UPLOAD_ITEM = 'DELETE_UPLOAD_ITEM'
 export const DELETE_CURRENT_SEARCH = 'DELETE_CURRENT_SEARCH'
 export const DELETE_FIELD_FROM_CURRENT_SEARCH = 'DELETE_FIELD_FROM_CURRENT_SEARCH'
+export const DELETE_SEARCH_RESULTS = 'DELETE_SEARCH_RESULTS'
 //export const DESTROY_RESOURCE_SUCCESS = 'DESTROY_RESOURCE_SUCCESS'
 export const EDIT_RESOURCE_FAILURE = 'EDIT_RESOURCE_FAILURE'
 export const EDIT_RESOURCE_SUCCESS = 'EDIT_RESOURCE_SUCCESS'
@@ -52,6 +53,7 @@ export const REQUEST_RESUMES = 'REQUEST_RESUMES'
 export const REQUEST_RESUME = 'REQUEST_RESUME'
 export const REQUEST_SELECTS_FOR_SEARCH = 'REQUEST_SELECTS_FOR_SEARCH'
 export const REQUEST_SEARCH_ABILITY = 'REQUEST_SEARCH_ABILITY'
+export const REQUEST_SEARCH_RESULTS = 'REQUEST_SEARCH_RESULTS'
 export const RECEIVE_RESUME_HOST = 'RECEIVE_RESUME_HOST'
 export const RECEIVE_TABLE_HEADERS = 'RECEIVE_TABLE_HEADERS'
 export const REQUEST_USERS = 'REQUEST_USERS'
@@ -143,6 +145,12 @@ export function deleteNewItem() {
 export function deletePreviewComment() {
   return {
     type: DELETE_PREVIEW_COMMENT
+  }
+}
+
+export function deleteSearchResults() {
+  return {
+    type: DELETE_SEARCH_RESULTS
   }
 }
 
@@ -401,6 +409,12 @@ export function requestRole() {
 export function requestSearchAbility() {
   return {
     type: REQUEST_SEARCH_ABILITY
+  }
+}
+
+export function requestSearchResults() {
+  return {
+    type: REQUEST_SEARCH_RESULTS
   }
 }
 
