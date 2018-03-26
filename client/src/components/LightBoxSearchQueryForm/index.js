@@ -12,7 +12,7 @@ import AuthedContentFooter from "../../containers/AuthedContentFooter"
 import ErrorBlock from '../../containers/ErrorBlock'
 import submit from './submit'
 
-import { updateCurrentSearchFieldData } from "../../redux/actions"
+import { updateCurrentSearchFieldData, deleteFieldFromCurrentSearch } from "../../redux/actions"
 
 const renderTextField = ({ input, newValue, label, meta: { touched, error }, ...custom }) => (
   <TextField hintText={label}
@@ -52,13 +52,15 @@ let LightBoxSearchQueryForm = props => {
               if(ability[1].nested_action.search_type === 'fuzzy' || ability[1].nested_action.search_type === 'basic') {
                 return (
                   <div className="text-field" key={count-2}>
+                    <i className="icon-cancel-circled farther-form-tooltip-icon" onClick={() => dispatch(deleteFieldFromCurrentSearch(ability[0]))} />
                     <Field name={ability[0]} component={renderTextField} label={ability[1].logical} fullWidth={true}/>
                   </div>
                 )
               } else if (ability[1].nested_action.select_from) {
                 return (
                   <div key={count-2}>
-                    <Field name={ability[0]} component={SelectField} hintText={ability[1].logical} fullWidth={true} floatingLabelText={ability[1].logical + "..."}>
+                    <i className="icon-cancel-circled farther-form-tooltip-icon" onClick={() => dispatch(deleteFieldFromCurrentSearch(ability[0]))} />
+                    <Field className="text-field" name={ability[0]} component={SelectField} hintText={ability[1].logical} fullWidth={true} floatingLabelText={ability[1].logical + "..."}>
                       {renderMenuItems(currentSearch.forSelects[ability[0]])}
                     </Field>
                   </div>
@@ -69,7 +71,10 @@ let LightBoxSearchQueryForm = props => {
               }
             case "hidden": case "params":
               return (
-                <div key={count-2}>{ability[1].logical + "..."}</div>
+                <div key={count-2} className="text-field">
+                  <i className="icon-cancel-circled farther-form-tooltip-icon" style={{marginTop: "0px"}} onClick={() => dispatch(deleteFieldFromCurrentSearch(ability[0]))} />
+                  {ability[1].logical + "..."}
+                </div>
               )
             default:
               return null
@@ -80,7 +85,7 @@ let LightBoxSearchQueryForm = props => {
               key={count-1}
               onClick={() => dispatch(updateCurrentSearchFieldData(currentSearch.model, ability[0], ability[1].type, ability[1].nested_action, change))}
               title={ability[1].logical}
-              className="button full-width-button"
+              className="button almost-full-width-button"
             >
               <i className={"icon-" + ability[1].icon}/>{ability[1].logical}
             </div>

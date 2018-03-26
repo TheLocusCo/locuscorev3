@@ -1033,7 +1033,7 @@ function currentSearch(
       })
     case DELETE_FIELD_FROM_CURRENT_SEARCH:
       return Object.assign({}, state, {
-        fields: state.fields.filter(fieldName => fieldName === action.fieldToRemove)
+        fields: state.fields.filter(fieldName => fieldName !== action.fieldToRemove)
       })
     default:
       return state

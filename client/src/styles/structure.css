@@ -217,6 +217,12 @@ body {
   margin-bottom: 15px;
 }
 
+.button.almost-full-width-button {
+  width: 97%;
+  display: block;
+  margin: 10px 0px 15px 15px;
+}
+
 .button [class^=icon-].right.icon-right-open {
   margin-left: -0.3em;
 }
@@ -312,7 +318,7 @@ body {
   color: inherit;
 }
 
-.button:hover {
+.button:hover, .ltbx-close:hover {
   background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0d…IxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+PC9zdmc+);
   background-image: -moz-linear-gradient(top, #f2f2f2 0%, silver 100%);
   background-image: -webkit-linear-gradient(top, #f2f2f2 0%, silver 100%);
@@ -628,6 +634,12 @@ form .boolean-form-tooltip-icon {
 form .form-tooltip-icon {
   float: left;
   margin-left: -18px;
+  margin-top: 35px;
+}
+
+form .farther-form-tooltip-icon {
+  float: left;
+  margin-left: -31px;
   margin-top: 35px;
 }
 

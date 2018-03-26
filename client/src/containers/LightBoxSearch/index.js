@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './style.css'
 import LightBoxSearchQueryBuilder from '../LightBoxSearchQueryBuilder'
 import { connect } from "react-redux"
-import { fetchSearchAbility } from "../../redux/actions"
+import { fetchSearchAbility, deleteCurrentSearch } from "../../redux/actions"
 import { Route } from 'react-router-dom'
 
 class LightBoxSearch extends Component {
@@ -21,7 +21,8 @@ class LightBoxSearch extends Component {
               {searchAbility.graphics &&
                 <LightBoxSearchQueryBuilder searchAbility={searchAbility} location={location}/>
               }
-              <button onClick={() => history.go(-1)} title="Close (Esc)" type="button" className="ltbx-close"><i className="icon-back"/></button>
+              <button onClick={() => this.props.dispatch(deleteCurrentSearch())} title="Reset Search Options" type="button" className="ltbx-close ltbx-back"><i className="icon-arrows-ccw"/></button>
+              <button onClick={() => history.go(-1)} title="Close and Go Back (Esc)" type="button" className="ltbx-close"><i className="icon-back"/></button>
             </div>
           </div>
           <div className="ltbx-bg" onClick={() => history.go(-1)} />
