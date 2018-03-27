@@ -93,6 +93,17 @@ module ActiveRecordExtension
 
       {total_pages: total_pages, pagination_meta: meta_map}
     end
+
+    def self.get_uniq_array_of_nested_data(field) #this acts like .pluck
+      arr = []
+      pluck(field.to_sym).each do |big_s|
+        big_s.split(',').each do |s|
+          arr << s
+        end
+      end
+
+      arr.uniq.sort
+    end
   end
 end
 

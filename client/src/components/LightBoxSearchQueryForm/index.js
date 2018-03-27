@@ -76,6 +76,24 @@ let LightBoxSearchQueryForm = props => {
                   <Field name={ability[0]} component={Checkbox} label={ability[1].logical} fullwidth={true}/>
                 </div>
               )
+            case "date":
+              return (
+                <div style={{marginLeft: "16px", marginTop: "20px"}} key={count-2}>
+                  <i className="icon-cancel-circled farther-form-tooltip-icon" style={{marginTop: "55px"}} onClick={() => dispatch(deleteFieldFromCurrentSearch(ability[0]))} />
+                  <p className="form-description">{`${ability[1].logical}:`}</p>
+                  <div style={{marginLeft: "16px", marginTop: "-20px", marginBottom: "20px"}}>
+                    <Field name={`daterange_${ability[0]}_start`} component={DatePicker} floatingLabelText="From Date..." autoOk={true}
+                      minDate={new Date(currentSearch.forSelects[ability[0]].earliest)}
+                      maxDate={new Date(currentSearch.forSelects[ability[0]].latest)}
+                    />
+
+                    <Field name={`daterange_${ability[0]}_end`} component={DatePicker} floatingLabelText="To Date..." autoOk={true}
+                      minDate={new Date(currentSearch.forSelects[ability[0]].earliest)}
+                      maxDate={new Date(currentSearch.forSelects[ability[0]].latest)}
+                    />
+                  </div>
+                </div>
+              )
             case "hidden": case "params":
               return (
                 <div key={count-2} className="text-field">

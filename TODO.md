@@ -16,12 +16,9 @@
 * Better ways to handle uploads in dev?
 * Fullscreening things? (media / web graphics)
 * Secure resume microservice using names as ids instead of ids
-* Underline not working right on markdown, use only frontend markdown processor?
 * Progress bar for uploads
-* Guardian db for revoking tokens
 * Portfolio / Manga Gallery Pages slow down when lots of elements are present
   * Infinite scroll to prevent lots of loading?
-* Manga image not set, causing frontend error
 * Cleanup old media files when media is changed / deleted
 * Notifications putting entries into notifications seen by users table so users can't overwrite seen notifications
 

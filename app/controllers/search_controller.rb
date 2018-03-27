@@ -8,9 +8,20 @@ class SearchController < ApplicationController
     if !params.key?(:model) || !params.key?(:field)
       render json: {errors: [{params: "Missing model or field params for search query"}]}, status: :unprocessable_entity
     end
-    @field_search_results = params[:model].capitalize.singularize.camelize.constantize.class_eval(
-      @master_hash[params[:model].to_sym][params[:field].to_sym][:nested_action][:select_from]
-    )
+
+    if @master_hash[params[:model].to_sym][params[:field].to_sym][:type] == "date"
+      @field_search_results = {}
+      @field_search_results[:earliest] = params[:model].capitalize.singularize.camelize.constantize.class_eval(
+        @master_hash[params[:model].to_sym][params[:field].to_sym][:nested_action][:select_from][:earliest]
+      )
+      @field_search_results[:latest] = params[:model].capitalize.singularize.camelize.constantize.class_eval(
+        @master_hash[params[:model].to_sym][params[:field].to_sym][:nested_action][:select_from][:latest]
+      )
+    else
+      @field_search_results = params[:model].capitalize.singularize.camelize.constantize.class_eval(
+        @master_hash[params[:model].to_sym][params[:field].to_sym][:nested_action][:select_from]
+      )
+    end
   end
 
   def search_tree
@@ -24,6 +35,8 @@ class SearchController < ApplicationController
     @search_results[:params] = {}
 
     params.except(:model, :search, :action, :controller, :page).each_pair do |column, val|
+      next unless @master_hash[params[:model].to_sym].key?(column.to_sym)
+
       c_h = @master_hash[params[:model].to_sym][column.to_sym]
       column = c_h[:nested_action][:overriding] if c_h[:nested_action].key?(:overriding)
 
@@ -31,6 +44,8 @@ class SearchController < ApplicationController
       when "string"
         if c_h[:nested_action] == nil
           query_string << ".basic_search(:#{column.to_sym}=> \"#{val}\")"
+        elsif c_h[:nested_action].key?(:join_on)
+          query_string << ".joins(#{c_h[:nested_action][:join_on][:name]}).where(#{c_h[:nested_action][:join_on][:field]} => \"#{val}\")"
         else
           search_type = c_h[:nested_action].key(:search_type) ? c_h[:nested_action][:search_type] : 'basic'
           query_string << ".#{search_type}_search(:#{column.to_sym}=> \"#{val}\")"
@@ -47,6 +62,21 @@ class SearchController < ApplicationController
         end
       end
     end
+
+    params.select {|key, val| key.match(/^daterange_[a-z|_]+_(start|end)$/)}.each_pair do |column, val|
+      term = column.scan(/^daterange_([a-z|_]+)_(start|end)$/).flatten.first
+
+      if params.select {|key, val| key.match(/^daterange_[a-z|_]+_start$/)}.empty?
+        query_string << ".where(\"#{term} < ?, DateTime.parse(\"#{val}\")"
+      elsif params.select {|key, val| key.match(/^daterange_[a-z|_]+_end$/)}.empty?
+        query_string << ".where(\"#{term} > ?, DateTime.parse(\"#{val}\").end_of_day"
+      else
+        next if query_string.include?(term)
+        query_string << ".where(:#{term}=>DateTime.parse(\"#{params["daterange_#{term}_start"]}\")..DateTime.parse(\"#{params["daterange_#{term}_end"]}\").end_of_day)"
+      end
+    end
+
+    puts "TESTING::#{query_string}"
 
     @search_results[:initial_results] = prepared_model.constantize.class_eval(query_string).order("created_at DESC")
 
