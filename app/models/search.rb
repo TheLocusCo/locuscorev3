@@ -20,7 +20,7 @@ class Search
     #  params      |only used for param fields. Adds additional params to the redirected index. Useful for request analytics. Should be a HASH and not a STRING
     #  overriding  |necessary to specify multiple search queries for the SAME term without using hidden fields
     #  search_type |can specify fuzzy_search for nested_action string queries (its normally basic)
-    s,i,b,d,h,p = 'string', 'integer','boolean', 'date', 'hidden', 'params'
+    s,b,d,h,p = 'string', 'boolean', 'date', 'hidden', 'params'
 
     if ability.can? :edit_update, Comment
       shash[:comments] = {icon: 'comment'}
@@ -37,9 +37,9 @@ class Search
     shash[:graphics][:title_list]        = {icon: 'doc-text', type: s, logical: 'Search Web Graphics by a list of their titles',     nested_action: {select_from: 'Graphic.pluck(:title).sort', overriding: 'title'}}
     shash[:graphics][:haml_description]  = {icon: 'doc-text', type: s, logical: 'Search Web Graphics by their detailed description', nested_action: {search_type: 'basic'}}
     shash[:graphics][:index_description] = {icon: 'doc-text', type: s, logical: 'Search Web Graphics by their short description',    nested_action: {search_type: 'basic'}}
-    shash[:graphics][:categories]        = {icon: 'tag',      type: s, logical: 'Search Web Graphics by their categories',           nested_action: {select_from: 'Category.belonging_to("graphics").pluck(:name)'}, join_on: {name: :categories, field: :name}}
+    shash[:graphics][:category]          = {icon: 'tag',      type: s, logical: 'Search Web Graphics by their categories',           nested_action: {select_from: 'Category.belonging_to("graphics").pluck(:name).uniq.sort', join_on: {name: :categories, field: :name}}}
     shash[:graphics][:scenejs]           = {icon: 'globe',    type: b, logical: 'Search Web Graphics by whether it uses SceneJS',    nested_action: {}}
-    shash[:graphics][:created_at]        = {icon: 'calendar', type: d, logical: 'Search Web Graphics by when they were created',     nested_action: {select_from: 'Graphic.get_uniq_array_of_dates("created_at")'}}
+    shash[:graphics][:created_at]        = {icon: 'calendar', type: d, logical: 'Search Web Graphics by when they were created',     nested_action: {select_from: {earliest: 'Graphic.pluck(:created_at).min', latest: 'Graphic.pluck(:created_at).max'}}}
 
     if ability.can? :read, Manga
       shash[:mangas] = {icon: 'book'}
@@ -49,8 +49,8 @@ class Search
       shash[:mangas][:authors_list] = {icon: 'doc-text', type: s, logical: 'Search mangas by a list of their authors', nested_action: {select_from: "z = []; Manga.pluck(:authors).each {|s| z << s.gsub(' (Story & Art)', '')}; z.uniq.sort", overriding: 'authors'}}
       shash[:mangas][:artists]      = {icon: 'user',     type: s, logical: 'Search mangas by their artist',            nested_action: {search_type: 'fuzzy'}}
       shash[:mangas][:artists_list] = {icon: 'doc-text', type: s, logical: 'Search mangas by a list of their artists', nested_action: {select_from: "z = []; Manga.pluck(:artists).each {|s| z << s.gsub(' (Story & Art)', '') unless s.blank?}; z.uniq.sort", overriding: 'artists'}}
-      shash[:mangas][:genres]       = {icon: 'tag',      type: s, logical: 'Search mangas by their genre',             nested_action: {select_from: 'Manga.get_uniq_array_of_nested_data("genres")'}}
-      shash[:mangas][:created_at]   = {icon: 'calendar', type: d, logical: 'Search mangas by when they were created',  nested_action: {select_from: 'Manga.get_uniq_array_of_dates("created_at")'}}
+      shash[:mangas][:genre]        = {icon: 'tag',      type: s, logical: 'Search mangas by their genre',             nested_action: {select_from: 'Category.belonging_to("manga").pluck(:name).uniq.sort', join_on: {name: :categories, field: :name}}}
+      shash[:mangas][:created_at]   = {icon: 'calendar', type: d, logical: 'Search mangas by when they were created',  nested_action: {select_from: {earliest: 'Manga.pluck(:created_at).min', latest: 'Manga.pluck(:created_at).max'}}}
       shash[:mangas][:with_fancy]   = {icon: 'window',   type: p, logical: 'Use the fancy mangas Gallery',             nested_action: {params: {fancyDisplay: true}}}
     end
 
@@ -58,39 +58,37 @@ class Search
       shash[:media] = {icon: 'picture'}
       shash[:media][:name]             = {icon: 'vcard',    type: s, logical: 'Search media by their name',                           nested_action: {search_type: 'fuzzy'}}
       shash[:media][:name_list]        = {icon: 'doc-text', type: s, logical: 'Search media by a list of their names',                nested_action: {select_from: 'Medium.pluck(:name).sort', overriding: 'name'}}
-      shash[:media][:user_id]          = {icon: 'user',     type: i, logical: 'Search media by who created them',                     nested_action: {select_from: 'User.select("username, id").load', returns: 'id', using: 'username'}} if ability.can? :edit_update, Medium
-      shash[:media][:category]         = {icon: 'tag',      type: s, logical: 'Search media by their categories',                     nested_action: {select_from: 'Medium.get_uniq_array_of_nested_data("category")'}}
+      shash[:media][:user]             = {icon: 'user',     type: s, logical: 'Search media by who created them',                     nested_action: {select_from: 'User.joins(:media).where("user_id IS NOT NULL").pluck(:name).uniq.sort', join_on: {name: :user, field: :name}}} if ability.can? :edit_update, Medium
+      shash[:media][:category]         = {icon: 'tag',      type: s, logical: 'Search media by their categories',                     nested_action: {select_from: 'Category.belonging_to("media").pluck(:name).uniq.sort', join_on: {name: :categories, field: :name}}}
       shash[:media][:globally_visable] = {icon: 'search',   type: b, logical: 'Search media by whether it is globally visable',       nested_action: {}}
-      shash[:media][:created_at]       = {icon: 'calendar', type: d, logical: 'Search media by when they were created',               nested_action: {select_from: 'Medium.get_uniq_array_of_dates("created_at")'}}
-      shash[:media][:has_audio]        = {icon: 'music',    type: h, logical: 'Search media by if they have audio attached',          nested_action: {embedded: '.where("audio_file_name is not null")'}}
+      shash[:media][:created_at]       = {icon: 'calendar', type: d, logical: 'Search media by when they were created',               nested_action: {select_from: {earliest: 'Medium.pluck(:created_at).min', latest: 'Medium.pluck(:created_at).max'}}}
       shash[:media][:has_image]        = {icon: 'camera',   type: h, logical: 'Search media by if they have an image attached',       nested_action: {embedded: '.where("image_file_name is not null")'}}
-      shash[:media][:has_video]        = {icon: 'video',    type: h, logical: 'Search media by if they have a video attached',        nested_action: {embedded: '.where("video_file_name is not null")'}}
       shash[:media][:has_generic]      = {icon: 'doc-text', type: h, logical: 'Search media by if they have a generic file attached', nested_action: {embedded: '.where("generic_file_name is not null")'}}
     end
 
     if ability.can? :edit_update, Notification
       shash[:notifications] = {icon: 'attention'}
-      shash[:notifications][:content]               = {icon: 'vcard',    type: s, logical: 'Search notifications by their content',              nested_action: {search_type: 'basic'}}
-      shash[:notifications][:from_email]            = {icon: 'user',     type: s, logical: 'Search notifications by their email',                nested_action: {search_type: 'fuzzy'}}
-      shash[:notifications][:from_email_list]       = {icon: 'doc-text', type: s, logical: 'Search notifications by a list of their emails',     nested_action: {select_from: 'Notification.pluck(:from_email).sort', overriding: 'from_email'}}
-      shash[:notifications][:created_at]            = {icon: 'calendar', type: d, logical: 'Search notifications by when they were created',     nested_action: {select_from: 'Notification.get_uniq_array_of_dates("created_at")'}}
-      shash[:notifications][:start_displaying_from] = {icon: 'calendar', type: d, logical: 'Search notifications by when their campaign starts', nested_action: {select_from: 'Notification.get_uniq_array_of_dates("start_displaying_from")'}}
-      shash[:notifications][:n_type]                = {icon: 'tag',      type: s, logical: 'Search notifications by their type',                 nested_action: {select_from: 'Notification.get_uniq_array_of_nested_data("n_type")'}}
+      shash[:notifications][:content]             = {icon: 'vcard',    type: s, logical: 'Search notifications by their content',              nested_action: {search_type: 'basic'}}
+      shash[:notifications][:from_email]          = {icon: 'user',     type: s, logical: 'Search notifications by their email',                nested_action: {search_type: 'fuzzy'}}
+      shash[:notifications][:from_email_list]     = {icon: 'doc-text', type: s, logical: 'Search notifications by a list of their emails',     nested_action: {select_from: 'Notification.pluck(:from_email).sort', overriding: 'from_email'}}
+      shash[:notifications][:created_at]          = {icon: 'calendar', type: d, logical: 'Search notifications by when they were created',     nested_action: {select_from: {earliest: 'Notification.pluck(:created_at).min', latest: 'Notification.pluck(:created_at).max'}}}
+      shash[:notifications][:start_displaying_at] = {icon: 'calendar', type: d, logical: 'Search notifications by when their campaign starts', nested_action: {select_from: {earliest: 'Notification.pluck(:start_displaying_at).min', latest: 'Notification.pluck(:start_displaying_at).max'}}}
+      shash[:notifications][:n_type]              = {icon: 'tag',      type: s, logical: 'Search notifications by their type',                 nested_action: {select_from: 'Notification.pluck(:n_type).uniq.sort'}}
     end
 
     shash[:posts] = {icon: 'doc'}
     shash[:posts][:title]      = {icon: 'vcard',    type: s, logical: 'Search posts by their title',            nested_action: {search_type: 'fuzzy'}}
     shash[:posts][:title_list] = {icon: 'doc-text', type: s, logical: 'Search posts by a list of their titles', nested_action: {select_from: 'Post.pluck(:title).sort', overriding: 'title'}}
     shash[:posts][:content]    = {icon: 'doc-text', type: s, logical: 'Search posts by their content',          nested_action: {search_type: 'basic'}}
-    shash[:posts][:category]   = {icon: 'tag',      type: s, logical: 'Search posts by their categories',       nested_action: {select_from: 'Post.get_uniq_array_of_nested_data("category")'}}
-    shash[:posts][:author_id]  = {icon: 'user',     type: i, logical: 'Search posts by who created them',       nested_action: {select_from: 'User.select("name, id").load', returns: 'id', using: 'name'}}
-    shash[:posts][:created_at] = {icon: 'calendar', type: d, logical: 'Search posts by when they were created', nested_action: {select_from: 'Post.get_uniq_array_of_dates("created_at")'}}
+    shash[:posts][:category]   = {icon: 'tag',      type: s, logical: 'Search posts by their categories',       nested_action: {select_from: 'Category.belonging_to("posts").pluck(:name).uniq.sort', join_on: {name: :categories, field: :name}}}
+    shash[:posts][:author]     = {icon: 'user',     type: s, logical: 'Search posts by who created them',       nested_action: {select_from: 'User.joins(:posts).where("author_id IS NOT NULL").pluck(:name).uniq.sort', join_on: {name: :user, field: :name}}}
+    shash[:posts][:created_at] = {icon: 'calendar', type: d, logical: 'Search posts by when they were created', nested_action: {select_from: {earliest: 'User.pluck(:created_at).min', latest: 'User.pluck(:created_at).max'}}}
 
     shash[:projects] = {icon: 'folder'}
     shash[:projects][:name]       = {icon: 'vcard',    type: s, logical: 'Search projects by their title',            nested_action: {search_type: 'fuzzy'}}
     shash[:projects][:name_list]  = {icon: 'doc-text', type: s, logical: 'Search projects by a list of their titles', nested_action: {select_from: 'Project.pluck(:name).sort', overriding: 'name'}}
-    shash[:projects][:category]   = {icon: 'tag',      type: s, logical: 'Search projects by their category',         nested_action: {select_from: 'Project.get_uniq_array_of_nested_data("category")'}}
-    shash[:projects][:created_at] = {icon: 'calendar', type: d, logical: 'Search projects by when they were created', nested_action: {select_from: 'Project.get_uniq_array_of_dates("created_at")'}}
+    shash[:projects][:category]   = {icon: 'tag',      type: s, logical: 'Search projects by their category',         nested_action: {select_from: 'Category.belonging_to("projects").pluck(:name).uniq.sort', join_on: {name: :categories, field: :name}}}
+    shash[:projects][:created_at] = {icon: 'calendar', type: d, logical: 'Search projects by when they were created', nested_action: {select_from: {earliest: 'Project.pluck(:created_at).min', latest: 'Project.pluck(:created_at).max'}}}
     shash[:projects][:with_fancy] = {icon: 'window',   type: p, logical: 'Use the fancy projects gallery',            nested_action: {params: {fancyDisplay: true}}} unless user.id.nil?
 
     #if ability.can? :read, Request
@@ -113,7 +111,7 @@ class Search
       shash[:resumes][:title]      = {icon: 'vcard',    type: s, logical: 'Search resumes by their title',            nested_action: {search_type: 'fuzzy'}}
       shash[:resumes][:title_list] = {icon: 'doc-text', type: s, logical: 'Search resumes by a list of their titles', nested_action: {select_from: 'Resume.pluck(:title).sort', overriding: 'title'}}
       shash[:resumes][:company]    = {icon: 'tag',      type: s, logical: 'Search resumes by their company',          nested_action: {select_from: 'Resume.get_uniq_array_of_nested_data("company")'}}
-      shash[:resumes][:created_at] = {icon: 'calendar', type: d, logical: 'Search resumes by when they were created', nested_action: {select_from: 'Resume.get_uniq_array_of_dates("created_at")'}}
+      shash[:resumes][:created_at] = {icon: 'calendar', type: d, logical: 'Search resumes by when they were created', nested_action: {select_from: {earliest: 'Resume.pluck(:created_at).min', latest: 'Resume.pluck(:created_at).max'}}}
     end
 
     if ability.can? :edit_update, User
@@ -123,9 +121,8 @@ class Search
       shash[:users][:name]             = {icon: 'user',           type: s, logical: 'Search users by their full name',                      nested_action: {search_type: 'fuzzy'}}
       shash[:users][:name_list]        = {icon: 'doc-text',       type: s, logical: 'Search users by a list of their full names',           nested_action: {select_from: 'User.pluck(:name).sort', overriding: 'name'}}
       shash[:users][:ip_list]          = {icon: 'signal',         type: s, logical: 'Search users by the ips they have used',               nested_action: {select_from: 'User.get_uniq_array_of_nested_data("ip_list")'}}
-      shash[:users][:created_at]       = {icon: 'calendar',       type: d, logical: 'Search users by when they were created',               nested_action: {select_from: 'User.get_uniq_array_of_dates("created_at")'}}
+      shash[:users][:created_at]       = {icon: 'calendar',       type: d, logical: 'Search users by when they were created',               nested_action: {select_from: {earliest: 'User.pluck(:created_at).min', latest: 'User.pluck(:created_at).max'}}}
       shash[:users][:signed_in]        = {icon: 'login',          type: h, logical: 'Search users by if they have logged in',               nested_action: {embedded: '.where("sign_in_count > 0")'}}
-      shash[:users][:stuck_at_cookie]  = {icon: 'cancel-circled', type: h, logical: 'Search users by if they cant login past cookie crypt', nested_action: {embedded: '.where("cookie_crypt_attempts_count > 3")'}}
       shash[:users][:locked_out]       = {icon: 'cancel-squared', type: h, logical: 'Search users by if they are locked out',               nested_action: {embedded: '.where("locked_at is not null")'}}
     end
 

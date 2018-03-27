@@ -1,8 +1,5 @@
 class SearchController < ApplicationController
   before_action :hash_creation
-  #this controller should pass off whatever its queries results are to the *index* of the controller its searching in
-  def index
-  end
 
   def field_search
     if !params.key?(:model) || !params.key?(:field)
@@ -43,17 +40,18 @@ class SearchController < ApplicationController
       case c_h[:type]
       when "string"
         if c_h[:nested_action] == nil
-          query_string << ".basic_search(:#{column.to_sym}=> \"#{val}\")"
+          query_string << ".basic_search(#{column}: \"#{val}\")"
         elsif c_h[:nested_action].key?(:join_on)
-          query_string << ".joins(#{c_h[:nested_action][:join_on][:name]}).where(#{c_h[:nested_action][:join_on][:field]} => \"#{val}\")"
+          join_name = c_h[:nested_action][:join_on][:name].to_s
+          query_string << ".joins(:#{join_name}).where(#{join_name.pluralize}: {#{c_h[:nested_action][:join_on][:field]}: \"#{val}\"})"
         else
           search_type = c_h[:nested_action].key(:search_type) ? c_h[:nested_action][:search_type] : 'basic'
-          query_string << ".#{search_type}_search(:#{column.to_sym}=> \"#{val}\")"
+          query_string << ".#{search_type}_search(#{column}: \"#{val}\")"
         end
       when "boolean"
-        query_string << ".where(:#{column.to_sym}=> #{val})"
+        query_string << ".where(#{column}: #{val})"
       when "integer"
-        query_string << ".where(:#{column.to_sym}=> #{val})"
+        query_string << ".where(#{column}: #{val})"
       when 'hidden'
         query_string << c_h[:nested_action][:embedded]
       when 'params'
@@ -67,16 +65,14 @@ class SearchController < ApplicationController
       term = column.scan(/^daterange_([a-z|_]+)_(start|end)$/).flatten.first
 
       if params.select {|key, val| key.match(/^daterange_[a-z|_]+_start$/)}.empty?
-        query_string << ".where(\"#{term} < ?, DateTime.parse(\"#{val}\")"
+        query_string << ".where(\"#{term} < ?\", DateTime.parse(\"#{val}\"))"
       elsif params.select {|key, val| key.match(/^daterange_[a-z|_]+_end$/)}.empty?
-        query_string << ".where(\"#{term} > ?, DateTime.parse(\"#{val}\").end_of_day"
+        query_string << ".where(\"#{term} > ?\", DateTime.parse(\"#{val}\").end_of_day)"
       else
         next if query_string.include?(term)
-        query_string << ".where(:#{term}=>DateTime.parse(\"#{params["daterange_#{term}_start"]}\")..DateTime.parse(\"#{params["daterange_#{term}_end"]}\").end_of_day)"
+        query_string << ".where(#{term}: DateTime.parse(\"#{params["daterange_#{term}_start"]}\")..DateTime.parse(\"#{params["daterange_#{term}_end"]}\").end_of_day)"
       end
     end
-
-    puts "TESTING::#{query_string}"
 
     @search_results[:initial_results] = prepared_model.constantize.class_eval(query_string).order("created_at DESC")
 
@@ -87,83 +83,6 @@ class SearchController < ApplicationController
     end
 
     @search_results.merge!(prepared_model.constantize.send(:map_pagination_meta, prepared_model.constantize::DEFAULT_PAGINATION_COLUMN, @search_results[:initial_results]))
-  end
-
-  def search
-    ret_error = false
-    comp_arr = Search.paramable_array(@master_hash, params) #you cant search for a model that isnt within your master_hash
-
-    if ret_error
-      flash[:error] = "You do not possess sufficient privileges to search for those params."
-      respond_to do |format|
-        format.html {redirect_to root_path and return}
-      end
-    end
-
-    query_string = "#{params[:model].singularize.capitalize.camelize}"
-    params[:search].each_pair do |key, val|
-      h = {}
-      term = key.split('-').at(1).to_sym
-      h = @master_hash[params[:model].to_sym][term]
-      term = h[:nested_action][:overriding] if h[:nested_action] && h[:nested_action][:overriding]
-      if h[:type] == "string"
-        if h[:nested_action] == nil
-          query_string << ".fuzzy_search(:#{term}=> \"#{val}\")"
-        else
-          search_type = h[:nested_action].key?(:search_type) ? h[:nested_action][:search_type] : 'basic'
-          query_string << ".#{search_type}_search(:#{term}=> \"#{val}\")"
-        end
-      elsif h[:type] == "boolean"
-        query_string << ".where(:#{term}=> #{val})"
-      elsif h[:type] == "integer"
-        query_string << ".where(:#{term}=> #{val})"
-      elsif h[:type] == 'hidden'
-        query_string << h[:nested_action][:embedded]
-      elsif h[:type] == 'params'
-        h[:nested_action][:params].each_pair do |k, v|
-          params[k.to_sym] = v
-        end
-      end
-    end if params[:search]
-
-    if params['date-search']
-      h     = {}
-      s1    = params['date-search'].keys.first
-      term  = s1.split('-').at(1).to_sym
-      h     = @master_hash[params[:model].to_sym][term]
-      s1val = params['date-search'][s1]
-
-      s2    = params['date-search'].keys.last
-      s2val = params['date-search'][s2]
-      term = h[:nested_action][:overriding] if h[:nested_action][:overriding]
-
-      if DateTime.parse(s1val).beginning_of_day < DateTime.parse(s2val).end_of_day
-        query_string << ".where(:#{term}=>DateTime.parse(\"#{s1val}\").beginning_of_day..DateTime.parse(\"#{s2val}\").end_of_day)"
-      else
-        query_string << ".where(:#{term}=>DateTime.parse(\"#{s2val}\").beginning_of_day..DateTime.parse(\"#{s1val}\").end_of_day)"
-      end
-    end
-
-    eval("@#{params[:model]} = #{query_string}")
-
-    ret_loc = 'index'
-    ret_controller = "#{params[:model]}"
-    if params[:model] == 'posts' && !(can? :manage, Post)
-      ret_controller = 'welcome'
-      ret_loc = "blog"
-    elsif params[:model] == 'projects' && !(can? :manage, Project)
-      ret_controller = 'welcome'
-      ret_loc = "portfolio"
-    elsif params[:model] == 'mangas'
-      params[:js] = 'true'
-    elsif params[:model] == 'requests'
-      params[:processing] = 'true'
-      params[:list] = 'true'
-    end
-
-    puts "going to #{ret_controller}/#{ret_loc}"
-
-    render "#{ret_controller}/#{ret_loc}"
   end
 
   private
