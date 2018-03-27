@@ -68,6 +68,15 @@ let LightBoxSearchQueryForm = props => {
               } else {
                 return null
               }
+            case "order":
+              return (
+                  <div className="text-field" key={count-2}>
+                    <i className="icon-cancel-circled farther-form-tooltip-icon" onClick={() => dispatch(deleteFieldFromCurrentSearch(ability[0]))} />
+                    <Field name={ability[0]} component={SelectField} hintText={ability[1].logical} fullWidth={true} floatingLabelText={ability[1].logical + "..."}>
+                      {renderMenuItems(ability[1].nested_action.select_from)}
+                    </Field>
+                  </div>
+                )
             case "boolean":
               return (
                 <div style={{marginLeft: "14px", marginTop: "-25px", marginBottom: "14px"}} key={count-2}>

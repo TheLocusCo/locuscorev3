@@ -58,6 +58,8 @@ class SearchController < ApplicationController
         c_h[:nested_action][:params].each_pair do |k, v|
           @search_results[:params][k.to_sym] = v
         end
+      when 'order'
+        query_string << ".order(\"#{val}\")"
       end
     end
 
@@ -74,7 +76,9 @@ class SearchController < ApplicationController
       end
     end
 
-    @search_results[:initial_results] = prepared_model.constantize.class_eval(query_string).order("created_at DESC")
+    query_string << ".order('created_at DESC')" unless params[:order]
+
+    @search_results[:initial_results] = prepared_model.constantize.class_eval(query_string)
 
     if @search_results[:params][:fancyDisplay]
       @search_results[:results] = @search_results[:initial_results]
@@ -82,7 +86,11 @@ class SearchController < ApplicationController
       @search_results[:results] = @search_results[:initial_results].dup.fetch_ordered_by_page_for_search(params[:page])
     end
 
-    @search_results.merge!(prepared_model.constantize.send(:map_pagination_meta, prepared_model.constantize::DEFAULT_PAGINATION_COLUMN, @search_results[:initial_results]))
+    if params[:order]
+      @search_results.merge!(prepared_model.constantize.send(:map_pagination_meta, params[:order].split(' ').first, @search_results[:initial_results]))
+    else
+      @search_results.merge!(prepared_model.constantize.send(:map_pagination_meta, prepared_model.constantize::DEFAULT_PAGINATION_COLUMN, @search_results[:initial_results]))
+    end
   end
 
   private

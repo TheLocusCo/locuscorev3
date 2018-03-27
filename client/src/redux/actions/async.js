@@ -1012,7 +1012,7 @@ export function updateCurrentPage(resourceType, currentPage, params) {
 }
 
 export function updateCurrentSearchFieldData(model, field, type, nestedAction, changeFunc) {
-  if (nestedAction != null && nestedAction.select_from != null) {
+  if (nestedAction != null && nestedAction.select_from != null && type !== "order") {
     return dispatch => {
       dispatch(sync.requestSearchFieldData())
       http.searchFieldDataFetch(model, field).then(function(response) {

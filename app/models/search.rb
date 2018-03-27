@@ -20,7 +20,7 @@ class Search
     #  params      |only used for param fields. Adds additional params to the redirected index. Useful for request analytics. Should be a HASH and not a STRING
     #  overriding  |necessary to specify multiple search queries for the SAME term without using hidden fields
     #  search_type |can specify fuzzy_search for nested_action string queries (its normally basic)
-    s,b,d,h,p = 'string', 'boolean', 'date', 'hidden', 'params'
+    s,b,d,h,p,o = 'string', 'boolean', 'date', 'hidden', 'params', 'order'
 
     if ability.can? :edit_update, Comment
       shash[:comments] = {icon: 'comment'}
@@ -30,6 +30,7 @@ class Search
       shash[:comments][:created_at]       = {icon: 'calendar', type: d, logical: 'Search comments by when they were created',         nested_action: {select_from: {earliest: 'Comment.pluck(:created_at).min', latest: 'Comment.pluck(:created_at).max'}}}
       shash[:comments][:commentable_type] = {icon: 'tag',      type: s, logical: 'Search comments by what they were posted to',       nested_action: {select_from: 'Comment.pluck(:commentable_type).uniq.sort'}}
       shash[:comments][:posted_by_anon]   = {icon: 'help',     type: h, logical: 'Search comments by if they were posted by an anon', nested_action: {embedded: '.where("user_id = 0")'}}
+      shash[:comments][:order]            = {icon: 'menu',     type: o, logical: 'Change the order of the search results',            nested_action: {select_from: ["created_at ASC"]}}
     end
 
     shash[:graphics] = {icon: 'eye'}
@@ -40,6 +41,7 @@ class Search
     shash[:graphics][:category]          = {icon: 'tag',      type: s, logical: 'Search Web Graphics by their categories',           nested_action: {select_from: 'Category.belonging_to("graphics").pluck(:name).uniq.sort', join_on: {name: :categories, field: :name}}}
     shash[:graphics][:scenejs]           = {icon: 'globe',    type: b, logical: 'Search Web Graphics by whether it uses SceneJS',    nested_action: {}}
     shash[:graphics][:created_at]        = {icon: 'calendar', type: d, logical: 'Search Web Graphics by when they were created',     nested_action: {select_from: {earliest: 'Graphic.pluck(:created_at).min', latest: 'Graphic.pluck(:created_at).max'}}}
+    shash[:graphics][:order]             = {icon: 'menu',     type: o, logical: 'Change the order of the search results',            nested_action: {select_from: ["title DESC", "title ASC", "created_at ASC"]}}
 
     if ability.can? :read, Manga
       shash[:mangas] = {icon: 'book'}
@@ -52,6 +54,7 @@ class Search
       shash[:mangas][:genre]        = {icon: 'tag',      type: s, logical: 'Search mangas by their genre',             nested_action: {select_from: 'Category.belonging_to("manga").pluck(:name).uniq.sort', join_on: {name: :categories, field: :name}}}
       shash[:mangas][:created_at]   = {icon: 'calendar', type: d, logical: 'Search mangas by when they were created',  nested_action: {select_from: {earliest: 'Manga.pluck(:created_at).min', latest: 'Manga.pluck(:created_at).max'}}}
       shash[:mangas][:with_fancy]   = {icon: 'window',   type: p, logical: 'Use the fancy mangas Gallery',             nested_action: {params: {fancyDisplay: true}}}
+      shash[:mangas][:order]        = {icon: 'menu',     type: o, logical: 'Change the order of the search results',   nested_action: {select_from: ["name DESC", "name ASC", "created_at ASC"]}}
     end
 
     unless user.id.nil?
@@ -64,6 +67,7 @@ class Search
       shash[:media][:created_at]       = {icon: 'calendar', type: d, logical: 'Search media by when they were created',               nested_action: {select_from: {earliest: 'Medium.pluck(:created_at).min', latest: 'Medium.pluck(:created_at).max'}}}
       shash[:media][:has_image]        = {icon: 'camera',   type: h, logical: 'Search media by if they have an image attached',       nested_action: {embedded: '.where("image_file_name is not null")'}}
       shash[:media][:has_generic]      = {icon: 'doc-text', type: h, logical: 'Search media by if they have a generic file attached', nested_action: {embedded: '.where("generic_file_name is not null")'}}
+      shash[:media][:order]            = {icon: 'menu',     type: o, logical: 'Change the order of the search results',               nested_action: {select_from: ["name DESC", "name ASC", "created_at ASC"]}}
     end
 
     if ability.can? :edit_update, Notification
@@ -74,6 +78,7 @@ class Search
       shash[:notifications][:created_at]          = {icon: 'calendar', type: d, logical: 'Search notifications by when they were created',     nested_action: {select_from: {earliest: 'Notification.pluck(:created_at).min', latest: 'Notification.pluck(:created_at).max'}}}
       shash[:notifications][:start_displaying_at] = {icon: 'calendar', type: d, logical: 'Search notifications by when their campaign starts', nested_action: {select_from: {earliest: 'Notification.pluck(:start_displaying_at).min', latest: 'Notification.pluck(:start_displaying_at).max'}}}
       shash[:notifications][:n_type]              = {icon: 'tag',      type: s, logical: 'Search notifications by their type',                 nested_action: {select_from: 'Notification.pluck(:n_type).uniq.sort'}}
+      shash[:notifications][:order]               = {icon: 'menu',     type: o, logical: 'Change the order of the search results',             nested_action: {select_from: ["created_at ASC"]}}
     end
 
     shash[:posts] = {icon: 'doc'}
@@ -83,6 +88,7 @@ class Search
     shash[:posts][:category]   = {icon: 'tag',      type: s, logical: 'Search posts by their categories',       nested_action: {select_from: 'Category.belonging_to("posts").pluck(:name).uniq.sort', join_on: {name: :categories, field: :name}}}
     shash[:posts][:author]     = {icon: 'user',     type: s, logical: 'Search posts by who created them',       nested_action: {select_from: 'User.joins(:posts).where("author_id IS NOT NULL").pluck(:name).uniq.sort', join_on: {name: :user, field: :name}}}
     shash[:posts][:created_at] = {icon: 'calendar', type: d, logical: 'Search posts by when they were created', nested_action: {select_from: {earliest: 'User.pluck(:created_at).min', latest: 'User.pluck(:created_at).max'}}}
+    shash[:posts][:order]      = {icon: 'menu',     type: o, logical: 'Change the order of the search results', nested_action: {select_from: ["title DESC", "title ASC", "created_at ASC"]}}
 
     shash[:projects] = {icon: 'folder'}
     shash[:projects][:name]       = {icon: 'vcard',    type: s, logical: 'Search projects by their title',            nested_action: {search_type: 'fuzzy'}}
@@ -90,6 +96,7 @@ class Search
     shash[:projects][:category]   = {icon: 'tag',      type: s, logical: 'Search projects by their category',         nested_action: {select_from: 'Category.belonging_to("projects").pluck(:name).uniq.sort', join_on: {name: :categories, field: :name}}}
     shash[:projects][:created_at] = {icon: 'calendar', type: d, logical: 'Search projects by when they were created', nested_action: {select_from: {earliest: 'Project.pluck(:created_at).min', latest: 'Project.pluck(:created_at).max'}}}
     shash[:projects][:with_fancy] = {icon: 'window',   type: p, logical: 'Use the fancy projects gallery',            nested_action: {params: {fancyDisplay: true}}} unless user.id.nil?
+    shash[:projects][:order]      = {icon: 'menu',     type: o, logical: 'Change the order of the search results',    nested_action: {select_from: ["name DESC", "name ASC", "created_at ASC"]}}
 
     #if ability.can? :read, Request
     #  shash[:requests] = {icon: 'network'}
@@ -112,18 +119,20 @@ class Search
       shash[:resumes][:title_list] = {icon: 'doc-text', type: s, logical: 'Search resumes by a list of their titles', nested_action: {select_from: 'Resume.pluck(:title).sort', overriding: 'title'}}
       shash[:resumes][:company]    = {icon: 'tag',      type: s, logical: 'Search resumes by their company',          nested_action: {select_from: 'Resume.get_uniq_array_of_nested_data("company")'}}
       shash[:resumes][:created_at] = {icon: 'calendar', type: d, logical: 'Search resumes by when they were created', nested_action: {select_from: {earliest: 'Resume.pluck(:created_at).min', latest: 'Resume.pluck(:created_at).max'}}}
+      shash[:resumes][:order]      = {icon: 'menu',     type: o, logical: 'Change the order of the search results',   nested_action: {select_from: ["title DESC", "title ASC", "created_at ASC"]}}
     end
 
     if ability.can? :edit_update, User
       shash[:users] = {icon: 'users'}
-      shash[:users][:username]         = {icon: 'vcard',          type: s, logical: 'Search users by their username',                       nested_action: {search_type: 'fuzzy'}}
-      shash[:users][:username_list]    = {icon: 'doc-text',       type: s, logical: 'Search users by a list of their usernames',            nested_action: {select_from: 'User.pluck(:username).sort', overriding: 'username'}}
-      shash[:users][:name]             = {icon: 'user',           type: s, logical: 'Search users by their full name',                      nested_action: {search_type: 'fuzzy'}}
-      shash[:users][:name_list]        = {icon: 'doc-text',       type: s, logical: 'Search users by a list of their full names',           nested_action: {select_from: 'User.pluck(:name).sort', overriding: 'name'}}
-      shash[:users][:ip_list]          = {icon: 'signal',         type: s, logical: 'Search users by the ips they have used',               nested_action: {select_from: 'User.get_uniq_array_of_nested_data("ip_list")'}}
-      shash[:users][:created_at]       = {icon: 'calendar',       type: d, logical: 'Search users by when they were created',               nested_action: {select_from: {earliest: 'User.pluck(:created_at).min', latest: 'User.pluck(:created_at).max'}}}
-      shash[:users][:signed_in]        = {icon: 'login',          type: h, logical: 'Search users by if they have logged in',               nested_action: {embedded: '.where("sign_in_count > 0")'}}
-      shash[:users][:locked_out]       = {icon: 'cancel-squared', type: h, logical: 'Search users by if they are locked out',               nested_action: {embedded: '.where("locked_at is not null")'}}
+      shash[:users][:username]      = {icon: 'vcard',          type: s, logical: 'Search users by their username',             nested_action: {search_type: 'fuzzy'}}
+      shash[:users][:username_list] = {icon: 'doc-text',       type: s, logical: 'Search users by a list of their usernames',  nested_action: {select_from: 'User.pluck(:username).sort', overriding: 'username'}}
+      shash[:users][:name]          = {icon: 'user',           type: s, logical: 'Search users by their full name',            nested_action: {search_type: 'fuzzy'}}
+      shash[:users][:name_list]     = {icon: 'doc-text',       type: s, logical: 'Search users by a list of their full names', nested_action: {select_from: 'User.pluck(:name).sort', overriding: 'name'}}
+      shash[:users][:ip_list]       = {icon: 'signal',         type: s, logical: 'Search users by the ips they have used',     nested_action: {select_from: 'User.get_uniq_array_of_nested_data("ip_list")'}}
+      shash[:users][:created_at]    = {icon: 'calendar',       type: d, logical: 'Search users by when they were created',     nested_action: {select_from: {earliest: 'User.pluck(:created_at).min', latest: 'User.pluck(:created_at).max'}}}
+      shash[:users][:signed_in]     = {icon: 'login',          type: h, logical: 'Search users by if they have logged in',     nested_action: {embedded: '.where("sign_in_count > 0")'}}
+      shash[:users][:locked_out]    = {icon: 'cancel-squared', type: h, logical: 'Search users by if they are locked out',     nested_action: {embedded: '.where("locked_at is not null")'}}
+      shash[:users][:order]         = {icon: 'menu',           type: o, logical: 'Change the order of the search results',     nested_action: {select_from: ["name DESC", "name ASC", "username DESC", "username ASC", "created_at ASC", "signed_in DESC", "signed_in ASC"]}}
     end
 
     shash
