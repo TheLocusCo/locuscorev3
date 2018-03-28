@@ -14,16 +14,16 @@ export const LightBoxShowMediumContent = props => {
 
   return (
     <article className="portfolio-item">
-      {props.arc_media && props.arc_media.original !== null &&
+      {props.image && props.image.original != null &&
         <div className="centered">
-          <img src={props.arc_media.original} alt=""/>
+          <img src={props.image.original} alt=""/>
         </div>
       }
-      {props.arc_media_generic !== null &&
+      {props.generic != null &&
         <div className="centered" style={{marginTop: "22%"}}>
-          <a className="button" onClick={() => {downloadMedia(props.arc_media_generic)}}>
+          <a className="button" onClick={() => {downloadMedia(props.generic)}}>
             <i className="icon-download"/>
-            Download {props.arc_media_generic_name}
+            Download {props.generic_name}
           </a>
         </div>
       }

@@ -12,7 +12,6 @@
 * SceneJS?
 * Refresh button / polling for notifications while authed
 * Better ways to handle uploads in dev?
-* Fullscreening things? (media [implemented for web graphics])
 * Secure resume microservice using names as ids instead of ids
 * Progress bar for uploads
 * Portfolio / Manga Gallery Pages slow down when lots of elements are present

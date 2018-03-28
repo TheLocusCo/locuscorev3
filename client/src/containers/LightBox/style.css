@@ -66,7 +66,7 @@
 
 .ltbx-fullscreen-content {
   width: 100vw !important;
-  vertical-align: top !important;
+  vertical-align: middle !important;
 }
 
 .ltbx-content>article>.post-content {
