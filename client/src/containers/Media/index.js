@@ -7,11 +7,11 @@ import AuthedIndexTable from '../AuthedIndexTable'
 import SuccessBlock from '../SuccessBlock'
 import ErrorBlock from '../ErrorBlock'
 import PaginationContainer from '../PaginationContainer'
-import { fetchMedia } from "../../redux/actions"
+import { fetchResources } from "../../redux/actions"
 
 class Media extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchMedia("paginated", this.props.currentPage.media))
+    this.props.dispatch(fetchResources('media', this.props.currentPage.media, '', 'paginated'))
   }
 
   render() {

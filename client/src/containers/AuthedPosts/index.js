@@ -8,11 +8,11 @@ import AuthedIndexTable from '../AuthedIndexTable'
 import SuccessBlock from '../SuccessBlock'
 import ErrorBlock from '../ErrorBlock'
 import PaginationContainer from '../PaginationContainer'
-import { fetchPosts } from "../../redux/actions"
+import { fetchResources } from "../../redux/actions"
 
 class AuthedPosts extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchPosts("withHidden", this.props.currentPage.posts))
+    this.props.dispatch(fetchResources('posts', this.props.currentPage.posts, '', 'withHidden'))
   }
 
   render() {

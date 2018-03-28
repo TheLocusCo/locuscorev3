@@ -8,11 +8,11 @@ import AuthedIndexTable from '../AuthedIndexTable'
 import SuccessBlock from '../SuccessBlock'
 import ErrorBlock from '../ErrorBlock'
 import PaginationContainer from '../PaginationContainer'
-import { fetchMangas } from "../../redux/actions"
+import { fetchResources } from "../../redux/actions"
 
 class Mangas extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchMangas("paginated", this.props.currentPage.mangas))
+    this.props.dispatch(fetchResources('mangas', this.props.currentPage.mangas, '', 'paginated'))
   }
 
   render() {

@@ -5,13 +5,13 @@ import SuccessBlock from '../SuccessBlock'
 import LightBoxComments from '../LightBoxComments'
 import LightBoxErrorPage from '../../components/LightBoxErrorPage'
 import { connect } from "react-redux"
-import { fetchManga } from "../../redux/actions"
+import { fetchResource } from "../../redux/actions"
 import { Route } from 'react-router-dom'
 
 class LightBoxManga extends Component {
   componentWillMount() {
     var id = this.props.location.pathname.split("/").reverse()[0]
-    this.props.dispatch(fetchManga(id))
+    this.props.dispatch(fetchResource('manga', 'mangas', id))
   }
 
   render() {

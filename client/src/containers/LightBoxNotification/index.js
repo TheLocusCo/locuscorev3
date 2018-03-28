@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './style.css'
 import LightBoxNotificationContent from '../../components/LightBoxNotificationContent'
 import { connect } from "react-redux"
-import { fetchNotification } from "../../redux/actions"
+import { fetchResource } from "../../redux/actions"
 import { Route } from 'react-router-dom'
 import SuccessBlock from '../SuccessBlock'
 import LightBoxErrorPage from '../../components/LightBoxErrorPage'
@@ -10,7 +10,7 @@ import LightBoxErrorPage from '../../components/LightBoxErrorPage'
 class LightBoxNotification extends Component {
   componentWillMount() {
     var id = this.props.location.pathname.split("/").reverse()[0]
-    this.props.dispatch(fetchNotification(id))
+    this.props.dispatch(fetchResource('notification', 'notifications', id))
   }
 
   render() {

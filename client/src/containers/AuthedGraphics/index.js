@@ -8,11 +8,11 @@ import AuthedIndexTable from '../AuthedIndexTable'
 import SuccessBlock from '../SuccessBlock'
 import ErrorBlock from '../ErrorBlock'
 import PaginationContainer from '../PaginationContainer'
-import { fetchGraphics } from "../../redux/actions"
+import { fetchResources } from "../../redux/actions"
 
 class AuthedGraphics extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchGraphics(this.props.currentPage.graphics))
+    this.props.dispatch(fetchResources('graphics', this.props.currentPage.graphics))
   }
 
   render() {

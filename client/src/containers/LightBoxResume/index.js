@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './style.css'
 import LightBoxResumeContent from '../../components/LightBoxResumeContent'
 import { connect } from "react-redux"
-import { fetchResume } from "../../redux/actions"
+import { fetchResource } from "../../redux/actions"
 import { Route } from 'react-router-dom'
 import SuccessBlock from '../SuccessBlock'
 import LightBoxErrorPage from '../../components/LightBoxErrorPage'
@@ -10,7 +10,7 @@ import LightBoxErrorPage from '../../components/LightBoxErrorPage'
 class LightBoxResume extends Component {
   componentWillMount() {
     var id = this.props.location.pathname.split("/").reverse()[0]
-    this.props.dispatch(fetchResume(id))
+    this.props.dispatch(fetchResource('resume', 'resumes', id))
   }
 
   render() {

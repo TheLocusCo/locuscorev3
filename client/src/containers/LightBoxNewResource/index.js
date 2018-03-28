@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './style.css'
 import LightBoxNewForm from '../../components/LightBoxNewForm'
 import { connect } from "react-redux"
-import { fetchNewResource, deleteNewItem, fetchCategories, fetchMedia } from "../../redux/actions"
+import { fetchNewResource, deleteNewItem, fetchCategories, fetchResources } from "../../redux/actions"
 import { Route } from 'react-router-dom'
 
 class LightBoxNewResource extends Component {
@@ -10,7 +10,7 @@ class LightBoxNewResource extends Component {
     var resource = this.props.location.pathname.split("/").reverse()[1]
     this.props.dispatch(fetchNewResource(resource))
     this.props.dispatch(fetchCategories("all"))
-    this.props.dispatch(fetchMedia("all", 0))
+    this.props.dispatch(fetchResources('media', 0, '', 'all'))
   }
 
   pushHistoryAndClearNew(history) {

@@ -5,13 +5,13 @@ import SuccessBlock from '../SuccessBlock'
 import LightBoxComments from '../LightBoxComments'
 import LightBoxErrorPage from '../../components/LightBoxErrorPage'
 import { connect } from "react-redux"
-import { fetchGraphic, toggleFullscreenLightBox } from "../../redux/actions"
+import { fetchResource, toggleFullscreenLightBox } from "../../redux/actions"
 import { Route } from 'react-router-dom'
 
 class LightBoxGraphic extends Component {
   componentWillMount() {
     var id = this.props.location.pathname.split("/").reverse()[0]
-    this.props.dispatch(fetchGraphic(id))
+    this.props.dispatch(fetchResource('graphic', 'graphics', id))
   }
 
   parseFullscreenClass(fullscreen) {

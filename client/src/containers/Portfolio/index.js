@@ -3,11 +3,11 @@ import './style.css'
 import { connect } from "react-redux"
 import GalleryBlock from '../GalleryBlock'
 import GalleryCategoryButtonsBlock from '../GalleryCategoryButtonsBlock'
-import { fetchProjects } from "../../redux/actions"
+import { fetchResources } from "../../redux/actions"
 
 class Portfolio extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchProjects("all", 0))
+    this.props.dispatch(fetchResources('projects', 0, '', 'all'))
   }
 
   render() {

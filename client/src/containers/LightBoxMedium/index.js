@@ -5,13 +5,13 @@ import SuccessBlock from '../SuccessBlock'
 //import LightBoxComments from '../LightBoxComments'
 import LightBoxErrorPage from '../../components/LightBoxErrorPage'
 import { connect } from "react-redux"
-import { fetchMedium, deleteUploadItem } from "../../redux/actions"
+import { fetchResource, deleteUploadItem } from "../../redux/actions"
 import { Route } from 'react-router-dom'
 
 class LightBoxMedium extends Component {
   componentWillMount() {
     var id = this.props.location.pathname.split("/").reverse()[0]
-    this.props.dispatch(fetchMedium(id))
+    this.props.dispatch(fetchResource('medium', 'media', id))
   }
 
   componentWillUnmount() {

@@ -7,11 +7,11 @@ import AuthedIndexTable from '../AuthedIndexTable'
 import SuccessBlock from '../SuccessBlock'
 import ErrorBlock from '../ErrorBlock'
 import PaginationContainer from '../PaginationContainer'
-import { fetchRoles } from "../../redux/actions"
+import { fetchResources } from "../../redux/actions"
 
 class Roles extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchRoles(this.props.currentPage.roles))
+    this.props.dispatch(fetchResources('roles', this.props.currentPage.roles))
   }
 
   render() {

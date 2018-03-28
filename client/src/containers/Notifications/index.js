@@ -7,11 +7,11 @@ import AuthedIndexTable from '../AuthedIndexTable'
 import SuccessBlock from '../SuccessBlock'
 import ErrorBlock from '../ErrorBlock'
 import PaginationContainer from '../PaginationContainer'
-import { fetchNotifications } from "../../redux/actions"
+import { fetchResources } from "../../redux/actions"
 
 class Notifications extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchNotifications(this.props.currentPage.notifications))
+    this.props.dispatch(fetchResources('notifications', this.props.currentPage.notifications))
   }
 
   render() {

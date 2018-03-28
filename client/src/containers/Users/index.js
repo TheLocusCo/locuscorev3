@@ -7,11 +7,11 @@ import AuthedIndexTable from '../AuthedIndexTable'
 import SuccessBlock from '../SuccessBlock'
 import ErrorBlock from '../ErrorBlock'
 import PaginationContainer from '../PaginationContainer'
-import { fetchUsers } from "../../redux/actions"
+import { fetchResources } from "../../redux/actions"
 
 class Users extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchUsers(this.props.currentPage.users))
+    this.props.dispatch(fetchResources('users', this.props.currentPage.users))
   }
 
   render() {

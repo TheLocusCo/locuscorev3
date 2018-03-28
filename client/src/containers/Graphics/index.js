@@ -6,19 +6,11 @@ import PaginationContainer from '../PaginationContainer'
 //import TabsButton from '../../components/TabsButton'
 //import ReactCSSTransitionReplace from 'react-css-transition-replace'
 //import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import { fetchGraphics } from "../../redux/actions"
+import { fetchResources } from "../../redux/actions"
 
 class Graphics extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      graphics: [],
-      isFetching: true
-    }
-  }
-
   componentWillMount() {
-    this.props.dispatch(fetchGraphics(this.props.currentPage.graphics))
+    this.props.dispatch(fetchResources('graphics', this.props.currentPage.graphics))
   }
 
   render() {

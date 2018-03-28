@@ -7,11 +7,11 @@ import AuthedIndexTable from '../AuthedIndexTable'
 import SuccessBlock from '../SuccessBlock'
 import ErrorBlock from '../ErrorBlock'
 import PaginationContainer from '../PaginationContainer'
-import { fetchComments } from "../../redux/actions"
+import { fetchResources } from "../../redux/actions"
 
 class Comments extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchComments(this.props.currentPage.comments))
+    this.props.dispatch(fetchResources('comments', this.props.currentPage.comments))
   }
 
   render() {

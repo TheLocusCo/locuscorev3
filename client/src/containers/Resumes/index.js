@@ -7,11 +7,11 @@ import AuthedIndexTable from '../AuthedIndexTable'
 import SuccessBlock from '../SuccessBlock'
 import ErrorBlock from '../ErrorBlock'
 import PaginationContainer from '../PaginationContainer'
-import { fetchResumes } from "../../redux/actions"
+import { fetchResources } from "../../redux/actions"
 
 class Resumes extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchResumes(this.props.currentPage.resumes))
+    this.props.dispatch(fetchResources('resumes', this.props.currentPage.resumes))
   }
 
   render() {

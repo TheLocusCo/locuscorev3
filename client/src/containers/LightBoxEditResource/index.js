@@ -2,16 +2,16 @@ import React, { Component } from 'react'
 import './style.css'
 import LightBoxEditForm from '../../components/LightBoxEditForm'
 import { connect } from "react-redux"
-import { fetchResource, deleteEditItem, fetchCategories, fetchMedia } from "../../redux/actions"
+import { fetchResourceForEdit, deleteEditItem, fetchCategories, fetchResources } from "../../redux/actions"
 import { Route } from 'react-router-dom'
 
 class LightBoxEditResource extends Component {
   componentWillMount() {
     var id = this.props.location.pathname.split("/").reverse()[1]
     var resource = this.props.location.pathname.split("/").reverse()[2]
-    this.props.dispatch(fetchResource(resource, id))
+    this.props.dispatch(fetchResourceForEdit(resource, id))
     this.props.dispatch(fetchCategories("all"))
-    this.props.dispatch(fetchMedia("all", 0))
+    this.props.dispatch(fetchResources('media', 0, '', 'all'))
   }
 
   pushHistoryAndClearEdit(history) {

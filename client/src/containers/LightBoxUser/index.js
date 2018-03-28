@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import './style.css'
 import LightBoxUserProfile from '../../components/LightBoxUserProfile'
 import { connect } from "react-redux"
-import { fetchUser } from "../../redux/actions"
 import { Route } from 'react-router-dom'
 import SuccessBlock from '../SuccessBlock'
 import LightBoxErrorPage from '../../components/LightBoxErrorPage'
+
+import { fetchResource } from "../../redux/actions"
 
 class LightBoxUser extends Component {
   targetLocationToPush(history, location, locationToPush) {
@@ -18,7 +19,7 @@ class LightBoxUser extends Component {
 
   componentWillMount() {
     var id = this.props.location.pathname.split("/").reverse()[0]
-    this.props.dispatch(fetchUser(id))
+    this.props.dispatch(fetchResource('user', 'users', id))
   }
 
   render() {

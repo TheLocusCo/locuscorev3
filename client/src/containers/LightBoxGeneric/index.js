@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import './style.css'
 import LightBoxGenericContent from '../../components/LightBoxGenericContent'
-//import { connect } from "react-redux"
-//import { fetchPost } from "../../redux/actions"
 import { Route } from 'react-router-dom'
 
 class LightBoxGeneric extends Component {

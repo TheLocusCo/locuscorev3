@@ -2,15 +2,17 @@ import React, { Component } from 'react'
 import './style.css'
 import LightBoxCommentContent from '../../components/LightBoxCommentContent'
 import { connect } from "react-redux"
-import { fetchComment } from "../../redux/actions"
 import { Route } from 'react-router-dom'
+
 import SuccessBlock from '../SuccessBlock'
 import LightBoxErrorPage from '../../components/LightBoxErrorPage'
+
+import { fetchResource } from "../../redux/actions"
 
 class LightBoxComment extends Component {
   componentWillMount() {
     var id = this.props.location.pathname.split("/").reverse()[0]
-    this.props.dispatch(fetchComment(id))
+    this.props.dispatch(fetchResource('comment', 'comments', id))
   }
 
   humanize(text) {

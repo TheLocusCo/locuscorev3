@@ -3,11 +3,11 @@ import './style.css'
 import { connect } from "react-redux"
 import GalleryBlock from '../GalleryBlock'
 import GalleryCategoryButtonsBlock from '../GalleryCategoryButtonsBlock'
-import { fetchMangas, cleanupAfterGallery } from "../../redux/actions"
+import { fetchResources, cleanupAfterGallery } from "../../redux/actions"
 
 class MangaGallery extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchMangas("all", 0))
+    this.props.dispatch(fetchResources('mangas', 0, '', 'all'))
   }
 
   render() {

@@ -5,13 +5,13 @@ import SuccessBlock from '../SuccessBlock'
 import LightBoxComments from '../LightBoxComments'
 import LightBoxErrorPage from '../../components/LightBoxErrorPage'
 import { connect } from "react-redux"
-import { fetchPost } from "../../redux/actions"
+import { fetchResource } from "../../redux/actions"
 import { Route } from 'react-router-dom'
 
 class LightBoxPost extends Component {
   componentWillMount() {
     var id = this.props.location.pathname.split("/").reverse()[0]
-    this.props.dispatch(fetchPost(id))
+    this.props.dispatch(fetchResource('post', 'posts', id))
   }
 
   render() {

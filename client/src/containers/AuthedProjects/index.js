@@ -8,11 +8,11 @@ import AuthedIndexTable from '../AuthedIndexTable'
 import SuccessBlock from '../SuccessBlock'
 import ErrorBlock from '../ErrorBlock'
 import PaginationContainer from '../PaginationContainer'
-import { fetchProjects } from "../../redux/actions"
+import { fetchResources } from "../../redux/actions"
 
 class AuthedProjects extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchProjects("paginated", this.props.currentPage.projects))
+    this.props.dispatch(fetchResources('projects', this.props.currentPage.projects, '', 'paginated'))
   }
 
   render() {

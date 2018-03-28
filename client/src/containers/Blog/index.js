@@ -6,11 +6,11 @@ import PaginationContainer from '../PaginationContainer'
 //import TabsButton from '../../components/TabsButton'
 //import ReactCSSTransitionReplace from 'react-css-transition-replace'
 //import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import { fetchPosts } from "../../redux/actions"
+import { fetchResources } from "../../redux/actions"
 
 class Blog extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchPosts("withoutHidden", this.props.currentPage.posts))
+    this.props.dispatch(fetchResources('posts', this.props.currentPage.posts, '', 'withoutHidden'))
   }
 
   render() {

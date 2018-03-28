@@ -11,3 +11,15 @@ export function generateDate(mode) {
       return (currentDate)
   }
 }
+
+export function setLocalStorageFromHeaders(headers) {
+  if(headers.has("access-token")) {
+    localStorage.accessToken = headers.get("access-token")
+    localStorage.tokenClient = headers.get("client")
+    localStorage.tokenExpiry = headers.get("expiry")
+
+    return true
+  } else {
+    return false
+  }
+}

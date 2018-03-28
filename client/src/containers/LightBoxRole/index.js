@@ -2,15 +2,16 @@ import React, { Component } from 'react'
 import './style.css'
 import LightBoxRoleContent from '../../components/LightBoxRoleContent'
 import { connect } from "react-redux"
-import { fetchRole } from "../../redux/actions"
 import { Route } from 'react-router-dom'
 import SuccessBlock from '../SuccessBlock'
 import LightBoxErrorPage from '../../components/LightBoxErrorPage'
 
+import { fetchResource } from "../../redux/actions"
+
 class LightBoxRole extends Component {
   componentWillMount() {
     var id = this.props.location.pathname.split("/").reverse()[0]
-    this.props.dispatch(fetchRole(id))
+    this.props.dispatch(fetchResource('role', 'roles', id))
   }
 
   render() {
