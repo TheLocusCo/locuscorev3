@@ -4,9 +4,6 @@ import { combineReducers } from 'redux'
 import { reduxTokenAuthReducer } from 'redux-token-auth'
 import { reducer as formReducer } from 'redux-form'
 
-import * as async from '../actions/async'
-import * as sync from '../actions/sync'
-
 import { categories } from './categories.js'
 import { comment, commentFormVisibility, comments, previewComment } from './comments.js'
 import { graphic, graphics } from './graphics.js'

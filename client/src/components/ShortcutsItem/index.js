@@ -1,6 +1,7 @@
 import React from 'react'
 import './style.css'
 import { Link } from 'react-router-dom'
+import { Markdown } from 'react-showdown'
 
 export const ShortcutsItem = props => {
   const iconClass = (props) => {
@@ -11,7 +12,7 @@ export const ShortcutsItem = props => {
     <div className="span6" key={props.id}>
       <Link to={props.href}>
         <h2>{props.title}</h2>
-        <p>{props.basic_description}</p>
+        <Markdown markup={ props.basic_description } />
         <span className="ico">
           <i className={iconClass(props)} />
         </span>

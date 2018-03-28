@@ -30,14 +30,18 @@ gem 'cancancan'
 gem 'prawn'
 # gem 'textacular' # gem isn't adding its methods correctly
 
-gem 'locuscorev3_mangas', path: '../locuscorev3_mangas'
-# gem 'locuscorev3_mangas', git: "https://#{ENV['locuscore_deploy']}:#{ENV['locuscore_deploy_password']}@github.com/TheLocusCo/locuscorev3_mangas.git"
+# gem 'locuscorev3_mangas', path: '../locuscorev3_mangas'
+gem 'locuscorev3_mangas', git: "https://#{ENV['locuscore_deploy']}:#{ENV['locuscore_deploy_password']}@github.com/TheLocusCo/locuscorev3_mangas.git"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
+
+group :production do
+  gem 'rails_12factor', group: :production
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

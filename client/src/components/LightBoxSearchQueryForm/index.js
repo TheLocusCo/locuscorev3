@@ -8,7 +8,6 @@ import { TextField, Checkbox, SelectField, DatePicker } from 'redux-form-materia
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-import AuthedContentFooter from "../../containers/AuthedContentFooter"
 import ErrorBlock from '../../containers/ErrorBlock'
 import submit from './submit'
 
@@ -129,7 +128,7 @@ let LightBoxSearchQueryForm = props => {
     })
   }
 
-  const { handleSubmit, pristine, submitting, location, errorContent, searchAbility, currentSearch, dispatch, change } = props
+  const { handleSubmit, pristine, submitting, errorContent, searchAbility, currentSearch, dispatch, change } = props
   return (
     <form onSubmit={handleSubmit(submit)}>
       <ReactTooltip />

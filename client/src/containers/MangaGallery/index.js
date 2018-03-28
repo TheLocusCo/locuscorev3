@@ -10,6 +10,10 @@ class MangaGallery extends Component {
     this.props.dispatch(fetchResources('mangas', 0, '', 'all'))
   }
 
+  componentWillUnmount() {
+    this.props.dispatch(cleanupAfterGallery("mangas"))
+  }
+
   render() {
     const { mangas, isFetching, activeCategory } = this.props
     return (

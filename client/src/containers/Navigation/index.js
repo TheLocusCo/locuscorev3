@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { connect } from "react-redux"
 import { Link } from 'react-router-dom'
+import { connect } from "react-redux"
 import './style.css'
 import NavigationButton from '../../components/NavigationButton'
 import { fetchNavigation } from "../../redux/actions"
@@ -21,6 +21,7 @@ class Navigation extends Component {
   render() {
     return (
       <div className="main-navigation">
+        <Link to="/search" className="search-link" />
         <ul className="not-standard">
           { this.renderList(this.props) }
         </ul>

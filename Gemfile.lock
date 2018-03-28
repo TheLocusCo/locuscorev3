@@ -1,5 +1,6 @@
-PATH
-  remote: ../locuscorev3_mangas
+GIT
+  remote: https://locus2deploy:3070929095024945685@github.com/TheLocusCo/locuscorev3_mangas.git
+  revision: e82c47bfe1fb4651ac52571866049f09ccc0f016
   specs:
     locuscorev3_mangas (0.1.0)
       nokogiri
@@ -157,6 +158,11 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.5)
     railties (5.1.5)
       actionpack (= 5.1.5)
       activesupport (= 5.1.5)
@@ -224,6 +230,7 @@ DEPENDENCIES
   puma (~> 3.7)
   rack-cors
   rails (~> 5.1.4)
+  rails_12factor
   rake
   rest-client
   spring

@@ -31,6 +31,10 @@ class SearchController < ApplicationController
     @search_results[:model] = params[:model]
     @search_results[:params] = {}
 
+    unless @master_hash.key?(params[:model])
+      render json: {error: "account", exception: ["You are not allowed to search for this resource"]} and return
+    end
+
     params.except(:model, :search, :action, :controller, :page).each_pair do |column, val|
       next unless @master_hash[params[:model].to_sym].key?(column.to_sym)
 

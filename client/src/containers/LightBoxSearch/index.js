@@ -11,7 +11,7 @@ class LightBoxSearch extends Component {
   }
 
   render() {
-    const { isFetching, errorContent, location, successContent, searchAbility } = this.props
+    const { isFetching, location, searchAbility } = this.props
     return (
       <Route render={({history}) => (
         <div className="ltbx-wrap" tabIndex="-1">
