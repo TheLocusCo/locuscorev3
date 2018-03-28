@@ -5,7 +5,6 @@ class Project < ApplicationRecord
   validates :main_description, presence: true
   validates :client , presence: true
   validates :role , presence: true
-  validates :link , presence: true
 
   has_and_belongs_to_many :categories, join_table: :projects_categories
   has_and_belongs_to_many :comments, join_table: :projects_comments

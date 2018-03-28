@@ -31,7 +31,7 @@ class SearchController < ApplicationController
     @search_results[:model] = params[:model]
     @search_results[:params] = {}
 
-    unless @master_hash.key?(params[:model])
+    unless @master_hash.keys.include?(params[:model].to_sym)
       render json: {error: "account", exception: ["You are not allowed to search for this resource"]} and return
     end
 

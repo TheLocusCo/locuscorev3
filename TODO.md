@@ -11,7 +11,6 @@
 * params update pagination so pagination is remembered from external visits
 * SceneJS?
 * Refresh button / polling for notifications while authed
-* Add categories to blog post / project show page
 * Better ways to handle uploads in dev?
 * Fullscreening things? (media [implemented for web graphics])
 * Secure resume microservice using names as ids instead of ids

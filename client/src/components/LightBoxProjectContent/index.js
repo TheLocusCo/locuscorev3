@@ -1,10 +1,10 @@
 import React from 'react'
 import './style.css'
 import { Route } from 'react-router-dom'
+import { Markdown } from 'react-showdown'
+
 import AuthedContentFooter from '../../containers/AuthedContentFooter'
 import SliderMediaContainer from '../../containers/SliderMediaContainer'
-
-import { Markdown } from 'react-showdown'
 
 export const LightBoxProjectContent = props => {
   return (
@@ -13,7 +13,7 @@ export const LightBoxProjectContent = props => {
         <SliderMediaContainer media={props.media} type="slider_show"/>
         <div style={{margin: "0 0 0 20px"}}>
           <h1>{props.name}</h1>
-          <dl style={{marginTop: "70px"}}>
+          <dl style={{marginTop: "70px", maxWidth: "470px"}}>
             <dt>
               Client:
             </dt>
@@ -23,6 +23,13 @@ export const LightBoxProjectContent = props => {
               Role:
             </dt>
             <dd>{props.role}</dd>
+            <dt>
+              <span className="helper"/>
+              Categories:
+            </dt>
+            <dd>
+              {props.categories_as_string}
+            </dd>
           </dl>
         </div>
         <div className="project-content">
