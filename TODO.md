@@ -5,16 +5,15 @@
 ### Stuff to implement
 * ---Handle not founds better (Pseudofix, canary treats all not founds as 403s)---
 * Handle 500 errors on api for forms
-* Code Browser
+* Code Browser (using github)
 * Analytics table
   * each site is a row with some meta data, each row has many events
 * params update pagination so pagination is remembered from external visits
 * SceneJS?
-* Searching
 * Refresh button / polling for notifications while authed
 * Add categories to blog post / project show page
 * Better ways to handle uploads in dev?
-* Fullscreening things? (media / web graphics)
+* Fullscreening things? (media [implemented for web graphics])
 * Secure resume microservice using names as ids instead of ids
 * Progress bar for uploads
 * Portfolio / Manga Gallery Pages slow down when lots of elements are present
@@ -26,9 +25,6 @@
 * Scroll to top button
 * Syntax highlighting for code snippets
 * Multiselect sometimes not taking tag selections
-* Use https://github.com/nsarno/knock to make resumes authenticated
-  * During login, send request to both elixir api and any microservices that need auth
-    * each one sets their own token from the action
 
 ### Stuff to do
 * Blog post about multiselect onCreate
