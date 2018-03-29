@@ -3,6 +3,7 @@ import './style.css'
 import '../../styles/animations.css' //animations only load correctly when loaded very last
 import { connect } from "react-redux"
 import { Link } from 'react-router-dom'
+import ahoy from 'ahoy.js'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import AuthedContainer from "../AuthedContainer"
@@ -19,6 +20,7 @@ class App extends Component {
   render() {
     return (
       <div className="main-wrapper">
+        {ahoy.trackView()}
         {window.innerWidth > 980 &&
           <header className="header">
             <ReactCSSTransitionGroup transitionName="slide-header" transitionAppearTimeout={3500} transitionEnterTimeout={2500} transitionLeaveTimeout={2500} transitionAppear={true}>

@@ -42,6 +42,88 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: ahoy_events; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE ahoy_events (
+    id bigint NOT NULL,
+    visit_id bigint,
+    user_id bigint,
+    name character varying,
+    properties jsonb,
+    "time" timestamp without time zone
+);
+
+
+--
+-- Name: ahoy_events_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE ahoy_events_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: ahoy_events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE ahoy_events_id_seq OWNED BY ahoy_events.id;
+
+
+--
+-- Name: ahoy_visits; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE ahoy_visits (
+    id bigint NOT NULL,
+    visit_token character varying,
+    visitor_token character varying,
+    user_id bigint,
+    ip character varying,
+    user_agent text,
+    referrer text,
+    referring_domain character varying,
+    search_keyword character varying,
+    landing_page text,
+    browser character varying,
+    os character varying,
+    device_type character varying,
+    country character varying,
+    region character varying,
+    city character varying,
+    utm_source character varying,
+    utm_medium character varying,
+    utm_term character varying,
+    utm_content character varying,
+    utm_campaign character varying,
+    started_at timestamp without time zone
+);
+
+
+--
+-- Name: ahoy_visits_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE ahoy_visits_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: ahoy_visits_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE ahoy_visits_id_seq OWNED BY ahoy_visits.id;
+
+
+--
 -- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -846,6 +928,20 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
+-- Name: ahoy_events id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY ahoy_events ALTER COLUMN id SET DEFAULT nextval('ahoy_events_id_seq'::regclass);
+
+
+--
+-- Name: ahoy_visits id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY ahoy_visits ALTER COLUMN id SET DEFAULT nextval('ahoy_visits_id_seq'::regclass);
+
+
+--
 -- Name: categories id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -997,6 +1093,22 @@ ALTER TABLE ONLY roles ALTER COLUMN id SET DEFAULT nextval('roles_id_seq'::regcl
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: ahoy_events ahoy_events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY ahoy_events
+    ADD CONSTRAINT ahoy_events_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ahoy_visits ahoy_visits_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY ahoy_visits
+    ADD CONSTRAINT ahoy_visits_pkey PRIMARY KEY (id);
 
 
 --
@@ -1238,6 +1350,48 @@ CREATE UNIQUE INDEX graphics_title_index ON graphics USING btree (title);
 --
 
 CREATE INDEX graphics_to_tsvector_idx ON graphics USING gin (to_tsvector('english'::regconfig, (title)::text));
+
+
+--
+-- Name: index_ahoy_events_on_name_and_time; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ahoy_events_on_name_and_time ON ahoy_events USING btree (name, "time");
+
+
+--
+-- Name: index_ahoy_events_on_properties_jsonb_path_ops; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ahoy_events_on_properties_jsonb_path_ops ON ahoy_events USING gin (properties jsonb_path_ops);
+
+
+--
+-- Name: index_ahoy_events_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ahoy_events_on_user_id ON ahoy_events USING btree (user_id);
+
+
+--
+-- Name: index_ahoy_events_on_visit_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ahoy_events_on_visit_id ON ahoy_events USING btree (visit_id);
+
+
+--
+-- Name: index_ahoy_visits_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ahoy_visits_on_user_id ON ahoy_visits USING btree (user_id);
+
+
+--
+-- Name: index_ahoy_visits_on_visit_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_ahoy_visits_on_visit_token ON ahoy_visits USING btree (visit_token);
 
 
 --
@@ -1746,6 +1900,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 (20180313170603),
 (20180325235025),
 (20180325235245),
-(20180326005341);
+(20180326005341),
+(20180329212329);
 
 
