@@ -4,6 +4,6 @@ class PageController < ApplicationController
   end
 
   def service_worker
-    render file: "public/service-worker.js"
+    render file: "public/service-worker.js", content_type: "text/javascript"
   end
 end

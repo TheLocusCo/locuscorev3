@@ -69,10 +69,10 @@ Rails.application.routes.draw do
     get '/search_submit', to: 'search#search_submit'
   end
 
-  get '/service-worker', to: 'page#service_worker', constraints:
+  get '/service-worker', to: 'page#service_worker'
+
+  get '*path', to: 'page#index', constraints:
   -> (request) do
     !request.xhr? && request.format.html?
   end
-
-  get '*path', to: 'page#index'
 end
