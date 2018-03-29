@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+ruby '2.5.0'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 gem 'pg'
@@ -19,7 +21,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'nokogiri'
 gem 'rest-client'
-gem 'devise_token_auth'
+gem 'devise_token_auth', '~> 0.1.43'
+gem 'devise', '~> 4.4.3'
 gem 'omniauth'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'paperclip', '>= 6.0.0'
