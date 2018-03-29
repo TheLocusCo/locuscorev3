@@ -3,11 +3,6 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
 //import { syncHistoryWithStore } from 'react-router-redux'
 
-import './styles/reset.css'
-import './styles/icons.css'
-import './styles/structure.css'
-import './styles/silver_skin.css'
-
 import registerServiceWorker from './registerServiceWorker';
 import Root from './containers/Root'
 //import WebGraphic from "./components/WebGraphic"

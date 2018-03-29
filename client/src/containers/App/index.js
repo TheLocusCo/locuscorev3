@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import logo from './images/main_logo.png'
 import './style.css'
-import '../../styles/animations.css'
+import '../../styles/animations.css' //animations only load correctly when loaded very last
 import { connect } from "react-redux"
 import { Link } from 'react-router-dom'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
@@ -28,7 +27,7 @@ class App extends Component {
                   <div className="header-top-left-center" />
                   <div className="logo-background">
                     <Link to="/">
-                      <img src={logo} alt="locus" />
+                      <img src="/images/main_logo.png" alt="locus" />
                     </Link>
                   </div>
                 </div>

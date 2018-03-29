@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import ImageLoader from 'react-load-image';
 import './style.css'
 import CircularProgress from 'material-ui/CircularProgress'
-import profilePic from '../../images/profile_pic.jpg'
 import ShortcutsBlock from '../ShortcutsBlock'
 import SuccessBlock from '../SuccessBlock'
 import { connect } from "react-redux"
@@ -40,7 +39,7 @@ class Home extends Component {
             <div className="welcome">
               <figure className="photo-small">
               <ImageLoader
-                  src={profilePic}
+                  src="/images/profile_pic.jpg"
                 >
                   <img alt="Profile Pic" />
                   <div>Error!</div>

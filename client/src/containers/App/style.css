@@ -8,7 +8,7 @@
 /* animation: App-logo-spin infinite 20s linear; */
 
 .main-background {
-  background: #373635 url(./images/bg.png) repeat-y center top;
+  background: #373635 url(/images/bg.png) repeat-y center top;
   position: fixed;
   top: 0;
   left: 0;
@@ -18,7 +18,7 @@
 }
 
 .flowers {
-  background-image: url(./images/bg2.png);
+  background-image: url(/images/bg2.png);
   position: fixed;
   top: 0;
   left: 0;
@@ -28,7 +28,7 @@
 }
 
 .maze {
-  background-image: url(./images/mazebg.png);
+  background-image: url(/images/mazebg.png);
   position: fixed;
   top: 0;
   left: 0;
@@ -70,21 +70,21 @@
 }
 
 .header-top-left-center {
-  background: url(./images/top_bg_l.png) no-repeat right top;
+  background: url(/images/top_bg_l.png) no-repeat right top;
   margin: 0 140px 0 0;
   z-index: 1001;
   height: 38px;
 }
 
 .header-top-right-center {
-  background: url(./images/top_bg_r.png) no-repeat left top;
+  background: url(/images/top_bg_r.png) no-repeat left top;
   margin: 0 0px 0 140px;
   height: 38px;
   z-index: -1;
 }
 
 .logo-background {
-  background: url(./images/logo_bg.png) no-repeat center top;
+  background: url(/images/logo_bg.png) no-repeat center top;
   position: absolute;
   top: 0;
   right: -168px;
@@ -107,7 +107,7 @@
   top: 0;
   left: 0;
   float: left;
-  background: url(./images/bg3.png) repeat-x left center;
+  background: url(/images/bg3.png) repeat-x left center;
   background-clip: content-box;
 }
 
@@ -119,7 +119,7 @@
   top: 0;
   left: 50vw;
   float: right;
-  background: url(./images/bg3.png) repeat-x right center;
+  background: url(/images/bg3.png) repeat-x right center;
   background-clip: content-box;
 }
 

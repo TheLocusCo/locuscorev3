@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './style.css'
-import profilePic from '../../images/profile_pic.jpg'
 import ButtonSliderBlock from '../ButtonSliderBlock'
 import { connect } from "react-redux"
 import { fetchWelcomeButtonSliders } from "../../redux/actions"
@@ -21,7 +20,7 @@ class AboutMe extends Component {
           <div className="row section">
             <div className="span4">
               <figure className="photo">
-                <img style={{marginBottom: "-2px"}} src={profilePic} alt="Profile pic" />
+                <img style={{marginBottom: "-2px"}} src="/images/profile_pic.jpg" alt="Profile pic" />
                 <span className="helper" />
               </figure>
             </div>
