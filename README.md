@@ -1,6 +1,12 @@
 # LocusCoreV3
 
+This is a "portfolio" app that has some extra functionality built in.
+Written to learn react and elixir and then later ported back to rails.
+More information can be found at https://thelocus.co
+
 ## How to start locally
+
+(You need a .env file in the root of the directory, use .env.fake as an example)
 
 1. Frontend
   1. edit .env to make sure the REACT_APP_BASE_ENDPOINT value matches your local ip

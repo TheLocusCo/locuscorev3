@@ -68,4 +68,7 @@ Rails.application.routes.draw do
     get '/field_search', to: 'search#field_search'
     get '/search_submit', to: 'search#search_submit'
   end
+
+  get '/service-worker', to: 'page#service_worker'
+  get '*path', to: 'page#index'
 end
