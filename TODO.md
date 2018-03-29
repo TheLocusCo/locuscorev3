@@ -3,7 +3,6 @@
     * https://www.andrewhfarmer.com/detect-image-load/
 
 ### Stuff to implement
-* ---Handle not founds better (Pseudofix, canary treats all not founds as 403s)---
 * Handle 500 errors on api for forms
 * Code Browser (using github)
 * Analytics table
