@@ -16,6 +16,7 @@ class User < ApplicationRecord
 
   has_many :posts, foreign_key: :author_id
   has_many :comments
+  has_many :visits, class_name: "Ahoy::Visit"
   belongs_to :role
 
   scope :get_meta_titles_for_page, -> (page) { order("created_at DESC").select(:id, :created_at, :username).limit(10).offset(10 * (page - 1)) }

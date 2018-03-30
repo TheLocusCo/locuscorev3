@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
+  mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks], controllers: {
+    sessions: 'custom/sessions',
+    token_validations: 'custom/token_validations'
+  }
+
   mount Locuscorev3Mangas::Engine, at: "/"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
