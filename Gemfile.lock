@@ -1,6 +1,6 @@
 GIT
   remote: https://locus2deploy:3070929095024945685@github.com/TheLocusCo/locuscorev3_mangas.git
-  revision: e82c47bfe1fb4651ac52571866049f09ccc0f016
+  revision: 69361804c0a113e88f5a06da7d626ef062506958
   specs:
     locuscorev3_mangas (0.1.0)
       nokogiri

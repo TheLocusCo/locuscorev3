@@ -16,7 +16,7 @@ export const LightBoxMangaContent = props => {
             <h3> Author(s) {props.authors}</h3>
           }
           {"artists" in props &&
-            <h3> Author(s) {props.artists}</h3>
+            <h3> Artist(s) {props.artists}</h3>
           }
           <p className="manga-description">{props.description}</p>
           <dl style={{marginTop: "20px"}}>

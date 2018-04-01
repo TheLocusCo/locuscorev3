@@ -214,6 +214,6 @@ export function resourceUpload(resource) {
 export function updateCurrentPage(resourceType, currentPage, params) {
   return dispatch => {
     dispatch(sync.updateCurrentPage(resourceType, currentPage))
-    dispatch(fetchResources(resourceType, currentPage, params))
+    dispatch(fetchResources(resourceType, currentPage, params, "paginated"))
   }
 }
