@@ -75,7 +75,7 @@ export function navigation() {
     { id: 2, style: { width: "117px" }, href: "/about_me", icon: "user", title: "About Me", active: false },
     { id: 3, style: { width: "117px" }, href: "/resume_welcome", icon: "newspaper", title: "Resume", active: false },
     { id: 4, style: { width: "117px" }, href: "/portfolio", icon: "folder", title: "Portfolio", active: false },
-    { id: 5, style: { width: "117px" }, href: "/graphics_welcome", icon: "eye", title: "Web Graphics", active: false },
+    //{ id: 5, style: { width: "117px" }, href: "/graphics_welcome", icon: "eye", title: "Web Graphics", active: false },
     { id: 6, style: { width: "117px" }, href: "/blog", icon: "doc", title: "Blog", active: false },
     { id: 7, style: { width: "117px" }, href: "/contact", icon: "mail", title: "Contact", active: false },
     { id: 8, style: { width: "117px" }, href: "/login", icon: "login", title: "Login", active: false },

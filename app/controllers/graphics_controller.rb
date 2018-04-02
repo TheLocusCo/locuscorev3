@@ -60,6 +60,6 @@ class GraphicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def graphic_params
-      params.require(:graphic).permit(:id, :title, :script_content, :icon, :load_from_file, :canvas_id, :fullscreen_by_default, :content_description, :basic_description, :extra_params, categories: %i(id name))
+      params.require(:graphic).permit(:id, :title, :script_content, :library, :icon, :load_from_file, :canvas_id, :fullscreen_by_default, :content_description, :basic_description, :extra_params, categories: %i(id name))
     end
 end
