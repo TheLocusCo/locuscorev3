@@ -68,6 +68,10 @@ class MediaController < ApplicationController
       @medium = Medium.find(params[:id])
     end
 
+    def create_params
+      medium_params.except(:categories, :media)
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def medium_params
       params.require(:medium).permit(:id, :name, :description, :globally_visible, :user_ids_who_can_view, :user_id, :image, :generic, categories: %i(id name))

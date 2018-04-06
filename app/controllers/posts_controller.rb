@@ -60,6 +60,10 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
 
+    def create_params
+      post_params.except(:categories, :media)
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.require(:post).permit(:id, :title, :content, :author_id, :icon, :hidden, :published_at, categories: %i(id name), media: %i(id name))

@@ -90,7 +90,14 @@ export function resourceUpload(resourcePlural, resourceType, resource) {
 
   return fetch(`${helpers.fetchAPIURL()}/authed/${resourcePlural}/${resource.id}`, {
     method: "PATCH",
-    headers: helpers.authedHeaders(),
+    headers: {// Can't send "Content-Type": "application/json", or it will bork the multipart send
+      Accept: "application/json",
+      "access-token": localStorage.accessToken || "",
+      "token-type":   "Bearer",
+      "client":       localStorage.tokenClient || "",
+      "expiry":       localStorage.tokenExpiry || "",
+      "uid":          localStorage.uid || ""
+    },
     body: form_data
   })
 }

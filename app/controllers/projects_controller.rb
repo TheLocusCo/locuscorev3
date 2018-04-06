@@ -62,6 +62,10 @@ class ProjectsController < ApplicationController
       @project = Project.find(params[:id])
     end
 
+    def create_params
+      project_params.except(:categories, :media)
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:id, :name, :main_description, :client, :role, :link, categories: %i(id name), media: %i(id name))
