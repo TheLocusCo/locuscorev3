@@ -9,7 +9,7 @@ class ProgressBar extends Component {
 
       let message = (<span>Uploading ...</span>);
       if (progress === 100) {
-        message = (<span >Successfully uploaded, beginning post upload steps. Your upload will be fully complete when the green message appears up top.</span>);
+        message = (<span >Successfully uploaded, beginning post-upload steps. Your upload will be fully complete when the green message appears up top.</span>);
       }
 
       return (

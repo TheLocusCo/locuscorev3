@@ -18,7 +18,6 @@ let LightBoxUploadForm = props => {
         case "upload":
           return (
             <div className="form-field" key={count}>
-              <i className={"icon-info upload-form-tooltip-icon " + (props.field_meta.tooltips[indivField[0]] ? "" : "display-none")} data-tip={props.field_meta.tooltips[indivField[0]]} />
               <Uploader
                 request={{
                   fileName: 'file',
@@ -46,10 +45,10 @@ let LightBoxUploadForm = props => {
                 uploadOnSelection={true}
               >
                 {({ onFiles, progress, complete }) => (
-                  <div>
+                  <div className="centered" style={{marginBottom: '10px'}}>
                     <UploadField onFiles={onFiles}>
-                      <div>
-                        Select a file for {indivField[0]} upload
+                      <div className="form-button" style={{display: 'inline-block'}}>
+                        <button className="button" data-tip={props.field_meta.tooltips[indivField[0]]}>Select a file for {indivField[0]} upload</button>
                       </div>
                     </UploadField>
                     <ProgressBar progress={progress}/>
