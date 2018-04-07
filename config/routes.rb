@@ -67,6 +67,8 @@ Rails.application.routes.draw do
 
     get 'media/:id/show_image', to: 'media#show_image'
     get 'media/:id/show_download', to: 'media#show_download'
+    patch 'media/:id/upload_image', to: 'media#upload_image'
+    patch 'media/:id/upload_generic', to: 'media#upload_generic'
 
     get '/search_tree', to: 'search#search_tree'
     get '/field_search', to: 'search#field_search'

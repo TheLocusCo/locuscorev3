@@ -18,7 +18,7 @@ import { resume, resumeHost, resumes } from './resumes.js'
 import { role, roles } from './roles.js'
 import { searchAbility, currentSearch, currentSearchResults } from './search.js'
 import {
-  activeCategory, activeContactForm, adminShortcuts, authedNavigation,
+  activeCategory, activeContactForm, adminShortcuts, apiUrl, authedNavigation,
   contactForms, currentPage, lightbox, navigation, tableHeaders,
   welcomeButtonSliders, welcomeShortcuts, welcomeTabs, errorLog
 } from './ui.js'
@@ -29,6 +29,7 @@ const rootReducer = combineReducers({
   activeCategory,
   activeContactForm,
   adminShortcuts,
+  apiUrl,
   authedNavigation,
   currentUser,
   currentPage,

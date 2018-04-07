@@ -46,14 +46,25 @@ class MediaController < ApplicationController
   # PATCH/PUT /media/1
   # PATCH/PUT /media/1.json
   def update
-    service_result = Organizers::BuildJoinTableObjects.call(medium_params, 'medium', :update)
-    @medium = service_result.main_object
+    update_medium
+  end
 
-    if service_result.failure?
-      render json: {errors: errors_as_array_hash(service_result.message)}, status: :unprocessable_entity
-    else
-      render :show, status: :ok, location: @medium
-    end
+  def upload_generic
+    params[:medium] = {}
+    params[:medium][:id] = params[:id]
+    params[:medium][:generic] = params[:file]
+
+    puts "TESTING::#{medium_params.inspect}"
+
+    update_medium
+  end
+
+  def upload_image
+    params[:medium] = {}
+    params[:medium][:id] = params[:id]
+    params[:medium][:image] = params[:file]
+
+    update_medium
   end
 
   # DELETE /media/1
@@ -75,5 +86,17 @@ class MediaController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def medium_params
       params.require(:medium).permit(:id, :name, :description, :globally_visible, :user_ids_who_can_view, :user_id, :image, :generic, categories: %i(id name))
+    end
+
+    def update_medium
+      puts "TESTING::#{medium_params.inspect}"
+      service_result = Organizers::BuildJoinTableObjects.call(medium_params, 'medium', :update)
+      @medium = service_result.main_object
+
+      if service_result.failure?
+        render json: {errors: errors_as_array_hash(service_result.message)}, status: :unprocessable_entity
+      else
+        render :show, status: :ok, location: @medium
+      end
     end
 end

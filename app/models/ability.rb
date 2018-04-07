@@ -63,6 +63,7 @@ class Ability
       can :create_new, Medium
       can :read, Medium
       can :edit_update, Medium, user_id: user.id
+      can [:upload_generic, :upload_image], Medium, user_id: user.id
       can :destroy, Medium, user_id: user.id
 
       can :read, Notification
@@ -105,6 +106,7 @@ class Ability
         can(:destroy, Manga) if user.role.pf_mangas.include?('d')
 
         can(:edit_update, Medium) if user.role.pf_media.include?('u')
+        can([:upload_generic, :upload_image], Medium) if user.role.pf_media.include?('u')
         can(:destroy, Medium) if user.role.pf_media.include?('d')
 
         can(:edit_update, Notification) if user.role.pf_notifications.include?('u')
