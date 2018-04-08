@@ -32,7 +32,7 @@ class UsersController < ApplicationController
       end
       render :show, status: :created, location: @user
     else
-      render json: errors_as_array_hash(@user.errors), status: :unprocessable_entity
+      render json: {errors: errors_as_array_hash(@user.errors)}, status: :unprocessable_entity
     end
   end
 
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
       end
       render :show, status: :ok, location: @user
     else
-      render json: errors_as_array_hash(@user.errors), status: :unprocessable_entity
+      render json: {errors: errors_as_array_hash(@user.errors)}, status: :unprocessable_entity
     end
   end
 

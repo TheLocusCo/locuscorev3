@@ -62,17 +62,21 @@ class AuthedIndexTableBlock extends Component {
               Show
             </Link>
           </td>
-          <td>
-            <Link className={this.linkClass("u", item, itemIndex)} to={this.renderLink(itemIndex, item.id) + "/edit"}>
-              <i className="icon-pencil"></i>
-              Edit
-            </Link>
-          </td>
-          <td>
-            <DestroyButton item={item} disabled={this.isDisabled(item, itemIndex)}>
-              Destroy
-            </DestroyButton>
-          </td>
+          {this.props.currentUser.role["pf_" + itemIndex].includes('u') &&
+            <td>
+              <Link className={this.linkClass("u", item, itemIndex)} to={this.renderLink(itemIndex, item.id) + "/edit"}>
+                <i className="icon-pencil"></i>
+                Edit
+              </Link>
+            </td>
+          }
+          {this.props.currentUser.role["pf_" + itemIndex].includes('d') &&
+            <td>
+              <DestroyButton item={item} disabled={this.isDisabled(item, itemIndex)}>
+                Destroy
+              </DestroyButton>
+            </td>
+          }
         </tr>
       )}
     )
@@ -135,12 +139,16 @@ class AuthedIndexTableBlock extends Component {
               <th>
                 <i className="icon-eye"></i>
               </th>
-              <th>
-                <i className="icon-pencil"></i>
-              </th>
-              <th>
-                <i className="icon-trash"></i>
-              </th>
+              {this.props.currentUser.role["pf_" + this.props.itemIndex].includes('u') &&
+                <th>
+                  <i className="icon-pencil"></i>
+                </th>
+              }
+              {this.props.currentUser.role["pf_" + this.props.itemIndex].includes('d') &&
+                <th>
+                  <i className="icon-trash"></i>
+                </th>
+              }
             </tr>
             {this.renderRows(this.props.items, this.props.headers, this.props.itemIndex)}
           </ReactCSSTransitionGroup>

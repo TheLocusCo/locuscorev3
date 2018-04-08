@@ -111,6 +111,9 @@ class Ability
 
         can(:edit_update, Notification) if user.role.pf_notifications.include?('u')
         can(:destroy, Notification) if user.role.pf_notifications.include?('d')
+
+        can(:read, Visit) if user.role.pf_visits.include?('r')
+        can(:read, Event) if user.role.pf_visits.include?('r')
       end
     end
   end

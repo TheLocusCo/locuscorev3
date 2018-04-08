@@ -54,8 +54,6 @@ class MediaController < ApplicationController
     params[:medium][:id] = params[:id]
     params[:medium][:generic] = params[:file]
 
-    puts "TESTING::#{medium_params.inspect}"
-
     update_medium
   end
 

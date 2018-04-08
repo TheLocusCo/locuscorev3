@@ -36,6 +36,8 @@ export const REQUEST_RESUMES = 'REQUEST_RESUMES'
 export const REQUEST_RESUME = 'REQUEST_RESUME'
 export const REQUEST_ROLES = 'REQUEST_ROLES'
 export const REQUEST_ROLE = 'REQUEST_ROLE'
+export const REQUEST_VISITS = 'REQUEST_VISITS'
+export const REQUEST_VISIT = 'REQUEST_VISIT'
 
 export function cleanupAfterGallery(mode) {
   var action = {}

@@ -31,21 +31,21 @@ module ActiveRecordExtension
       limit(10).offset(offset).order(order_style)
     end
 
-    def fetch_ordered(preload_associations = [])
+    def fetch_ordered(preload_associations = [], order_style = 'created_at DESC')
       if preload_associations.empty?
-        order("created_at DESC")
+        order(order_style)
       else
-        order("created_at DESC").preload(*preload_associations)
+        order(order_style).preload(*preload_associations)
       end
     end
 
-    def fetch_ordered_by_page(current_page, preload_associations = [])
+    def fetch_ordered_by_page(current_page, preload_associations = [], order_style = 'created_at DESC')
       offset = 10 * (current_page.to_i - 1)
 
       if preload_associations.empty?
-        limit(10).offset(offset).order("created_at DESC")
+        limit(10).offset(offset).order(order_style)
       else
-        limit(10).offset(offset).order("created_at DESC").preload(*preload_associations)
+        limit(10).offset(offset).order(order_style).preload(*preload_associations)
       end
     end
 
@@ -75,7 +75,7 @@ module ActiveRecordExtension
                    (1..total_pages.round).each do |i|
                      objects = get_meta_titles_for_page(i) if objects.empty?
                      objects = objects.get_meta_titles_for_page(i) unless objects.empty?
-                     meta_title = if %i(created_at updated_at).include?(field)
+                     meta_title = if %i(created_at updated_at time started_at).include?(field)
                                     first_meta_title = objects.first.send(field).strftime("%B %d (%H:%M %P), %Y")
                                     last_meta_title  = objects.last.send(field).strftime("%B %d (%H:%M %P), %Y")
 

@@ -25,6 +25,10 @@ export function adminShortcuts(role) {
     baseNav.push({ id: 6, title: "Resumes", href: "/resumes", basic_description: "Resumes for fun and glory", icon: "newspaper" })
   }
 
+  if (role.pf_visits.includes("r")) {
+    baseNav.push({ id: 7, title: "Visits", href: "/visits", basic_description: "Site Analytics", icon: "network" })
+  }
+
   return baseNav
 }
 
@@ -143,6 +147,13 @@ export function tableHeaders() {
       current_sign_in_ip: "string",
       locked: "boolean",
       role: "string"
+    },
+    visits: {
+      ip: "string",
+      parsed_user: "string",
+      browser: "string",
+      os: "string",
+      parsed_start_at: "string"
     }
   }
 }

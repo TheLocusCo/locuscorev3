@@ -26,6 +26,8 @@ export const RECEIVE_ROLES = 'RECEIVE_ROLES'
 export const RECEIVE_ROLE = 'RECEIVE_ROLE'
 export const RECEIVE_USERS = 'RECEIVE_USERS'
 export const RECEIVE_USER = 'RECEIVE_USER'
+export const RECEIVE_VISITS = 'RECEIVE_VISITS'
+export const RECEIVE_VISIT = 'RECEIVE_VISIT'
 
 export function deleteUploadItem() {
   return dispatch => {

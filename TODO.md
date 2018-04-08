@@ -12,7 +12,6 @@
 * Refresh button / polling for notifications while authed
 * Better ways to handle uploads in dev?
 * Secure resume microservice using names as ids instead of ids
-* Progress bar for uploads
 * Portfolio / Manga Gallery Pages slow down when lots of elements are present
   * Infinite scroll to prevent lots of loading?
 * Cleanup old media files when media is changed / deleted

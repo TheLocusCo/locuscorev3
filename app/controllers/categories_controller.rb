@@ -40,7 +40,7 @@ class CategoriesController < ApplicationController
     if @category.save
       render :show, status: :created, location: @category
     else
-      render json: errors_as_array_hash(@category.errors), status: :unprocessable_entity
+      render json: {errors: errors_as_array_hash(@category.errors)}, status: :unprocessable_entity
     end
   end
 
@@ -50,7 +50,7 @@ class CategoriesController < ApplicationController
     if @category.update(category_params)
       render :show, status: :ok, location: @category
     else
-      render json: errors_as_array_hash(@category.errors), status: :unprocessable_entity
+      render json: {errors: errors_as_array_hash(@category.errors)}, status: :unprocessable_entity
     end
   end
 

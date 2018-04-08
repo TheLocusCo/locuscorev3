@@ -20,6 +20,7 @@ const LightBoxMedium = asyncComponent(() => import("../LightBoxMedium"))
 const LightBoxManga = asyncComponent(() => import("../LightBoxManga"))
 const LightBoxEditResource = asyncComponent(() => import("../LightBoxEditResource"))
 const LightBoxNewResource = asyncComponent(() => import("../LightBoxNewResource"))
+const LightBoxVisit = asyncComponent(() => import("../LightBoxVisit"))
 
 const LightBoxSearch = asyncComponent(() => import("../LightBoxSearch"))
 
@@ -147,6 +148,10 @@ class AuthedLightBox extends Component {
 
             <Route exact path="/manga_gallery/:id">
               <LightBoxManga locationToPush="/manga_gallery" location={location}/>
+            </Route>
+
+            <Route exact path ="/visits/:id">
+              <LightBoxVisit locationToPush="/visits" location={location}/>
             </Route>
 
             <Route path="/google_maps_location">

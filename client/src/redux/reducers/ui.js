@@ -122,7 +122,8 @@ export function currentPage(state = {
   comments: 1,
   mangas: 1,
   media: 1,
-  search_results: 1
+  search_results: 1,
+  visits: 1
 }, action) {
   switch (action.type) {
     case sync.UPDATE_CURRENT_PAGE:

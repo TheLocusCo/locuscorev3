@@ -839,7 +839,8 @@ CREATE TABLE roles (
     pf_media character varying(255) DEFAULT 'cr'::character varying,
     pf_mangas character varying(255) DEFAULT ''::character varying,
     pf_notifications character varying(255) DEFAULT 'cr'::character varying,
-    pf_comments character varying(255) DEFAULT 'cr'::character varying
+    pf_comments character varying(255) DEFAULT 'cr'::character varying,
+    pf_visits character varying DEFAULT ''::character varying
 );
 
 
@@ -1901,6 +1902,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 (20180325235025),
 (20180325235245),
 (20180326005341),
-(20180329212329);
+(20180329212329),
+(20180408073426);
 
 

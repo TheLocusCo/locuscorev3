@@ -1,7 +1,7 @@
 class Ahoy::Store < Ahoy::DatabaseStore
   def authenticate(data)
     visit = Ahoy::Visit.where(visit_token: data[:visit_token]).first
-    visit ||= Ahoy::Visit.where(user_agent: data[:user_agent]).first
+    visit ||= Ahoy::Visit.where(user_agent: data[:user_agent]).order(:started_at).last
 
     if visit && visit.respond_to?(:user) && !visit.user
       begin

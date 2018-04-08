@@ -23,6 +23,7 @@ import {
   welcomeButtonSliders, welcomeShortcuts, welcomeTabs, errorLog
 } from './ui.js'
 import { currentUser, user, users, userNotifications } from './users.js'
+import { visit, visits } from './visits.js'
 
 
 const rootReducer = combineReducers({
@@ -68,6 +69,8 @@ const rootReducer = combineReducers({
   uploadItem,
   user,
   users,
+  visit,
+  visits,
   userNotifications,
   welcomeButtonSliders,
   welcomeShortcuts,

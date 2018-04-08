@@ -79,6 +79,11 @@ const MangaGallery = Loadable({
   loading: EmptyPage
 })
 
+const Visits = Loadable({
+  loader: () => import("../Visits"),
+  loading: EmptyPage
+})
+
 class AuthedRoutes extends Component {
   render() {
     return (
@@ -131,6 +136,7 @@ class AuthedRoutes extends Component {
             <Route path="/media" component={Media}/>
             <Route path="/mangas" component={Mangas}/>
             <Route path="/manga_gallery" component={MangaGallery}/>
+            <Route path="/visits" component={Visits}/>
 
             <Route component={UnknownPage}/>
           </Switch>

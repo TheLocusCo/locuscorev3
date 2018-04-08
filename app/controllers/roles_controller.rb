@@ -28,7 +28,7 @@ class RolesController < ApplicationController
     if @role.save
       render :show, status: :created, location: @role
     else
-      render json: errors_as_array_hash(@role.errors), status: :unprocessable_entity
+      render json: {errors: errors_as_array_hash(@role.errors)}, status: :unprocessable_entity
     end
   end
 
@@ -38,7 +38,7 @@ class RolesController < ApplicationController
     if @role.update(role_params)
       render :show, status: :ok, location: @role
     else
-      render json: errors_as_array_hash(@role.errors), status: :unprocessable_entity
+      render json: {errors: errors_as_array_hash(@role.errors)}, status: :unprocessable_entity
     end
   end
 
@@ -56,6 +56,6 @@ class RolesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def role_params
-      params.require(:role).permit(:id, :name, :description, :pf_graphics, :pf_projects, :pf_posts, :pf_users, :pf_categories, :pf_roles, :pf_resumes, :pf_media, :pf_mangas, :pf_notifications, :pf_comments)
+      params.require(:role).permit(:id, :name, :description, :pf_graphics, :pf_projects, :pf_posts, :pf_users, :pf_categories, :pf_roles, :pf_resumes, :pf_media, :pf_mangas, :pf_notifications, :pf_comments, :pf_visits)
     end
 end

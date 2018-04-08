@@ -70,6 +70,8 @@ Rails.application.routes.draw do
     patch 'media/:id/upload_image', to: 'media#upload_image'
     patch 'media/:id/upload_generic', to: 'media#upload_generic'
 
+    resources :visits
+
     get '/search_tree', to: 'search#search_tree'
     get '/field_search', to: 'search#field_search'
     get '/search_submit', to: 'search#search_submit'
