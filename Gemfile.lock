@@ -1,8 +1,8 @@
 GIT
   remote: https://locus2deploy:3070929095024945685@github.com/TheLocusCo/locuscorev3_mangas.git
-  revision: f525ab212d168248d9b4645097754e59482ab953
+  revision: 7112d79d53811ed7784e4dd44274e6f66884958a
   specs:
-    locuscorev3_mangas (0.1.5)
+    locuscorev3_mangas (0.1.6)
       nokogiri
       pg
       rails (~> 5.1.5)
@@ -81,7 +81,7 @@ GEM
     climate_control (0.2.0)
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
-    crass (1.0.3)
+    crass (1.0.4)
     devise (4.4.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
