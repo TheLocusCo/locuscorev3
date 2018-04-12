@@ -52,7 +52,7 @@ export function userLogoutFailure(data) {
   //console.log("TESTING IN FAILURE" + JSON.stringify(data))
   return {
     type: USER_LOGOUT_FAILURE,
-    errorMessages: [data.error]
+    errorMessages: [data.errors]
   }
 }
 
@@ -60,7 +60,7 @@ export function userLoginFailure(data) {
   //console.log("TESTING IN FAILURE" + JSON.stringify(data))
   return {
     type: USER_LOGIN_FAILURE,
-    errorMessages: [data.error]
+    errorMessages: [data.errors]
   }
 }
 
