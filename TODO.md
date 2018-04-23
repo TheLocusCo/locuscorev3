@@ -50,3 +50,5 @@ File sizes after gzip:
   1.6 KB                  build/static/js/11.3f7caab6.chunk.js
   1.49 KB                 build/static/js/3.b6913db2.chunk.js
   1.48 KB                 build/static/js/12.f840c3b1.chunk.js
+
+https://github.com/knsv/mermaid

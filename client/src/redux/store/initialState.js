@@ -1,4 +1,6 @@
-const initialState = {
+import {fromJS} from 'immutable'
+
+const initialState = fromJS({
   reduxTokenAuth: {
     currentUser: {
       isLoading: false,
@@ -11,7 +13,18 @@ const initialState = {
         role: {}
       }
     }
+  },
+  eventDashboard: {
+    text: {},
+    colors: {
+      user1: 'blue',
+      user2: 'orange'
+    },
+    hover: null,
+    tick: 0,
+    renderCount: {},
+    theme: 'dark'
   }
-}
+})
 
 export default initialState

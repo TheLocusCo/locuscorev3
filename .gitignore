@@ -21,3 +21,4 @@
 .env
 /client/.env.local
 /config/database.yml
+.DS_Store
