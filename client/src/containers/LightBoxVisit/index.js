@@ -7,10 +7,10 @@ import LightBoxErrorPage from '../../components/LightBoxErrorPage'
 
 import { fetchResource } from "../../redux/actions"
 
-import ThemedDashboard from 'containers/ThemedDashboard'
-import LightBoxVisitEventDashboard from 'containers/LightBoxVisitEventDashboard'
-import Ticker from 'containers/Ticker'
-import Footer from 'components/styled/Footer'
+import ThemedDashboard from '../ThemedDashboard'
+import LightBoxVisitEventDashboard from '../LightBoxVisitEventDashboard'
+import Ticker from '../Ticker'
+import Footer from '../../components/styled/Footer'
 
 class LightBoxVisit extends Component {
   componentWillMount() {

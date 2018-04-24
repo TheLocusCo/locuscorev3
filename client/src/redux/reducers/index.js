@@ -6,7 +6,7 @@ import { reducer as formReducer } from 'redux-form'
 
 import { categories } from './categories.js'
 import { comment, commentFormVisibility, comments, previewComment } from './comments.js'
-import { colorReducer, hoverReducer, renderCountReducer, textReducer, tickReducer } from './dashboard.js'
+import { colors, hover, renderCount, text, theme, tick } from './dashboard.js'
 import { graphic, graphics } from './graphics.js'
 import { manga, mangas } from './mangas.js'
 import { medium, media } from './media.js'
@@ -38,7 +38,7 @@ const rootReducer = combineReducers({
   currentSearch,
   currentSearchResults,
   categories,
-  colorReducer,
+  colors,
   comment,
   commentFormVisibility,
   comments,
@@ -47,7 +47,7 @@ const rootReducer = combineReducers({
   form: formReducer,
   graphic,
   graphics,
-  hoverReducer,
+  hover,
   lightbox,
   manga,
   mangas,
@@ -62,7 +62,7 @@ const rootReducer = combineReducers({
   post,
   posts,
   previewComment,
-  renderCountReducer,
+  renderCount,
   resume,
   resumeHost,
   resumes,
@@ -70,8 +70,9 @@ const rootReducer = combineReducers({
   role,
   roles,
   tableHeaders,
-  textReducer,
-  tickReducer,
+  text,
+  theme,
+  tick,
   uploadItem,
   user,
   users,

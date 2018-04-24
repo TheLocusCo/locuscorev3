@@ -6,18 +6,18 @@ import _ from 'lodash'
 import ReactGridLayout, {WidthProvider} from 'react-grid-layout'
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
-import WrappedBarChart from 'containers/WrappedBarChart'
-import WrappedPieChart from 'containers/WrappedPieChart'
-import WrappedScatterPlot from 'containers/WrappedScatterPlot'
-import DemoChat from 'containers/DemoChat'
-import withMeasure from 'hocs/withMeasure'
+import WrappedBarChart from '../../containers/WrappedBarChart'
+import AutoFilterPieChart from '../../containers/WrappedPieChart'
+import WrappedScatterPlot from '../../containers/WrappedScatterPlot'
+import DemoChat from '../../containers/DemoChat'
+import withMeasure from '../../hocs/withMeasure'
 
 const {string, object, func, arrayOf} = PropTypes
 const GridLayout = WidthProvider(ReactGridLayout)
 const dimensions = ['width', 'height']
 const MeasuredDemoBarChart = withMeasure(dimensions)(WrappedBarChart)
 const MeasuredDemoScatterPlot = withMeasure(dimensions)(WrappedScatterPlot)
-const MeasuredDemoPieChart = withMeasure(dimensions)(WrappedPieChart)
+const MeasuredDemoPieChart = withMeasure(dimensions)(AutoFilterPieChart)
 const MeasuredDemoChat = withMeasure(dimensions)(DemoChat)
 
 const generateDataGroupCSS = colors => {

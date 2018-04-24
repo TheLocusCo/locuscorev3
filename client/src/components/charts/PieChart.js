@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import {withFauxDOM} from 'react-faux-dom'
 import styled from 'styled-components'
 import _ from 'lodash'
-import Tooltip from 'components/Tooltip'
-import withD3Renderer from 'hocs/withD3Renderer'
+import Tooltip from '../Tooltip'
+import withD3Renderer from '../../hocs/withD3Renderer'
 const d3 = {
   ...require('d3-scale'),
   ...require('d3-selection'),

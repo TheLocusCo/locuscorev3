@@ -1,7 +1,8 @@
 import {connect} from 'react-redux'
 import Dashboard from '../../components/LightBoxVisitEventDashboardContent'
+import {incrementRenderCount} from '../../redux/actions'
 import toJS from '../../hocs/toJS'
-import {getHover, getSaturatedColors} from 'redux/selectors'
+import {getHover, getSaturatedColors} from '../../redux/selectors'
 
 const mapStateToProps = (state, ownProps) => ({
   hover: getHover(state),

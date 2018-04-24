@@ -1,10 +1,10 @@
 import {connect} from 'react-redux'
 import {createSelector} from 'reselect'
-import WrappedBarChart from 'components/WrappedBarChart'
-import {countLetters, ALPHABET} from 'utils/stringStats'
-import {setHover, incrementRenderCount} from 'redux/actions'
-import toJS from 'hocs/toJS'
-import {getText, getHover} from 'redux/selectors'
+import WrappedBarChart from '../../components/WrappedBarChart'
+import {countLetters, ALPHABET} from '../../utils/stringStats'
+import {setHover, incrementRenderCount} from '../../redux/actions'
+import toJS from '../../hocs/toJS'
+import {getText, getHover} from '../../redux/selectors'
 
 const getData = createSelector(getText, text => {
   return ALPHABET.map(l => {

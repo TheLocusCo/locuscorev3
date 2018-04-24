@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import PieChart from 'components/charts/PieChart'
+import PieChart from '../charts/PieChart'
 
 const {arrayOf, string, func, bool} = PropTypes
 
@@ -24,7 +24,7 @@ const WrappedPieChart = props => {
   )
 }
 
-DemoPieChart.propTypes = {
+WrappedPieChart.propTypes = {
   filter: bool,
   toggleFilter: func,
   hover: arrayOf(string)

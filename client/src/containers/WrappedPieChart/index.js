@@ -1,11 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {createSelector} from 'reselect'
-import WrappedPieChart from 'components/WrappedPieChart'
-import {countLetters} from 'utils/stringStats'
-import {incrementRenderCount} from 'redux/actions'
-import toJS from 'hocs/toJS'
-import {getText, getHover} from 'redux/selectors'
+import WrappedPieChart from '../../components/WrappedPieChart'
+import {countLetters} from '../../utils/stringStats'
+import {incrementRenderCount} from '../../redux/actions'
+import toJS from '../../hocs/toJS'
+import {getText, getHover} from '../../redux/selectors'
 
 const getFilterEnabled = (state, ownProps) => ownProps.filter
 
@@ -39,10 +39,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 })
 
 const ConnectedPie = connect(mapStateToProps, mapDispatchToProps)(
-  toJS(DemoPieChart)
+  toJS(WrappedPieChart)
 )
 
-class AutoFilterPie extends React.Component {
+class AutoFilterPieChart extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -67,4 +67,4 @@ class AutoFilterPie extends React.Component {
   }
 }
 
-export default AutoFilterPie
+export default AutoFilterPieChart

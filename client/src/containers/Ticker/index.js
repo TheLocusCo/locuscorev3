@@ -1,8 +1,8 @@
 import {connect} from 'react-redux'
-import toJS from 'hocs/toJS'
-import Ticker from 'components/Ticker'
-import {getTick, getRenderCount} from 'redux/selectors'
-import {tick} from 'redux/actions'
+import toJS from '../../hocs/toJS'
+import Ticker from '../../components/Ticker'
+import {getTick, getRenderCount} from '../../redux/selectors'
+import {tick} from '../../redux/actions'
 
 const mapStateToProps = (state, ownProps) => ({
   tickValue: getTick(state),
