@@ -7,6 +7,11 @@ import LightBoxErrorPage from '../../components/LightBoxErrorPage'
 
 import { fetchResource } from "../../redux/actions"
 
+import ThemedDashboard from 'containers/ThemedDashboard'
+import LightBoxVisitEventDashboard from 'containers/LightBoxVisitEventDashboard'
+import Ticker from 'containers/Ticker'
+import Footer from 'components/styled/Footer'
+
 class LightBoxVisit extends Component {
   componentWillMount() {
     var id = this.props.location.pathname.split("/").reverse()[0]
@@ -26,6 +31,13 @@ class LightBoxVisit extends Component {
               }
               {this.props.visit.id &&
                 <LightBoxVisitContent {...this.props.visit} location={this.props.location}/>
+              }
+              {this.props.visit.id &&
+                <ThemedDashboard>
+                  <LightBoxVisitEventDashboard />
+                  <Ticker />
+                  <Footer>Testing Footer Location </Footer>
+                </ThemedDashboard>
               }
               <button onClick={() => history.push(this.props.locationToPush)} title="Close (Esc)" type="button" className="ltbx-close">×</button>
             </div>

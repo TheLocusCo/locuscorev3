@@ -29,7 +29,7 @@ class LightBoxPost extends Component {
               {object.id &&
                 <LightBoxPostContent {...object} location={location}/>
               }
-              {this.props.object.id &&
+              {object.id &&
                 <LightBoxComments comments={object.comments} resourceType={object.field_meta.resource_type} resourceId={object.id} successContent={successContent}/>
               }
               <button onClick={() => history.push(locationToPush)} title="Close (Esc)" type="button" className="ltbx-close">×</button>

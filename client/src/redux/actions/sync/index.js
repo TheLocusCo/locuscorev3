@@ -6,6 +6,7 @@ export * from './db.js'
 export * from './resources.js'
 export * from './search.js'
 export * from './users.js'
+export * from './dashboard.js'
 
 export const GENERIC_API_FAILURE = 'GENERIC_API_FAILURE'
 export const REMOVE_ERROR_MESSAGE = 'REMOVE_ERROR_MESSAGE'
