@@ -1,11 +1,12 @@
 import {createSelector} from 'reselect'
+import _ from 'lodash'
 
 export const getText = state => state
 
 export const getUsers = createSelector(getText, text => {
-  return text.sortBy((v, k) => k).keySeq()
+  return Object.keys(_.sortBy(text, (v, k) => k))
 })
 
 export const getTexts = createSelector(getText, text => {
-  return text.sortBy((v, k) => k).valueSeq()
+  return Object.values(_.sortBy(text, (v, k) => k))
 })

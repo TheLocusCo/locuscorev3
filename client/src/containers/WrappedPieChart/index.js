@@ -17,7 +17,7 @@ const getAutoHover = createSelector(
 )
 
 const getData = createSelector([getText, getAutoHover], (text, hover) => {
-  return text.reduce((result, userText, user) => {
+  return Object.keys(text).reduce((result, userText, user) => {
     const nbOfLetters = countLetters(userText, hover ? hover.toJS() : null)
     result.push({
       name: user,

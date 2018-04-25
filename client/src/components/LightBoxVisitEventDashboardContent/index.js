@@ -74,9 +74,9 @@ const Grid = styled(GridLayout)`
   }
 `
 
-class Dashboard extends React.Component {
+class LightBoxVisitEventDashboard extends React.Component {
   static propTypes = {
-    colors: object,
+    colors: arrayOf(string),
     hover: arrayOf(string),
     incrementRenderCount: func
   }
@@ -133,4 +133,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard
+export default LightBoxVisitEventDashboard

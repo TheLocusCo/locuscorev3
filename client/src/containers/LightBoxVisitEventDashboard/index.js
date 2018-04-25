@@ -1,7 +1,6 @@
 import {connect} from 'react-redux'
-import Dashboard from '../../components/LightBoxVisitEventDashboardContent'
+import LightBoxVisitEventDashboard from '../../components/LightBoxVisitEventDashboardContent'
 import {incrementRenderCount} from '../../redux/actions'
-import toJS from '../../hocs/toJS'
 import {getHover, getSaturatedColors} from '../../redux/selectors'
 
 const mapStateToProps = (state, ownProps) => ({
@@ -15,4 +14,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(toJS(Dashboard))
+export default connect(mapStateToProps, mapDispatchToProps)(LightBoxVisitEventDashboard)

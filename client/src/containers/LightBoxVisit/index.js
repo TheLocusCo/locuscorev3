@@ -23,7 +23,7 @@ class LightBoxVisit extends Component {
       <Route render={({history}) => (
         <div className="ltbx-wrap" tabIndex="-1">
           <div className="ltbx-container">
-            <div className="ltbx-content">
+            <div className="ltbx-content ltbx-fullscreen-content">
               <SuccessBlock content={this.props.successContent}/>
               {this.props.isFetching && !this.props.visit.id && <h1 className="section-heading larger">Loading...</h1>}
               {this.props.errorContent.length > 0 &&

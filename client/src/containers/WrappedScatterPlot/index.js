@@ -7,7 +7,7 @@ import toJS from '../../hocs/toJS'
 import {getText, getUsers} from '../../redux/selectors'
 
 const getData = createSelector(getText, text => {
-  return text.reduce((result, userText, user) => {
+  return Object.keys(text).reduce((result, userText, user) => {
     return result.concat(
       countLettersCoOccurrences(userText).map(o => {
         return {group: user, x: o.letter1, y: o.letter2, n: o.count}

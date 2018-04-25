@@ -8,7 +8,7 @@ import {getText, getHover} from '../../redux/selectors'
 
 const getData = createSelector(getText, text => {
   return ALPHABET.map(l => {
-    return text.reduce(
+    return Object.keys(text).reduce(
       (result, userText, user) => {
         return {
           ...result,

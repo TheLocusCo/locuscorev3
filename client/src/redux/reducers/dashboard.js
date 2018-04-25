@@ -1,5 +1,6 @@
 import {fromJS} from 'immutable'
 import * as sync from '../actions/sync'
+import _ from 'lodash'
 
 const setColor = (state, action) => {
   return state.set(action.user, action.color)
@@ -10,14 +11,11 @@ const setHover = (state, action) => {
 }
 
 const incrementRenderCount = (state, action) => {
-  return state.updateIn(
-    [action.component, action.mode],
-    (value = 0) => value + 1
-  )
+  return _.updateWith(state, `[${action.component}][${action.mode}]`, function(n) { return n >= 0 ? n + 1 : 0; })
 }
 
 const newText = (state, action) => {
-  return state.mergeDeep(action.text)
+  return _.merge(state, action.text)
 }
 
 const incrementTick = (state, action) => {
