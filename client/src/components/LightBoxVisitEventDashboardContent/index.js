@@ -115,13 +115,16 @@ class LightBoxVisitEventDashboard extends React.Component {
         cols={12}
         rowHeight={(window.innerHeight - 29) / 12}
         margin={[0, 0]}
-      >
+      >{
+        /*
         <div key="TL">
           <MeasuredDemoBarChart />
         </div>
         <div key="TR">
           <MeasuredDemoScatterPlot />
         </div>
+        */
+        }
         <div key="BL">
           <MeasuredDemoPieChart />
         </div>

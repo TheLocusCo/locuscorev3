@@ -4,7 +4,6 @@ import lorem from 'lorem-ipsum'
 import DemoChat from '../../components/DemoChat'
 import {getColorWithDefaultSaturation, COLOR_PALLET} from '../../utils/colors'
 import {newText, setColor, incrementRenderCount} from '../../redux/actions'
-import toJS from '../../hocs/toJS'
 import {getUsers, getTexts, getSaturatedColorsArray} from '../../redux/selectors'
 
 const loremOption = {
@@ -51,4 +50,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(toJS(DemoChat))
+export default connect(mapStateToProps, mapDispatchToProps)(DemoChat)

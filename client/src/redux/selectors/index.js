@@ -1,3 +1,6 @@
+import {createSelector} from 'reselect'
+import _ from 'lodash'
+
 import * as fromColors from './colors'
 import * as fromText from './text'
 import * as fromTheme from './theme'
@@ -9,9 +12,10 @@ export const getSaturatedColors = state =>
 export const getSaturatedColorsArray = state =>
   fromColors.getSaturatedColorsArray(state.colors)
 // text
-export const getText = state => fromText.getText(state.text)
-export const getUsers = state => fromText.getUsers(state.text)
-export const getTexts = state => fromText.getTexts(state.text)
+export const getText = state => state.text
+export const getUsers = state => Object.keys(_.sortBy(getText(state), (v, k) => k))
+export const getTexts = state => Object.values(_.sortBy(getText(state), (v, k) => k))
+
 // theme
 export const getTheme = state => fromTheme.getTheme(state.theme)
 
