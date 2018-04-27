@@ -28,7 +28,7 @@ class ThemePicker extends React.Component {
 
   render() {
     return (
-      <List>
+      <List className="not-standard">
         {_.keys(themes).map(theme => (
           <Item key={theme} onClick={this.handleSelectTheme(theme)}>
             {theme}

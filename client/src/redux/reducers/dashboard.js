@@ -3,7 +3,7 @@ import * as sync from '../actions/sync'
 import _ from 'lodash'
 
 const setColor = (state, action) => {
-  return state.set(action.user, action.color)
+  return _.update(state, `${action.user}`, function(n) { return n })
 }
 
 const setHover = (state, action) => {

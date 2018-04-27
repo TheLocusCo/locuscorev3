@@ -13,8 +13,8 @@ export const getSaturatedColorsArray = state =>
   fromColors.getSaturatedColorsArray(state.colors)
 // text
 export const getText = state => state.text
-export const getUsers = state => Object.keys(_.sortBy(getText(state), (v, k) => k))
-export const getTexts = state => Object.values(_.sortBy(getText(state), (v, k) => k))
+export const getUsers = state => _(getText(state)).toPairs().sortBy(0).fromPairs().keys().value()
+export const getTexts = state => _(getText(state)).toPairs().sortBy(0).fromPairs().values().value()
 
 // theme
 export const getTheme = state => fromTheme.getTheme(state.theme)

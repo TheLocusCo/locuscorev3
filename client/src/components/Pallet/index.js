@@ -35,7 +35,7 @@ class Pallet extends React.Component {
   render() {
     const {colors, scope} = this.props
     return (
-      <List>
+      <List className="not-standard">
         <PalletLabel>{scope}</PalletLabel>
         {colors.map(color => (
           <ColorSquare
