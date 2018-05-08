@@ -10,6 +10,31 @@ import {getText, getHover} from '../../redux/selectors'
 
 const getFilterEnabled = (state, ownProps) => ownProps.filter
 
+
+const getAutoHover = createSelector(
+  [getHover, getFilterEnabled],
+  (state, filter) => {
+    if (state) {
+      return filter ? state.hover : null
+    } else {
+      return null
+    }
+  }
+)
+
+const getData = createSelector([getText, getAutoHover], (text, hover) => {
+  return _.reduce(text, (result, userText, user) => {
+    const nbOfLetters = countLetters(userText, hover ? hover : null)
+    result.push({
+      name: user,
+      value: nbOfLetters
+    })
+    return result
+  }, [])
+})
+
+/*
+
 const getAutoHover = (state, filter) => {
   return filter ? state.hover : null
 }
@@ -24,6 +49,7 @@ const getData = (state, hover) => {
     return result
   }, [])
 }
+*/
 
 const mapStateToProps = (state, ownProps) => ({
   data: getData(state, ownProps),
