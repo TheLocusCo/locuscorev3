@@ -32,7 +32,7 @@ class LightBoxShowMedium extends Component {
                   <LightBoxShowMediumContent {...object} location={location}/>
                 }
                 <button onClick={() => history.push(locationToPush)} title="Close (Esc)" type="button" className="ltbx-close">×</button>
-                <button onClick={() => history.go(-1)} title="Close (Esc)" type="button" className="ltbx-close ltbx-back"><i className="icon-back"/></button>
+                <button onClick={() => history.go(-1)} title="Go back to the previous page" type="button" className="ltbx-close ltbx-back"><i className="icon-back"/></button>
                 <button onClick={() => this.props.dispatch(toggleFullscreenLightBox())} title="Fullscreen" type="button" className="ltbx-fullscreen"><i className="icon-resize-full"></i></button>
               </div>
             </div>
