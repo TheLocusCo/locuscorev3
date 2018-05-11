@@ -43,11 +43,12 @@ class ResumeWelcome extends Component {
               <h4>Sole Developer</h4>
               <p className="timeline-right">Santa Clara, California</p>
               <ul>
-                <li>Converted this site from Ruby on Rails and jQuery to an Elixir backend with a React-Redux Frontend.</li>
+                <li>Converted this site from Ruby on Rails and jQuery to a Ruby on Rails backend with a React-Redux Frontend.</li>
                 <li>Setup Ruby on Rails microservices to handle functionality that does not yet exist in Elixir.</li>
                 <li>Learned Elixir and React from scratch to what you see here in 3 months.</li>
                 <li>Wrote 62+ container components and 39+ presentational components that interact with Redux.</li>
                 <li>Utilized Ueberauth's Guardian for authentication and Canary for authorization of resources.</li>
+                <li>Later converted the site back to a Ruby on Rails backend.</li>
               </ul>
             </dd>
             <dt>
