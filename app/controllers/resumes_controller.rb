@@ -15,12 +15,10 @@ class ResumesController < ApplicationController
   # GET /resumes/1
   # GET /resumes/1.json
   def show
-    if request.format == 'application/pdf'
-      if params[:download]
-        send_pdf(download: true)
-      else
-        send_pdf
-      end
+    if params[:download]
+      send_pdf(download: true)
+    elsif params[:preview]
+      send_pdf
     end
   end
 
