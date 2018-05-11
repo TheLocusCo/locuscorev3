@@ -87,7 +87,6 @@ class MediaController < ApplicationController
     end
 
     def update_medium
-      puts "TESTING::#{medium_params.inspect}"
       service_result = Organizers::BuildJoinTableObjects.call(medium_params, 'medium', :update)
       @medium = service_result.main_object
 

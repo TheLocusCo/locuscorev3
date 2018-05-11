@@ -4,6 +4,8 @@ class ResumesController < ApplicationController
   before_action :authenticate_user!, except: %i(show primary_resume_download)
   before_action :set_resume, only: %i(edit show update destroy)
 
+  respond_to :json, :pdf
+
   # GET /resumes
   # GET /resumes.json
   def index
@@ -13,10 +15,12 @@ class ResumesController < ApplicationController
   # GET /resumes/1
   # GET /resumes/1.json
   def show
-    if params[:download]
-      send_pdf(download: true)
-    elsif params[:preview]
-      send_pdf
+    if request.format == 'application/pdf'
+      if params[:download]
+        send_pdf(download: true)
+      else
+        send_pdf
+      end
     end
   end
 
