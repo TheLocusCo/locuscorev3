@@ -35,9 +35,9 @@ export const LightBoxProjectContent = props => {
         <div className="project-content">
           <Markdown markup={ props.main_description } />
         </div>
-        {"site" in props &&
+        {"link" in props &&
           <p className="centered" style={{marginTop: "20px"}}>
-            <a className="button" href={props.site}>
+            <a className="button" href={props.link}>
               <i className="icon-eye"/>
               View Site
             </a>
