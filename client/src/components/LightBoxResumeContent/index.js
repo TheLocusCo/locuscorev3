@@ -4,7 +4,7 @@ import AuthedContentFooter from '../../containers/AuthedContentFooter'
 
 export const LightBoxResumeContent = props => {
   const generateResumeLink = (props, type) => {
-    return(props.resumeHost + "/authed/resumes/" + props.id + "?" + type + "=true")
+    return(props.resumeHost + "/resumes/" + props.id + "?" + type + "=true")
   }
 
   return (
