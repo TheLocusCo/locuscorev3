@@ -46,7 +46,7 @@ class Home extends Component {
                   <Preloader />
                 </ImageLoader>
               </figure>
-              <p>The name is Louis Alridge. I am a developer of many paths, but my current focus is creating wonders with Elixir, React, Ruby, and Chef. I am currently based in Santa Clara but can and will travel to any Tech hub in North America or Japan. Please take a look around.</p>
+              <p>The name is Louis Alridge. I am a developer of many paths, but my current focus is creating wonders with Elixir, React, Ruby, and Chef. I am currently based in Fort Worth but can and will travel to any Tech hub in North America or Japan. Please take a look around.</p>
             </div>
           </div>
           {this.props.welcomeShortcuts.length > 0 &&
