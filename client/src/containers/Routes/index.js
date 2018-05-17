@@ -32,6 +32,7 @@ class Routes extends Component {
             <Route path="/" exact component={Home}/>
             <Route path="/about_me" component={AboutMe}/>
             <Route path="/web_resume" component={WebResume}/>
+            <Route path="/resume_welcome" component={WebResume}/>
             <Route path="/blog" component={Blog}/>
             <Route path="/portfolio" component={Portfolio}/>
             <Route path="/graphics_welcome" component={Graphics}/>
