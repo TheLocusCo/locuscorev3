@@ -5,7 +5,7 @@ import Loadable from 'react-loadable'
 
 import Home from "../Home"
 import AboutMe from "../AboutMe"
-import ResumeWelcome from "../ResumeWelcome"
+import WebResume from "../WebResume"
 import Blog from "../Blog"
 import Portfolio from "../Portfolio"
 import Contact from "../Contact"
@@ -99,7 +99,7 @@ class AuthedRoutes extends Component {
             }
             <Route path="/" exact component={Home}/>
             <Route path="/about_me" component={AboutMe}/>
-            <Route path="/resume_welcome" component={ResumeWelcome}/>
+            <Route path="/web_resume" component={WebResume}/>
             <Route path="/blog" component={Blog}/>
             <Route path="/portfolio" component={Portfolio}/>
             <Route path="/graphics_welcome" component={Graphics}/>
