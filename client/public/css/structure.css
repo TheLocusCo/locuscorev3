@@ -238,6 +238,10 @@ body {
   color: inherit;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 .box-dark {
   padding: 22px 25px;
   background: #d1d4dA;

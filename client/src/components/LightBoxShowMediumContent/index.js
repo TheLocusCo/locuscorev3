@@ -5,7 +5,7 @@ export const LightBoxShowMediumContent = props => {
   const downloadMedia = (url) => {
     setTimeout(() => {
       const response = {
-        file: url
+        file: url.original
       }
       window.open(response.file)
     }, 100)

@@ -4,6 +4,8 @@ class ResumesController < ApplicationController
   before_action :authenticate_user!, except: %i(show primary_resume_download)
   before_action :set_resume, only: %i(edit show update destroy)
 
+  respond_to :json, :pdf
+
   # GET /resumes
   # GET /resumes.json
   def index

@@ -8,12 +8,12 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   scope '/api' do
-    resources :graphics, only: %i(index show)
-    resources :posts, only: %i(index show)
-    resources :projects, only: %i(index show)
-    resources :categories, only: [:index]
-    resources :notifications, only: [:create]
-    resources :comments, only: [:create]
+    resources :graphics, only: %i(index show), defaults: { format: 'json' }
+    resources :posts, only: %i(index show), defaults: { format: 'json' }
+    resources :projects, only: %i(index show), defaults: { format: 'json' }
+    resources :categories, only: [:index], defaults: { format: 'json' }
+    resources :notifications, only: [:create], defaults: { format: 'json' }
+    resources :comments, only: [:create], defaults: { format: 'json' }
 
     get 'media/:id/show_image', to: 'media#show_image'
     get 'media/:id/show_download', to: 'media#show_download'
@@ -26,43 +26,43 @@ Rails.application.routes.draw do
 
   scope '/authed' do
     get 'users/new', to: 'users#new'
-    resources :users
+    resources :users, defaults: { format: 'json' }
     get 'users/:id/edit', to: 'users#edit'
 
     get 'roles/new', to: 'roles#new'
-    resources :roles
+    resources :roles, defaults: { format: 'json' }
     get 'roles/:id/edit', to: 'roles#edit'
 
     get 'resumes/new', to: 'resumes#new'
-    resources :resumes
+    resources :resumes, defaults: { format: 'json' }
     get 'resumes/:id/edit', to: 'resumes#edit'
 
     get 'notifications/new', to: 'notifications#new'
-    resources :notifications
+    resources :notifications, defaults: { format: 'json' }
     get 'notifications/:id/edit', to: 'notifications#edit'
 
     get 'media/new', to: 'media#new'
-    resources :media
+    resources :media, defaults: { format: 'json' }
     get 'media/:id/edit', to: 'media#edit'
 
     get 'graphics/new', to: 'graphics#new'
-    resources :graphics
+    resources :graphics, defaults: { format: 'json' }
     get 'graphics/:id/edit', to: 'graphics#edit'
 
     get 'categories/new', to: 'categories#new'
-    resources :categories
+    resources :categories, defaults: { format: 'json' }
     get 'categories/:id/edit', to: 'categories#edit'
 
     get 'comments/new', to: 'comments#new'
-    resources :comments
+    resources :comments, defaults: { format: 'json' }
     get 'comments/:id/edit', to: 'comments#edit'
 
     get 'projects/new', to: 'projects#new'
-    resources :projects
+    resources :projects, defaults: { format: 'json' }
     get 'projects/:id/edit', to: 'projects#edit'
 
     get 'posts/new', to: 'posts#new'
-    resources :posts
+    resources :posts, defaults: { format: 'json' }
     get 'posts/:id/edit', to: 'posts#edit'
 
     get 'media/:id/show_image', to: 'media#show_image'
@@ -70,7 +70,7 @@ Rails.application.routes.draw do
     patch 'media/:id/upload_image', to: 'media#upload_image'
     patch 'media/:id/upload_generic', to: 'media#upload_generic'
 
-    resources :visits
+    resources :visits, defaults: { format: 'json' }
 
     get '/search_tree', to: 'search#search_tree'
     get '/field_search', to: 'search#field_search'
