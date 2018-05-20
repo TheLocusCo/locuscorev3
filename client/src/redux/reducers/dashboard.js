@@ -1,10 +1,5 @@
-import {fromJS} from 'immutable'
 import * as sync from '../actions/sync'
 import _ from 'lodash'
-
-const setHover = (action) => {
-  return fromJS(action.letters)
-}
 
 const incrementRenderCount = (state, action) => {
   return _.updateWith(state, `[${action.component}][${action.mode}]`, function(n) { return n >= 0 ? n + 1 : 0; })
@@ -37,7 +32,7 @@ export function hover(
 ) {
   switch (action.type) {
     case sync.SET_HOVER:
-      return Object.assign({}, state, setHover(action))
+      return action.letters
     default:
       return state
   }
