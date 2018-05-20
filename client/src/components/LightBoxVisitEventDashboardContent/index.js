@@ -76,7 +76,7 @@ const Grid = styled(GridLayout)`
 
 class LightBoxVisitEventDashboard extends React.Component {
   static propTypes = {
-    colors: arrayOf(string),
+    colors: object,
     hover: arrayOf(string),
     incrementRenderCount: func
   }

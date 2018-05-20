@@ -7,22 +7,16 @@ import {incrementRenderCount} from '../../redux/actions'
 import toJS from '../../hocs/toJS'
 import _ from 'lodash'
 import {getText, getHover} from '../../redux/selectors'
+import {createSelectorWithDependencies, registerSelectors} from 'reselect-tools'
+import configureStore from "../../redux/store/configureStore"
 
 const getFilterEnabled = (state, ownProps) => ownProps.filter
 
+const getAutoHover = (state, filter) => {
+  return filter ? state.hover : null
+}
 
-const getAutoHover = createSelector(
-  [getHover, getFilterEnabled],
-  (state, filter) => {
-    if (state) {
-      return filter ? state.hover : null
-    } else {
-      return null
-    }
-  }
-)
-
-const getData = createSelector([getText, getAutoHover], (text, hover) => {
+const getData = createSelectorWithDependencies([getText, getAutoHover], (text, hover) => {
   return _.reduce(text, (result, userText, user) => {
     const nbOfLetters = countLetters(userText, hover ? hover : null)
     result.push({
@@ -33,6 +27,7 @@ const getData = createSelector([getText, getAutoHover], (text, hover) => {
   }, [])
 })
 
+registerSelectors({ getText, getAutoHover, getData })
 /*
 
 const getAutoHover = (state, filter) => {

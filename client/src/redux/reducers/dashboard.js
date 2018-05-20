@@ -2,6 +2,8 @@ import {fromJS} from 'immutable'
 import * as sync from '../actions/sync'
 import _ from 'lodash'
 
+// FIX THESE! MANY OF THESE MUTATE STATE
+
 const setColor = (state, action) => {
   return _.update(state, `${action.user}`, function(n) { return n })
 }
@@ -66,12 +68,15 @@ export function renderCount(
 }
 
 export function text(
-  state = {},
+  state = {user1: "", user2: ""},
   action
 ) {
   switch (action.type) {
     case sync.NEW_TEXT:
-      return newText(state, action)
+      return Object.assign({}, state, {
+        user1: action.text.user1,
+        user2: action.text.user2
+      })
     default:
       return state
   }
