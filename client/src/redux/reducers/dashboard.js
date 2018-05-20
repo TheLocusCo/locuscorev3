@@ -2,13 +2,7 @@ import {fromJS} from 'immutable'
 import * as sync from '../actions/sync'
 import _ from 'lodash'
 
-// FIX THESE! MANY OF THESE MUTATE STATE
-
-const setColor = (state, action) => {
-  return _.update(state, `${action.user}`, function(n) { return n })
-}
-
-const setHover = (state, action) => {
+const setHover = (action) => {
   return fromJS(action.letters)
 }
 
@@ -16,16 +10,8 @@ const incrementRenderCount = (state, action) => {
   return _.updateWith(state, `[${action.component}][${action.mode}]`, function(n) { return n >= 0 ? n + 1 : 0; })
 }
 
-const newText = (state, action) => {
-  return _.merge(state, action.text)
-}
-
 const incrementTick = (state, action) => {
   return state + 1
-}
-
-const selectTheme = (state, action) => {
-  return action.theme
 }
 
 export function colors(
@@ -37,7 +23,9 @@ export function colors(
 ) {
   switch (action.type) {
     case sync.SET_COLOR:
-      return setColor(state, action)
+      let colorObj = {}
+      colorObj[action.user] = action.color
+      return Object.assign({}, state, colorObj)
     default:
       return state
   }
@@ -49,7 +37,7 @@ export function hover(
 ) {
   switch (action.type) {
     case sync.SET_HOVER:
-      return setHover(state, action)
+      return Object.assign({}, state, setHover(action))
     default:
       return state
   }
@@ -73,10 +61,7 @@ export function text(
 ) {
   switch (action.type) {
     case sync.NEW_TEXT:
-      return Object.assign({}, state, {
-        user1: action.text.user1,
-        user2: action.text.user2
-      })
+      return Object.assign({}, state, action.text)
     default:
       return state
   }
@@ -100,7 +85,7 @@ export function theme(
 ) {
   switch (action.type) {
     case sync.SELECT_THEME:
-      return selectTheme(state, action)
+      return Object.assign({}, state, action.theme)
     default:
       return state
   }

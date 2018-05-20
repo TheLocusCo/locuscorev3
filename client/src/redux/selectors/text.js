@@ -1,14 +1,14 @@
 import {createSelector} from 'reselect'
 import _ from 'lodash'
 
-export const getText = state => state
+export const getText = state => state.text
 
 export const getUsers = createSelector(
   getText,
-  text => Object.keys(_.sortBy(text, (v, k) => k))
+  text => _(text).toPairs().sortBy(0).fromPairs().keys().value()
 )
 
 export const getTexts = createSelector(
   getText,
-  text => Object.values(_.sortBy(text, (v, k) => k))
+  text => _(text).toPairs().sortBy(0).fromPairs().values().value()
 )

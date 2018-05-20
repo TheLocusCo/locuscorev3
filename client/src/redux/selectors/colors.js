@@ -2,7 +2,7 @@ import {createSelector} from 'reselect'
 import _ from 'lodash'
 import {getColorWithDefaultSaturation} from '../../utils/colors'
 
-const getColors = state => state
+const getColors = state => state.colors
 
 export const getSaturatedColors = createSelector(getColors, colors => {
   return _.transform(colors, function(result, value, key) {
