@@ -80,7 +80,7 @@ export function theme(
 ) {
   switch (action.type) {
     case sync.SELECT_THEME:
-      return Object.assign({}, state, action.theme)
+      return action.theme
     default:
       return state
   }

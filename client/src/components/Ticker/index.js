@@ -8,8 +8,8 @@ const {number, object, string, shape, func} = PropTypes
 
 const Toggle = styled.span`
   position: absolute;
-  top: 0;
-  right: 0;
+  bottom: 0;
+  left: 0;
   margin: 5px;
   cursor: pointer;
 `

@@ -35,8 +35,9 @@ class LightBoxVisit extends Component {
               {this.props.visit.id &&
                 <ThemedDashboard>
                   <LightBoxVisitEventDashboard />
-                  <Ticker />
-                  <Footer>Testing Footer Location </Footer>
+                  <Footer>
+                    <Ticker />
+                  </Footer>
                 </ThemedDashboard>
               }
               <button onClick={() => history.push(this.props.locationToPush)} title="Close (Esc)" type="button" className="ltbx-close">×</button>
