@@ -52,3 +52,15 @@ File sizes after gzip:
   1.48 KB                 build/static/js/12.f840c3b1.chunk.js
 
 https://github.com/knsv/mermaid
+
+### Events dashboard
+
+3 Datasets
+* Current Events for the current Visit
+* Current Events for the current IP
+
+Toggle for the above 2
+
+* Current Events for the current User
+
+Viewable only in the profile

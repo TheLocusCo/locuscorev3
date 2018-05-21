@@ -12,6 +12,7 @@ class VisitsController < ApplicationController
   # GET /visits/1
   # GET /visits/1.json
   def show
+    @ip_events = Ahoy::Event.joins(:visit).where("ahoy_visits.ip = ?", request.remote_ip)
   end
 
   private
