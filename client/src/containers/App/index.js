@@ -63,6 +63,16 @@ class App extends Component {
         {this.props.currentUser.email &&
           <NotificationsBlock currentUser={this.props.currentUser} />
         }
+        {window.innerWidth > 980 &&
+          <div className="fixed-footer">
+            <div className="fixed-footer-bottom-left">
+              <div className="fixed-footer-bottom-left-center" />
+            </div>
+            <div className="fixed-footer-bottom-right">
+              <div className="fixed-footer-bottom-right-center" />
+            </div>
+          </div>
+        }
       </div>
     )
   }
