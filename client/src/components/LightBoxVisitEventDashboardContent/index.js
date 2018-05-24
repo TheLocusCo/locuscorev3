@@ -16,7 +16,6 @@ const {string, object, func, arrayOf} = PropTypes
 const GridLayout = WidthProvider(ReactGridLayout)
 const dimensions = ['width', 'height']
 const MeasuredDemoBarChart = withMeasure(dimensions)(WrappedBarChart)
-const MeasuredDemoScatterPlot = withMeasure(dimensions)(WrappedScatterPlot)
 const MeasuredDemoPieChart = withMeasure(dimensions)(AutoFilterPieChart)
 const MeasuredDemoChat = withMeasure(dimensions)(DemoChat)
 
@@ -101,8 +100,7 @@ class LightBoxVisitEventDashboard extends React.Component {
   render() {
     const {hover, colors} = this.props
     const layout = [
-      {i: 'TL', x: 0, y: 0, w: 6, h: 7},
-      {i: 'TR', x: 6, y: 0, w: 6, h: 7},
+      {i: 'T', x: 0, y: 0, w: 12, h: 7},
       {i: 'BL', x: 0, y: 7, w: 4, h: 5},
       {i: 'BR', x: 4, y: 7, w: 8, h: 5}
     ]
@@ -116,11 +114,8 @@ class LightBoxVisitEventDashboard extends React.Component {
         rowHeight={(window.innerHeight - 29) / 12}
         margin={[0, 0]}
       >
-        <div key="TL">
+        <div key="T">
           <MeasuredDemoBarChart />
-        </div>
-        <div key="TR">
-          <MeasuredDemoScatterPlot />
         </div>
         <div key="BL">
           <MeasuredDemoPieChart />

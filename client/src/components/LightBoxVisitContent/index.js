@@ -53,7 +53,7 @@ export const LightBoxVisitContent = props => {
               <td>{props.region}</td>
             </tr>
             <tr>
-              <td>city</td>
+              <td>City</td>
               <td>{props.city}</td>
             </tr>
           </tbody>

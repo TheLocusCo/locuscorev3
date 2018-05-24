@@ -11,6 +11,9 @@ if defined?(index).nil?
   json.visit_ip_events do
     json.array! @ip_events, partial: 'events/event', as: :event, locals: {no_metadata: true}
   end
+
+  json.visit_user_events []
+  json.event_days @event_days
 end
 
 json.href "/visits/#{visit.id}"

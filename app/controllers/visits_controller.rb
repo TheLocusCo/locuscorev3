@@ -12,7 +12,13 @@ class VisitsController < ApplicationController
   # GET /visits/1
   # GET /visits/1.json
   def show
-    @ip_events = Ahoy::Event.joins(:visit).where("ahoy_visits.ip = ?", request.remote_ip)
+    @ip_events = Ahoy::Event
+      .joins(:visit)
+      .where("ahoy_visits.ip = ? AND ahoy_visits.id != ?", @visit.ip, @visit.id)
+    @event_days = Ahoy::Event
+      .joins(:visit)
+      .where("ahoy_visits.ip = ?", @visit.ip).order("time ASC")
+      .pluck(:time).map { |x| x.strftime("%m/%d/%Y") }.uniq
   end
 
   private

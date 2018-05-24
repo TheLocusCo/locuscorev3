@@ -12,14 +12,19 @@ const incrementTick = (state, action) => {
 export function colors(
   state = {
     user1: 'blue',
-    user2: 'orange'
+    user2: 'orange',
+    visitOnly: 'blue',
+    visitIp: 'orange'
   },
   action
 ) {
+  let colorObj = {}
   switch (action.type) {
     case sync.SET_COLOR:
-      let colorObj = {}
       colorObj[action.user] = action.color
+      return Object.assign({}, state, colorObj)
+    case sync.SET_VISIT_COLOR:
+      colorObj[action.visit] = action.color
       return Object.assign({}, state, colorObj)
     default:
       return state
