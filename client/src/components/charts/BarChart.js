@@ -41,17 +41,17 @@ class BarChart extends React.Component {
     look: 'stacked'
   }
 
-  computeTooltipProps = letter => {
-    const hoveredData = _.omit(_.find(this.props.data, {x: letter}), 'x')
+  computeTooltipProps = xAxisVar => {
+    const hoveredData = _.omit(_.find(this.props.data, {x: xAxisVar}), 'x')
     const computeTop = this.state.look === 'stacked'
       ? arr => this.y(_.sum(arr))
       : arr => this.y(_.max(arr))
     return {
       style: {
         top: computeTop(_.values(hoveredData)) + 5,
-        left: this.x(letter) + 40
+        left: this.x(xAxisVar) + 40
       },
-      content: `${letter}: ${_.values(hoveredData).join(', ')}`
+      content: `${xAxisVar}: ${_.values(hoveredData).join(', ')}`
     }
   }
 
@@ -63,8 +63,8 @@ class BarChart extends React.Component {
         {chart}
         {chart !== LOADING &&
           hover &&
-          hover.map((letter, index) => (
-            <Tooltip key={index} {...this.computeTooltipProps(letter)} />
+          hover.map((xAxisVar, index) => (
+            <Tooltip key={index} {...this.computeTooltipProps(xAxisVar)} />
           ))}
       </Wrapper>
     )

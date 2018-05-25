@@ -2,7 +2,7 @@ import {connect} from 'react-redux'
 import {createSelector} from 'reselect'
 import _ from 'lodash'
 
-import WrappedAllEventsBarChart from '../../components/WrappedAllEventsBarChart'
+import WrappedBarChart from '../../components/WrappedBarChart'
 import {countVisitsForDay} from '../../utils/visitStats'
 import {setHover, incrementRenderCount} from '../../redux/actions'
 import {
@@ -29,7 +29,9 @@ const getData = createSelector(
 
 const mapStateToProps = (state, ownProps) => ({
   data: getData(state),
-  hover: getHover(state)
+  hover: getHover(state),
+  xLabel: 'Dates',
+  yLabel: 'Events'
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -41,4 +43,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(WrappedAllEventsBarChart)
+export default connect(mapStateToProps, mapDispatchToProps)(WrappedBarChart)
