@@ -3,8 +3,11 @@ import PropTypes from 'prop-types'
 import {withFauxDOM} from 'react-faux-dom'
 import styled from 'styled-components'
 import _ from 'lodash'
+
+import Pallet from '../Pallet'
 import Tooltip from '../Tooltip'
 import withD3Renderer from '../../hocs/withD3Renderer'
+
 const d3 = {
   ...require('d3-scale'),
   ...require('d3-selection'),
@@ -13,13 +16,19 @@ const d3 = {
   ...require('d3-interpolate')
 }
 
-const {arrayOf, string, number, shape} = PropTypes
+const {arrayOf, string, number, shape, func} = PropTypes
 const LOADING = 'loading...'
 
 const Title = styled.div`
   text-align: center;
   position: relative;
   top: -${({height}) => height * 1 / 5}px;
+`
+
+const PalletContainer = styled.div`
+  position: relative;
+  top: -${({height}) => height * 2 / 3}px;
+  right: ${({width}) => width * 3.35 / 11}px;
 `
 
 const Wrapper = styled.div`
@@ -40,18 +49,25 @@ class PieChart extends React.Component {
         value: number
       })
     ),
+    pallet: arrayOf(
+      shape({
+        name: string,
+        value: string
+      })
+    ),
     width: number,
     height: number,
     thickness: number,
-    title: string
+    title: string,
+    setVisitColor: func,
   }
 
   state = {
     tooltip: null
   }
 
-  setTooltip = user => {
-    this.setState(state => ({tooltip: user}))
+  setTooltip = object => {
+    this.setState(state => ({tooltip: object}))
   }
 
   computeTooltipContent = () => {
@@ -62,10 +78,22 @@ class PieChart extends React.Component {
   }
 
   render() {
-    const {width, height, title, chart} = this.props
+    const {width, height, title, chart, pallet, setObjColor, data} = this.props
     return (
       <Wrapper className="piechart" width={width} height={height}>
         {chart}
+        <PalletContainer height={height} width={width}>
+          {data.map((visitTypeObj, index) => {
+            return (
+              <Pallet
+                colors={pallet}
+                scope={visitTypeObj.name}
+                pickColor={setObjColor}
+                index={index}
+              />
+            )
+          })}
+        </PalletContainer>
         <Title height={height}>{title}</Title>
         {this.state.tooltip &&
           <Tooltip content={this.computeTooltipContent()} />}

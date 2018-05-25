@@ -39,6 +39,8 @@ export function hover(
   switch (action.type) {
     case sync.SET_HOVER:
       return action.letters
+    case sync.SET_HOVER_DAYS:
+      return action.days
     default:
       return state
   }

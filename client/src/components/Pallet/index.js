@@ -2,14 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-const {arrayOf, shape, string, func} = PropTypes
+const {arrayOf, shape, string, func, number} = PropTypes
 
 const List = styled.ul`
   list-style-type: none;
   text-align: right;
   vertical-align: center;
-  margin-top: -8px;
-  margin-right: 10px;
+  position: absolute;
+  right: 0px;
+  top: ${({index}) => index * 20}px;
 `
 
 const ColorSquare = styled.li`
@@ -33,9 +34,9 @@ class Pallet extends React.Component {
   }
 
   render() {
-    const {colors, scope} = this.props
+    const {colors, scope, index} = this.props
     return (
-      <List className="not-standard">
+      <List className="not-standard" index={index}>
         <PalletLabel>{scope}</PalletLabel>
         {colors.map(color => (
           <ColorSquare
@@ -56,6 +57,7 @@ Pallet.propTypes = {
       value: string
     })
   ),
+  index: number,
   scope: string,
   pickColor: func
 }

@@ -6,6 +6,7 @@ export const SELECT_THEME = 'SELECT_THEME'
 export const SET_COLOR = 'SET_COLOR'
 export const SET_VISIT_COLOR = 'SET_VISIT_COLOR'
 export const SET_HOVER = 'SET_HOVER'
+export const SET_HOVER_DAYS = 'SET_HOVER_DAYS'
 export const TICK = 'TICK'
 
 export const newText = text => ({
@@ -18,6 +19,11 @@ export const setHover = letter => ({
   letters: !letter ? null : Array.isArray(letter) ? _.uniq(letter) : [letter]
 })
 
+export const setHoverDays = day => ({
+  type: SET_HOVER_DAYS,
+  days: !day ? null : Array.isArray(day) ? _.uniq(day) : [day]
+})
+
 export const tick = () => ({
   type: TICK
 })
@@ -25,6 +31,12 @@ export const tick = () => ({
 export const setColor = (user, color) => ({
   type: SET_COLOR,
   user,
+  color
+})
+
+export const setVisitColor = (visit, color) => ({
+  type: SET_VISIT_COLOR,
+  visit,
   color
 })
 

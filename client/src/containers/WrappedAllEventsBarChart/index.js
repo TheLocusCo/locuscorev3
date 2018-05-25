@@ -4,7 +4,7 @@ import _ from 'lodash'
 
 import WrappedBarChart from '../../components/WrappedBarChart'
 import {countVisitsForDay} from '../../utils/visitStats'
-import {setHover, incrementRenderCount} from '../../redux/actions'
+import {setHoverDays, incrementRenderCount} from '../../redux/actions'
 import {
   getVisitEvents,
   getVisitEventDays,
@@ -35,11 +35,11 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  setHover (letter) {
-    dispatch(setHover(letter))
+  setHover (day) {
+    dispatch(setHoverDays(day))
   },
   incrementRenderCount (mode) {
-    dispatch(incrementRenderCount('eventtotalbarchart', mode))
+    dispatch(incrementRenderCount('All Events Bar Chart', mode))
   }
 })
 

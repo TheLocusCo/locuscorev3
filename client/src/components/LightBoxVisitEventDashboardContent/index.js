@@ -7,7 +7,7 @@ import ReactGridLayout, {WidthProvider} from 'react-grid-layout'
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
 import WrappedAllEventsBarChart from '../../containers/WrappedAllEventsBarChart'
-import AutoFilterPieChart from '../../containers/WrappedPieChart'
+import AutoFilterPieChart from '../../containers/WrappedAllEventsPieChart'
 //import WrappedScatterPlot from '../../containers/WrappedScatterPlot'
 import DemoChat from '../../containers/DemoChat'
 import withMeasure from '../../hocs/withMeasure'
@@ -16,7 +16,7 @@ const {string, object, func, arrayOf} = PropTypes
 const GridLayout = WidthProvider(ReactGridLayout)
 const dimensions = ['width', 'height']
 const MeasuredAllEventsBarChart = withMeasure(dimensions)(WrappedAllEventsBarChart)
-const MeasuredDemoPieChart = withMeasure(dimensions)(AutoFilterPieChart)
+const MeasuredAllEventsPieChart = withMeasure(dimensions)(AutoFilterPieChart)
 const MeasuredDemoChat = withMeasure(dimensions)(DemoChat)
 
 const generateDataGroupCSS = colors => {
@@ -118,7 +118,7 @@ class LightBoxVisitEventDashboard extends React.Component {
           <MeasuredAllEventsBarChart />
         </div>
         <div key="BL">
-          <MeasuredDemoPieChart />
+          <MeasuredAllEventsPieChart />
         </div>
         <div key="BR">
           <MeasuredDemoChat />

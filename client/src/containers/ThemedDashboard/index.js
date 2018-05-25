@@ -7,14 +7,6 @@ import {getTheme} from '../../redux/selectors'
 
 const {object, array} = PropTypes
 
-/* eslint-disable no-unused-expressions */
-injectGlobal`
-  body {
-    margin: 0;
-    overflow: hidden;
-  }
-`
-
 const Root = styled.div`
   background-color: ${({theme}) => theme.background};
   color: ${({theme}) => theme.color};

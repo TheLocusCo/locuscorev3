@@ -26,6 +26,8 @@ const Wrapper = styled.div`
   }
 `
 
+// [TODO] Debug negative rect height values causing errors
+
 class BarChart extends React.Component {
   static propTypes = {
     data: arrayOf(object),
@@ -59,7 +61,7 @@ class BarChart extends React.Component {
     const {hover, chart} = this.props
     return (
       <Wrapper className="barchart" hover={hover}>
-        <button onClick={this.toggle}>Toggle</button>
+        <button onClick={this.toggle}>Toggle Bar Format</button>
         {chart}
         {chart !== LOADING &&
           hover &&
