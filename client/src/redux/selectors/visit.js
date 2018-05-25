@@ -1,7 +1,6 @@
 import {createSelector} from 'reselect'
-import _ from 'lodash'
 
-export const getVisit = state => state.visit
+export const getVisit = state => state.visit.content
 
 export const getVisitEvents = createSelector(
   getVisit,
@@ -14,4 +13,4 @@ export const getVisitEvents = createSelector(
   }
 )
 
-export const getVisitEventDays = state => state.visit.event_days
+export const getVisitEventDays = state => state.visit.content.event_days

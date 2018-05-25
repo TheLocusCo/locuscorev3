@@ -5,7 +5,7 @@ export function visit(
   state = {
     isFetching: false,
     didInvalidate: false,
-    content: {}
+    content: {event_days: []}
   },
   action
 ) {

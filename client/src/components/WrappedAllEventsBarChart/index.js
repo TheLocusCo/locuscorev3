@@ -3,7 +3,7 @@ import AllEventsBarChart from '../charts/AllEventsBarChart'
 
 const WrappedAllEventsBarChart = props => (
   <div style={{width: '100%', height: '100%'}}>
-    <BarChart xLabel='Dates' yLabel='Events' {...props} />
+    <AllEventsBarChart xLabel='Dates' yLabel='Events' {...props} />
   </div>
 )
 

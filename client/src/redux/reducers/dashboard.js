@@ -13,8 +13,9 @@ export function colors(
   state = {
     user1: 'blue',
     user2: 'orange',
-    visitOnly: 'blue',
-    visitIp: 'orange'
+    visitOnly: 'green',
+    visitIp: 'grey',
+    visitUser: 'blue'
   },
   action
 ) {

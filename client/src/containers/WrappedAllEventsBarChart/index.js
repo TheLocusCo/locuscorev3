@@ -7,7 +7,7 @@ import {countVisitsForDay} from '../../utils/visitStats'
 import {setHover, incrementRenderCount} from '../../redux/actions'
 import {
   getVisitEvents,
-  getVisitEventDays
+  getVisitEventDays,
   getHover
 } from '../../redux/selectors'
 

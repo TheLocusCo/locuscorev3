@@ -6,33 +6,33 @@ import _ from 'lodash'
 import ReactGridLayout, {WidthProvider} from 'react-grid-layout'
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
-import WrappedBarChart from '../../containers/WrappedBarChart'
+import WrappedAllEventsBarChart from '../../containers/WrappedAllEventsBarChart'
 import AutoFilterPieChart from '../../containers/WrappedPieChart'
-import WrappedScatterPlot from '../../containers/WrappedScatterPlot'
+//import WrappedScatterPlot from '../../containers/WrappedScatterPlot'
 import DemoChat from '../../containers/DemoChat'
 import withMeasure from '../../hocs/withMeasure'
 
 const {string, object, func, arrayOf} = PropTypes
 const GridLayout = WidthProvider(ReactGridLayout)
 const dimensions = ['width', 'height']
-const MeasuredDemoBarChart = withMeasure(dimensions)(WrappedBarChart)
+const MeasuredAllEventsBarChart = withMeasure(dimensions)(WrappedAllEventsBarChart)
 const MeasuredDemoPieChart = withMeasure(dimensions)(AutoFilterPieChart)
 const MeasuredDemoChat = withMeasure(dimensions)(DemoChat)
 
 const generateDataGroupCSS = colors => {
   return _.reduce(
     colors,
-    (result, color, user) => {
-      result += `.data-group-${user} { fill: ${color}; }`
+    (result, color, visit) => {
+      result += `.data-group-${visit} { fill: ${color}; }`
       return result
     },
     ''
   )
 }
 
-const generateHoverCss = letter =>
+const generateHoverCss = visit =>
   `
-  .data-${letter} {
+  .data-${visit} {
     opacity: 1;
     -webkit-transition: opacity .2s ease-in;
   }
@@ -59,7 +59,7 @@ const Grid = styled(GridLayout)`
     opacity: ${({hover}) => (hover ? 0.25 : 1)};
     -webkit-transition: opacity .2s ease-in;
   }
-  ${({hover}) => hover && hover.map(letter => generateHoverCss(letter))}
+  ${({hover}) => hover && hover.map(visit => generateHoverCss(visit))}
   .tooltip {
     position: absolute;
     z-index: 10;
@@ -115,7 +115,7 @@ class LightBoxVisitEventDashboard extends React.Component {
         margin={[0, 0]}
       >
         <div key="T">
-          <MeasuredDemoBarChart />
+          <MeasuredAllEventsBarChart />
         </div>
         <div key="BL">
           <MeasuredDemoPieChart />
