@@ -22,6 +22,7 @@ export const getTheme = state => fromTheme.getTheme(state)
 export const getVisit = state => fromVisit.getVisit(state)
 export const getVisitEvents = state => fromVisit.getVisitEvents(state)
 export const getVisitEventDays = state => fromVisit.getVisitEventDays(state)
+export const getVisitEventLinks = state => fromVisit.getVisitEventLinks(state)
 
 /** top level selectors (simple cases) **/
 export const getHover = state => state.hover

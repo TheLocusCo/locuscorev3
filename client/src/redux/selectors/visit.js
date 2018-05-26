@@ -14,3 +14,5 @@ export const getVisitEvents = createSelector(
 )
 
 export const getVisitEventDays = state => state.visit.content.event_days
+
+export const getVisitEventLinks = state => state.visit.content.event_links

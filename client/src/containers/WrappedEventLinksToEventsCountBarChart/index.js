@@ -3,25 +3,25 @@ import {createSelector} from 'reselect'
 import _ from 'lodash'
 
 import WrappedBarChart from '../../components/WrappedBarChart'
-import {countVisitsForDay} from '../../utils/visitStats'
-import {setHoverDays, incrementRenderCount} from '../../redux/actions'
+import {countVisitsForLink} from '../../utils/visitStats'
+import {setHoverLinks, incrementRenderCount} from '../../redux/actions'
 import {
   getVisitEvents,
-  getVisitEventDays,
+  getVisitEventLinks,
   getHover
 } from '../../redux/selectors'
 
 const getData = createSelector(
-  [getVisitEvents, getVisitEventDays], (events, days) => {
-    return days.map(day => {
+  [getVisitEvents, getVisitEventLinks], (events, links) => {
+    return links.map(lnk => {
       return _.reduce(events,
         (result, visitEvents, visitType) => {
           return {
             ...result,
-            [visitType]: countVisitsForDay(visitEvents, day)
+            [visitType]: countVisitsForLink(visitEvents, lnk)
           }
         },
-        {x: day}
+        {x: lnk}
       )
     })
   }
@@ -30,16 +30,17 @@ const getData = createSelector(
 const mapStateToProps = (state, ownProps) => ({
   data: getData(state),
   hover: getHover(state),
-  xLabel: 'Dates',
-  yLabel: 'Events'
+  xLabel: 'Most Popular Urls',
+  yLabel: 'Events',
+  xAxisHover: 'links'
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   setHover (day) {
-    dispatch(setHoverDays(day))
+    dispatch(setHoverLinks(day))
   },
   incrementRenderCount (mode) {
-    dispatch(incrementRenderCount('All Events Bar Chart', mode))
+    dispatch(incrementRenderCount('Links2EventsCount Bar Chart', mode))
   }
 })
 

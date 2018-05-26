@@ -32,5 +32,7 @@ module Locuscorev3
     config.eager_load_paths << Rails.root.join("lib")
     Rails.application.config.assets.precompile += %w( locuscorev3_mangas/manga_covers/*.jpg locuscorev3_mangas/manga_covers/*.png )
     config.active_record.schema_format = :sql
+    config.time_zone = 'Central Time (US & Canada)'
+    config.active_record.default_timezone = :local
   end
 end

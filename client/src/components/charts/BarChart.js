@@ -35,7 +35,8 @@ class BarChart extends React.Component {
     yLabel: string,
     width: number,
     height: number,
-    hover: arrayOf(string),
+    hover: object,
+    xAxisHover: string,
     setHover: func
   }
 
@@ -58,14 +59,14 @@ class BarChart extends React.Component {
   }
 
   render() {
-    const {hover, chart} = this.props
+    const {hover, chart, xAxisHover} = this.props
     return (
       <Wrapper className="barchart" hover={hover}>
         <button onClick={this.toggle}>Toggle Bar Format</button>
         {chart}
         {chart !== LOADING &&
-          hover &&
-          hover.map((xAxisVar, index) => (
+          hover && hover[xAxisHover] &&
+          hover[xAxisHover].map((xAxisVar, index) => (
             <Tooltip key={index} {...this.computeTooltipProps(xAxisVar)} />
           ))}
       </Wrapper>

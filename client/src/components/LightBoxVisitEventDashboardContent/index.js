@@ -6,7 +6,8 @@ import _ from 'lodash'
 import ReactGridLayout, {WidthProvider} from 'react-grid-layout'
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
-import WrappedAllEventsBarChart from '../../containers/WrappedAllEventsBarChart'
+import WrappedDaytoEventsCountBarChart from '../../containers/WrappedDayToEventsCountBarChart'
+import WrappedEventLinksToEventsCountBarChart from '../../containers/WrappedEventLinksToEventsCountBarChart'
 import AutoFilterPieChart from '../../containers/WrappedAllEventsPieChart'
 //import WrappedScatterPlot from '../../containers/WrappedScatterPlot'
 import DemoChat from '../../containers/DemoChat'
@@ -15,9 +16,9 @@ import withMeasure from '../../hocs/withMeasure'
 const {string, object, func, arrayOf} = PropTypes
 const GridLayout = WidthProvider(ReactGridLayout)
 const dimensions = ['width', 'height']
-const MeasuredAllEventsBarChart = withMeasure(dimensions)(WrappedAllEventsBarChart)
+const MeasuredD2ECEventsBarChart = withMeasure(dimensions)(WrappedDaytoEventsCountBarChart)
 const MeasuredAllEventsPieChart = withMeasure(dimensions)(AutoFilterPieChart)
-const MeasuredDemoChat = withMeasure(dimensions)(DemoChat)
+const MeasuredEL2ECBarChart = withMeasure(dimensions)(WrappedEventLinksToEventsCountBarChart)
 
 const generateDataGroupCSS = colors => {
   return _.reduce(
@@ -59,7 +60,7 @@ const Grid = styled(GridLayout)`
     opacity: ${({hover}) => (hover ? 0.25 : 1)};
     -webkit-transition: opacity .2s ease-in;
   }
-  ${({hover}) => hover && hover.map(visit => generateHoverCss(visit))}
+  ${({hover}) => hover && Object.values(hover)[0].map(visit => generateHoverCss(visit))}
   .tooltip {
     position: absolute;
     z-index: 10;
@@ -76,7 +77,7 @@ const Grid = styled(GridLayout)`
 class LightBoxVisitEventDashboard extends React.Component {
   static propTypes = {
     colors: object,
-    hover: arrayOf(string),
+    hover: arrayOf(object),
     incrementRenderCount: func
   }
 
@@ -115,13 +116,13 @@ class LightBoxVisitEventDashboard extends React.Component {
         margin={[0, 0]}
       >
         <div key="T">
-          <MeasuredAllEventsBarChart />
+          <MeasuredD2ECEventsBarChart />
         </div>
         <div key="BL">
           <MeasuredAllEventsPieChart />
         </div>
         <div key="BR">
-          <MeasuredDemoChat />
+          <MeasuredEL2ECBarChart />
         </div>
       </Grid>
     )

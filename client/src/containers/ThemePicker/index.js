@@ -10,8 +10,8 @@ const {func} = PropTypes
 
 const List = styled.ul`
   position: absolute;
-  bottom: 5px;
-  right: 5px;
+  bottom: 1px;
+  left: 114px;
   margin: 0 8px 3px 0;
 `
 

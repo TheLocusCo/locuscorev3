@@ -4,7 +4,7 @@ import {createSelector} from 'reselect'
 import _ from 'lodash'
 
 import WrappedPieChart from '../../components/WrappedPieChart'
-import {countVisitsForDay} from '../../utils/visitStats'
+import {countVisitsForXAxis} from '../../utils/visitStats'
 import {incrementRenderCount, setVisitColor} from '../../redux/actions'
 import {getColorWithDefaultSaturation, COLOR_PALLET} from '../../utils/colors'
 import {
@@ -22,7 +22,8 @@ const getAutoHover = createSelector(
 const getData = createSelector(
   [getVisitEvents, getAutoHover], (events, hover) => {
   return _.reduce(events, (result, visitEvents, visitType) => {
-    const nbOfVisits = countVisitsForDay(visitEvents, hover ? hover : null)
+    const nbOfVisits = countVisitsForXAxis(visitEvents, hover ? hover : null)
+
     result.push({
       name: visitType,
       value: nbOfVisits
@@ -32,10 +33,16 @@ const getData = createSelector(
 })
 
 const getTitleFromHover = createSelector(getHover, hover => {
-  return (
-    Array.isArray(hover) ?
-      `Events For Day: ${hover.join(', ')}` : 'Event Volume By Visit Type'
-  )
+  if(hover) {
+    switch (Object.keys(hover)[0]) {
+      case "links":
+        return `Events For Url: ${hover.links.join(', ')}`
+      default:
+        return `Events For Day: ${hover.days.join(', ')}`
+    }
+  } else {
+    return 'Event Volume By Visit Type'
+  }
 })
 
 const getPallet = createSelector(

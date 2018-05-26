@@ -90,6 +90,7 @@ class PieChart extends React.Component {
                 scope={visitTypeObj.name}
                 pickColor={setObjColor}
                 index={index}
+                key={index}
               />
             )
           })}

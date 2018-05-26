@@ -39,8 +39,9 @@ export function hover(
   switch (action.type) {
     case sync.SET_HOVER:
       return action.letters
-    case sync.SET_HOVER_DAYS:
-      return action.days
+    case sync.SET_HOVER_DAYS: case sync.SET_HOVER_LINKS:
+      let parsedAction = _.omit(action, ['type'])
+      return Object.values(parsedAction)[0] ? Object.assign({}, state, parsedAction) : null
     default:
       return state
   }

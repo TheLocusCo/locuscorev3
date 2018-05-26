@@ -7,6 +7,7 @@ export const SET_COLOR = 'SET_COLOR'
 export const SET_VISIT_COLOR = 'SET_VISIT_COLOR'
 export const SET_HOVER = 'SET_HOVER'
 export const SET_HOVER_DAYS = 'SET_HOVER_DAYS'
+export const SET_HOVER_LINKS = 'SET_HOVER_LINKS'
 export const TICK = 'TICK'
 
 export const newText = text => ({
@@ -22,6 +23,11 @@ export const setHover = letter => ({
 export const setHoverDays = day => ({
   type: SET_HOVER_DAYS,
   days: !day ? null : Array.isArray(day) ? _.uniq(day) : [day]
+})
+
+export const setHoverLinks = lnk => ({
+  type: SET_HOVER_LINKS,
+  links: !lnk ? null : Array.isArray(lnk) ? _.uniq(lnk) : [lnk]
 })
 
 export const tick = () => ({

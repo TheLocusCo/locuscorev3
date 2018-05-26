@@ -14,6 +14,7 @@ if defined?(index).nil?
 
   json.visit_user_events []
   json.event_days @event_days
+  json.event_links @event_links
 end
 
 json.href "/visits/#{visit.id}"
