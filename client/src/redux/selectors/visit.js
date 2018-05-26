@@ -17,7 +17,7 @@ export const getVisitEventDays = state => state.visit.content.event_days
 
 export const getVisitEventLinks = state => state.visit.content.event_links
 
-export const getVisitPalletNameObj = createSelector(
+export const getVisitNameMappings = createSelector(
   getVisit,
   visit => {
     return (visit.id === 0 ?

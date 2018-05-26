@@ -33,7 +33,7 @@ class Ahoy::Event < ApplicationRecord
   end
 
   def self.uniq_events_days
-    pluck(:time).map { |x| x.strftime("%m/%d/%Y") }.uniq
+    pluck(:time).map { |x| x.strftime("%-m/%-d/%y") }.uniq
   end
 
   def self.top_x_url_visits(x)

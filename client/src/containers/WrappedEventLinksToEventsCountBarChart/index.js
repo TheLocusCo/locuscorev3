@@ -8,7 +8,8 @@ import {setHoverLinks, incrementRenderCount} from '../../redux/actions'
 import {
   getVisitEvents,
   getVisitEventLinks,
-  getHover
+  getHover,
+  getVisitNameMappings,
 } from '../../redux/selectors'
 
 const getData = createSelector(
@@ -33,7 +34,8 @@ const mapStateToProps = (state, ownProps) => ({
   xLabel: 'Most Popular Urls',
   yLabel: 'Events',
   xAxisHover: 'links',
-  title: 'Traffic Analysis: Events by Most Popular Urls'
+  title: 'Traffic Analysis: Events by Most Popular Urls',
+  customTooltipNameObj: getVisitNameMappings(state)
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

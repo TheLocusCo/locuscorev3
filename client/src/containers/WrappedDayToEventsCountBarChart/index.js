@@ -8,7 +8,8 @@ import {setHoverDays, incrementRenderCount} from '../../redux/actions'
 import {
   getVisitEvents,
   getVisitEventDays,
-  getHover
+  getHover,
+  getVisitNameMappings,
 } from '../../redux/selectors'
 
 const getData = createSelector(
@@ -33,7 +34,8 @@ const mapStateToProps = (state, ownProps) => ({
   xLabel: 'Dates',
   yLabel: 'Events',
   xAxisHover: 'days',
-  title: 'Traffic Analysis: Events by Day'
+  title: 'Traffic Analysis: Events by Day',
+  customTooltipNameObj: getVisitNameMappings(state)
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

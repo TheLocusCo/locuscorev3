@@ -11,7 +11,7 @@ export const actualThemeName = str => {
   }
 }
 
-export const humanizeGraphColors = (str, customMaps) => {
+export const humanizeGraphNames = (str, customMaps) => {
   switch (str) {
     case 'visitOnly':
       return 'CurrentVisit'

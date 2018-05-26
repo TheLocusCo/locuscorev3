@@ -24,6 +24,11 @@ class LightBoxSiteStats extends Component {
                 <ThemedDashboard>
                   <EventDashboard />
                   <Footer>
+                    <a href="https://github.com/TheLocusCo/locuscorev3/tree/master/client/src/components/charts/Barchart.js">
+                      <i style={{marginRight: '10px'}} className="icon-github" />
+                      View Source on Github
+                      <i style={{marginLeft: '10px'}} className="icon-github" />
+                    </a>
                     <Ticker />
                   </Footer>
                 </ThemedDashboard>

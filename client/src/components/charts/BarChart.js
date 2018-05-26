@@ -3,8 +3,11 @@ import PropTypes from 'prop-types'
 import {withFauxDOM} from 'react-faux-dom'
 import styled from 'styled-components'
 import _ from 'lodash'
+
 import Tooltip from '../Tooltip'
 import withD3Renderer from '../../hocs/withD3Renderer'
+import { humanizeGraphNames } from '../../utils/string'
+
 const d3 = {
   ...require('d3-shape'),
   ...require('d3-array'),
@@ -52,7 +55,7 @@ class BarChart extends React.Component {
     look: 'stacked'
   }
 
-  computeTooltipProps = xAxisVar => {
+  computeTooltipProps = (xAxisVar, customTooltipNameObj) => {
     const hoveredData = _.omit(_.find(this.props.data, {x: xAxisVar}), 'x')
     const computeTop = this.state.look === 'stacked'
       ? arr => this.y(_.sum(arr))
@@ -60,14 +63,20 @@ class BarChart extends React.Component {
     return {
       style: {
         top: computeTop(_.values(hoveredData)) + 5,
-        left: this.x(xAxisVar) + 40
+        left: this.x(xAxisVar) - 85
       },
-      content: `${xAxisVar}: ${_.values(hoveredData).join(', ')}`
+      content: `${xAxisVar} | ${
+        _.map(
+          _.toPairs(hoveredData), function(o) {
+            return `${humanizeGraphNames(o[0], customTooltipNameObj)}: ${o[1]}`
+          }
+        ).join(", ")
+      }`
     }
   }
 
   render() {
-    const {hover, chart, xAxisHover, title} = this.props
+    const {hover, chart, xAxisHover, title, customTooltipNameObj} = this.props
     return (
       <Wrapper className="barchart" hover={hover}>
         <div className="button" onClick={this.toggle}>Toggle Bar Format</div>
@@ -76,7 +85,10 @@ class BarChart extends React.Component {
         {chart !== LOADING &&
           hover && hover[xAxisHover] &&
           hover[xAxisHover].map((xAxisVar, index) => (
-            <Tooltip key={index} {...this.computeTooltipProps(xAxisVar)} />
+            <Tooltip
+              key={index}
+              {...this.computeTooltipProps(xAxisVar, customTooltipNameObj)}
+            />
           ))}
       </Wrapper>
     )
