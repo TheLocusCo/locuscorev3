@@ -19,7 +19,8 @@ class Ahoy::Event < ApplicationRecord
   def self.uniq_events_days_for_ip(ip)
     joins(:visit)
       .where("ahoy_visits.ip = ?", ip).order("time ASC")
-      .uniq_events_days
+      .events_days
+      .uniq
   end
 
   def self.top_x_url_visits_for_ip(x, ip)
@@ -32,8 +33,15 @@ class Ahoy::Event < ApplicationRecord
     joins(:visit).where("ahoy_visits.user_id IS NOT NULL")
   end
 
-  def self.uniq_events_days
-    pluck(:time).map { |x| x.strftime("%-m/%-d/%y") }.uniq
+  def self.events_days
+    pluck(:time).map { |x| x.strftime("%-m/%-d/%y") }
+  end
+
+  def self.events_days_with_more_than_x_visits(x)
+    events_days
+      .each_with_object(Hash.new(0)) { |time, counts| counts[time] += 1 }
+      .reject { |k, v| v <= x }
+      .map { |x| x[0] }
   end
 
   def self.top_x_url_visits(x)

@@ -13,7 +13,7 @@ class VisitsController < ApplicationController
     @visit = Event.order("time DESC").first.visit
     @ip_events = Ahoy::Event.events_for_ip_and_visit_without_users(@visit.ip, @visit.id)
     @user_events = Ahoy::Event.events_with_any_user
-    @event_days = Ahoy::Event.uniq_events_days
+    @event_days = Ahoy::Event.events_days_with_more_than_x_visits(10)
     @event_links = Ahoy::Event.top_x_url_visits(15)
   end
 

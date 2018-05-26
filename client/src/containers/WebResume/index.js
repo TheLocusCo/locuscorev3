@@ -62,6 +62,7 @@ class WebResume extends Component {
                 <li>Discontinued steam project due to the early 2018 privacy changes around much of the web and the Steam service in particular.</li>
                 <li>Converted <a href='https://thelocus.co'>this site</a> back from a Elixir-Phoenix backend to a Ruby on Rails backend.</li>
                 <li>Open-sourced the repository running thelocus.co at <a href='https://github.com/TheLocusCo/locuscorev3'>https://github.com/TheLocusCo/locuscorev3</a>.</li>
+                <li>Built <a href='https://thelocus.co/site_stats'>my site analytics page</a> with D3.js and React.</li>
               </ul>
               <h4 className="bold">
                 Skills and technologies I used at TheLocusCo
