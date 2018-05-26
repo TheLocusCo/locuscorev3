@@ -5,15 +5,16 @@
 ### Stuff to implement
 * Handle 500 errors on api for forms
 * Code Browser (using github)
-* Analytics table
-  * each site is a row with some meta data, each row has many events
+* Current Events for the current User
+    * Viewable only in the profile
+* Polling / Caching for fetches to API
 * params update pagination so pagination is remembered from external visits
 * SceneJS?
 * Refresh button / polling for notifications while authed
 * Better ways to handle uploads in dev?
 * Secure resume microservice using names as ids instead of ids
 * Portfolio / Manga Gallery Pages slow down when lots of elements are present
-  * Infinite scroll to prevent lots of loading?
+    * Infinite scroll to prevent lots of loading?
 * Cleanup old media files when media is changed / deleted
 * Notifications putting entries into notifications seen by users table so users can't overwrite seen notifications
 
@@ -52,15 +53,3 @@ File sizes after gzip:
   1.48 KB                 build/static/js/12.f840c3b1.chunk.js
 
 https://github.com/knsv/mermaid
-
-### Events dashboard
-
-3 Datasets
-* Current Events for the current Visit
-* Current Events for the current IP
-
-Toggle for the above 2
-
-* Current Events for the current User
-
-Viewable only in the profile

@@ -11,9 +11,9 @@ class Ahoy::Event < ApplicationRecord
       .where("ahoy_visits.ip = ? AND ahoy_visits.id != ?", ip, visit_id)
   end
 
-  def self.events_for_ip_and_visit_without_users(ip, visit_id)
+  def self.events_not_for_ip_and_visit_without_users(ip, visit_id)
     joins(:visit)
-      .where("ahoy_visits.ip = ? AND ahoy_visits.id != ? AND ahoy_visits.user_id IS NULL", ip, visit_id)
+      .where("ahoy_visits.ip != ? AND ahoy_visits.id != ? AND ahoy_visits.user_id IS NULL", ip, visit_id)
   end
 
   def self.uniq_events_days_for_ip(ip)
