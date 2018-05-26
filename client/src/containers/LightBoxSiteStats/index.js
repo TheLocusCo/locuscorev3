@@ -26,7 +26,7 @@ class LightBoxSiteStats extends Component {
                   <Ticker />
                   <Footer>
                     <a
-                      href="https://github.com/TheLocusCo/locuscorev3/tree/master/client/src/components/charts/Barchart.js"
+                      href="https://github.com/TheLocusCo/locuscorev3/tree/master/client/src/components/charts/BarChart.js"
                       target='_blank'
                       rel="noopener noreferrer"
                     >
