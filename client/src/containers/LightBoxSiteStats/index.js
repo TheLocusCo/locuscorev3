@@ -23,13 +23,17 @@ class LightBoxSiteStats extends Component {
               {this.props.visit.id === 0 &&
                 <ThemedDashboard>
                   <EventDashboard />
+                  <Ticker />
                   <Footer>
-                    <a href="https://github.com/TheLocusCo/locuscorev3/tree/master/client/src/components/charts/Barchart.js">
+                    <a
+                      href="https://github.com/TheLocusCo/locuscorev3/tree/master/client/src/components/charts/Barchart.js"
+                      target='_blank'
+                      rel="noopener noreferrer"
+                    >
                       <i style={{marginRight: '10px'}} className="icon-github" />
                       View Source on Github
                       <i style={{marginLeft: '10px'}} className="icon-github" />
                     </a>
-                    <Ticker />
                   </Footer>
                 </ThemedDashboard>
               }

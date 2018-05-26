@@ -218,10 +218,18 @@ class BarChart extends React.Component {
         .call(xAxis)
         .append('text')
         .attr('class', 'label')
-        .attr('x', graphWidth)
+        .attr('x', graphWidth-30)
         .attr('y', 35)
         .style('text-anchor', 'end')
+        .style('display', 'none')
         .text(xLabel)
+
+      svg
+        .call(xAxis)
+        .selectAll("g.x.axis text")
+        .attr("transform", "rotate(-12)" )
+        .selectAll("g.x.axis.label text")
+        .attr("transform", "rotate(0)" )
 
       svg
         .append('g')
