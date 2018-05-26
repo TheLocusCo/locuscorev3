@@ -1,5 +1,5 @@
 class VisitsController < ApplicationController
-  load_and_authorize_resource, except: %i(anon_site_stats)
+  load_and_authorize_resource except: %i(anon_site_stats)
   before_action :authenticate_user!, except: %i(anon_site_stats)
   before_action :set_visit, only: %i(show)
 
@@ -10,9 +10,9 @@ class VisitsController < ApplicationController
   end
 
   def anon_site_stats
-    @visit = current_visit
-    @ip_events = Ahoy::Event.events_for_ip_and_visit(@visit.ip, @visit.id)
-    @user_events = Ahoy::Event.events_not_for_ip_and_visit(@visit.ip, @visit.id)
+    @visit = Event.order("time DESC").first.visit
+    @ip_events = Ahoy::Event.events_for_ip_and_visit_without_users(@visit.ip, @visit.id)
+    @user_events = Ahoy::Event.events_with_any_user
     @event_days = Ahoy::Event.uniq_events_days
     @event_links = Ahoy::Event.top_x_url_visits(15)
   end
@@ -21,6 +21,7 @@ class VisitsController < ApplicationController
   # GET /visits/1.json
   def show
     @ip_events = Ahoy::Event.events_for_ip_and_visit(@visit.ip, @visit.id)
+    @user_events = []
     @event_days = Ahoy::Event.uniq_events_days_for_ip(@visit.ip)
     @event_links = Ahoy::Event.top_x_url_visits_for_ip(15, @visit.ip)
   end

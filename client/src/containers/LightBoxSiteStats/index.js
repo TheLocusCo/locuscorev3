@@ -1,21 +1,17 @@
 import React, { Component } from 'react'
-import LightBoxVisitContent from '../../components/LightBoxVisitContent'
 import { connect } from "react-redux"
 import { Route } from 'react-router-dom'
-import SuccessBlock from '../SuccessBlock'
-import LightBoxErrorPage from '../../components/LightBoxErrorPage'
 
-import { fetchResource } from "../../redux/actions"
+import { fetchSiteStatsSuperVisit } from "../../redux/actions"
 
 import ThemedDashboard from '../ThemedDashboard'
 import EventDashboard from '../EventDashboard'
 import Ticker from '../Ticker'
 import Footer from '../../components/styled/Footer'
 
-class LightBoxVisit extends Component {
+class LightBoxSiteStats extends Component {
   componentWillMount() {
-    var id = this.props.location.pathname.split("/").reverse()[0]
-    this.props.dispatch(fetchResource('visit', 'visits', id))
+    this.props.dispatch(fetchSiteStatsSuperVisit())
   }
 
   render() {
@@ -24,15 +20,7 @@ class LightBoxVisit extends Component {
         <div className="ltbx-wrap" tabIndex="-1">
           <div className="ltbx-container">
             <div className="ltbx-content ltbx-fullscreen-content">
-              <SuccessBlock content={this.props.successContent}/>
-              {this.props.isFetching && !this.props.visit.id && <h1 className="section-heading larger">Loading...</h1>}
-              {this.props.errorContent.length > 0 &&
-                <LightBoxErrorPage errorContent={this.props.errorContent}/>
-              }
-              {this.props.visit.id &&
-                <LightBoxVisitContent {...this.props.visit} location={this.props.location}/>
-              }
-              {this.props.visit.id &&
+              {this.props.visit.id === 0 &&
                 <ThemedDashboard>
                   <EventDashboard />
                   <Footer>
@@ -52,9 +40,7 @@ class LightBoxVisit extends Component {
 
 const mapStateToProps = state => ({
   visit: state.visit.content,
-  successContent: state.successMessages.items,
-  errorContent: state.errorMessages.items,
   isFetching: state.visit.isFetching
 })
 
-export default connect(mapStateToProps)(LightBoxVisit)
+export default connect(mapStateToProps)(LightBoxSiteStats)

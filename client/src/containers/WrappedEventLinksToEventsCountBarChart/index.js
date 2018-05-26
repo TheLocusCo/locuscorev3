@@ -32,7 +32,8 @@ const mapStateToProps = (state, ownProps) => ({
   hover: getHover(state),
   xLabel: 'Most Popular Urls',
   yLabel: 'Events',
-  xAxisHover: 'links'
+  xAxisHover: 'links',
+  title: 'Traffic Analysis: Events by Most Popular Urls'
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

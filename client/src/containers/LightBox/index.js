@@ -13,6 +13,7 @@ const LightBoxShowMedium = asyncComponent(() => import("../LightBoxShowMedium"))
 const EmptyPage = asyncComponent(() => import("../../components/EmptyPage"))
 
 const LightBoxSearch = asyncComponent(() => import("../LightBoxSearch"))
+const LightBoxSiteStats = asyncComponent(() => import("../LightBoxSiteStats"))
 
 class LightBox extends Component {
   render() {
@@ -49,6 +50,9 @@ class LightBox extends Component {
             </Route>
             <Route path="/google_maps_location">
               <LightBoxGeneric mode="currentLocation" locationToPush="/contact" />
+            </Route>
+            <Route path="/site_stats">
+              <LightBoxSiteStats locationToPush="/" location={this.props.location}/>
             </Route>
           </Switch>
         </div>

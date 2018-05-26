@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import './style.css'
 import { connect } from "react-redux"
-import { resourceDestroy } from "../../redux/actions"
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
-//import RaisedButton from 'material-ui/RaisedButton'
 import { Route } from 'react-router-dom'
+
+import { resourceDestroy } from "../../redux/actions"
+import { humanize } from '../../utils/string'
 
 class DestroyButton extends Component {
   state = {
@@ -25,10 +25,6 @@ class DestroyButton extends Component {
   handleDelete(item, history) {
     this.props.dispatch(resourceDestroy(item, history))
     this.setState({open: false})
-  }
-
-  humanize(text) {
-    return (text.charAt(0).toUpperCase() + text.slice(1).replace(/_/gi, ' '))
   }
 
   actions(history) {
@@ -54,7 +50,7 @@ class DestroyButton extends Component {
   }
 
   render() {
-    let title = "Really Delete This " + this.humanize(this.props.item.field_meta.resource_type)
+    let title = "Really Delete This " + humanize(this.props.item.field_meta.resource_type)
     title = title + (this.props.item.meta_title ? (" \"" + this.props.item.meta_title + "\"?")  : "?")
 
     return (

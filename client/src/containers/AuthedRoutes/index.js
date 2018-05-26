@@ -120,6 +120,7 @@ class AuthedRoutes extends Component {
             <Route path="/search_results">
               <SearchResults location={this.props.location}/>
             </Route>
+            <Route path="/site_stats" component={EmptyPage}/>
             {
               // Authed Routes
             }

@@ -59,7 +59,7 @@ class PieChart extends React.Component {
     height: number,
     thickness: number,
     title: string,
-    setVisitColor: func,
+    setVisitColor: func
   }
 
   state = {
@@ -78,7 +78,7 @@ class PieChart extends React.Component {
   }
 
   render() {
-    const {width, height, title, chart, pallet, setObjColor, data} = this.props
+    const {width, height, title, chart, pallet, setObjColor, data, customPalletNameObjs} = this.props
     return (
       <Wrapper className="piechart" width={width} height={height}>
         {chart}
@@ -91,6 +91,7 @@ class PieChart extends React.Component {
                 pickColor={setObjColor}
                 index={index}
                 key={index}
+                customPalletNameObjs={customPalletNameObjs}
               />
             )
           })}

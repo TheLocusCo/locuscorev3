@@ -12,6 +12,7 @@ const Root = styled.div`
   color: ${({theme}) => theme.color};
   font: 11px sans-serif;
   padding: 8px;
+  border-radius: 5px;
 `
 
 const ThemedDashboard = ({theme, children}) => (

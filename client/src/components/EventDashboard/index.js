@@ -63,7 +63,7 @@ const Grid = styled(GridLayout)`
   ${({hover}) => hover && Object.values(hover)[0].map(visit => generateHoverCss(visit))}
   .tooltip {
     position: absolute;
-    z-index: 10;
+    z-index: 100000;
     display: inline-block;
     border: solid 1px ${({theme}) => theme.secondaryColor};
     border-radius: 2px;
@@ -74,7 +74,7 @@ const Grid = styled(GridLayout)`
   }
 `
 
-class LightBoxVisitEventDashboard extends React.Component {
+class EventDashboard extends React.Component {
   static propTypes = {
     colors: object,
     hover: arrayOf(object),
@@ -129,4 +129,4 @@ class LightBoxVisitEventDashboard extends React.Component {
   }
 }
 
-export default LightBoxVisitEventDashboard
+export default EventDashboard

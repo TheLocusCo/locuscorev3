@@ -2,14 +2,11 @@ import React from 'react'
 import ReactTooltip from 'react-tooltip'
 import { Uploader, UploadField } from '@navjobs/upload'
 
+import { humanize } from '../../utils/string'
 import ProgressBar from '../ProgressBar'
 import { receiveResource, successMessage } from "../../redux/actions"
 
 let LightBoxUploadForm = props => {
-  const humanize = (text) => {
-    return (text.charAt(0).toUpperCase() + text.slice(1).replace(/_/gi, ' '))
-  }
-
   const renderFields = (props) => {
     var count = 0
     return Object.entries(props.field_meta).map(indivField => {

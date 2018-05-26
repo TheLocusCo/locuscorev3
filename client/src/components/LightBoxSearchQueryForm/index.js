@@ -10,6 +10,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import ErrorBlock from '../../containers/ErrorBlock'
 import submit from './submit'
+import { humanize } from '../../utils/string'
 
 import { updateCurrentSearchFieldData, deleteFieldFromCurrentSearch } from "../../redux/actions"
 
@@ -24,10 +25,6 @@ const renderTextField = ({ input, newValue, label, meta: { touched, error }, ...
 )
 
 let LightBoxSearchQueryForm = props => {
-  const humanize = (text) => {
-    return (text.charAt(0).toUpperCase() + text.slice(1).replace(/_/gi, ' '))
-  }
-
   const renderMenuItems = (arr) => {
     var count=0
     return arr.map(val => {

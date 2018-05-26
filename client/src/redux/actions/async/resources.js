@@ -73,6 +73,22 @@ export function fetchResources(resourceType, currentPage, params, mode) {
     })
 }
 
+export function fetchSiteStatsSuperVisit() {
+  return dispatch => {
+    dispatch(sync.requestShowItem())
+    http.siteStatsVisitFetch().then(
+      response => response.json()
+    ).then(response => {
+      if (Object.keys(response).includes("data") && Object.keys(response.data).includes("id")) {
+        dispatch(receiveResource('visit', response))
+      } else {
+        dispatch(sync.errorMessageAsObject(response))
+        dispatch(receiveResource('visit', {data: {}}))
+      }
+    })
+  }
+}
+
 function receiveEditItem(resourceType, json) {
   // Need to do date transformations so redux form material ui knows how to display these
   switch (resourceType) {

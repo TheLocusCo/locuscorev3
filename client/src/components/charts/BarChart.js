@@ -26,6 +26,13 @@ const Wrapper = styled.div`
   }
 `
 
+const Title = styled.div`
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  top: 10px;
+`
+
 // [TODO] Debug negative rect height values causing errors
 
 class BarChart extends React.Component {
@@ -37,7 +44,8 @@ class BarChart extends React.Component {
     height: number,
     hover: object,
     xAxisHover: string,
-    setHover: func
+    setHover: func,
+    title: string
   }
 
   state = {
@@ -59,10 +67,11 @@ class BarChart extends React.Component {
   }
 
   render() {
-    const {hover, chart, xAxisHover} = this.props
+    const {hover, chart, xAxisHover, title} = this.props
     return (
       <Wrapper className="barchart" hover={hover}>
-        <button onClick={this.toggle}>Toggle Bar Format</button>
+        <div className="button" onClick={this.toggle}>Toggle Bar Format</div>
+        <Title>{title}</Title>
         {chart}
         {chart !== LOADING &&
           hover && hover[xAxisHover] &&

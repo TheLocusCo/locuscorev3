@@ -10,6 +10,7 @@ import {getColorWithDefaultSaturation, COLOR_PALLET} from '../../utils/colors'
 import {
   getVisitEvents,
   getHover,
+  getVisitPalletNameObj,
 } from '../../redux/selectors'
 
 const getFilterEnabled = (state, ownProps) => ownProps.filter
@@ -61,7 +62,8 @@ const mapStateToProps = (state, ownProps) => ({
   data: getData(state, ownProps),
   hover: getAutoHover(state, ownProps),
   title: getTitleFromHover(state),
-  pallet: getPallet(state)
+  pallet: getPallet(state),
+  customPalletNameObjs: getVisitPalletNameObj(state)
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

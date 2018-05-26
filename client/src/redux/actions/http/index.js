@@ -50,3 +50,7 @@ export function notificationCreate(notification) {
 export function showMediumFetch(id, type) {
   return fetch(`${helpers.fetchAPIURL()}/api/media/${id}/${type}`)
 }
+
+export function siteStatsVisitFetch() {
+  return fetch(`${helpers.fetchAPIURL()}/api/anon_site_stats`)
+}

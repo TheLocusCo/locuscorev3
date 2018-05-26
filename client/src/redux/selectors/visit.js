@@ -16,3 +16,13 @@ export const getVisitEvents = createSelector(
 export const getVisitEventDays = state => state.visit.content.event_days
 
 export const getVisitEventLinks = state => state.visit.content.event_links
+
+export const getVisitPalletNameObj = createSelector(
+  getVisit,
+  visit => {
+    return (visit.id === 0 ?
+      { visitIp: 'AllNonUserVisits', visitUser: 'AllUserVisits' } :
+      { visitIp: 'CurrentVisitIp', visitUser: 'VisitsUser' }
+    )
+  }
+)

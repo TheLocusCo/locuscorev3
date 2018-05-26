@@ -2,15 +2,13 @@ import React, { Component } from 'react'
 import './style.css'
 import { Route } from 'react-router-dom'
 import { connect } from "react-redux"
+
+import { humanize } from '../../utils/string'
 import DestroyButton from '../../components/DestroyButton'
 import { deleteEditItem, deleteNewItem } from "../../redux/actions"
 
 // Update footer based on current path
 class FooterButtonsBlock extends Component {
-  humanize(text) {
-    return (text.charAt(0).toUpperCase() + text.slice(1).replace(/_/gi, ' '))
-  }
-
   isShow() {
     return (Number.isInteger(parseInt(this.props.location.pathname.split("/").reverse()[0], 10)))
   }
@@ -42,7 +40,7 @@ class FooterButtonsBlock extends Component {
       return(
         <div className="button" onClick={() => {this.pushHistoryAndClearNew(history, ("/" + props.widgetType[1] + "/new"))}}>
           <i className="icon-publish" />
-          Create a New {this.humanize(props.widgetType[0])}
+          Create a New {humanize(props.widgetType[0])}
         </div>
       )
     }
@@ -53,7 +51,7 @@ class FooterButtonsBlock extends Component {
       return(
         <div className="button" onClick={() => {history.push("/" + props.widgetType[1] + "/" + this.getId(1))}}>
           <i className="icon-eye" />
-          Look at this {this.humanize(props.widgetType[0])}
+          Look at this {humanize(props.widgetType[0])}
         </div>
       )
     }
@@ -64,7 +62,7 @@ class FooterButtonsBlock extends Component {
       return(
         <div className="button" onClick={() => {this.pushHistoryAndClearEdit(history, ("/" + props.widgetType[1] + "/" + this.getId(0) + "/edit"))}}>
           <i className="icon-pencil" />
-          Edit this {this.humanize(props.widgetType[0])}
+          Edit this {humanize(props.widgetType[0])}
         </div>
       )
     }
@@ -80,7 +78,7 @@ class FooterButtonsBlock extends Component {
 
       return(
         <DestroyButton item={item}>
-          Destroy this {this.humanize(props.widgetType[0])}
+          Destroy this {humanize(props.widgetType[0])}
         </DestroyButton>
       )
     }

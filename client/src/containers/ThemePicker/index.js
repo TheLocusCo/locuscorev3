@@ -3,16 +3,18 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import styled from 'styled-components'
 import _ from 'lodash'
+
 import themes from '../../utils/themes'
-import {selectTheme} from '../../redux/actions'
+import { selectTheme } from '../../redux/actions'
+import { actualThemeName } from '../../utils/string'
 
 const {func} = PropTypes
 
 const List = styled.ul`
   position: absolute;
   bottom: 1px;
-  left: 114px;
-  margin: 0 8px 3px 0;
+  left: 144px;
+  margin: 0 8px 2.5px 0;
 `
 
 const Item = styled.li`
@@ -31,7 +33,7 @@ class ThemePicker extends React.Component {
       <List className="not-standard">
         {_.keys(themes).map(theme => (
           <Item key={theme} onClick={this.handleSelectTheme(theme)}>
-            {theme}
+            {actualThemeName(theme)}
           </Item>
         ))}
       </List>

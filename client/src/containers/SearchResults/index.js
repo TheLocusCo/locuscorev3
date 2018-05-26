@@ -3,6 +3,7 @@ import './style.css'
 import { connect } from "react-redux"
 import Loadable from 'react-loadable'
 
+import { humanize } from '../../utils/string'
 import ShortcutsBlock from '../ShortcutsBlock'
 import GalleryBlock from '../GalleryBlock'
 import GalleryCategoryButtonsBlock from '../GalleryCategoryButtonsBlock'
@@ -23,10 +24,6 @@ class SearchResults extends Component {
     if (this.props.searchResults.model === "") {
       this.props.dispatch(fetchSearchResults(this.props.location.search))
     }
-  }
-
-  humanize(text) {
-    return (text.charAt(0).toUpperCase() + text.slice(1).replace(/_/gi, ' '))
   }
 
   renderFancyContainer(searchResults) {
@@ -78,7 +75,7 @@ class SearchResults extends Component {
         <div className="page-content">
           <div>
             <h1 className="section-heading larger">
-              Search Results For {this.humanize(searchResults.model)}
+              Search Results For {humanize(searchResults.model)}
             </h1>
             <SuccessBlock content={successContent}/>
             <ErrorBlock content={errorContent}/>

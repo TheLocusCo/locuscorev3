@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import LightBoxVisitEventDashboard from '../../components/LightBoxVisitEventDashboardContent'
+import EventDashboard from '../../components/EventDashboard'
 import {incrementRenderCount} from '../../redux/actions'
 import {getHover, getSaturatedColors} from '../../redux/selectors'
 
@@ -14,4 +14,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(LightBoxVisitEventDashboard)
+export default connect(mapStateToProps, mapDispatchToProps)(EventDashboard)

@@ -47,6 +47,7 @@ class Routes extends Component {
             <Route path="/search_results">
               <SearchResults location={this.props.location}/>
             </Route>
+            <Route path="/site_stats" component={EmptyPage}/>
             <Route component={UnknownPage}/>
           </Switch>
         </div>

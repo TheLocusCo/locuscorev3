@@ -2,16 +2,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 import ReactTooltip from 'react-tooltip'
 import { Field, reduxForm } from 'redux-form'
-
+import Multiselect from 'react-widgets/lib/Multiselect'
+import 'react-widgets/dist/css/react-widgets.css'
 import MenuItem from 'material-ui/MenuItem'
 import { TextField, Checkbox, SelectField, DatePicker } from 'redux-form-material-ui'
+
 import AuthedContentFooter from "../../containers/AuthedContentFooter"
 import ErrorBlock from '../../containers/ErrorBlock'
 import submit from './submit'
-
-import Multiselect from 'react-widgets/lib/Multiselect'
-import 'react-widgets/dist/css/react-widgets.css'
-
+import { humanize } from '../../utils/string'
 import MarkdownToolbar from '../MarkdownToolbar'
 
 const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
@@ -64,10 +63,6 @@ const renderMultiselect = ({ input, valueField, textField, id, meta, changeFunc,
 )
 
 let LightBoxEditForm = props => {
-  const humanize = (text) => {
-    return (text.charAt(0).toUpperCase() + text.slice(1).replace(/_/gi, ' '))
-  }
-
   const renderMDTB = () => {
     return (<MarkdownToolbar />)
   }

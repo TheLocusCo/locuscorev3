@@ -32,7 +32,8 @@ const mapStateToProps = (state, ownProps) => ({
   hover: getHover(state),
   xLabel: 'Dates',
   yLabel: 'Events',
-  xAxisHover: 'days'
+  xAxisHover: 'days',
+  title: 'Traffic Analysis: Events by Day'
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

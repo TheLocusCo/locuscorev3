@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { humanizeGraphColors } from '../../utils/string'
 
 const {arrayOf, shape, string, func, number} = PropTypes
 
@@ -34,10 +35,12 @@ class Pallet extends React.Component {
   }
 
   render() {
-    const {colors, scope, index} = this.props
+    const {colors, scope, index, customPalletNameObjs} = this.props
     return (
       <List className="not-standard" index={index}>
-        <PalletLabel>{scope}</PalletLabel>
+        <PalletLabel>
+          {humanizeGraphColors(scope, customPalletNameObjs)}
+        </PalletLabel>
         {colors.map(color => (
           <ColorSquare
             key={color.name}

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import './style.css'
-import LightBoxCommentContent from '../../components/LightBoxCommentContent'
 import { connect } from "react-redux"
 import { Route } from 'react-router-dom'
 
+import { humanize } from '../../utils/string'
 import SuccessBlock from '../SuccessBlock'
+import LightBoxCommentContent from '../../components/LightBoxCommentContent'
 import LightBoxErrorPage from '../../components/LightBoxErrorPage'
 
 import { fetchResource } from "../../redux/actions"
@@ -13,10 +14,6 @@ class LightBoxComment extends Component {
   componentWillMount() {
     var id = this.props.location.pathname.split("/").reverse()[0]
     this.props.dispatch(fetchResource('comment', 'comments', id))
-  }
-
-  humanize(text) {
-    return (text.charAt(0).toUpperCase() + text.slice(1).replace(/_/gi, ' '))
   }
 
   render() {
@@ -32,7 +29,7 @@ class LightBoxComment extends Component {
               }
               {this.props.comment.id &&
                 <article className="portfolio-item">
-                  <h4 className="section-heading">Owned By {this.humanize(this.props.comment.commentable_type)}: {this.props.comment.owned_by}</h4>
+                  <h4 className="section-heading">Owned By {humanize(this.props.comment.commentable_type)}: {this.props.comment.owned_by}</h4>
                   <div className="box-dark" style={{marginTop: "30px", paddingTop: "47px"}}>
                     <LightBoxCommentContent {...this.props.comment} location={this.props.location} currentUser={this.props.currentUser}/>
                   </div>
