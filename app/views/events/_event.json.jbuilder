@@ -1,8 +1,8 @@
-json.(event, :id, :visit_id, :user_id, :name, :time)
+json.(event, :id, :visit_id)
 
-json.url event.properties["url"]
+# json.url event.properties["url"]
 json.page event.properties["page"]
-json.created_at event.time.strftime("%B %d (%H:%M %P), %Y")
+# json.created_at event.time.strftime("%B %d (%H:%M %P), %Y")
 json.created_at_date event.time.strftime("%m/%d/%Y")
 
 if defined?(no_metadata).nil?

@@ -1,12 +1,20 @@
 class VisitsController < ApplicationController
-  load_and_authorize_resource
-  before_action :authenticate_user!
+  load_and_authorize_resource, except: %i(anon_site_stats)
+  before_action :authenticate_user!, except: %i(anon_site_stats)
   before_action :set_visit, only: %i(show)
 
   # GET /visits
   # GET /visits.json
   def index
     @visits = Visit.fetch_ordered_by_page(params["page"], [], 'started_at DESC')
+  end
+
+  def anon_site_stats
+    @visit = current_visit
+    @ip_events = Ahoy::Event.events_for_ip_and_visit(@visit.ip, @visit.id)
+    @user_events = Ahoy::Event.events_not_for_ip_and_visit(@visit.ip, @visit.id)
+    @event_days = Ahoy::Event.uniq_events_days
+    @event_links = Ahoy::Event.top_x_url_visits(15)
   end
 
   # GET /visits/1

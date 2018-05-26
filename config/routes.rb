@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     get '/search_tree', to: 'search#search_tree'
     get '/field_search', to: 'search#field_search'
     get '/search_submit', to: 'search#search_submit'
+
+    get '/anon_site_stats', to 'visits#anon_site_stats'
   end
 
   scope '/authed' do

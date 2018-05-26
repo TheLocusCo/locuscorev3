@@ -1,6 +1,10 @@
-json.merge! visit.attributes
-json.parsed_start_at visit.started_at.strftime("%B %d (%H:%M %P), %Y")
-json.parsed_user visit.try(:user).try(:name)
+if defined?(anon).nil?
+  json.merge! visit.attributes
+  json.parsed_start_at visit.started_at.strftime("%B %d (%H:%M %P), %Y")
+  json.parsed_user visit.try(:user).try(:name)
+else
+  json.(visit, :id, :ip)
+end
 
 if defined?(index).nil?
   # json.media graphic.media_with_urls
@@ -17,6 +21,8 @@ if defined?(index).nil?
   json.event_links @event_links
 end
 
-json.href "/visits/#{visit.id}"
-json.meta_title "Visit at #{visit.started_at.strftime("%B %d (%H:%M %P), %Y")}"
-json.field_meta Visit.map_field_metadata
+if defined?(anon).nil?
+  json.href "/visits/#{visit.id}"
+  json.meta_title "Visit at #{visit.started_at.strftime("%B %d (%H:%M %P), %Y")}"
+  json.field_meta Visit.map_field_metadata
+end
