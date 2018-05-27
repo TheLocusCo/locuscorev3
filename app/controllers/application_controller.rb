@@ -2,6 +2,18 @@ class ApplicationController < ActionController::API
   include CanCan::ControllerAdditions
   include DeviseTokenAuth::Concerns::SetUserByToken
 
+  rescue_from ActiveRecord::RecordInvalid do |exception|
+    if current_user
+      render json: { errors: [exception.record.errors.messages] }
+    end
+  end
+
+  rescue_from ActiveRecord::RecordNotUnique do |exception|
+    if current_user
+      render json: { error: "Internal Server Error", exception: [exception] }
+    end
+  end
+
   after_action :authenticate_for_ahoy
 
   rescue_from CanCan::AccessDenied do |exception|

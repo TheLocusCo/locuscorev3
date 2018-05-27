@@ -13,11 +13,24 @@ export const REQUEST_NEW_ITEM = 'REQUEST_NEW_ITEM'
 export const REQUEST_SHOW_ITEM = 'RECEIVE_SHOW_ITEM'
 export const UPDATE_CURRENT_PAGE = 'UPDATE_CURRENT_PAGE'
 
-export function createResourceFailure(data) {
-  return {
-    type: CREATE_RESOURCE_FAILURE,
-    errorMessages: data.errors
+function parseError(data, type) {
+  if(data.hasOwnProperty('errors')) {
+    return {
+      type: type,
+      errorMessages: data.errors
+    }
+  } else {
+    let retObj = {}
+    retObj[data.error] = data.exception
+    return {
+      type: type,
+      errorMessages: [retObj]
+    }
   }
+}
+
+export function createResourceFailure(data) {
+  return parseError(data, CREATE_RESOURCE_FAILURE)
 }
 
 export function createResourceSuccess(resourceType, resource) {
@@ -48,10 +61,7 @@ export function deleteUploadItem() {
 }
 
 export function destroyResourceFailure(data) {
-  return {
-    type: DESTROY_RESOURCE_FAILURE,
-    errorMessages: data.errors
-  }
+  return parseError(data, DESTROY_RESOURCE_FAILURE)
 }
 
 export function destroyResourceSuccess(resourceType, resource) {
@@ -63,11 +73,7 @@ export function destroyResourceSuccess(resourceType, resource) {
 }
 
 export function editResourceFailure(data) {
-  //console.log("TESTING IN FAILURE" + JSON.stringify(data))
-  return {
-    type: EDIT_RESOURCE_FAILURE,
-    errorMessages: data.errors
-  }
+  return parseError(data, EDIT_RESOURCE_FAILURE)
 }
 
 export function editResourceSuccess(resourceType, resource) {

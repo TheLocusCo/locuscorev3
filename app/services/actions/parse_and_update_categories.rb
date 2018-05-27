@@ -4,6 +4,7 @@ module Actions
     expects :params, :main_object
     promises :params, :main_object
 
+    # errors for invalid categories are caught in application controller
     executed do |context|
       next context if !context.params.key?(:categories) || context.params[:categories].empty?
 
