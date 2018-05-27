@@ -5,8 +5,6 @@
 ### Stuff to implement
 * Handle 500 errors on api for forms
 * Code Browser (using github)
-* Current Events for the current User
-    * Viewable only in the profile
 * Polling / Caching for fetches to API
 * params update pagination so pagination is remembered from external visits
 * SceneJS?

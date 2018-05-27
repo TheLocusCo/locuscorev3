@@ -1,4 +1,5 @@
 import {createSelector} from 'reselect'
+import _ from 'lodash'
 
 export const getVisit = state => state.visit.content
 
@@ -13,7 +14,15 @@ export const getVisitEvents = createSelector(
   }
 )
 
-export const getVisitEventDays = state => state.visit.content.event_days
+export const getVisitEventDays = createSelector(
+  getVisit,
+  visit => {
+    // ensure dates are sorted on the frontend
+    return _.sortBy(
+      visit.event_days, function(o) { return Date.parse(o) }
+    )
+  }
+)
 
 export const getVisitEventLinks = state => state.visit.content.event_links
 
