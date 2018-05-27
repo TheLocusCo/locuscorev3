@@ -11,6 +11,11 @@ class Ahoy::Event < ApplicationRecord
       .where("ahoy_visits.ip = ? AND ahoy_visits.id != ?", ip, visit_id)
   end
 
+  def self.events_for_user(visit_id, user_id)
+    joins(:visit)
+      .where("ahoy_visits.id != ? AND ahoy_visits.user_id = ?", visit_id, user_id)
+  end
+
   def self.events_not_for_ip_and_visit_without_users(ip, visit_id)
     joins(:visit)
       .where("ahoy_visits.ip != ? AND ahoy_visits.id != ? AND ahoy_visits.user_id IS NULL", ip, visit_id)
@@ -23,9 +28,22 @@ class Ahoy::Event < ApplicationRecord
       .uniq
   end
 
+  def self.uniq_events_days_for_user(user_id)
+    joins(:visit)
+      .where("ahoy_visits.user_id = ?", user_id).order("time ASC")
+      .events_days
+      .uniq
+  end
+
   def self.top_x_url_visits_for_ip(x, ip)
     joins(:visit)
       .where("ahoy_visits.ip = ?", ip).order("time DESC")
+      .top_x_url_visits(x)
+  end
+
+  def self.top_x_url_visits_for_user(x, user_id)
+    joins(:visit)
+      .where("ahoy_visits.user_id = ?", user_id).order("time DESC")
       .top_x_url_visits(x)
   end
 

@@ -56,6 +56,7 @@ class Ability
 
       can :read, User, id: user.id
       can :edit_update, User, id: user.id
+      can :activity, User, id: user.id
       can :read, Role, id: user.role_id
       can :read, Resume
       cannot :edit_update, :user, [:failed_attempts, :locked_at]
@@ -73,6 +74,7 @@ class Ability
       unless user.role_id.nil?
         can(:create_new, User) if user.role.pf_users.include?('c')
         can(:read, User) if user.role.pf_users.include?('r')
+        can(:activity, User) if user.role.pf_users.include?('r')
         can(:edit_update, User) if user.role.pf_users.include?('u')
         can(:destroy, User) if user.role.pf_users.include?('d')
 

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import LightBoxVisitContent from '../../components/LightBoxVisitContent'
 import { connect } from "react-redux"
 import { Route } from 'react-router-dom'
+
 import SuccessBlock from '../SuccessBlock'
 import LightBoxErrorPage from '../../components/LightBoxErrorPage'
-
+import LightBoxVisitContent from '../../components/LightBoxVisitContent'
 import { fetchResource } from "../../redux/actions"
 
 import ThemedDashboard from '../ThemedDashboard'

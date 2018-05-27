@@ -1,5 +1,9 @@
 import * as helpers from './helpers.js'
 
+export function userActivityFetch(id) {
+  return fetch(`${helpers.fetchAPIURL()}/authed/users/${id}/activity`, helpers.genericAuthedGet())
+}
+
 export function userAuth() {
   return fetch(`${helpers.fetchAPIURL()}/auth/validate_token`, helpers.genericAuthedGet())
 }

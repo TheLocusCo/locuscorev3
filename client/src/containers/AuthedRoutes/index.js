@@ -130,6 +130,7 @@ class AuthedRoutes extends Component {
             <Route path="/admin">
               <AdminIndex currentUser={this.props.currentUser}/>
             </Route>
+            <Route exact path="/users/:id/activity" component={EmptyPage}/>
             <Route path="/users" component={Users}/>
             <Route path="/resumes" component={Resumes}/>
             <Route path="/roles" component={Roles}/>

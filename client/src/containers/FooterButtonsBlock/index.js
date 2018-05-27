@@ -10,7 +10,9 @@ import { deleteEditItem, deleteNewItem } from "../../redux/actions"
 // Update footer based on current path
 class FooterButtonsBlock extends Component {
   isShow() {
-    return (Number.isInteger(parseInt(this.props.location.pathname.split("/").reverse()[0], 10)))
+    return (
+      Number.isInteger(parseInt(this.props.location.pathname.split("/").reverse()[0], 10))
+    )
   }
 
   isEdit() {
@@ -18,7 +20,14 @@ class FooterButtonsBlock extends Component {
   }
 
   isNew() {
-    return (this.props.location.pathname.includes("comments") || this.props.location.pathname.split("/").reverse()[0] === 'new')
+    return (
+      this.props.location.pathname.includes("comments") ||
+      this.props.location.pathname.split("/").reverse()[0] === 'new'
+    )
+  }
+
+  isUserShow() {
+    return (this.props.location.pathname.includes("users") && this.isShow())
   }
 
   getId(index) {
@@ -38,7 +47,11 @@ class FooterButtonsBlock extends Component {
   renderCreateButton(props, history) {
     if(props.userRole["pf_" + props.widgetType[1]].includes("c")) {
       return(
-        <div className="button" onClick={() => {this.pushHistoryAndClearNew(history, ("/" + props.widgetType[1] + "/new"))}}>
+        <div
+          className="button"
+          onClick={() => {this.pushHistoryAndClearNew(
+            history, `/${props.widgetType[1]}/new`
+          )}}>
           <i className="icon-publish" />
           Create a New {humanize(props.widgetType[0])}
         </div>
@@ -49,7 +62,12 @@ class FooterButtonsBlock extends Component {
   renderShowButton(props, history) {
     if(props.userRole["pf_" + props.widgetType[1]].includes("r")) {
       return(
-        <div className="button" onClick={() => {history.push("/" + props.widgetType[1] + "/" + this.getId(1))}}>
+        <div
+          className="button"
+          onClick={() => {history.push(
+            `/${props.widgetType[1]}/${this.getId(1)}`
+          )}}
+        >
           <i className="icon-eye" />
           Look at this {humanize(props.widgetType[0])}
         </div>
@@ -60,7 +78,12 @@ class FooterButtonsBlock extends Component {
   renderEditButton(props, history) {
     if(props.userRole["pf_" + props.widgetType[1]].includes("u")) {
       return(
-        <div className="button" onClick={() => {this.pushHistoryAndClearEdit(history, ("/" + props.widgetType[1] + "/" + this.getId(0) + "/edit"))}}>
+        <div
+          className="button"
+          onClick={() => {this.pushHistoryAndClearEdit(
+            history, `/${props.widgetType[1]}/${this.getId(0)}/edit`
+          )}}
+        >
           <i className="icon-pencil" />
           Edit this {humanize(props.widgetType[0])}
         </div>
@@ -84,6 +107,20 @@ class FooterButtonsBlock extends Component {
     }
   }
 
+  renderActivityButton(props, history) {
+    return(
+      <div
+        className="button"
+        onClick={() => {history.push(
+          `/${props.widgetType[1]}/${this.getId(0)}/activity`
+        )}}
+      >
+        <i className="icon-chart-bar" />
+        View this {humanize(props.widgetType[0])}'s Activity
+      </div>
+    )
+  }
+
   render() {
     return (
       <Route render={({history}) => (
@@ -93,6 +130,7 @@ class FooterButtonsBlock extends Component {
           {this.isShow() && this.renderEditButton(this.props, history)}
           {this.isShow() && this.renderDestroyButton(this.props, history)}
           {this.isEdit() && this.renderDestroyButton(this.props, history)}
+          {this.isUserShow() && this.renderActivityButton(this.props, history)}
         </div>
       )}/>
     )

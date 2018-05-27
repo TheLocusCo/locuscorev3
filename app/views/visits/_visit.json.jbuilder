@@ -1,14 +1,13 @@
 if defined?(anon).nil?
-  json.id 0
-  json.ip visit.ip
-else
   json.merge! visit.attributes
   json.parsed_start_at visit.started_at.strftime("%B %d (%H:%M %P), %Y")
   json.parsed_user visit.try(:user).try(:name)
+else
+  json.id 0
+  json.ip visit.ip
 end
 
 if defined?(index).nil?
-  # json.media graphic.media_with_urls
   json.events do
     json.array! visit.events, partial: 'events/event', as: :event, locals: {no_metadata: true}
   end
@@ -24,7 +23,7 @@ if defined?(index).nil?
   json.event_links @event_links
 end
 
-unless defined?(anon).nil?
+if defined?(anon).nil?
   json.href "/visits/#{visit.id}"
   json.meta_title "Visit at #{visit.started_at.strftime("%B %d (%H:%M %P), %Y")}"
   json.field_meta Visit.map_field_metadata

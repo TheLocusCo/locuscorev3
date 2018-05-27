@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
   before_action :authenticate_user!
-  before_action :set_user, only: %i(edit show update destroy)
+  before_action :set_user, only: %i(edit show update destroy activity)
 
   # GET /users
   # GET /users.json
@@ -12,6 +12,14 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+  end
+
+  def activity
+    @visit = Ahoy::Visit.order("started_at DESC").where(user_id: @user.id).first
+    @ip_events = [] # All events that could be here would show up in the next var...
+    @user_events = Ahoy::Event.events_for_user(@visit.id, @user.id)
+    @event_days = Ahoy::Event.uniq_events_days_for_user(@user.id)
+    @event_links = Ahoy::Event.top_x_url_visits_for_user(15, @user.id)
   end
 
   def new

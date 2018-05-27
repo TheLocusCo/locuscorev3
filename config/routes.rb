@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     get 'users/new', to: 'users#new'
     resources :users, defaults: { format: 'json' }
     get 'users/:id/edit', to: 'users#edit'
+    get 'users/:id/activity', to: 'users#activity'
 
     get 'roles/new', to: 'roles#new'
     resources :roles, defaults: { format: 'json' }

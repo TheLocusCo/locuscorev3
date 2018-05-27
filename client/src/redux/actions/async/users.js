@@ -2,6 +2,8 @@ import * as http from "../http"
 import * as sync from "../sync"
 import * as helpers from "../helpers"
 
+import { receiveResource } from "./resources.js"
+
 export const RECEIVE_USER_NOTIFICATIONS = 'RECEIVE_USER_NOTIFICATIONS'
 
 export function dismissUserNotification(notification, userId) {
@@ -15,6 +17,22 @@ export function dismissUserNotification(notification, userId) {
         dispatch(sync.dismissUserNotification(response.data.id))
       } else if (Object.keys(response).includes("error")) {
         dispatch(sync.errorMessageAsObject(response))
+      }
+    })
+  }
+}
+
+export function fetchUserActivity(id) {
+  return dispatch => {
+    dispatch(sync.requestShowItem())
+    http.userActivityFetch(id).then(
+      response => response.json()
+    ).then(response => {
+      if (Object.keys(response).includes("data") && Object.keys(response.data).includes("id")) {
+        dispatch(receiveResource('visit', response))
+      } else {
+        dispatch(sync.errorMessageAsObject(response))
+        dispatch(receiveResource('visit', {data: {}}))
       }
     })
   }

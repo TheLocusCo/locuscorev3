@@ -1,3 +1,3 @@
 json.data do
-  json.partial! "visits/visit", visit: @visit, locals: {anon: true}
+  json.partial! "visits/visit", visit: @visit, anon: true
 end

@@ -24,6 +24,7 @@ const LightBoxVisit = asyncComponent(() => import("../LightBoxVisit"))
 
 const LightBoxSearch = asyncComponent(() => import("../LightBoxSearch"))
 const LightBoxSiteStats = asyncComponent(() => import("../LightBoxSiteStats"))
+const LightBoxUserActivity = asyncComponent(() => import("../LightBoxUserActivity"))
 
 class AuthedLightBox extends Component {
   render() {
@@ -79,6 +80,9 @@ class AuthedLightBox extends Component {
             </Route>
             <Route exact path="/users/:id/edit">
               <LightBoxEditResource locationToPush="/users" location={location}/>
+            </Route>
+            <Route exact path="/users/:id/activity">
+              <LightBoxUserActivity location={location}/>
             </Route>
 
             <Route exact path="/resumes/new">
