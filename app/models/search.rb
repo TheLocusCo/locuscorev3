@@ -100,7 +100,7 @@ class Search
 
     if ability.can? :read, Visit
       shash[:visits] = {icon: 'network'}
-      shash[:visits][:ip]                   = {icon: 'signal',    type: s, logical: 'Search visits by their ip',                            nested_action: {select_from: 'Visit.pluck(:ip).uniq.sort'}}
+      shash[:visits][:ip]                   = {icon: 'signal',    type: s, logical: 'Search visits by their ip',                            nested_action: {select_from: 'Visit.pluck(:ip).uniq.sort', search_type: 'basic'}}
       shash[:visits][:top_visit_ipv4]       = {icon: 'signal',    type: s, logical: 'Search visits by their first two parts in ipv4',       nested_action: {select_from: "z = []; Visit.pluck(:ip).each {|s| z << \"\#{s.split('.').at(0)}.\#{s.split('.').at(1)}\" }; z.uniq.sort", overriding: 'ip', search_type: 'fuzzy'}}
       shash[:visits][:top_visit_ipv6]       = {icon: 'signal',    type: s, logical: 'Search visits by their first two parts in ipv6',       nested_action: {select_from: "z = []; Visit.pluck(:ip).each {|s| z << \"\#{s.split(':').at(0)}.\#{s.split(':').at(1)}\" }; z.uniq.sort", overriding: 'ip', search_type: 'fuzzy'}}
       shash[:visits][:active]               = {icon: 'eye',       type: h, logical: 'Search visits by if they are currently active',        nested_action: {embedded: '.eager_load(:events).where("ahoy_events.time > ?", 1.hour.ago)'}}
@@ -108,7 +108,7 @@ class Search
       shash[:visits][:logged_in_this_week]  = {icon: 'calendar',  type: h, logical: 'Search visits by if they connected in this week',      nested_action: {embedded: '.where("started_at > ?", Date.today.beginning_of_week)'}}
       shash[:visits][:logged_in_this_month] = {icon: 'calendar',  type: h, logical: 'Search visits by if they connected in this month',     nested_action: {embedded: '.where("started_at > ?", Date.today.beginning_of_month)'}}
       shash[:visits][:logged_in_from]       = {icon: 'calendar',  type: d, logical: 'Search visits by if they connected from a date range', nested_action: {select_from: {earliest: 'Visit.pluck(:started_at).min', latest: 'Visit.pluck(:started_at).max'}}}
-      shash[:visits][:referers]             = {icon: 'direction', type: s, logical: 'Search visits by what site has referred them',         nested_action: {select_from: 'Visit.where("referring_domain IS NOT NULL").pluck(:referring_domain).uniq'}}
+      shash[:visits][:referring_domain]     = {icon: 'direction', type: s, logical: 'Search visits by what site has referred them',         nested_action: {select_from: 'Visit.where("referring_domain IS NOT NULL").pluck(:referring_domain).uniq'}}
       shash[:visits][:country]              = {icon: 'globe',     type: s, logical: 'Search visits by their country',                       nested_action: {select_from: 'Visit.where("country IS NOT NULL").pluck(:country).uniq'}}
       shash[:visits][:region]               = {icon: 'globe',     type: s, logical: 'Search visits by their region (state)',                nested_action: {select_from: 'Visit.where("region IS NOT NULL").pluck(:region).uniq'}}
       shash[:visits][:city]                 = {icon: 'globe',     type: s, logical: 'Search visits by their city',                          nested_action: {select_from: 'Visit.where("city IS NOT NULL").pluck(:city).uniq'}}
