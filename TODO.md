@@ -16,7 +16,7 @@
 * Cleanup old media files when media is changed / deleted
 * Notifications putting entries into notifications seen by users table so users can't overwrite seen notifications
 * Graph view for Visit search
-* Highlight correct column for site stats
+* Clear state between visits to fix overlapping columns issue? (notable in searches)
 
 #### Stuff to nearly never implement
 * Scroll to top button
@@ -25,12 +25,10 @@
 
 ### Stuff to do
 * Blog post about multiselect onCreate
-* Blog post about elixir ecto many_to_many row creation / management
 * Blog post about disillusionment with jQuery
 * Blog post about elixir niche with few libraries
 * Blog post about using rails with prawn as a microservice in elixir
 * Blog post about engineers building a thing and losing interest because the "hard" parts are solved
-* Blog post about there and back again (rails -> phoenix -> rails)
 * Blog post about code splitting saving significant time
 * Add info about create-react-app to on new things part 1 / 2
 

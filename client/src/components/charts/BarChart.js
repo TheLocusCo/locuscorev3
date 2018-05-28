@@ -6,7 +6,7 @@ import _ from 'lodash'
 
 import Tooltip from '../Tooltip'
 import withD3Renderer from '../../hocs/withD3Renderer'
-import { humanizeGraphNames } from '../../utils/string'
+import { humanizeGraphNames, barClass } from '../../utils/string'
 
 const d3 = {
   ...require('d3-shape'),
@@ -20,9 +20,20 @@ const d3 = {
 const {arrayOf, string, number, func, object} = PropTypes
 const LOADING = 'loading...'
 
+const generateHoverCss = col =>
+  `
+  .data-${col} {
+    opacity: 1 !important;
+    -webkit-transition: opacity .2s ease-in;
+  }
+`
+
 const Wrapper = styled.div`
   position: relative;
   display: inline-block;
+  ${({hover}) => hover && Object.values(hover)[0].map(col => {
+    return generateHoverCss(barClass(col))
+  })}
   .tooltip {
     visibility: ${({hover}) => (hover ? 'visible' : 'hidden')};
     -webkit-transition: top .2s ease-out, left .2s ease-out;
@@ -174,7 +185,7 @@ class BarChart extends React.Component {
     rect = rect
       .enter()
       .append('rect')
-      .attr('class', d => `data data-${d.data.x}`)
+      .attr('class', d => `data data-${barClass(d.data.x)}`)
       .attr('x', d => x(d.data.x))
       .attr('y', graphHeight)
       .attr('width', x.bandwidth())

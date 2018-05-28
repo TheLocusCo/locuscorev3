@@ -12,6 +12,7 @@ import AutoFilterPieChart from '../../containers/WrappedAllEventsPieChart'
 //import WrappedScatterPlot from '../../containers/WrappedScatterPlot'
 //import DemoChat from '../../containers/DemoChat'
 import withMeasure from '../../hocs/withMeasure'
+import { barClass } from '../../utils/string'
 
 const {object, func, arrayOf} = PropTypes
 const GridLayout = WidthProvider(ReactGridLayout)
@@ -30,14 +31,6 @@ const generateDataGroupCSS = colors => {
     ''
   )
 }
-
-const generateHoverCss = visit =>
-  `
-  .data-${visit} {
-    opacity: 1;
-    -webkit-transition: opacity .2s ease-in;
-  }
-`
 
 const Grid = styled(GridLayout)`
   .axis text {
@@ -60,7 +53,6 @@ const Grid = styled(GridLayout)`
     opacity: ${({hover}) => (hover ? 0.25 : 1)};
     -webkit-transition: opacity .2s ease-in;
   }
-  ${({hover}) => hover && Object.values(hover)[0].map(visit => generateHoverCss(visit))}
   .tooltip {
     position: absolute;
     z-index: 100000;
@@ -77,7 +69,7 @@ const Grid = styled(GridLayout)`
 class EventDashboard extends React.Component {
   static propTypes = {
     colors: object,
-    hover: arrayOf(object),
+    hover: object,
     incrementRenderCount: func
   }
 

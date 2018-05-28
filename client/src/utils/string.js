@@ -1,7 +1,3 @@
-export const humanize = str => {
-  return (str.charAt(0).toUpperCase() + str.slice(1).replace(/_/gi, ' '))
-}
-
 export const actualThemeName = str => {
   switch (str) {
     case 'default':
@@ -9,6 +5,14 @@ export const actualThemeName = str => {
     default:
       return humanize(`${str} Theme`)
   }
+}
+
+export const barClass = str => {
+  return (str.replace(/\//gi, ''))
+}
+
+export const humanize = str => {
+  return (str.charAt(0).toUpperCase() + str.slice(1).replace(/_/gi, ' '))
 }
 
 export const humanizeGraphNames = (str, customMaps) => {
