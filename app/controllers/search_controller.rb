@@ -80,7 +80,11 @@ class SearchController < ApplicationController
       end
     end
 
-    query_string << ".order('created_at DESC')" unless params[:order]
+    if @search_results[:model] == 'visits'
+      query_string << ".order('started_at DESC')" unless params[:order]
+    else
+      query_string << ".order('created_at DESC')" unless params[:order]
+    end
 
     @search_results[:initial_results] = prepared_model.constantize.class_eval(query_string)
 

@@ -30,7 +30,7 @@ class Contact extends Component {
             </div>
             <div className="row">
               <div className="span6">
-                <p>Agnew Road and Harrigan Drive</p>
+                <p>Southwest Fort Worth</p>
               </div>
               <div className="span6">
                 <p>
@@ -42,7 +42,7 @@ class Contact extends Component {
             </div>
             <div className="row">
               <div className="span6">
-                <p>Santa Clara, California 95054</p>
+                <p>Fort Worth, Texas 76126</p>
               </div>
               <div className="span6">
               <p>

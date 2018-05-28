@@ -1004,6 +1004,7 @@ table {
   box-shadow: 0 1px 10px rgba(0,0,0,0.4);
   border-collapse: collapse;
   border-spacing: 0;
+  transition: all 0.15s;
 }
 
 table tr {

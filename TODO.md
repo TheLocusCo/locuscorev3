@@ -15,6 +15,7 @@
     * Infinite scroll to prevent lots of loading?
 * Cleanup old media files when media is changed / deleted
 * Notifications putting entries into notifications seen by users table so users can't overwrite seen notifications
+* Graph view for Visit search
 
 #### Stuff to nearly never implement
 * Scroll to top button

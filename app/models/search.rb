@@ -98,20 +98,28 @@ class Search
     shash[:projects][:with_fancy] = {icon: 'window',   type: p, logical: 'Use the fancy projects gallery',            nested_action: {params: {fancyDisplay: true}}} unless user.id.nil?
     shash[:projects][:order]      = {icon: 'menu',     type: o, logical: 'Change the order of the search results',    nested_action: {select_from: ["name DESC", "name ASC", "created_at ASC"]}}
 
-    #if ability.can? :read, Request
-    #  shash[:requests] = {icon: 'network'}
-    #  shash[:requests][:value]                = {icon: 'signal',    type: s, logical: 'Search requests by their ip',                            nested_action: {select_from: 'Request.pluck(:value).sort'}}
-    #  shash[:requests][:top_value_ipv4]       = {icon: 'signal',    type: s, logical: 'Search requests by their first two parts in ipv4',       nested_action: {select_from: "z = []; Request.pluck(:value).each {|s| z << \"\#{s.split('.').at(0)}.\#{s.split('.').at(1)}\" }; z.uniq.sort", overriding: 'value', search_type: 'fuzzy'}}
-    #  shash[:requests][:top_value_ipv6]       = {icon: 'signal',    type: s, logical: 'Search requests by their first two parts in ipv6',       nested_action: {select_from: "z = []; Request.pluck(:value).each {|s| z << \"\#{s.split(':').at(0)}.\#{s.split(':').at(1)}\" }; z.uniq.sort", overriding: 'value', search_type: 'fuzzy'}}
-    #  shash[:requests][:active]               = {icon: 'eye',       type: h, logical: 'Search requests by if they are currently active',        nested_action: {embedded: '.where("updated_at > ?", 1.hour.ago)'}}
-    #  shash[:requests][:logged_in_this_day]   = {icon: 'calendar',  type: h, logical: 'Search requests by if they connected today',             nested_action: {embedded: '.where("updated_at > ?", Date.today.beginning_of_day)'}}
-    #  shash[:requests][:logged_in_this_week]  = {icon: 'calendar',  type: h, logical: 'Search requests by if they connected in this week',      nested_action: {embedded: '.where("updated_at > ?", Date.today.beginning_of_week)'}}
-    #  shash[:requests][:logged_in_this_month] = {icon: 'calendar',  type: h, logical: 'Search requests by if they connected in this month',     nested_action: {embedded: '.where("updated_at > ?", Date.today.beginning_of_month)'}}
-    #  #shash[:requests][:more_than_once]      = {icon: 'calendar',  type: h, logical: 'Search requests by if they connected more than one day', nested_action: {select_from: 'Request.get_uniq_array_of_dates("created_at")', overriding: 'updated_at'}}
-    #  shash[:requests][:logged_in_from]       = {icon: 'calendar',  type: d, logical: 'Search requests by if they connected from a date range', nested_action: {select_from: 'Request.get_uniq_array_of_dates("created_at")', overriding: 'updated_at'}}
-    #  shash[:requests][:referers]             = {icon: 'direction', type: s, logical: 'Search requests by what has referred them',              nested_action: {select_from: 'Request.get_uniq_array_of_hashed_data("referers")'}}
-    #  shash[:requests][:with_fullscreen]      = {icon: 'window',    type: p, logical: 'Search requests by including fullscreen',                nested_action: {params: {fullscreen: true}}}
-    #end
+    if ability.can? :read, Visit
+      shash[:visits] = {icon: 'network'}
+      shash[:visits][:ip]                   = {icon: 'signal',    type: s, logical: 'Search visits by their ip',                            nested_action: {select_from: 'Visit.pluck(:ip).uniq.sort'}}
+      shash[:visits][:top_visit_ipv4]       = {icon: 'signal',    type: s, logical: 'Search visits by their first two parts in ipv4',       nested_action: {select_from: "z = []; Visit.pluck(:ip).each {|s| z << \"\#{s.split('.').at(0)}.\#{s.split('.').at(1)}\" }; z.uniq.sort", overriding: 'ip', search_type: 'fuzzy'}}
+      shash[:visits][:top_visit_ipv6]       = {icon: 'signal',    type: s, logical: 'Search visits by their first two parts in ipv6',       nested_action: {select_from: "z = []; Visit.pluck(:ip).each {|s| z << \"\#{s.split(':').at(0)}.\#{s.split(':').at(1)}\" }; z.uniq.sort", overriding: 'ip', search_type: 'fuzzy'}}
+      shash[:visits][:active]               = {icon: 'eye',       type: h, logical: 'Search visits by if they are currently active',        nested_action: {embedded: '.eager_load(:events).where("ahoy_events.time > ?", 1.hour.ago)'}}
+      shash[:visits][:logged_in_this_day]   = {icon: 'calendar',  type: h, logical: 'Search visits by if they connected today',             nested_action: {embedded: '.where("started_at > ?", Date.today.beginning_of_day)'}}
+      shash[:visits][:logged_in_this_week]  = {icon: 'calendar',  type: h, logical: 'Search visits by if they connected in this week',      nested_action: {embedded: '.where("started_at > ?", Date.today.beginning_of_week)'}}
+      shash[:visits][:logged_in_this_month] = {icon: 'calendar',  type: h, logical: 'Search visits by if they connected in this month',     nested_action: {embedded: '.where("started_at > ?", Date.today.beginning_of_month)'}}
+      shash[:visits][:logged_in_from]       = {icon: 'calendar',  type: d, logical: 'Search visits by if they connected from a date range', nested_action: {select_from: {earliest: 'Visit.pluck(:started_at).min', latest: 'Visit.pluck(:started_at).max'}}}
+      shash[:visits][:referers]             = {icon: 'direction', type: s, logical: 'Search visits by what site has referred them',         nested_action: {select_from: 'Visit.where("referring_domain IS NOT NULL").pluck(:referring_domain).uniq'}}
+      shash[:visits][:country]              = {icon: 'globe',     type: s, logical: 'Search visits by their country',                       nested_action: {select_from: 'Visit.where("country IS NOT NULL").pluck(:country).uniq'}}
+      shash[:visits][:region]               = {icon: 'globe',     type: s, logical: 'Search visits by their region (state)',                nested_action: {select_from: 'Visit.where("region IS NOT NULL").pluck(:region).uniq'}}
+      shash[:visits][:city]                 = {icon: 'globe',     type: s, logical: 'Search visits by their city',                          nested_action: {select_from: 'Visit.where("city IS NOT NULL").pluck(:city).uniq'}}
+      shash[:visits][:landing_page]         = {icon: 'location',  type: s, logical: 'Search visits by where they hit the site',             nested_action: {select_from: 'Visit.where("landing_page IS NOT NULL").pluck(:landing_page).uniq'}}
+      shash[:visits][:browser]              = {icon: 'doc-landscape', type: s, logical: 'Search visits by their browser',                   nested_action: {select_from: 'Visit.pluck(:browser).uniq'}}
+      shash[:visits][:os]                   = {icon: 'drive',     type: s, logical: 'Search visits by their operating system',              nested_action: {select_from: 'Visit.pluck(:os).uniq'}}
+      shash[:visits][:user_agent]           = {icon: 'mobile',    type: s, logical: 'Search visits by their user agent',                    nested_action: {select_from: 'Visit.pluck(:user_agent).uniq'}}
+      shash[:visits][:user]                 = {icon: 'user',      type: s, logical: 'Search visits by if they have a user attached',        nested_action: {select_from: 'User.joins(:visits).where("user_id IS NOT NULL").pluck(:name).uniq.sort', join_on: {name: :user, field: :name}}}
+      shash[:visits][:order]                = {icon: 'menu',      type: o, logical: 'Change the order of the search results',               nested_action: {select_from: ["ip DESC", "ip ASC", "started_at ASC"]}}
+      # shash[:visits][:with_fullscreen]      = {icon: 'chart-bar', type: p, logical: 'View the results in chart form',                 nested_action: {params: {fancyDisplay: true}}}
+    end
 
     if ability.can? :create, Resume
       shash[:resumes] = {icon: 'newspaper'}
