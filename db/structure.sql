@@ -1305,6 +1305,69 @@ ALTER TABLE ONLY users
 
 
 --
+-- Name: ahoy_visits_to_tsvector_idx; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ahoy_visits_to_tsvector_idx ON ahoy_visits USING gin (to_tsvector('english'::regconfig, (ip)::text));
+
+
+--
+-- Name: ahoy_visits_to_tsvector_idx1; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ahoy_visits_to_tsvector_idx1 ON ahoy_visits USING gin (to_tsvector('english'::regconfig, (referring_domain)::text));
+
+
+--
+-- Name: ahoy_visits_to_tsvector_idx2; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ahoy_visits_to_tsvector_idx2 ON ahoy_visits USING gin (to_tsvector('english'::regconfig, (country)::text));
+
+
+--
+-- Name: ahoy_visits_to_tsvector_idx3; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ahoy_visits_to_tsvector_idx3 ON ahoy_visits USING gin (to_tsvector('english'::regconfig, (region)::text));
+
+
+--
+-- Name: ahoy_visits_to_tsvector_idx4; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ahoy_visits_to_tsvector_idx4 ON ahoy_visits USING gin (to_tsvector('english'::regconfig, (city)::text));
+
+
+--
+-- Name: ahoy_visits_to_tsvector_idx5; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ahoy_visits_to_tsvector_idx5 ON ahoy_visits USING gin (to_tsvector('english'::regconfig, landing_page));
+
+
+--
+-- Name: ahoy_visits_to_tsvector_idx6; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ahoy_visits_to_tsvector_idx6 ON ahoy_visits USING gin (to_tsvector('english'::regconfig, (browser)::text));
+
+
+--
+-- Name: ahoy_visits_to_tsvector_idx7; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ahoy_visits_to_tsvector_idx7 ON ahoy_visits USING gin (to_tsvector('english'::regconfig, (os)::text));
+
+
+--
+-- Name: ahoy_visits_to_tsvector_idx8; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ahoy_visits_to_tsvector_idx8 ON ahoy_visits USING gin (to_tsvector('english'::regconfig, user_agent));
+
+
+--
 -- Name: categories_name_index; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1648,6 +1711,13 @@ CREATE INDEX trgm_users_username_indx ON users USING gist (username gist_trgm_op
 
 
 --
+-- Name: trgm_visits_ip_indx; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX trgm_visits_ip_indx ON ahoy_visits USING gist (ip gist_trgm_ops);
+
+
+--
 -- Name: users_email_index; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1903,6 +1973,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 (20180325235245),
 (20180326005341),
 (20180329212329),
-(20180408073426);
+(20180408073426),
+(20180528041419);
 
 
