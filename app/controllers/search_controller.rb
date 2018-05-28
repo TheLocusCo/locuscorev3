@@ -91,7 +91,7 @@ class SearchController < ApplicationController
     if @search_results[:params][:fancyDisplay]
       @search_results[:results] = @search_results[:initial_results]
     else
-      @search_results[:results] = @search_results[:initial_results].dup.fetch_ordered_by_page_for_search(params[:page])
+      @search_results[:results] = @search_results[:initial_results].dup.fetch_ordered_by_page_for_search(params[:page], "#{prepared_model.constantize::DEFAULT_PAGINATION_COLUMN} DESC")
     end
 
     if params[:order]

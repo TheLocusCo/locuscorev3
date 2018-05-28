@@ -16,6 +16,7 @@
 * Cleanup old media files when media is changed / deleted
 * Notifications putting entries into notifications seen by users table so users can't overwrite seen notifications
 * Graph view for Visit search
+* Highlight correct column for site stats
 
 #### Stuff to nearly never implement
 * Scroll to top button
