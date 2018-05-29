@@ -28,7 +28,9 @@ class AuthedNavigation extends Component {
     return (
       <div className="main-navigation">
         <Link to="/search" className="search-link" />
-        <a href={`${this.props.apiUrl}/api/posts.rss`} className="blog-rss-link" target="_blank" />
+        <a href={`${this.props.apiUrl}/api/posts.rss`} className="blog-rss-link" target="_blank">
+          <i className="icon-rss" />
+        </a>
         <ul className="not-standard">
           { this.renderList(this.props) }
         </ul>

@@ -718,10 +718,6 @@ form .form-button {
   content: "\1f50d";
 }
 
-.blog-rss-link::before {
-  content: "\e73a";
-}
-
 .search-link:hover, .blog-rss-link {
   color: #9b9b9b;
   text-decoration:none;
