@@ -24,7 +24,7 @@ class Navigation extends Component {
       <div className="main-navigation">
         <Link to="/search" className="search-link" />
         <a href={`${this.props.apiUrl}/api/posts.rss`} className="blog-rss-link" target="_blank">
-          <i className="icon-rss" />
+          <i style={{top: '0px'}} className="icon-rss" />
         </a>
         <ul className="not-standard">
           { this.renderList(this.props) }

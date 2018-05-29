@@ -3,7 +3,6 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i(edit show destroy)
 
   def index
-    Rails.logger.info "TESTING::#{request.format}"
     if request.format.rss?
       @posts = Post.fetch_ordered
     else
