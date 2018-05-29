@@ -22,6 +22,7 @@ class Navigation extends Component {
     return (
       <div className="main-navigation">
         <Link to="/search" className="search-link" />
+        <Link to="/api/posts.rss" className="blog-rss-link" />
         <ul className="not-standard">
           { this.renderList(this.props) }
         </ul>

@@ -191,6 +191,7 @@ GEM
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    redcarpet (3.4.0)
     referer-parser (0.3.0)
     request_store (1.4.1)
       rack (>= 1.4)
@@ -260,6 +261,7 @@ DEPENDENCIES
   rails (~> 5.1.4)
   rails_12factor
   rake
+  redcarpet
   rest-client
   spring
   spring-watcher-listen (~> 2.0.0)

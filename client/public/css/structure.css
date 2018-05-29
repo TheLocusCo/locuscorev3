@@ -686,15 +686,15 @@ form .form-button {
   margin-bottom: -1px;
 }
 
-.search-link {
+.search-link, .blog-rss-link {
   width: 30px;
   height: 30px;
   position: absolute;
-  top: 5px;
-  left: 0;
+  top: 0px;
   text-align: center;
   font-size: 30px;
-  line-height: 20px;
+  line-height: 28px;
+  z-index: 1;
   font-family: Entypo;
   color: #bbb;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
@@ -706,11 +706,23 @@ form .form-button {
   transition: color 0.05s;
 }
 
+.search-link {
+  left: 0;
+}
+
+.blog-rss-link {
+  right: 0;
+}
+
 .search-link::before {
   content: "\1f50d";
 }
 
-.search-link:hover {
+.blog-rss-link::before {
+  content: "\e73a";
+}
+
+.search-link:hover, .blog-rss-link {
   color: #9b9b9b;
   text-decoration:none;
 }
