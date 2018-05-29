@@ -18,7 +18,7 @@ class WebResume extends Component {
             <span className="helper" />
           </h2>
           <div style={ { marginBottom: "20px" } } className="centered">
-            <a className="button" href={this.props.resumeHost + "/api/primary_resume_download"}>
+            <a className="button" href={this.props.resumeHost + "/primary_resume_download"}>
               <i className="icon-download"/>
               Download My Two Page Resume
             </a>
