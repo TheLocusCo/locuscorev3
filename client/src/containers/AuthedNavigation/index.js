@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
 import './style.css'
 import NavigationButton from '../../components/NavigationButton'
-import { fetchRoleNavigation } from "../../redux/actions"
+import { fetchRoleNavigation, receiveAPIURL } from "../../redux/actions"
 
 class AuthedNavigation extends Component {
   componentDidMount() {
@@ -13,6 +13,7 @@ class AuthedNavigation extends Component {
       this.props.history.push("/")
     }
     this.props.dispatch(fetchRoleNavigation(this.props.currentUser))
+    this.props.dispatch(receiveAPIURL())
   }
 
   renderList(props) {
@@ -27,7 +28,7 @@ class AuthedNavigation extends Component {
     return (
       <div className="main-navigation">
         <Link to="/search" className="search-link" />
-        <Link to="/api/posts.rss" className="blog-rss-link" />
+        <a href={`${this.props.apiUrl}/api/posts.rss`} className="blog-rss-link" target="_blank" />
         <ul className="not-standard">
           { this.renderList(this.props) }
         </ul>
@@ -37,7 +38,8 @@ class AuthedNavigation extends Component {
 }
 
 const mapStateToProps = state => ({
-  authedNavigation: state.authedNavigation.items
+  authedNavigation: state.authedNavigation.items,
+  apiUrl: state.apiUrl.url,
 })
 
 export default connect(mapStateToProps)(withRouter(AuthedNavigation))

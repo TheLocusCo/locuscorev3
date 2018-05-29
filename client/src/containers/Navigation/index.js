@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom'
 import { connect } from "react-redux"
 import './style.css'
 import NavigationButton from '../../components/NavigationButton'
-import { fetchNavigation } from "../../redux/actions"
+import { fetchNavigation, receiveAPIURL } from "../../redux/actions"
 
 class Navigation extends Component {
   componentDidMount() {
     this.props.dispatch(fetchNavigation())
+    this.props.dispatch(receiveAPIURL())
   }
 
   renderList(props) {
@@ -22,7 +23,7 @@ class Navigation extends Component {
     return (
       <div className="main-navigation">
         <Link to="/search" className="search-link" />
-        <Link to="/api/posts.rss" className="blog-rss-link" />
+        <a href={`${this.props.apiUrl}/api/posts.rss`} className="blog-rss-link" target="_blank" />
         <ul className="not-standard">
           { this.renderList(this.props) }
         </ul>
@@ -32,7 +33,8 @@ class Navigation extends Component {
 }
 
 const mapStateToProps = state => ({
-  navigation: state.navigation.items
+  navigation: state.navigation.items,
+  apiUrl: state.apiUrl.url,
 })
 
 export default connect(mapStateToProps)(Navigation)
