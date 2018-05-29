@@ -24,16 +24,36 @@ class LightBoxShowMedium extends Component {
         <div className="ltbx-wrap" tabIndex="-1">
           <div className="ltbx-container">
             <div className={this.parseFullscreenClass(showAsFullscreen)}>
-                {isFetching && !object.id && <h1 className="section-heading larger">Loading...</h1>}
+                {isFetching && !object.id &&
+                  <h1 className="section-heading larger">Loading...</h1>
+                }
                 {errorContent.length > 0 &&
                   <LightBoxErrorPage errorContent={errorContent}/>
                 }
                 {object.id &&
                   <LightBoxShowMediumContent {...object} location={location}/>
                 }
-                <button onClick={() => history.push(locationToPush)} title="Close (Esc)" type="button" className="ltbx-close">×</button>
-                <button onClick={() => history.go(-1)} title="Go back to the previous page" type="button" className="ltbx-close ltbx-back"><i className="icon-back"/></button>
-                <button onClick={() => this.props.dispatch(toggleFullscreenLightBox())} title="Fullscreen" type="button" className="ltbx-fullscreen"><i className="icon-resize-full"></i></button>
+                <button
+                  onClick={() => history.push(locationToPush)}
+                  title="Close (Esc)"
+                  type="button"
+                  className="ltbx-close">
+                  ×
+                </button>
+                <button
+                  onClick={() => history.go(-1)}
+                  title="Go back to the previous page"
+                  type="button"
+                  className="ltbx-close ltbx-back">
+                  <i className="icon-back"/>
+                </button>
+                <button
+                  onClick={() => this.props.dispatch(toggleFullscreenLightBox())}
+                  title="Fullscreen"
+                  type="button"
+                  className="ltbx-fullscreen">
+                    <i className="icon-resize-full"/>
+                </button>
               </div>
             </div>
           <div className="ltbx-bg" onClick={() => history.push(locationToPush)} />

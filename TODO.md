@@ -3,8 +3,6 @@
     * https://www.andrewhfarmer.com/detect-image-load/
 
 ### Stuff to implement
-* Handle 500 errors on api for forms
-* Code Browser (using github)
 * Polling / Caching for fetches to API
 * params update pagination so pagination is remembered from external visits
 * SceneJS?
@@ -17,6 +15,7 @@
 * Notifications putting entries into notifications seen by users table so users can't overwrite seen notifications
 * Graph view for Visit search
 * Clear state between visits to fix overlapping columns issue? (notable in searches)
+* Test no lightbox for blog
 
 #### Stuff to nearly never implement
 * Scroll to top button

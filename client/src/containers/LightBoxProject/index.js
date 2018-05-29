@@ -30,9 +30,27 @@ class LightBoxProject extends Component {
                 <LightBoxProjectContent {...object} location={location}/>
               }
               {this.props.object.id &&
-                <LightBoxComments comments={object.comments} resourceType={object.field_meta.resource_type} resourceId={object.id} successContent={successContent}/>
+                <LightBoxComments
+                  comments={object.comments}
+                  resourceType={object.field_meta.resource_type}
+                  resourceId={object.id}
+                  successContent={successContent}
+                />
               }
-              <button onClick={() => history.push(locationToPush)} title="Close (Esc)" type="button" className="ltbx-close">×</button>
+              <button
+                onClick={() => history.go(-1)}
+                title="Go back to the previous page"
+                type="button"
+                className="ltbx-close ltbx-back">
+                <i className="icon-back"/>
+              </button>
+              <button
+                onClick={() => history.push(locationToPush)}
+                title="Close (Esc)"
+                type="button"
+                className="ltbx-close">
+                ×
+              </button>
             </div>
           </div>
           <div className="ltbx-bg" onClick={() => history.push(locationToPush)} />

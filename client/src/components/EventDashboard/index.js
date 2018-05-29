@@ -12,9 +12,8 @@ import AutoFilterPieChart from '../../containers/WrappedAllEventsPieChart'
 //import WrappedScatterPlot from '../../containers/WrappedScatterPlot'
 //import DemoChat from '../../containers/DemoChat'
 import withMeasure from '../../hocs/withMeasure'
-import { barClass } from '../../utils/string'
 
-const {object, func, arrayOf} = PropTypes
+const {object, func} = PropTypes
 const GridLayout = WidthProvider(ReactGridLayout)
 const dimensions = ['width', 'height']
 const MeasuredD2ECEventsBarChart = withMeasure(dimensions)(WrappedDaytoEventsCountBarChart)
