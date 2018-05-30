@@ -29,3 +29,4 @@ export const getVisitNameMappings = state => fromVisit.getVisitNameMappings(stat
 export const getHover = state => state.hover
 export const getRenderCount = state => state.renderCount
 export const getTick = state => state.tick
+export const getNavigation = state => state.navigation.items

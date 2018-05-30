@@ -7,6 +7,7 @@ import ahoy from 'ahoy.js'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import AuthedContainer from "../AuthedContainer"
+import MobileContainer from "../mobile/MobileContainer"
 import AuthedLightBoxContainer from "../AuthedLightBoxContainer"
 import NotificationsBlock from "../NotificationsBlock"
 
@@ -17,13 +18,37 @@ class App extends Component {
     this.props.dispatch(userAuth())
   }
 
+  renderContainer() {
+    if(window.innerWidth > 500) {
+      return (
+        <AuthedContainer
+          currentUser={this.props.currentUser}
+          location={this.props.location}
+        />
+      )
+    } else {
+      return (
+        <MobileContainer
+          currentUser={this.props.currentUser}
+          location={this.props.location}
+        />
+      )
+    }
+  }
+
   render() {
     return (
       <div className="main-wrapper">
+        {console.log("TESTING::" + window.innerWidth)}
         {ahoy.trackView()}
         {window.innerWidth > 980 &&
           <header className="header">
-            <ReactCSSTransitionGroup transitionName="slide-header" transitionAppearTimeout={3500} transitionEnterTimeout={2500} transitionLeaveTimeout={2500} transitionAppear={true}>
+            <ReactCSSTransitionGroup
+              transitionName="slide-header"
+              transitionAppearTimeout={3500}
+              transitionEnterTimeout={2500}
+              transitionLeaveTimeout={2500}
+              transitionAppear={true}>
               <div className="header-container">
                 <div className="header-top-left">
                   <div className="header-top-left-center" />
@@ -40,19 +65,36 @@ class App extends Component {
             </ReactCSSTransitionGroup>
           </header>
         }
-        <ReactCSSTransitionGroup transitionName="grow-right" transitionAppearTimeout={3500} transitionEnterTimeout={2500} transitionLeaveTimeout={2500} transitionAppear={true}>
-          <div className="left-background" />
-        </ReactCSSTransitionGroup>
-        <ReactCSSTransitionGroup transitionName="grow-left" transitionAppearTimeout={3500} transitionEnterTimeout={2500} transitionLeaveTimeout={2500} transitionAppear={true}>
-          <div className="right-background" />
-        </ReactCSSTransitionGroup>
-        <AuthedContainer currentUser={this.props.currentUser} location={this.props.location} />
+        {this.renderContainer()}
+        {window.innerWidth > 500 &&
+          <div>
+            <ReactCSSTransitionGroup
+              transitionName="grow-right"
+              transitionAppearTimeout={3500}
+              transitionEnterTimeout={2500}
+              transitionLeaveTimeout={2500}
+              transitionAppear={true}>
+              <div className="left-background" />
+            </ReactCSSTransitionGroup>
+            <ReactCSSTransitionGroup
+              transitionName="grow-left"
+              transitionAppearTimeout={3500}
+              transitionEnterTimeout={2500}
+              transitionLeaveTimeout={2500}
+              transitionAppear={true}>
+              <div className="right-background" />
+            </ReactCSSTransitionGroup>
+          </div>
+        }
         {window.innerWidth > 980 &&
           <footer>
             <p />
           </footer>
         }
-        <AuthedLightBoxContainer currentUser={this.props.currentUser} location={this.props.location} />
+        <AuthedLightBoxContainer
+          currentUser={this.props.currentUser}
+          location={this.props.location}
+        />
         {this.props.currentUser.email &&
           <div className="maze" />
         }
