@@ -13,7 +13,7 @@ import App from './App'
 const theme = getMuiTheme({
   palette: {
     disabledColor: fade(colors.darkBlack, 0.75),
-    borderColor: colors.grey500
+    borderColor: colors.grey500,
   }
 })
 

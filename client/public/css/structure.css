@@ -438,7 +438,7 @@ figure.centered-box {
     color: #444;
 }
 
-.portfolio-item dt .helper {
+.portfolio-item dt .helper, .generic-divider {
   display: block;
   width: 100%;
   height: 1px;

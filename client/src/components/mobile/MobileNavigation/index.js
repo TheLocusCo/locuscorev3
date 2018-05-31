@@ -7,6 +7,7 @@ import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
 import FontIcon from 'material-ui/FontIcon'
+import * as colors from 'material-ui/styles/colors'
 
 const {object, string, arrayOf} = PropTypes
 
@@ -17,7 +18,6 @@ class MobileNavigation extends Component {
 
   static propTypes = {
     navigation: arrayOf(object),
-    apiUrl: string,
     location: object
   }
 
@@ -51,8 +51,12 @@ class MobileNavigation extends Component {
         <MenuItem
           key={navInfo.id}
           onClick={() => { this.pushHistoryAndClose(history, navInfo.href) }}
-          rightIcon={this.actionIcon(location, navInfo.href)}>
+          rightIcon={this.actionIcon(location, navInfo.href)}
+          style={{backgroundColor: colors.grey300}}>
           <div>
+            {navInfo.id !== 1 &&
+              <div className='generic-divider' style={{margin: '1px 0 0'}}/>
+            }
             <i className={`icon-${navInfo.icon}`} style={{marginRight: 10}}/>
             {navInfo.title}
           </div>
@@ -72,9 +76,12 @@ class MobileNavigation extends Component {
             iconElementRight={
               <FontIcon className="icon-search" style={{marginTop: 4, color: "#fff"}}/>
             }
+            style={{backgroundColor: colors.grey700}}
             onRightIconButtonClick={e => { this.goToSearch(history) }}
             />
-          <Drawer open={this.state.drawerVisible}>
+          <Drawer
+            open={this.state.drawerVisible}
+            containerStyle={{backgroundColor: colors.grey300}}>
             {this.renderNavItems(navigation, location, history)}
           </Drawer>
         </div>

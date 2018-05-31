@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+
+import './style.css'
 import Routes from "../Routes"
 import AuthedRoutes from "../AuthedRoutes"
 import Navigation from "../Navigation"

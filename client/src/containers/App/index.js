@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import './style.css'
-import '../../styles/animations.css' //animations only load correctly when loaded very last
 import { connect } from "react-redux"
 import { Link } from 'react-router-dom'
 import ahoy from 'ahoy.js'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+
+import './style.css'
+import '../../styles/animations.css' //animations only load correctly when loaded very last
 
 import AuthedContainer from "../AuthedContainer"
 import MobileContainer from "../mobile/MobileContainer"
@@ -19,7 +20,7 @@ class App extends Component {
   }
 
   renderContainer() {
-    if(window.innerWidth > 500) {
+    if(window.innerWidth > 980) {
       return (
         <AuthedContainer
           currentUser={this.props.currentUser}
@@ -65,7 +66,7 @@ class App extends Component {
           </header>
         }
         {this.renderContainer()}
-        {window.innerWidth > 500 &&
+        {window.innerWidth > 980 &&
           <div>
             <ReactCSSTransitionGroup
               transitionName="grow-right"

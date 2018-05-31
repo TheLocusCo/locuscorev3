@@ -17,14 +17,14 @@ class AboutMe extends Component {
             About Louis Alridge
           </h1>
           <span className="helper"/>
-          <div className="row section">
-            <div className="span4">
+          <div className={window.innerWidth > 980 ? 'row section' : ''}>
+            <div className={window.innerWidth > 980 ? 'span4' : ''}>
               <figure className="photo">
                 <img style={{marginBottom: "-2px"}} src="/images/profile_pic.jpg" alt="Profile pic" />
                 <span className="helper" />
               </figure>
             </div>
-            <div className="span8">
+            <div className={window.innerWidth > 980 ? 'span8' : ''}>
               <p>Canadian. Programmer. Artist. College Graduate. Professional. Japanese Enthusiast. Gamer. INTJ. These ten words describe my world to its fullest. They are my hopes, my reality, my drive. The picture to the left of this text is the man behind those ten words. Those that wish to know more can click on the details for my actual “biography”. Otherwise, this site is dedicated to what interests me. Welcome and take a look around the locus.</p>
               <br />
               <blockquote className="plain">
