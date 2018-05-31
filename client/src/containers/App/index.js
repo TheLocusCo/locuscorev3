@@ -39,7 +39,6 @@ class App extends Component {
   render() {
     return (
       <div className="main-wrapper">
-        {console.log("TESTING::" + window.innerWidth)}
         {ahoy.trackView()}
         {window.innerWidth > 980 &&
           <header className="header">

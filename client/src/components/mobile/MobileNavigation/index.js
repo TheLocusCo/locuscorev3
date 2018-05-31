@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import { Route } from 'react-router-dom'
+
 import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
+import FontIcon from 'material-ui/FontIcon'
 
-const {object, string, arrayOf, func} = PropTypes
+const {object, string, arrayOf} = PropTypes
 
 class MobileNavigation extends Component {
   state = {
@@ -22,19 +25,37 @@ class MobileNavigation extends Component {
     this.setState({drawerVisible: !this.state.drawerVisible})
   }
 
-  isActive(href, location) {
-    return ( location.pathname === href ? "active" : "" )
+  pushHistoryAndClose(history, href) {
+    history.push(href)
+    this.setState({drawerVisible: false})
   }
 
-  renderNavItems(items, location) {
+  actionIcon(location, href) {
+    if(location.pathname === href) {
+      return (
+        <FontIcon className="icon-eye" style={{marginTop: 0}}/>
+      )
+    }
+
+    return null
+  }
+
+  goToSearch(history) {
+    history.push("/search")
+    this.setState({drawerVisible: false})
+  }
+
+  renderNavItems(items, location, history) {
     return items.map(navInfo => {
       return (
         <MenuItem
-          key={navInfo.id}>
-          <Link to={navInfo.href} className={this.isActive(navInfo.href, location)}>
-            <i className={`icon-${navInfo.icon}`} />
+          key={navInfo.id}
+          onClick={() => { this.pushHistoryAndClose(history, navInfo.href) }}
+          rightIcon={this.actionIcon(location, navInfo.href)}>
+          <div>
+            <i className={`icon-${navInfo.icon}`} style={{marginRight: 10}}/>
             {navInfo.title}
-          </Link>
+          </div>
         </MenuItem>
       )
     })
@@ -43,12 +64,21 @@ class MobileNavigation extends Component {
   render() {
     const { navigation, location } = this.props
     return (
-      <div>
-        <AppBar title="TheLocus" onLeftIconButtonClick={e => { this.navDrawerToggle() }}/>
-        <Drawer open={this.state.drawerVisible}>
-          {this.renderNavItems(navigation, location)}
-        </Drawer>
-      </div>
+      <Route render={({history}) => (
+        <div>
+          <AppBar
+            title="TheLocus"
+            onLeftIconButtonClick={e => { this.navDrawerToggle() }}
+            iconElementRight={
+              <FontIcon className="icon-search" style={{marginTop: 4, color: "#fff"}}/>
+            }
+            onRightIconButtonClick={e => { this.goToSearch(history) }}
+            />
+          <Drawer open={this.state.drawerVisible}>
+            {this.renderNavItems(navigation, location, history)}
+          </Drawer>
+        </div>
+      )}/>
     )
   }
 }

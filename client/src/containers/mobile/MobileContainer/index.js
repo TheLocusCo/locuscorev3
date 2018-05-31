@@ -16,14 +16,12 @@ class MobileContainer extends Component {
 
   render() {
     return (
-      <ReactCSSTransitionGroup transitionName="slide-up-from-nothing" transitionAppearTimeout={3500} transitionEnterTimeout={2500} transitionLeaveTimeout={2500} transitionAppear={true}>
-        <div className="main-container">
-          <MobileNavigation location={this.props.location} />
-          <div className="page-content-wrapper">
-            <MobileRoutes location={this.props.location} />
-          </div>
-        </div>
-      </ReactCSSTransitionGroup>
+      <div>
+        <MobileNavigation location={this.props.location} />
+        <ReactCSSTransitionGroup transitionName="slide-up-from-nothing" transitionAppearTimeout={3500} transitionEnterTimeout={2500} transitionLeaveTimeout={2500} transitionAppear={true}>
+          <MobileRoutes location={this.props.location} />
+        </ReactCSSTransitionGroup>
+      </div>
     )
   }
 }
