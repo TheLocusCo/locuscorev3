@@ -6,7 +6,7 @@ import { fetchWelcomeButtonSliders } from "../../redux/actions"
 
 class AboutMe extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchWelcomeButtonSliders())
+    this.props.dispatch(fetchWelcomeButtonSliders(window.innerWidth > 980 ? '' : 'contactAbout'))
   }
 
   render() {

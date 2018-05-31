@@ -33,7 +33,7 @@ export function adminShortcuts(role) {
 }
 
 export function authenticatedNavigation(user) {
-  var baseNav = [
+  let baseNav = [
     { id: 1, style: { width: "117px" }, href: "/", icon: "home", title: "Home", active: false },
   ]
 
@@ -169,13 +169,19 @@ export function welcomeShortcuts() {
   ]
 }
 
-export function welcomeButtonSliders() {
-  return [
+export function welcomeButtonSliders(withoutMode) {
+  let baseSliders = [
     { id: 1, mode: "interests", active: true },
-    { id: 2, mode: "contact_about", active: false },
-    { id: 3, mode: "talk_topics", active: false },
-    { id: 4, mode: "follow", active: false }
   ]
+
+  if(withoutMode !== 'contactAbout') {
+    baseSliders.push({ id: 2, mode: "contact_about", active: false })
+  }
+
+  baseSliders.push({ id: 3, mode: "talk_topics", active: false })
+  baseSliders.push({ id: 4, mode: "follow", active: false })
+
+  return baseSliders
 }
 
 export function welcomeTabs() {

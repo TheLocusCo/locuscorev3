@@ -59,9 +59,9 @@ export function fetchWelcomeShortcuts() {
   }
 }
 
-export function fetchWelcomeButtonSliders() {
+export function fetchWelcomeButtonSliders(withoutMode) {
   return dispatch => {
-    return dispatch(sync.receiveWelcomeButtonSliders())
+    return dispatch(sync.receiveWelcomeButtonSliders(withoutMode))
   }
 }
 

@@ -2,6 +2,25 @@ dl.timeline {
   line-height: 150%;
 }
 
+dl.mobile-timeline dt {
+  text-align: center;
+}
+
+dl.mobile-timeline dt strong, dl.mobile-timeline dd h4 {
+  margin-bottom: 20px;
+  position: relative;
+  display: block;
+  text-align: center;
+}
+
+dl.mobile-timeline dt p:first-of-type {
+  margin-bottom: 0;
+}
+
+dl.mobile-timeline dd p {
+  text-align: center;
+}
+
 dl.timeline dt {
   margin-left: -30px;
   width: 160px;

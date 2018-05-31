@@ -23,6 +23,7 @@ body {
   position: relative;
   text-align: center;
   font: bold 17px/1 Lato, Helvetica, Arial, sans-serif;
+  line-height: 25px;
   color: #444;
   text-shadow: 0 1px 0 rgba(255,255,255,0.7);
 }

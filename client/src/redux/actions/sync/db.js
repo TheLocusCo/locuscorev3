@@ -68,10 +68,10 @@ export function receiveWelcomeShortcuts() {
   }
 }
 
-export function receiveWelcomeButtonSliders() {
+export function receiveWelcomeButtonSliders(withoutMode) {
   return {
     type: RECEIVE_WELCOME_BUTTON_SLIDERS,
-    welcomeButtonSliders: db.welcomeButtonSliders()
+    welcomeButtonSliders: db.welcomeButtonSliders(withoutMode)
   }
 }
 

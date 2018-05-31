@@ -20,7 +20,7 @@ class App extends Component {
   }
 
   renderContainer() {
-    if(window.innerWidth > 980) {
+    if(window.innerWidth > 980 || this.props.currentUser.email) {
       return (
         <AuthedContainer
           currentUser={this.props.currentUser}
