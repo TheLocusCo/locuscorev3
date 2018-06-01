@@ -52,3 +52,5 @@ File sizes after gzip:
 https://github.com/knsv/mermaid
 
 update react-addons-css-transition to react-transition-group
+update material-ui to 1.0.0
+    update redux-form-material-ui when it leaves 5.0 beta
