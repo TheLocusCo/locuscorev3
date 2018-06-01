@@ -5,7 +5,6 @@ import _ from 'lodash'
 import WrappedScatterPlot from '../../components/WrappedScatterPlot'
 import {countLettersCoOccurrences} from '../../utils/stringStats'
 import {setHover, incrementRenderCount} from '../../redux/actions'
-import toJS from '../../hocs/toJS'
 import {getText, getUsers} from '../../redux/selectors'
 
 const getData = createSelector(getText, text => {
@@ -33,5 +32,5 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  toJS(WrappedScatterPlot)
+  WrappedScatterPlot
 )

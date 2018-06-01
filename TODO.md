@@ -50,3 +50,5 @@ File sizes after gzip:
   1.48 KB                 build/static/js/12.f840c3b1.chunk.js
 
 https://github.com/knsv/mermaid
+
+update react-addons-css-transition to react-transition-group

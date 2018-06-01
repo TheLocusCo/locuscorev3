@@ -1,5 +1,4 @@
 import {connect} from 'react-redux'
-import toJS from '../../hocs/toJS'
 import Ticker from '../../components/Ticker'
 import {getTick, getRenderCount} from '../../redux/selectors'
 import {tick} from '../../redux/actions'
@@ -17,4 +16,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(toJS(Ticker))
+export default connect(mapStateToProps, mapDispatchToProps)(Ticker)
