@@ -25,15 +25,16 @@ class LightBoxSiteStats extends Component {
                   <EventDashboard />
                   <Ticker />
                   <Footer>
-                    <a
-                      href="https://github.com/TheLocusCo/locuscorev3/tree/master/client/src/components/charts/BarChart.js"
-                      target='_blank'
-                      rel="noopener noreferrer"
-                    >
-                      <i style={{marginRight: '10px'}} className="icon-github" />
-                      View Source on Github
-                      <i style={{marginLeft: '10px'}} className="icon-github" />
-                    </a>
+                    {window.innerWidth > 816 &&
+                      <a
+                        href="https://github.com/TheLocusCo/locuscorev3/tree/master/client/src/components/charts/BarChart.js"
+                        target='_blank'
+                        rel="noopener noreferrer">
+                        <i style={{marginRight: '10px'}} className="icon-github" />
+                        View Source on Github
+                        <i style={{marginLeft: '10px'}} className="icon-github" />
+                      </a>
+                    }
                   </Footer>
                 </ThemedDashboard>
               }

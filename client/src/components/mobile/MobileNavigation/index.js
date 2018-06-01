@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Route } from 'react-router-dom'
 
@@ -9,7 +8,7 @@ import MenuItem from 'material-ui/MenuItem'
 import FontIcon from 'material-ui/FontIcon'
 import * as colors from 'material-ui/styles/colors'
 
-const {object, string, arrayOf} = PropTypes
+const {object, arrayOf} = PropTypes
 
 class MobileNavigation extends Component {
   state = {
@@ -76,7 +75,7 @@ class MobileNavigation extends Component {
             iconElementRight={
               <FontIcon className="icon-search" style={{marginTop: 4, color: "#fff"}}/>
             }
-            style={{backgroundColor: colors.grey700}}
+            style={{backgroundColor: colors.grey700, zIndex: 3}}
             onRightIconButtonClick={e => { this.goToSearch(history) }}
             />
           <Drawer

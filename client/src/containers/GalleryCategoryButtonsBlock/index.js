@@ -22,7 +22,12 @@ class GalleryCategoryButtonsBlock extends Component {
   renderGalleryCategoryButtons(props) {
     return props.categories.map(category => {
       return (
-        <li key={category.id} onClick={(e) => this.setToActive(category, e)} className={this.isActive(category.name, props)}>{category.name}</li>
+        <li
+          key={category.id}
+          onClick={(e) => this.setToActive(category, e)}
+          className={this.isActive(category.name, props)}>
+          {category.name}
+        </li>
       )
     })
   }
@@ -30,9 +35,14 @@ class GalleryCategoryButtonsBlock extends Component {
   render() {
     const { categories, isFetching } = this.props
     return (
-      <div className="filter-tabs mixes">
+      <div className={window.innerWidth > 980 ? 'filter-tabs mixes' : 'mobile-filter-tabs filter-tabs mixes'}>
         {categories.length > 1 &&
-          <ReactCSSTransitionGroup transitionName="long-fade" transitionAppearTimeout={3500} transitionEnterTimeout={2500} transitionLeaveTimeout={2500} transitionAppear={true}>
+          <ReactCSSTransitionGroup
+            transitionName="long-fade"
+            transitionAppearTimeout={3500}
+            transitionEnterTimeout={2500}
+            transitionLeaveTimeout={2500}
+            transitionAppear={true}>
             <ul className="not-standard">
               { this.renderGalleryCategoryButtons(this.props) }
             </ul>

@@ -27,7 +27,7 @@ class GalleryBlock extends Component {
 
   render() {
     return (
-      <ul className="portfolio-grid">
+      <ul className={window.innerWidth > 980 ? 'portfolio-grid' : 'mobile-grid portfolio-grid'}>
         <ReactCSSTransitionGroup transitionName="group-fade-wait" transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
           {this.renderContent(this.props)}
         </ReactCSSTransitionGroup>

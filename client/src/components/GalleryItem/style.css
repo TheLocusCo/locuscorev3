@@ -1,3 +1,4 @@
+
 .portfolio-grid li {
   width: 262px;
   margin: 0 0 35px;
@@ -6,6 +7,10 @@
   -webkit-font-smoothing: antialiased;
   display: inline-block;
   margin-right: 34px;
+}
+
+.mobile-grid li {
+  margin: 0 0 20px 0;
 }
 
 .portfolio-grid span li:nth-child(3n+3) {

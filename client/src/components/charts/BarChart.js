@@ -44,7 +44,7 @@ const Title = styled.div`
   text-align: center;
   position: absolute;
   width: 100%;
-  top: 10px;
+  ${window.innerWidth > 816 ? 'top: 10px;' : ''}
 `
 
 // [TODO] Debug negative rect height values causing errors
@@ -90,7 +90,9 @@ class BarChart extends React.Component {
     const {hover, chart, xAxisHover, title, customTooltipNameObj} = this.props
     return (
       <Wrapper className="barchart" hover={hover}>
-        <div className="button" onClick={this.toggle}>Toggle Bar Format</div>
+        {window.innerWidth > 816 &&
+          <div className="button" onClick={this.toggle}>Toggle Bar Format</div>
+        }
         <Title>{title}</Title>
         {chart}
         {chart !== LOADING &&
@@ -149,6 +151,7 @@ class BarChart extends React.Component {
     this.y = y
     const xAxis = d3.axisBottom().scale(x)
     const yAxis = d3.axisLeft().scale(y)
+    const xAxisRotate = window.innerWidth > 816 ? -12 : -47
 
     // create a faux div and store its virtual DOM in state.chart
     let faux = connectFauxDOM('div', 'chart')
@@ -238,7 +241,7 @@ class BarChart extends React.Component {
       svg
         .call(xAxis)
         .selectAll("g.x.axis text")
-        .attr("transform", "rotate(-12)" )
+        .attr("transform", `rotate(${xAxisRotate}) translate(-10, 0)`)
         .selectAll("g.x.axis.label text")
         .attr("transform", "rotate(0)" )
 

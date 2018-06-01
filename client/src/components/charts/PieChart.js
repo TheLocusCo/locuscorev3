@@ -82,20 +82,22 @@ class PieChart extends React.Component {
     return (
       <Wrapper className="piechart" width={width} height={height}>
         {chart}
-        <PalletContainer height={height} width={width}>
-          {data.map((visitTypeObj, index) => {
-            return (
-              <Pallet
-                colors={pallet}
-                scope={visitTypeObj.name}
-                pickColor={setObjColor}
-                index={index}
-                key={index}
-                customPalletNameObj={customPalletNameObj}
-              />
-            )
-          })}
-        </PalletContainer>
+        {window.innerWidth > 816 &&
+          <PalletContainer height={height} width={width}>
+            {data.map((visitTypeObj, index) => {
+              return (
+                <Pallet
+                  colors={pallet}
+                  scope={visitTypeObj.name}
+                  pickColor={setObjColor}
+                  index={index}
+                  key={index}
+                  customPalletNameObj={customPalletNameObj}
+                />
+              )
+            })}
+          </PalletContainer>
+        }
         <Title height={height}>{title}</Title>
         {this.state.tooltip &&
           <Tooltip content={this.computeTooltipContent()} />}

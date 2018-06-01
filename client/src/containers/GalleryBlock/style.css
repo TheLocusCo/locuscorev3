@@ -3,3 +3,8 @@
   overflow: hidden;
   text-align: justify;
 }
+
+.mobile-grid {
+  margin: 0;
+  text-align: center;
+}
