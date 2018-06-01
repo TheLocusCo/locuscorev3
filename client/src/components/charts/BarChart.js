@@ -152,6 +152,7 @@ class BarChart extends React.Component {
     const xAxis = d3.axisBottom().scale(x)
     const yAxis = d3.axisLeft().scale(y)
     const xAxisRotate = window.innerWidth > 816 ? -12 : -47
+    const xAxisTranslate = window.innerWidth > 816 ? 0 : -10
 
     // create a faux div and store its virtual DOM in state.chart
     let faux = connectFauxDOM('div', 'chart')
@@ -241,7 +242,7 @@ class BarChart extends React.Component {
       svg
         .call(xAxis)
         .selectAll("g.x.axis text")
-        .attr("transform", `rotate(${xAxisRotate}) translate(-10, 0)`)
+        .attr("transform", `rotate(${xAxisRotate}) translate(${xAxisTranslate}, 0)`)
         .selectAll("g.x.axis.label text")
         .attr("transform", "rotate(0)" )
 

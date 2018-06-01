@@ -23,7 +23,7 @@ class ShortcutsBlock extends Component {
       return rows.map(row => {
         count++
         return (
-          <div className="row" key={count}>
+          <div className={window.innerWidth > 980 ? 'row' : ''} key={count}>
             {row}
           </div>
         )}

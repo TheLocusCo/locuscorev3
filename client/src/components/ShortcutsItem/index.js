@@ -9,7 +9,7 @@ export const ShortcutsItem = props => {
   }
 
   return (
-    <div className="span6" key={props.id}>
+    <div className={window.innerWidth > 980 ? 'span6' : ''} key={props.id}>
       <Link to={props.href}>
         <h2>{props.title}</h2>
         <Markdown markup={ props.basic_description } />

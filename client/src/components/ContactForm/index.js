@@ -70,7 +70,7 @@ class ContactForm extends Component {
             <p className="centered explanation">Contact me with this form. I'll get back to you ASAP.</p>
             <div className="contact-form">
               <fieldset className="centered">
-                <div className="user-data">
+                <div className={window.innerWidth > 980 ? 'user-data' : ''}>
                   <input type="text" name="name" placeholder="Your name" onChange={e => { this.handleChange("name", e) }} value={this.state.name} />
                   <input type="text" name="email" placeholder="Your Email Address" onChange={e => { this.handleChange("email", e) }} value={this.state.email} style={this.validateEmail()} />
                 </div>

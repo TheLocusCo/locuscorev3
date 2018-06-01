@@ -66,11 +66,16 @@ export function authenticatedNavigation(user) {
   return baseNav
 }
 
-export function contactForms() {
-  return [
-    { id: 1, name: "Classy" },
-    { id: 2, name: "Modern" }
-  ]
+export function contactForms(formMode) {
+  let baseForms = []
+
+  if(formMode !== 'withoutClassy') {
+    baseForms.push({ id: 1, name: "Classy" })
+  }
+
+  baseForms.push({ id: 2, name: "Modern" })
+
+  return baseForms
 }
 
 export function navigation() {

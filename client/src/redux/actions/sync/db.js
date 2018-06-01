@@ -33,10 +33,10 @@ export function requestAuthedNavigation() {
   }
 }
 
-export function receiveContactForms() {
+export function receiveContactForms(formMode) {
   return {
     type: RECEIVE_CONTACT_FORMS,
-    contactForms: db.contactForms()
+    contactForms: db.contactForms(formMode)
   }
 }
 

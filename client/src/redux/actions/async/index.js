@@ -35,9 +35,9 @@ export function deleteUploadItem() {
   }
 }
 
-export function fetchContactForms() {
+export function fetchContactForms(formMode) {
   return dispatch => {
-    return dispatch(sync.receiveContactForms())
+    return dispatch(sync.receiveContactForms(formMode))
   }
 }
 

@@ -608,6 +608,18 @@ figure.centered-box {
   display: -webkit-box;
 }
 
+.mobile-row {
+  clear: both;
+}
+
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
+
 form .form-field {
   width: 30%;
 }

@@ -4,11 +4,14 @@ import { connect } from "react-redux"
 import { Link } from 'react-router-dom'
 import ContactFormBlock from '../ContactFormBlock'
 import ContactFormButtonsBlock from '../ContactFormButtonsBlock'
-import { fetchContactForms } from "../../redux/actions"
+import { fetchContactForms, setActiveContactForm } from "../../redux/actions"
 
 class Contact extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchContactForms())
+    this.props.dispatch(fetchContactForms(window.innerWidth > 980 ? '' : 'withoutClassy'))
+    if(window.innerWidth < 980) {
+      this.props.dispatch(setActiveContactForm('Modern'))
+    }
   }
 
   render() {
@@ -16,40 +19,52 @@ class Contact extends Component {
       <div className="main-content">
         <div className="page-content">
           <div className="address">
-            <div className="row">
-              <div className="span6">
+            <div className={window.innerWidth > 980 ? 'row' : 'mobile-row bold'}>
+              <div className={window.innerWidth > 980 ? 'span6' : 'float-left'}>
                 <p><strong>Louis Alridge</strong></p>
               </div>
-              <div className="span6">
+              <div className={window.innerWidth > 980 ? 'span6' : 'float-right'}>
                 <p>
-                  <i className="icon-phone"></i>
-                  <strong>Phone: </strong>
+                  {window.innerWidth > 980 &&
+                    <div style={{display: 'inline-block', marginRight: '5px'}}>
+                      <i className="icon-phone"></i>
+                      <strong>Phone: </strong>
+                    </div>
+                  }
                   817 564 2697
                 </p>
               </div>
             </div>
-            <div className="row">
-              <div className="span6">
+            <div className={window.innerWidth > 980 ? 'row' : 'mobile-row bold'}>
+              <div className={window.innerWidth > 980 ? 'span6' : 'float-left'}>
                 <p>Southwest Fort Worth</p>
               </div>
-              <div className="span6">
+              <div className={window.innerWidth > 980 ? 'span6' : 'float-right'}>
                 <p>
-                  <i className="icon-mail"></i>
-                  <strong>Email: </strong>
+                  {window.innerWidth > 980 &&
+                    <div style={{display: 'inline-block', marginRight: '5px'}}>
+                      <i className="icon-mail"></i>
+                      <strong>Email: </strong>
+                    </div>
+                  }
                   loualrid@gmail.com
                 </p>
               </div>
             </div>
-            <div className="row">
-              <div className="span6">
+            <div className={window.innerWidth > 980 ? 'row' : 'mobile-row bold'}>
+              <div className={window.innerWidth > 980 ? 'span6' : 'float-left'}>
                 <p>Fort Worth, Texas 76126</p>
               </div>
-              <div className="span6">
-              <p>
-                <i className="icon-chat"></i>
-                <strong>Discord: </strong>
-                MrLocus#6193
-              </p>
+              <div className={window.innerWidth > 980 ? 'span6' : 'float-right'}>
+                <p>
+                  {window.innerWidth > 980 &&
+                    <div style={{display: 'inline-block', marginRight: '5px'}}>
+                      <i className="icon-chat"></i>
+                      <strong>Discord: </strong>
+                    </div>
+                  }
+                  MrLocus#6193
+                </p>
               </div>
             </div>
           </div>
@@ -60,7 +75,9 @@ class Contact extends Component {
           </div>
             {this.props.contactForms.length > 0 &&
               <div className="content-switch">
-                <ContactFormButtonsBlock contactForms={this.props.contactForms} activeContactForm={this.props.activeContactForm}/>
+                {window.innerWidth > 980 &&
+                  <ContactFormButtonsBlock contactForms={this.props.contactForms} activeContactForm={this.props.activeContactForm}/>
+                }
                 <ContactFormBlock content={this.props.contactForms} activeContactForm={this.props.activeContactForm}/>
               </div>
             }
