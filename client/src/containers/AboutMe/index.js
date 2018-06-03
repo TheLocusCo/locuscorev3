@@ -25,7 +25,7 @@ class AboutMe extends Component {
               </figure>
             </div>
             <div className={window.innerWidth > 980 ? 'span8' : ''}>
-              <p>Canadian. Programmer. Artist. College Graduate. Professional. Japanese Enthusiast. Gamer. INTJ. These ten words describe my world to its fullest. They are my hopes, my reality, my drive. The picture to the left of this text is the man behind those ten words. Those that wish to know more can click on the details for my actual “biography”. Otherwise, this site is dedicated to what interests me. Welcome and take a look around the locus.</p>
+              <p>Canadian. Programmer. Artist. College Graduate. Professional. Japanese Enthusiast. Gamer. INTJ. These ten words describe my world to its fullest. They are my hopes, my reality, my drive. The picture next to this text is the man behind those ten words. Those that wish to know more can click on the details for my actual “biography”. Otherwise, this site is dedicated to what interests me. Welcome and take a look around the locus.</p>
               <br />
               <blockquote className="plain">
                 <p>There is no shortcut to true knowledge, its something you have to strive for, struggle for, live for.</p>
