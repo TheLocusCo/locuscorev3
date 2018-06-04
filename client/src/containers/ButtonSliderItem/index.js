@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from "react-redux"
 
-import ButtonSliderItemContent from '../../components/ButtonSliderItemContent'
+import ButtonSliderItemContent from 'components/ButtonSliderItemContent'
 
-import { fetchWelcomeTabs } from "../../redux/actions"
+import { fetchWelcomeTabs } from 'redux/actions'
 
 class ButtonSliderItem extends Component {
   componentWillMount() {

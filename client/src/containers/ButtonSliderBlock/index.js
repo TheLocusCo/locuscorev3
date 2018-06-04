@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import './style.css'
 import { connect } from "react-redux"
-import ButtonSliderItem from '../ButtonSliderItem'
-import ButtonSliderPagerButton from '../../components/ButtonSliderPagerButton'
+
+import './style.css'
+import ButtonSliderItem from 'containers/ButtonSliderItem'
+import ButtonSliderPagerButton from 'components/ButtonSliderPagerButton'
 //import ReactCSSTransitionReplace from 'react-css-transition-replace'
 //import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import { setButtonSliderContent } from "../../redux/actions"
+import { setButtonSliderContent } from "redux/actions"
 
 class ButtonSliderBlock extends Component {
   findIndexOfId(id) {

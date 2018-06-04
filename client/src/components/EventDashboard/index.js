@@ -6,12 +6,13 @@ import _ from 'lodash'
 import ReactGridLayout, {WidthProvider} from 'react-grid-layout'
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
-import WrappedDaytoEventsCountBarChart from '../../containers/WrappedDayToEventsCountBarChart'
-import WrappedEventLinksToEventsCountBarChart from '../../containers/WrappedEventLinksToEventsCountBarChart'
-import AutoFilterPieChart from '../../containers/WrappedAllEventsPieChart'
-//import WrappedScatterPlot from '../../containers/WrappedScatterPlot'
-//import DemoChat from '../../containers/DemoChat'
-import withMeasure from '../../hocs/withMeasure'
+
+import WrappedDaytoEventsCountBarChart from 'containers/WrappedDayToEventsCountBarChart'
+import WrappedEventLinksToEventsCountBarChart from 'containers/WrappedEventLinksToEventsCountBarChart'
+import AutoFilterPieChart from 'containers/WrappedAllEventsPieChart'
+//import WrappedScatterPlot from 'containers/WrappedScatterPlot'
+//import DemoChat from 'containers/DemoChat'
+import withMeasure from 'hocs/withMeasure'
 
 const {object, func} = PropTypes
 const GridLayout = WidthProvider(ReactGridLayout)

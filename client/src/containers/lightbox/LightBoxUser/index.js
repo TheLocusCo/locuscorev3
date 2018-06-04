@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import './style.css'
-import LightBoxUserProfile from '../../../components/lightbox/LightBoxUserProfile'
 import { connect } from "react-redux"
 import { Route } from 'react-router-dom'
-import SuccessBlock from '../../SuccessBlock'
-import LightBoxErrorPage from '../../../components/lightbox/LightBoxErrorPage'
 
-import { fetchResource } from "../../../redux/actions"
+import LightBoxUserProfile from 'components/lightbox/LightBoxUserProfile'
+import SuccessBlock from 'containers/SuccessBlock'
+import LightBoxErrorPage from 'components/lightbox/LightBoxErrorPage'
+import { fetchResource } from 'redux/actions'
 
 class LightBoxUser extends Component {
   targetLocationToPush(history, location, locationToPush) {

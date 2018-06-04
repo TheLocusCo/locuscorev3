@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import { Markdown } from 'react-showdown'
 
 import './style.css'
-import AuthedContentFooter from '../../../containers/AuthedContentFooter'
-import SliderMediaContainer from '../../../containers/SliderMediaContainer'
+import AuthedContentFooter from 'containers/AuthedContentFooter'
+import SliderMediaContainer from 'containers/SliderMediaContainer'
 
 export const LightBoxPostContent = props => {
   const renderCategoriesAsURLTags = (categories) => {

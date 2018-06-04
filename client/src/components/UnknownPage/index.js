@@ -1,5 +1,4 @@
 import React from "react"
-import "./style.css"
 
 // Replace h1 with loading gif
 export const UnknownPage = props => {

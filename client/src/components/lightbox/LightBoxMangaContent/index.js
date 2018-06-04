@@ -1,7 +1,8 @@
 import React from 'react'
-import './style.css'
 import { Route } from 'react-router-dom'
-import AuthedContentFooter from '../../../containers/AuthedContentFooter'
+
+import './style.css'
+import AuthedContentFooter from 'containers/AuthedContentFooter'
 
 export const LightBoxMangaContent = props => {
   return (

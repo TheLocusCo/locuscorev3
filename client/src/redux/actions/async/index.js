@@ -1,12 +1,12 @@
-import * as sync from "../sync"
+import * as sync from 'redux/actions/sync'
 
-export * from "./categories.js"
-export * from "./comments.js"
-export * from "./media.js"
-export * from "./notifications.js"
-export * from "./resources.js"
-export * from "./search.js"
-export * from "./users.js"
+export * from 'redux/actions/async/categories.js'
+export * from 'redux/actions/async/comments.js'
+export * from 'redux/actions/async/media.js'
+export * from 'redux/actions/async/notifications.js'
+export * from 'redux/actions/async/resources.js'
+export * from 'redux/actions/async/search.js'
+export * from 'redux/actions/async/users.js'
 
 export const RECEIVE_GRAPHICS = 'RECEIVE_GRAPHICS'
 export const RECEIVE_GRAPHIC = 'RECEIVE_GRAPHIC'

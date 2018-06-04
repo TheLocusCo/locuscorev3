@@ -1,4 +1,4 @@
-import * as db from "../db"
+import * as db from 'redux/actions/db.js'
 
 export const RECEIVE_ADMIN_SHORTCUTS = 'RECEIVE_ADMIN_SHORTCUTS'
 export const RECEIVE_CONTACT_FORMS = 'RECEIVE_CONTACT_FORMS'

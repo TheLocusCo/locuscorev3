@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import './style.css'
-import LightBoxRoleContent from '../../../components/lightbox/LightBoxRoleContent'
-import { connect } from "react-redux"
+import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
-import SuccessBlock from '../../SuccessBlock'
-import LightBoxErrorPage from '../../../components/lightbox/LightBoxErrorPage'
 
-import { fetchResource } from "../../../redux/actions"
+import LightBoxRoleContent from 'components/lightbox/LightBoxRoleContent'
+import SuccessBlock from 'containers/SuccessBlock'
+import LightBoxErrorPage from 'components/lightbox/LightBoxErrorPage'
+import { fetchResource } from 'redux/actions'
 
 class LightBoxRole extends Component {
   componentWillMount() {

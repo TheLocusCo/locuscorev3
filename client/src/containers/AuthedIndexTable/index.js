@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import './style.css'
 import { connect } from "react-redux"
-import DestroyButton from '../../components/DestroyButton'
 import { Link } from 'react-router-dom'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-//import { createANewResource, showThisResource, destroyThisResource, viewThisResourceIndex, editThisResource } from "../../redux/actions"
+
+import DestroyButton from 'components/DestroyButton'
 
 class AuthedIndexTableBlock extends Component {
   linkClass(type, item, itemIndex) {

@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import './style.css'
-import LightBoxCommentContent from '../../../components/lightbox/LightBoxCommentContent'
-import LightBoxCommentForm from '../../../components/lightbox/LightBoxCommentForm'
-import SuccessBlock from '../../SuccessBlock'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from "react-redux"
 
-import { setCommentFormVisibility, removePreviewCommentAndSetCommentFormVisibility } from "../../../redux/actions"
+import LightBoxCommentContent from 'components/lightbox/LightBoxCommentContent'
+import LightBoxCommentForm from 'components/lightbox/LightBoxCommentForm'
+import SuccessBlock from 'containers/SuccessBlock'
+
+import { setCommentFormVisibility, removePreviewCommentAndSetCommentFormVisibility } from 'redux/actions'
 
 class LightBoxComments extends Component {
   componentWillUnmount() {

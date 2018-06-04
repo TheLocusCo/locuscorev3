@@ -1,5 +1,5 @@
 import React from 'react'
-import PieChart from '../charts/PieChart'
+import PieChart from 'components/charts/PieChart'
 
 const WrappedPieChart = props => {
   return (

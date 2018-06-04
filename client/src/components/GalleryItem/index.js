@@ -1,6 +1,7 @@
 import React from 'react'
+
 import './style.css'
-import placeholder from './portfolio_placeholder.jpg'
+import placeholder from 'components/GalleryItem/portfolio_placeholder.jpg'
 //import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { Link } from 'react-router-dom'
 

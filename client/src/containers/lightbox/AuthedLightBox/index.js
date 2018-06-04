@@ -1,30 +1,29 @@
 import React, { Component } from 'react'
-import './style.css'
 import ReactCSSTransitionReplace from 'react-css-transition-replace'
 import { Switch, Route } from 'react-router-dom'
 
-import asyncComponent from "../../AsyncComponent"
+import asyncComponent from "containers/AsyncComponent"
 
-const LightBoxPost = asyncComponent(() => import("../LightBoxPost"))
-const LightBoxProject = asyncComponent(() => import("../LightBoxProject"))
-const LightBoxGraphic = asyncComponent(() => import("../LightBoxGraphic"))
-const LightBoxGeneric = asyncComponent(() => import("../LightBoxGeneric"))
-const LightBoxShowMedium = asyncComponent(() => import("../LightBoxShowMedium"))
+const LightBoxPost = asyncComponent(() => import("containers/lightbox/LightBoxPost"))
+const LightBoxProject = asyncComponent(() => import("containers/lightbox/LightBoxProject"))
+const LightBoxGraphic = asyncComponent(() => import("containers/lightbox/LightBoxGraphic"))
+const LightBoxGeneric = asyncComponent(() => import("containers/lightbox/LightBoxGeneric"))
+const LightBoxShowMedium = asyncComponent(() => import("containers/lightbox/LightBoxShowMedium"))
 
-const LightBoxUser = asyncComponent(() => import("../LightBoxUser"))
-const LightBoxRole = asyncComponent(() => import("../LightBoxRole"))
-const LightBoxResume = asyncComponent(() => import("../LightBoxResume"))
-const LightBoxNotification = asyncComponent(() => import("../LightBoxNotification"))
-const LightBoxComment = asyncComponent(() => import("../LightBoxComment"))
-const LightBoxMedium = asyncComponent(() => import("../LightBoxMedium"))
-const LightBoxManga = asyncComponent(() => import("../LightBoxManga"))
-const LightBoxEditResource = asyncComponent(() => import("../LightBoxEditResource"))
-const LightBoxNewResource = asyncComponent(() => import("../LightBoxNewResource"))
-const LightBoxVisit = asyncComponent(() => import("../LightBoxVisit"))
+const LightBoxUser = asyncComponent(() => import("containers/lightbox/LightBoxUser"))
+const LightBoxRole = asyncComponent(() => import("containers/lightbox/LightBoxRole"))
+const LightBoxResume = asyncComponent(() => import("containers/lightbox/LightBoxResume"))
+const LightBoxNotification = asyncComponent(() => import("containers/lightbox/LightBoxNotification"))
+const LightBoxComment = asyncComponent(() => import("containers/lightbox/LightBoxComment"))
+const LightBoxMedium = asyncComponent(() => import("containers/lightbox/LightBoxMedium"))
+const LightBoxManga = asyncComponent(() => import("containers/lightbox/LightBoxManga"))
+const LightBoxEditResource = asyncComponent(() => import("containers/lightbox/LightBoxEditResource"))
+const LightBoxNewResource = asyncComponent(() => import("containers/lightbox/LightBoxNewResource"))
+const LightBoxVisit = asyncComponent(() => import("containers/lightbox/LightBoxVisit"))
 
-const LightBoxSearch = asyncComponent(() => import("../LightBoxSearch"))
-const LightBoxSiteStats = asyncComponent(() => import("../LightBoxSiteStats"))
-const LightBoxUserActivity = asyncComponent(() => import("../LightBoxUserActivity"))
+const LightBoxSearch = asyncComponent(() => import("containers/lightbox/LightBoxSearch"))
+const LightBoxSiteStats = asyncComponent(() => import("containers/lightbox/LightBoxSiteStats"))
+const LightBoxUserActivity = asyncComponent(() => import("containers/lightbox/LightBoxUserActivity"))
 
 class AuthedLightBox extends Component {
   render() {

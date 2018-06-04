@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import './style.css'
-import LightBoxNotificationContent from '../../../components/lightbox/LightBoxNotificationContent'
-import { connect } from "react-redux"
-import { fetchResource } from "../../../redux/actions"
+import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
-import SuccessBlock from '../../SuccessBlock'
-import LightBoxErrorPage from '../../../components/lightbox/LightBoxErrorPage'
+
+import LightBoxNotificationContent from 'components/lightbox/LightBoxNotificationContent'
+import SuccessBlock from 'containers/SuccessBlock'
+import LightBoxErrorPage from 'components/lightbox/LightBoxErrorPage'
+import { fetchResource } from 'redux/actions'
 
 class LightBoxNotification extends Component {
   componentWillMount() {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
+
 import './style.css'
-//import { connect } from "react-redux"
-import ShortcutsItem from '../../components/ShortcutsItem'
+import ShortcutsItem from 'components/ShortcutsItem'
 
 class ShortcutsBlock extends Component {
   renderRows(props) {

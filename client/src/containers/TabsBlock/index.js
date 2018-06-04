@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
 import './style.css'
-import { connect } from "react-redux"
-import TabsItem from '../../components/TabsItem'
-import TabsButton from '../../components/TabsButton'
-//import ReactCSSTransitionReplace from 'react-css-transition-replace'
-//import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import { setTabContent } from "../../redux/actions"
+import TabsItem from 'components/TabsItem'
+import TabsButton from 'components/TabsButton'
+import { setTabContent } from 'redux/actions'
 
 class TabsBlock extends Component {
   findIndexOfId(id) {

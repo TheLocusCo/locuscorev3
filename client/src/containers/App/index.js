@@ -5,14 +5,14 @@ import ahoy from 'ahoy.js'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import './style.css'
-import '../../styles/animations.css' //animations only load correctly when loaded very last
+import 'styles/animations.css' //animations only load correctly when loaded very last
 
-import AuthedContainer from "../AuthedContainer"
-import MobileContainer from "../mobile/MobileContainer"
-import AuthedLightBoxContainer from "../lightbox/AuthedLightBoxContainer"
-import NotificationsBlock from "../NotificationsBlock"
+import AuthedContainer from "containers/AuthedContainer"
+import MobileContainer from "containers/mobile/MobileContainer"
+import AuthedLightBoxContainer from "containers/lightbox/AuthedLightBoxContainer"
+import NotificationsBlock from "containers/NotificationsBlock"
 
-import { userAuth } from "../../redux/actions"
+import { userAuth } from "redux/actions"
 
 class App extends Component {
   componentDidMount() {

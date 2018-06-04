@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import './style.css'
-import { connect } from "react-redux"
-import LoginForm from '../../components/LoginForm'
-import ErrorBlock from '../ErrorBlock'
+import { connect } from 'react-redux'
+
+import LoginForm from 'components/LoginForm'
+import ErrorBlock from 'containers/ErrorBlock'
 //import TabsButton from '../../components/TabsButton'
 //import ReactCSSTransitionReplace from 'react-css-transition-replace'
 //import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import { userLogin } from "../../redux/actions"
+import { userLogin } from 'redux/actions'
 
 function submit(values, dispatch) {
   return dispatch(userLogin(values))

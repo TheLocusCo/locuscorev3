@@ -1,8 +1,8 @@
 import React from 'react'
-import './style.css'
-//import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import Moment from 'react-moment'
 import { Markdown } from 'react-showdown'
+
+import './style.css'
 
 export const LightBoxCommentContent = props => {
   const userComment = (props) => {

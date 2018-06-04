@@ -1,5 +1,4 @@
 import React from "react"
-import "./style.css"
 import CircularProgress from 'material-ui/CircularProgress'
 
 // Replace h1 with loading gif

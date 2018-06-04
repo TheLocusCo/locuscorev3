@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import './style.css'
-import { connect } from "react-redux"
-import SuccessItem from '../../components/SuccessItem'
+import { connect } from 'react-redux'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import { dismissSuccess } from "../../redux/actions"
+
+import SuccessItem from 'components/SuccessItem'
+import { dismissSuccess } from 'redux/actions'
 
 class SuccessBlock extends Component {
   dismissSuccess(messageWithKey) {

@@ -4,9 +4,9 @@ import {withFauxDOM} from 'react-faux-dom'
 import styled from 'styled-components'
 import _ from 'lodash'
 
-import Pallet from '../Pallet'
-import Tooltip from '../Tooltip'
-import withD3Renderer from '../../hocs/withD3Renderer'
+import Pallet from 'components/Pallet'
+import Tooltip from 'components/Tooltip'
+import withD3Renderer from 'hocs/withD3Renderer'
 
 const d3 = {
   ...require('d3-scale'),

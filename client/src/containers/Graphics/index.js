@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
-import './style.css'
 import { connect } from "react-redux"
-import ShortcutsBlock from '../ShortcutsBlock'
-import PaginationContainer from '../PaginationContainer'
-//import TabsButton from '../../components/TabsButton'
-//import ReactCSSTransitionReplace from 'react-css-transition-replace'
-//import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import { fetchResources } from "../../redux/actions"
+
+import ShortcutsBlock from 'containers/ShortcutsBlock'
+import PaginationContainer from 'containers/PaginationContainer'
+import { fetchResources } from 'redux/actions'
 
 class Graphics extends Component {
   componentWillMount() {

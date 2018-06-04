@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import './style.css'
-import LightBoxMangaContent from '../../../components/lightbox/LightBoxMangaContent'
-import SuccessBlock from '../../SuccessBlock'
-import LightBoxComments from '../LightBoxComments'
-import LightBoxErrorPage from '../../../components/lightbox/LightBoxErrorPage'
 import { connect } from "react-redux"
-import { fetchResource } from "../../../redux/actions"
 import { Route } from 'react-router-dom'
+
+import LightBoxMangaContent from 'components/lightbox/LightBoxMangaContent'
+import SuccessBlock from 'containers/SuccessBlock'
+import LightBoxComments from 'containers/lightbox/LightBoxComments'
+import LightBoxErrorPage from 'components/lightbox/LightBoxErrorPage'
+import { fetchResource } from 'redux/actions'
 
 class LightBoxManga extends Component {
   componentWillMount() {

@@ -1,2 +1,2 @@
-export * from "./async"
-export * from "./sync"
+export * from 'redux/actions/async'
+export * from 'redux/actions/sync'

@@ -1,5 +1,5 @@
-import * as http from "../http"
-import * as sync from "../sync"
+import * as http from 'redux/actions/http'
+import * as sync from 'redux/actions/sync'
 
 import { setupAndCreateNotification } from "./notifications.js"
 import { fetchResource } from "./resources.js"

@@ -1,30 +1,28 @@
-//import merge from 'lodash/merge'
-//import paginate from './paginate'
 import { combineReducers } from 'redux'
 import { reduxTokenAuthReducer } from 'redux-token-auth'
 import { reducer as formReducer } from 'redux-form'
 
-import { categories } from './categories.js'
-import { comment, commentFormVisibility, comments, previewComment } from './comments.js'
-import { colors, hover, renderCount, text, theme, tick } from './dashboard.js'
-import { graphic, graphics } from './graphics.js'
-import { manga, mangas } from './mangas.js'
-import { medium, media } from './media.js'
-import { errorMessages, successMessages } from './messages.js'
-import { notification, notifications } from './notifications.js'
-import { post, posts } from './posts.js'
-import { project, projects } from './projects.js'
-import { editItem, newItem, uploadItem } from './resources.js'
-import { resume, resumeHost, resumes } from './resumes.js'
-import { role, roles } from './roles.js'
-import { searchAbility, currentSearch, currentSearchResults } from './search.js'
+import { categories } from 'redux/reducers/categories.js'
+import { comment, commentFormVisibility, comments, previewComment } from 'redux/reducers/comments.js'
+import { colors, hover, renderCount, text, theme, tick } from 'redux/reducers/dashboard.js'
+import { graphic, graphics } from 'redux/reducers/graphics.js'
+import { manga, mangas } from 'redux/reducers/mangas.js'
+import { medium, media } from 'redux/reducers/media.js'
+import { errorMessages, successMessages } from 'redux/reducers/messages.js'
+import { notification, notifications } from 'redux/reducers/notifications.js'
+import { post, posts } from 'redux/reducers/posts.js'
+import { project, projects } from 'redux/reducers/projects.js'
+import { editItem, newItem, uploadItem } from 'redux/reducers/resources.js'
+import { resume, resumeHost, resumes } from 'redux/reducers/resumes.js'
+import { role, roles } from 'redux/reducers/roles.js'
+import { searchAbility, currentSearch, currentSearchResults } from 'redux/reducers/search.js'
 import {
   activeCategory, activeContactForm, adminShortcuts, apiUrl, authedNavigation,
   contactForms, currentPage, lightbox, navigation, tableHeaders,
   welcomeButtonSliders, welcomeShortcuts, welcomeTabs, errorLog
-} from './ui.js'
-import { currentUser, user, users, userNotifications } from './users.js'
-import { visit, visits } from './visits.js'
+} from 'redux/reducers/ui.js'
+import { currentUser, user, users, userNotifications } from 'redux/reducers/users.js'
+import { visit, visits } from 'redux/reducers/visits.js'
 
 
 const rootReducer = combineReducers({

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import './style.css'
-import LightBoxSearchQueryBuilder from '../LightBoxSearchQueryBuilder'
-import { connect } from "react-redux"
-import { fetchSearchAbility, deleteCurrentSearch } from "../../../redux/actions"
+import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
+
+import LightBoxSearchQueryBuilder from 'containers/lightbox/LightBoxSearchQueryBuilder'
+
+import { fetchSearchAbility, deleteCurrentSearch } from 'redux/actions'
 
 class LightBoxSearch extends Component {
   componentWillMount() {

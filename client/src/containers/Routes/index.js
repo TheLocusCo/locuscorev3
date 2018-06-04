@@ -3,19 +3,19 @@ import ReactCSSTransitionReplace from 'react-css-transition-replace'
 import { Switch, Route } from 'react-router-dom'
 import Loadable from 'react-loadable'
 
-import Home from "../Home"
-import AboutMe from "../AboutMe"
-import WebResume from "../WebResume"
-import Blog from "../Blog"
-import Portfolio from "../Portfolio"
-import Contact from "../Contact"
-import Login from "../Login"
-import SearchResults from "../SearchResults"
-import EmptyPage from "../../components/EmptyPage"
-import UnknownPage from "../../components/UnknownPage"
+import Home from 'containers/Home'
+import AboutMe from 'containers/AboutMe'
+import WebResume from 'containers/WebResume'
+import Blog from 'containers/Blog'
+import Portfolio from 'containers/Portfolio'
+import Contact from 'containers/Contact'
+import Login from 'containers/Login'
+import SearchResults from 'containers/SearchResults'
+import EmptyPage from 'components/EmptyPage'
+import UnknownPage from 'components/UnknownPage'
 
 const Graphics = Loadable({
-  loader: () => import("../Graphics"),
+  loader: () => import('containers/Graphics'),
   loading: EmptyPage
 })
 

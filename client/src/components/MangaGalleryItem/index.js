@@ -1,6 +1,5 @@
 import React from 'react'
-import './style.css'
-import placeholder from './manga_placeholder.png'
+import placeholder from 'components/MangaGalleryItem/manga_placeholder.png'
 //import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { Link } from 'react-router-dom'
 

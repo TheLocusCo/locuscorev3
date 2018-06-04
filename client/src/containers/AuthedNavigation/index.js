@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
-import './style.css'
-import NavigationButton from '../../components/NavigationButton'
-import { fetchRoleNavigation, receiveAPIURL } from "../../redux/actions"
+import NavigationButton from 'components/NavigationButton'
+import { fetchRoleNavigation, receiveAPIURL } from "redux/actions"
 
 class AuthedNavigation extends Component {
   componentDidMount() {

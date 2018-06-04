@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import './style.css'
-import LightBoxNewForm from '../../../components/lightbox/LightBoxNewForm'
-import { connect } from "react-redux"
-import { fetchNewResource, deleteNewItem, fetchCategories, fetchResources } from "../../../redux/actions"
+import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
+
+import LightBoxNewForm from 'components/lightbox/LightBoxNewForm'
+import { fetchNewResource, deleteNewItem, fetchCategories, fetchResources } from 'redux/actions'
 
 class LightBoxNewResource extends Component {
   componentWillMount() {

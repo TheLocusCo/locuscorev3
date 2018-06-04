@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import './style.css'
-import LightBoxGenericContent from '../../../components/lightbox/LightBoxGenericContent'
 import { Route } from 'react-router-dom'
+
+import LightBoxGenericContent from 'components/lightbox/LightBoxGenericContent'
 
 class LightBoxGeneric extends Component {
   render() {

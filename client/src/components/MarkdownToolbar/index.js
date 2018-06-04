@@ -1,5 +1,4 @@
 import React from 'react'
-import './style.css'
 import ReactTooltip from 'react-tooltip'
 //import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 

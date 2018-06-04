@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import './style.css'
-import { connect } from "react-redux"
+import { connect } from 'react-redux'
 import ReactTooltip from 'react-tooltip'
-import { updateCurrentPage } from "../../redux/actions"
+
+import './style.css'
+import { updateCurrentPage } from 'redux/actions'
 
 class PaginationContainer extends Component {
   paginationClass(currentPage, itemIndex, currentIndex) {

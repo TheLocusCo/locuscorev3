@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { connect } from "react-redux"
+import { connect } from 'react-redux'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import './style.css'
-import Routes from "../../Routes"
-import MobileNavigation from "../MobileNavigation"
+import Routes from 'containers/Routes'
+import MobileNavigation from 'containers/mobile/MobileNavigation'
 
-import { fetchNavigation } from "../../../redux/actions"
+import { fetchNavigation } from 'redux/actions'
 
 class MobileContainer extends Component {
   componentDidMount() {

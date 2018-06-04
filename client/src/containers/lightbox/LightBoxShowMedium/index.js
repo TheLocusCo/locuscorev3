@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import './style.css'
-import LightBoxShowMediumContent from '../../../components/lightbox/LightBoxShowMediumContent'
-import LightBoxErrorPage from '../../../components/lightbox/LightBoxErrorPage'
-import { connect } from "react-redux"
-import { fetchShowMedium, toggleFullscreenLightBox } from "../../../redux/actions"
+import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
+
+import LightBoxShowMediumContent from 'components/lightbox/LightBoxShowMediumContent'
+import LightBoxErrorPage from 'components/lightbox/LightBoxErrorPage'
+import { fetchShowMedium, toggleFullscreenLightBox } from 'redux/actions'
 
 class LightBoxShowMedium extends Component {
   componentWillMount() {

@@ -1,5 +1,5 @@
-import * as http from "../http"
-import * as sync from "../sync"
+import * as http from 'redux/actions/http'
+import * as sync from 'redux/actions/sync'
 
 export const RECEIVE_EDIT_ITEM = 'RECEIVE_EDIT_ITEM'
 export const RECEIVE_NEW_ITEM = 'RECEIVE_NEW_ITEM'

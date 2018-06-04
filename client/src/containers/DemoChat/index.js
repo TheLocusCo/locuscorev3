@@ -1,10 +1,10 @@
 import {connect} from 'react-redux'
 import {createSelector} from 'reselect'
 import lorem from 'lorem-ipsum'
-import DemoChat from '../../components/DemoChat'
-import {getColorWithDefaultSaturation, COLOR_PALLET} from '../../utils/colors'
-import {newText, setColor, incrementRenderCount} from '../../redux/actions'
-import {getUsers, getTexts, getSaturatedColorsArray} from '../../redux/selectors'
+import DemoChat from 'components/DemoChat'
+import {getColorWithDefaultSaturation, COLOR_PALLET} from 'utils/colors'
+import {newText, setColor, incrementRenderCount} from 'redux/actions'
+import {getUsers, getTexts, getSaturatedColorsArray} from 'redux/selectors'
 
 const loremOption = {
   count: 2,

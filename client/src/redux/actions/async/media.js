@@ -1,7 +1,7 @@
-import * as http from "../http"
-import * as sync from "../sync"
+import * as http from 'redux/actions/http'
+import * as sync from 'redux/actions/sync'
 
-import { receiveResource } from "./resources.js"
+import { receiveResource } from 'redux/actions/async/resources.js'
 
 export function fetchShowMedium(id, type) {
   return dispatch =>

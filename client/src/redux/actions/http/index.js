@@ -1,7 +1,7 @@
-import * as helpers from './helpers.js'
-export * from './resources.js'
-export * from './search.js'
-export * from './users.js'
+import * as helpers from 'redux/actions/http/helpers.js'
+export * from 'redux/actions/http/resources.js'
+export * from 'redux/actions/http/search.js'
+export * from 'redux/actions/http/users.js'
 
 export function categoriesFetch(type) {
   switch (type) {

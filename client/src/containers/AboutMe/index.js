@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import ButtonSliderBlock from 'containers/ButtonSliderBlock'
+import { connect } from 'react-redux'
+
 import './style.css'
-import ButtonSliderBlock from '../ButtonSliderBlock'
-import { connect } from "react-redux"
-import { fetchWelcomeButtonSliders } from "../../redux/actions"
+import { fetchWelcomeButtonSliders } from 'redux/actions'
 
 class AboutMe extends Component {
   componentWillMount() {

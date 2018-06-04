@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import './style.css'
-import LightBoxEditForm from '../../../components/lightbox/LightBoxEditForm'
-import { connect } from "react-redux"
-import { fetchResourceForEdit, deleteEditItem, fetchCategories, fetchResources } from "../../../redux/actions"
+import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
+
+import LightBoxEditForm from 'components/lightbox/LightBoxEditForm'
+import { fetchResourceForEdit, deleteEditItem, fetchCategories, fetchResources } from 'redux/actions'
 
 class LightBoxEditResource extends Component {
   componentWillMount() {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { connect } from "react-redux"
+import { connect } from 'react-redux'
 
-import WebResumeContent from '../../components/WebResumeContent'
-import { fetchResumeHost } from "../../redux/actions"
+import WebResumeContent from 'components/WebResumeContent'
+import { fetchResumeHost } from 'redux/actions'
 
 class WebResume extends Component {
   componentDidMount() {

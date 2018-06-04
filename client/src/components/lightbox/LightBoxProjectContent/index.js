@@ -1,10 +1,10 @@
 import React from 'react'
-import './style.css'
 import { Route } from 'react-router-dom'
 import { Markdown } from 'react-showdown'
 
-import AuthedContentFooter from '../../../containers/AuthedContentFooter'
-import SliderMediaContainer from '../../../containers/SliderMediaContainer'
+import './style.css'
+import AuthedContentFooter from 'containers/AuthedContentFooter'
+import SliderMediaContainer from 'containers/SliderMediaContainer'
 
 export const LightBoxProjectContent = props => {
   return (

@@ -1,11 +1,12 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {createSelector} from 'reselect'
-import WrappedPieChart from '../../components/WrappedPieChart'
-import {countLetters} from '../../utils/stringStats'
-import {incrementRenderCount} from '../../redux/actions'
+import { connect } from 'react-redux'
+import { createSelector } from 'reselect'
 import _ from 'lodash'
-import {getText, getHover} from '../../redux/selectors'
+
+import WrappedPieChart from 'components/WrappedPieChart'
+import { countLetters } from 'utils/stringStats'
+import { incrementRenderCount } from 'redux/actions'
+import { getText, getHover } from 'redux/selectors'
 
 const getFilterEnabled = (state, ownProps) => ownProps.filter
 

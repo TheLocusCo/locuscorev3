@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import './style.css'
-import FooterButtonsBlock from '../../containers/FooterButtonsBlock'
 import { connect } from "react-redux"
-import { userAuthDestroy } from "../../redux/actions"
 import { Switch, Route } from 'react-router-dom'
+
+import './style.css'
+import FooterButtonsBlock from 'containers/FooterButtonsBlock'
+import { userAuthDestroy } from "redux/actions"
 
 // Update footer based on current path
 class AuthedContentFooter extends Component {

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import AuthedLightBox from "../AuthedLightBox"
-import LightBox from "../LightBox"
+
+import './style.css'
+import AuthedLightBox from "containers/lightbox/AuthedLightBox"
+import LightBox from "containers/lightbox/LightBox"
 
 class AuthedLightBoxContainer extends Component {
   render() {

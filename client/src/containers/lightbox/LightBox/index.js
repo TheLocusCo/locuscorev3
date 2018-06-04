@@ -1,19 +1,18 @@
 import React, { Component } from 'react'
-import './style.css'
 import ReactCSSTransitionReplace from 'react-css-transition-replace'
 import { Switch, Route } from 'react-router-dom'
 
-import asyncComponent from "../../AsyncComponent"
+import asyncComponent from "containers/AsyncComponent"
 
-const LightBoxPost = asyncComponent(() => import("../LightBoxPost"))
-const LightBoxProject = asyncComponent(() => import("../LightBoxProject"))
-const LightBoxGraphic = asyncComponent(() => import("../LightBoxGraphic"))
-const LightBoxGeneric = asyncComponent(() => import("../LightBoxGeneric"))
+const LightBoxPost = asyncComponent(() => import("containers/lightbox/LightBoxPost"))
+const LightBoxProject = asyncComponent(() => import("containers/lightbox/LightBoxProject"))
+const LightBoxGraphic = asyncComponent(() => import("containers/lightbox/LightBoxGraphic"))
+const LightBoxGeneric = asyncComponent(() => import("containers/lightbox/LightBoxGeneric"))
 const LightBoxShowMedium = asyncComponent(() => import("../LightBoxShowMedium"))
-const EmptyPage = asyncComponent(() => import("../../../components/EmptyPage"))
+const EmptyPage = asyncComponent(() => import("components/EmptyPage"))
 
-const LightBoxSearch = asyncComponent(() => import("../LightBoxSearch"))
-const LightBoxSiteStats = asyncComponent(() => import("../LightBoxSiteStats"))
+const LightBoxSearch = asyncComponent(() => import("containers/lightbox/LightBoxSearch"))
+const LightBoxSiteStats = asyncComponent(() => import("containers/lightbox/LightBoxSiteStats"))
 
 class LightBox extends Component {
   render() {

@@ -1,5 +1,4 @@
 import React from "react"
-import "./style.css"
 
 export const ErrorItem = props => {
   const parseProps = (props) => {

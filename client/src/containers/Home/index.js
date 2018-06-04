@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import ImageLoader from 'react-load-image';
-import './style.css'
 import CircularProgress from 'material-ui/CircularProgress'
-import ShortcutsBlock from '../ShortcutsBlock'
-import SuccessBlock from '../SuccessBlock'
 import { connect } from "react-redux"
 import ReactTooltip from 'react-tooltip'
-import { fetchWelcomeShortcuts } from "../../redux/actions"
+
+import './style.css'
+import ShortcutsBlock from 'containers/ShortcutsBlock'
+import SuccessBlock from 'containers/SuccessBlock'
+import { fetchWelcomeShortcuts } from 'redux/actions'
 
 function Preloader(props) {
   return <CircularProgress size={100} thickness={10} />

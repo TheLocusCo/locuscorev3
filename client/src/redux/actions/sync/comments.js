@@ -1,4 +1,4 @@
-import * as helpers from "../helpers"
+import * as helpers from 'redux/actions/helpers.js'
 
 export const DELETE_PREVIEW_COMMENT = 'DELETE_PREVIEW_COMMENT'
 export const UPDATE_COMMENT_FORM_VISIBILITY = 'UPDATE_COMMENT_FORM_VISIBILITY'

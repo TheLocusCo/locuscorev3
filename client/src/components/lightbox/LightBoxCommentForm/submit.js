@@ -1,4 +1,4 @@
-import { createComment, previewComment } from "../../../redux/actions"
+import { createComment, previewComment } from "redux/actions"
 
 export const submit = (values, dispatch, props) => {
   return dispatch(createComment(values, props.resourceType, props.resourceId))

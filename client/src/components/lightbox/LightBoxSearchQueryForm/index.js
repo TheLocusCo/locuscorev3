@@ -8,11 +8,11 @@ import { TextField, Checkbox, SelectField, DatePicker } from 'redux-form-materia
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-import ErrorBlock from '../../../containers/ErrorBlock'
-import submit from './submit'
-import { humanize } from '../../../utils/string'
+import ErrorBlock from 'containers/ErrorBlock'
+import submit from 'components/lightbox/LightBoxSearchQueryForm/submit'
+import { humanize } from 'utils/string'
 
-import { updateCurrentSearchFieldData, deleteFieldFromCurrentSearch } from "../../../redux/actions"
+import { updateCurrentSearchFieldData, deleteFieldFromCurrentSearch } from "redux/actions"
 
 const renderTextField = ({ input, newValue, label, meta: { touched, error }, ...custom }) => (
   <TextField hintText={label}

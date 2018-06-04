@@ -3,11 +3,11 @@ import React, { Component } from "react";
 export default function asyncComponent(importComponent) {
   class AsyncComponent extends Component {
     constructor(props) {
-      super(props);
+      super(props)
 
       this.state = {
         component: null
-      };
+      }
     }
 
     async componentDidMount() {
@@ -15,7 +15,7 @@ export default function asyncComponent(importComponent) {
 
       this.setState({
         component: component
-      });
+      })
     }
 
     render() {
@@ -25,5 +25,5 @@ export default function asyncComponent(importComponent) {
     }
   }
 
-  return AsyncComponent;
+  return AsyncComponent
 }

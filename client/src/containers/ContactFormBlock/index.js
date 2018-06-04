@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import './style.css'
 //import { connect } from "react-redux"
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 //import ReactCSSTransitionReplace from 'react-css-transition-replace'
-import ContactForm from '../../components/ContactForm'
+import ContactForm from 'components/ContactForm'
 
 class ContactFormBlock extends Component {
   renderContent(props) {

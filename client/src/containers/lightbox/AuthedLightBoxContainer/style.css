@@ -1,0 +1,139 @@
+.ltbx-wrap {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 503;
+  position: fixed;
+  outline: none !important;
+  -webkit-backface-visibility: hidden;
+  cursor: pointer;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.ltbx-container:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.ltbx-container {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  padding: 0 8px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.ltbx-preloader {
+  color: #cccccc;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  text-align: center;
+  margin-top: -0.8em;
+  left: 8px;
+  right: 8px;
+  z-index: 504;
+}
+
+.ltbx-image .ltbx-content, .ltbx-content {
+  max-width: 100%;
+}
+
+.ltbx-content {
+  width: 1020px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 auto;
+  text-align: left;
+  z-index: 505;
+  cursor: default;
+  -webkit-transition: all 0.75s ease-in;
+  -moz-transition: all 0.75s ease-in;
+  -o-transition: all 0.75s ease-in;
+  -ms-transition: all 0.75s ease-in;
+  transition: all 0.75s ease-in;
+}
+
+.ltbx-fullscreen-content {
+  width: 100vw !important;
+  vertical-align: middle !important;
+}
+
+.ltbx-content>article>.post-content {
+  width: 100% !important;
+  padding: 0;
+  min-height: 300px;
+}
+
+button.ltbx-back {
+  right: 40px !important;
+}
+
+button.ltbx-fullscreen {
+  display: block;
+  width: 40px;
+  height: 40px;
+  opacity: 1;
+  padding: 0;
+  position: absolute;
+  z-index: 506;
+  top: 0px;
+  left: 0;
+  background: #fafafa;
+  border-top: none;
+  border-left: none;
+  border-radius: 0 0 5px 0;
+  font-size: 24px;
+  line-height: 1;
+  color: #626366;
+}
+
+button.ltbx-close {
+  display: block;
+  width: 40px;
+  height: 40px;
+  opacity: 1;
+  padding: 0;
+  position: absolute;
+  z-index: 506;
+  top: 0px;
+  right: 0;
+  background: #fafafa;
+  border-top: none;
+  border-right: none;
+  border-radius: 0 0 0 5px;
+  font-size: 24px;
+  line-height: 1;
+  color: #626366;
+}
+
+.ltbx-comment-box, .webgl-display .mfp-comment-box, .webgl-show-display .ltbx-comment-box {
+  text-align: left;
+  position: absolute;
+  top: 105%;
+  width: 91%;
+  margin-bottom: 20%;
+  margin-left: 4.5%;
+}
+
+.ltbx-bg {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 502;
+  overflow: hidden;
+  position: fixed;
+  background: #0b0b0b;
+  opacity: 0.8;
+}

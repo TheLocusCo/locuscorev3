@@ -2,15 +2,15 @@ import React, { Component } from 'react'
 import { connect } from "react-redux"
 import { Route } from 'react-router-dom'
 
-import SuccessBlock from '../../SuccessBlock'
-import LightBoxErrorPage from '../../../components/lightbox/LightBoxErrorPage'
-import LightBoxVisitContent from '../../../components/lightbox/LightBoxVisitContent'
-import { fetchResource } from "../../../redux/actions"
+import SuccessBlock from 'containers/SuccessBlock'
+import LightBoxErrorPage from 'components/lightbox/LightBoxErrorPage'
+import LightBoxVisitContent from 'components/lightbox/LightBoxVisitContent'
+import { fetchResource } from "redux/actions"
 
-import ThemedDashboard from '../../ThemedDashboard'
-import EventDashboard from '../../EventDashboard'
-import Ticker from '../../Ticker'
-import Footer from '../../../components/styled/Footer'
+import ThemedDashboard from 'containers/ThemedDashboard'
+import EventDashboard from 'containers/EventDashboard'
+import Ticker from 'containers/Ticker'
+import Footer from 'components/styled/Footer'
 
 class LightBoxVisit extends Component {
   componentWillMount() {

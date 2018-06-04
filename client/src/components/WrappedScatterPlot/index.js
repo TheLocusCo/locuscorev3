@@ -1,6 +1,6 @@
 import React from 'react'
-import ScatterPlot from '../charts/ScatterPlot'
-import {ALPHABET} from '../../utils/stringStats'
+import ScatterPlot from 'components/charts/ScatterPlot'
+import {ALPHABET} from 'utils/stringStats'
 
 const WrappedScatterPlot = props => (
   <div style={{width: '100%', height: '100%'}}>

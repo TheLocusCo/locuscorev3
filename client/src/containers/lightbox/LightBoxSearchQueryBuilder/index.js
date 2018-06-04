@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import './style.css'
 import { connect } from "react-redux"
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { Route } from 'react-router-dom'
 
-import { humanize } from '../../../utils/string'
-import LightBoxSearchQueryForm from '../../../components/lightbox/LightBoxSearchQueryForm'
-import { updateCurrentSearchModel } from "../../../redux/actions"
+import { humanize } from 'utils/string'
+import LightBoxSearchQueryForm from 'components/lightbox/LightBoxSearchQueryForm'
+import { updateCurrentSearchModel } from 'redux/actions'
 
 class LightBoxSearchQueryBuilder extends Component {
   renderSearchAbility(abilities, currentSearch) {

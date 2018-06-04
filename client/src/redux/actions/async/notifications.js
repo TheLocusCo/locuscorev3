@@ -1,6 +1,6 @@
-import * as http from "../http"
-import * as sync from "../sync"
-import * as helpers from "../helpers"
+import * as http from 'redux/actions/http'
+import * as sync from 'redux/actions/sync'
+import * as helpers from 'redux/actions/helpers.js'
 
 export function createNotification(notification) {
   return dispatch =>

@@ -1,5 +1,5 @@
 import {createSelector} from 'reselect'
-import themes from '../../utils/themes'
+import themes from 'utils/themes'
 
 const getThemeName = state => state.theme
 

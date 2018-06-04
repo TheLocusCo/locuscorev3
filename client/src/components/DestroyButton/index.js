@@ -4,8 +4,8 @@ import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 import { Route } from 'react-router-dom'
 
-import { resourceDestroy } from "../../redux/actions"
-import { humanize } from '../../utils/string'
+import { resourceDestroy } from 'redux/actions'
+import { humanize } from 'utils/string'
 
 class DestroyButton extends Component {
   state = {

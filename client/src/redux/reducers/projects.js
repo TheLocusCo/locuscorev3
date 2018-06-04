@@ -1,5 +1,5 @@
-import * as async from '../actions/async'
-import * as sync from '../actions/sync'
+import * as async from 'redux/actions/async'
+import * as sync from 'redux/actions/sync'
 
 export function project(
   state = {

@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import './style.css'
 import { connect } from "react-redux"
-//import ReactCSSTransitionReplace from 'react-css-transition-replace'
-//import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import { setActiveContactForm } from "../../redux/actions"
+
+import './style.css'
+import { setActiveContactForm } from 'redux/actions'
 
 class ContactFormButtonsBlock extends Component {
   isActive(contactFormName, props) {

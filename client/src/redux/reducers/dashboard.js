@@ -1,4 +1,4 @@
-import * as sync from '../actions/sync'
+import * as sync from 'redux/actions/sync'
 import _ from 'lodash'
 
 const incrementRenderCount = (state, action) => {

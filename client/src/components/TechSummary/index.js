@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import './style.css'
 //import { { connect } } from "react-redux"
 
 class TechSummary extends Component {

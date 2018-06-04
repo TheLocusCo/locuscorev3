@@ -4,10 +4,10 @@ import ReactTooltip from 'react-tooltip'
 import { Field, reduxForm } from 'redux-form'
 
 import { TextField } from 'redux-form-material-ui'
-import ErrorBlock from '../../../containers/ErrorBlock'
-import { submit, previewSubmit } from './submit'
+import ErrorBlock from 'containers/ErrorBlock'
+import { submit, previewSubmit } from 'components/lightbox/LightBoxCommentForm/submit'
 
-import MarkdownToolbar from '../../MarkdownToolbar'
+import MarkdownToolbar from 'components/MarkdownToolbar'
 
 const validate = values => {
   const errors = {}

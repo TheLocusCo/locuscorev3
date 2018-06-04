@@ -1,7 +1,6 @@
 import React from 'react'
-import './style.css'
-import AuthedContentFooter from '../../../containers/AuthedContentFooter'
-import LightBoxUploadForm from '../LightBoxUploadForm'
+import AuthedContentFooter from 'containers/AuthedContentFooter'
+import LightBoxUploadForm from 'components/lightbox/LightBoxUploadForm'
 
 export const LightBoxMediumContent = props => {
   const downloadMedia = (url) => {

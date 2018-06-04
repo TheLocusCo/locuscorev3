@@ -1,4 +1,4 @@
-import * as helpers from './helpers.js'
+import * as helpers from 'redux/actions/http/helpers.js'
 
 export function userActivityFetch(id) {
   return fetch(`${helpers.fetchAPIURL()}/authed/users/${id}/activity`, helpers.genericAuthedGet())

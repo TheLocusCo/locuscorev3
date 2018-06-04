@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
+
 import './style.css'
-//import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import { setActiveContactForm, createNotification } from "../../redux/actions"
-import { connect } from "react-redux"
+import { setActiveContactForm, createNotification } from 'redux/actions'
+import { connect } from 'react-redux'
 
 
 const validInput = { borderBottom: "3px solid #4CAF50" }

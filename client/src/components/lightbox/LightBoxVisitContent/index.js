@@ -1,5 +1,5 @@
 import React from 'react'
-import AuthedContentFooter from '../../../containers/AuthedContentFooter'
+import AuthedContentFooter from 'containers/AuthedContentFooter'
 
 export const LightBoxVisitContent = props => {
   return (

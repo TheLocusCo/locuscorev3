@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import './style.css'
-import Routes from "../Routes"
-import AuthedRoutes from "../AuthedRoutes"
-import Navigation from "../Navigation"
-import AuthedNavigation from "../AuthedNavigation"
-import ContentFooter from "../ContentFooter"
-import AuthedContentFooter from "../AuthedContentFooter"
+import Routes from "containers/Routes"
+import AuthedRoutes from "containers/AuthedRoutes"
+import Navigation from "containers/Navigation"
+import AuthedNavigation from "containers/AuthedNavigation"
+import ContentFooter from "components/ContentFooter"
+import AuthedContentFooter from "containers/AuthedContentFooter"
 
 class AuthedContainer extends Component {
   render() {

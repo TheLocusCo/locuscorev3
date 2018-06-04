@@ -1,4 +1,4 @@
-import * as helpers from './helpers.js'
+import * as helpers from 'redux/actions/http/helpers.js'
 
 export function searchAbilityFetch(currentUserId) {
   if(currentUserId !== "") {

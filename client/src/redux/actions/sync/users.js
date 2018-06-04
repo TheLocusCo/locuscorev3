@@ -1,4 +1,4 @@
-import { authenticatedNavigation } from "../db"
+import { authenticatedNavigation } from 'redux/actions/db.js'
 
 export const RECEIVE_AUTHED_NAVIGATION = 'RECEIVE_AUTHED_NAVIGATION'
 export const REMOVE_USER_NOTIFICATION = 'REMOVE_USER_NOTIFICATION'

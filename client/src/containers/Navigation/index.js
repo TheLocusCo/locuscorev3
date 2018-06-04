@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { connect } from "react-redux"
+import { connect } from 'react-redux'
+
 import './style.css'
-import NavigationButton from '../../components/NavigationButton'
-import { fetchNavigation, receiveAPIURL } from "../../redux/actions"
+import NavigationButton from 'components/NavigationButton'
+import { fetchNavigation, receiveAPIURL } from 'redux/actions'
 
 class Navigation extends Component {
   componentDidMount() {

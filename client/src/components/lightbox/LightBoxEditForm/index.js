@@ -7,11 +7,11 @@ import 'react-widgets/dist/css/react-widgets.css'
 import MenuItem from 'material-ui/MenuItem'
 import { TextField, Checkbox, SelectField, DatePicker } from 'redux-form-material-ui'
 
-import AuthedContentFooter from "../../../containers/AuthedContentFooter"
-import ErrorBlock from '../../../containers/ErrorBlock'
-import submit from './submit'
-import { humanize } from '../../../utils/string'
-import MarkdownToolbar from '../../MarkdownToolbar'
+import AuthedContentFooter from "containers/AuthedContentFooter"
+import ErrorBlock from 'containers/ErrorBlock'
+import submit from 'components/lightbox/LightBoxEditForm/submit'
+import { humanize } from 'utils/string'
+import MarkdownToolbar from 'components/MarkdownToolbar'
 
 const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
   <TextField hintText={label}

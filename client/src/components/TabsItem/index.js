@@ -1,5 +1,4 @@
 import React from 'react'
-import './style.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 //import ReactCSSTransitionReplace from 'react-css-transition-replace'
 

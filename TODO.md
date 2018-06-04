@@ -54,3 +54,14 @@ https://github.com/knsv/mermaid
 update react-addons-css-transition to react-transition-group
 update material-ui to 1.0.0
     update redux-form-material-ui when it leaves 5.0 beta
+Refactor lightbox and page containers to remove DRY violations
+
+
+SteamWizard
+  top games per genre?
+  compare games between you and user, list co op games for each user with no playtime?
+  recommend games from lack of playtime?
+  login + subscription = no ads
+  login
+    can save games without having to reimport
+    can compare games between users

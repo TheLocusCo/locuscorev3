@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { connect } from "react-redux"
 import { Route } from 'react-router-dom'
 
-import { fetchSiteStatsSuperVisit } from "../../../redux/actions"
+import { fetchSiteStatsSuperVisit } from 'redux/actions'
 
-import ThemedDashboard from '../../ThemedDashboard'
-import EventDashboard from '../../EventDashboard'
-import Ticker from '../../Ticker'
-import Footer from '../../../components/styled/Footer'
+import ThemedDashboard from 'containers/ThemedDashboard'
+import EventDashboard from 'containers/EventDashboard'
+import Ticker from 'containers/Ticker'
+import Footer from 'components/styled/Footer'
 
 class LightBoxSiteStats extends Component {
   componentWillMount() {

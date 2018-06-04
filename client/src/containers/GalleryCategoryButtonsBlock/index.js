@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import './style.css'
 import { connect } from "react-redux"
-//import ReactCSSTransitionReplace from 'react-css-transition-replace'
-//import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import { setActiveCategory, fetchCategories } from "../../redux/actions"
+
+import './style.css'
+import { setActiveCategory, fetchCategories } from 'redux/actions'
 
 class GalleryCategoryButtonsBlock extends Component {
   componentWillMount() {

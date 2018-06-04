@@ -1,6 +1,5 @@
 import React from 'react'
-import './style.css'
-import AuthedContentFooter from '../../../containers/AuthedContentFooter'
+import AuthedContentFooter from 'containers/AuthedContentFooter'
 
 export const LightBoxUserProfile = props => {
   return (

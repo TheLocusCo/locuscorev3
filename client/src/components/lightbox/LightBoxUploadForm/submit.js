@@ -1,4 +1,4 @@
-import { resourceUpload } from "../../redux/actions"
+import { resourceUpload } from "redux/actions"
 
 const submit = (values, dispatch, props) => {
   return dispatch(resourceUpload(values))

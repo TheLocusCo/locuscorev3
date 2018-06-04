@@ -8,7 +8,7 @@ import muiThemeable from 'material-ui/styles/muiThemeable'
 import { fade } from 'material-ui/utils/colorManipulator'
 import * as colors from 'material-ui/styles/colors'
 //import DevTools from './DevTools'
-import App from './App'
+import App from 'containers/App'
 
 const theme = getMuiTheme({
   palette: {

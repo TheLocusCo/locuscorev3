@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import './style.css'
-import LightBoxMediumContent from '../../../components/lightbox/LightBoxMediumContent'
-import SuccessBlock from '../../SuccessBlock'
-//import LightBoxComments from '../LightBoxComments'
-import LightBoxErrorPage from '../../../components/lightbox/LightBoxErrorPage'
-import { connect } from "react-redux"
-import { fetchResource, deleteUploadItem, receiveAPIURL } from "../../../redux/actions"
+import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
+
+import { fetchResource, deleteUploadItem, receiveAPIURL } from 'redux/actions'
+import LightBoxMediumContent from 'components/lightbox/LightBoxMediumContent'
+import SuccessBlock from 'containers/SuccessBlock'
+import LightBoxErrorPage from 'components/lightbox/LightBoxErrorPage'
 
 class LightBoxMedium extends Component {
   componentWillMount() {

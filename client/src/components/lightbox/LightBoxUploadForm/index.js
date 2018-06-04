@@ -2,9 +2,9 @@ import React from 'react'
 import ReactTooltip from 'react-tooltip'
 import { Uploader, UploadField } from '@navjobs/upload'
 
-import { humanize } from '../../../utils/string'
-import ProgressBar from '../../ProgressBar'
-import { receiveResource, successMessage } from "../../../redux/actions"
+import { humanize } from 'utils/string'
+import ProgressBar from 'components/ProgressBar'
+import { receiveResource, successMessage } from "redux/actions"
 
 let LightBoxUploadForm = props => {
   const renderFields = (props) => {

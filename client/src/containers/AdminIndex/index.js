@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import './style.css'
-import ShortcutsBlock from '../ShortcutsBlock'
-import { connect } from "react-redux"
-import { fetchAdminShortcuts } from "../../redux/actions"
+import ShortcutsBlock from 'containers/ShortcutsBlock'
+import { connect } from 'react-redux'
+import { fetchAdminShortcuts } from "redux/actions"
 
 class AdminIndex extends Component {
   componentWillMount() {

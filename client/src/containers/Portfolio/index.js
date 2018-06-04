@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import './style.css'
-import { connect } from "react-redux"
-import GalleryBlock from '../GalleryBlock'
-import GalleryCategoryButtonsBlock from '../GalleryCategoryButtonsBlock'
-import { fetchResources } from "../../redux/actions"
+import { connect } from 'react-redux'
+
+import GalleryBlock from 'containers/GalleryBlock'
+import GalleryCategoryButtonsBlock from 'containers/GalleryCategoryButtonsBlock'
+import { fetchResources } from 'redux/actions'
 
 class Portfolio extends Component {
   componentWillMount() {

@@ -1,16 +1,16 @@
-import {connect} from 'react-redux'
-import {createSelector} from 'reselect'
+import { connect } from 'react-redux'
+import { createSelector } from 'reselect'
 import _ from 'lodash'
 
-import WrappedBarChart from '../../components/WrappedBarChart'
-import {countVisitsForLink} from '../../utils/visitStats'
-import {setHoverLinks, incrementRenderCount} from '../../redux/actions'
+import WrappedBarChart from 'components/WrappedBarChart'
+import { countVisitsForLink } from 'utils/visitStats'
+import { setHoverLinks, incrementRenderCount } from 'redux/actions'
 import {
   getVisitEvents,
   getVisitEventLinks,
   getHover,
   getVisitNameMappings,
-} from '../../redux/selectors'
+} from 'redux/selectors'
 
 const getData = createSelector(
   [getVisitEvents, getVisitEventLinks], (events, links) => {

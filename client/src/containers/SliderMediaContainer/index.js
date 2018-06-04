@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import './style.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import SliderMediaImage from '../../components/SliderMediaImage'
-import ButtonSliderPagerButton from '../../components/ButtonSliderPagerButton'
 
-import largePlaceholder from '../../images/large_placeholder.jpg'
+import SliderMediaImage from 'components/SliderMediaImage'
+import ButtonSliderPagerButton from 'components/ButtonSliderPagerButton'
+
+import largePlaceholder from 'images/large_placeholder.jpg'
 
 class SliderMediaContainer extends Component {
   constructor(props) {

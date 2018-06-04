@@ -1,7 +1,7 @@
-import * as fromColors from './colors'
-import * as fromText from './text'
-import * as fromTheme from './theme'
-import * as fromVisit from './visit'
+import * as fromColors from 'redux/selectors/colors'
+import * as fromText from 'redux/selectors/text'
+import * as fromTheme from 'redux/selectors/theme'
+import * as fromVisit from 'redux/selectors/visit'
 
 /** delegated to slice selectors **/
 // colors

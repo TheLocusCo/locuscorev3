@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import './style.css'
-import { connect } from "react-redux"
-import NotificationsItem from '../../components/NotificationsItem'
+import { connect } from 'react-redux'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { Route } from 'react-router-dom'
-import { fetchUserNotifications, dismissUserNotification } from "../../redux/actions"
+
+import './style.css'
+import NotificationsItem from 'components/NotificationsItem'
+import { fetchUserNotifications, dismissUserNotification } from 'redux/actions'
 
 class NotificationsBlock extends Component {
   componentWillMount() {

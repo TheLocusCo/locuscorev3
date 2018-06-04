@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import './style.css'
-//import { connect } from "react-redux"
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import GalleryItem from '../../components/GalleryItem'
-import MangaGalleryItem from '../../components/MangaGalleryItem'
+
+import './style.css'
+import GalleryItem from 'components/GalleryItem'
+import MangaGalleryItem from 'components/MangaGalleryItem'
 
 class GalleryBlock extends Component {
   renderContent(props) {

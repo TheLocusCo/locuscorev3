@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import './style.css'
-//import ReactDOM from 'react-dom';
 
 class ScrollTopButton extends Component {
   constructor(props) {

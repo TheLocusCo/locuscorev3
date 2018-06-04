@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
 import './style.css'
-import TabsBlock from '../../containers/TabsBlock'
-import NextSlideButton from '../NextSlideButton'
+import TabsBlock from 'containers/TabsBlock'
+import NextSlideButton from 'components/NextSlideButton'
 
 class ButtonSliderItemContent extends Component {
   renderContent(props) {

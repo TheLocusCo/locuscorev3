@@ -1,21 +1,20 @@
 import React, { Component } from 'react'
-import './style.css'
-import { connect } from "react-redux"
+import { connect } from 'react-redux'
 import Loadable from 'react-loadable'
 
-import { humanize } from '../../utils/string'
-import ShortcutsBlock from '../ShortcutsBlock'
-import GalleryBlock from '../GalleryBlock'
-import GalleryCategoryButtonsBlock from '../GalleryCategoryButtonsBlock'
-import SuccessBlock from '../SuccessBlock'
-import ErrorBlock from '../ErrorBlock'
-import PaginationContainer from '../PaginationContainer'
-import EmptyPage from "../../components/EmptyPage"
+import { humanize } from 'utils/string'
+import ShortcutsBlock from 'containers/ShortcutsBlock'
+import GalleryBlock from 'containers/GalleryBlock'
+import GalleryCategoryButtonsBlock from 'containers/GalleryCategoryButtonsBlock'
+import SuccessBlock from 'containers/SuccessBlock'
+import ErrorBlock from 'containers/ErrorBlock'
+import PaginationContainer from 'containers/PaginationContainer'
+import EmptyPage from "components/EmptyPage"
 
-import { fetchSearchResults } from "../../redux/actions"
+import { fetchSearchResults } from 'redux/actions'
 
 const AuthedIndexTable = Loadable({
-  loader: () => import("../AuthedIndexTable"),
+  loader: () => import('containers/AuthedIndexTable'),
   loading: EmptyPage
 })
 

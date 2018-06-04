@@ -7,11 +7,11 @@ import { TextField, Checkbox, SelectField, DatePicker } from 'redux-form-materia
 import Multiselect from 'react-widgets/lib/Multiselect'
 import 'react-widgets/dist/css/react-widgets.css'
 
-import AuthedContentFooter from "../../../containers/AuthedContentFooter"
-import ErrorBlock from '../../../containers/ErrorBlock'
-import submit from './submit'
-import { humanize } from '../../../utils/string'
-import MarkdownToolbar from '../../MarkdownToolbar'
+import AuthedContentFooter from "containers/AuthedContentFooter"
+import ErrorBlock from 'containers/ErrorBlock'
+import submit from 'components/lightbox/LightBoxNewForm/submit'
+import { humanize } from 'utils/string'
+import MarkdownToolbar from 'components/MarkdownToolbar'
 
 const renderTextField = ({ input, newValue, label, meta: { touched, error }, ...custom }) => (
   <TextField hintText={label}

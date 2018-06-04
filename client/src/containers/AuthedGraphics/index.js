@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
-import './style.css'
 import { connect } from "react-redux"
 import { Link } from 'react-router-dom'
-import AuthedIndexTable from '../AuthedIndexTable'
+import AuthedIndexTable from 'containers/AuthedIndexTable'
 //import ReactCSSTransitionReplace from 'react-css-transition-replace'
 //import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import SuccessBlock from '../SuccessBlock'
-import ErrorBlock from '../ErrorBlock'
-import PaginationContainer from '../PaginationContainer'
-import { fetchResources } from "../../redux/actions"
+import SuccessBlock from 'containers/SuccessBlock'
+import ErrorBlock from 'containers/ErrorBlock'
+import PaginationContainer from 'containers/PaginationContainer'
+import { fetchResources } from "redux/actions"
 
 class AuthedGraphics extends Component {
   componentWillMount() {

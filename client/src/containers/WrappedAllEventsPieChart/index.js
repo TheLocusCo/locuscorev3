@@ -1,17 +1,17 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {createSelector} from 'reselect'
+import { connect } from 'react-redux'
+import { createSelector } from 'reselect'
 import _ from 'lodash'
 
-import WrappedPieChart from '../../components/WrappedPieChart'
-import {countVisitsForXAxis} from '../../utils/visitStats'
-import {incrementRenderCount, setVisitColor} from '../../redux/actions'
-import {getColorWithDefaultSaturation, COLOR_PALLET} from '../../utils/colors'
+import WrappedPieChart from 'components/WrappedPieChart'
+import { countVisitsForXAxis } from 'utils/visitStats'
+import { incrementRenderCount, setVisitColor } from 'redux/actions'
+import { getColorWithDefaultSaturation, COLOR_PALLET } from 'utils/colors'
 import {
   getVisitEvents,
   getHover,
   getVisitNameMappings,
-} from '../../redux/selectors'
+} from 'redux/selectors'
 
 const getFilterEnabled = (state, ownProps) => ownProps.filter
 

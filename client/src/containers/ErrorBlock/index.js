@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import './style.css'
-import { connect } from "react-redux"
-import ErrorItem from '../../components/ErrorItem'
+import { connect } from 'react-redux'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import { dismissError } from "../../redux/actions"
+
+import ErrorItem from 'components/ErrorItem'
+import { dismissError } from "redux/actions"
 
 class ErrorBlock extends Component {
   dismissError(messageWithKey) {

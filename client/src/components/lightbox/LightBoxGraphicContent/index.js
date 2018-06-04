@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import './style.css'
 import Script from 'react-load-script'
 import P5Wrapper from 'react-p5-wrapper'
-import AuthedContentFooter from '../../../containers/AuthedContentFooter'
+
+import AuthedContentFooter from 'containers/AuthedContentFooter'
 
 import { Markdown } from 'react-showdown'
 
@@ -102,7 +102,7 @@ class LightBoxGraphicContent extends Component {
   render() {
     var props = this.props
     return (
-      <article className="webgl-display">
+      <article style={{textAlign: 'center'}}>
         {props.library === "scenejs" &&
           <Script
             url={this.buildUrl()}

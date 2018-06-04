@@ -1,5 +1,5 @@
-import React from "react"
-import "./style.css"
+import React from 'react'
+import './style.css'
 
 export const ButtonSliderPagerButton = props => {
   const isActive = (props) => {
