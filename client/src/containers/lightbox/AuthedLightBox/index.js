@@ -9,13 +9,6 @@ const LightBoxShowResource = asyncComponent(() => import("containers/lightbox/Li
 const LightBoxGeneric = asyncComponent(() => import("containers/lightbox/LightBoxGeneric"))
 const LightBoxShowMedium = asyncComponent(() => import("containers/lightbox/LightBoxShowMedium"))
 
-const LightBoxUser = asyncComponent(() => import("containers/lightbox/LightBoxUser"))
-const LightBoxRole = asyncComponent(() => import("containers/lightbox/LightBoxRole"))
-const LightBoxResume = asyncComponent(() => import("containers/lightbox/LightBoxResume"))
-const LightBoxNotification = asyncComponent(() => import("containers/lightbox/LightBoxNotification"))
-const LightBoxComment = asyncComponent(() => import("containers/lightbox/LightBoxComment"))
-const LightBoxMedium = asyncComponent(() => import("containers/lightbox/LightBoxMedium"))
-const LightBoxManga = asyncComponent(() => import("containers/lightbox/LightBoxManga"))
 const LightBoxEditResource = asyncComponent(() => import("containers/lightbox/LightBoxEditResource"))
 const LightBoxNewResource = asyncComponent(() => import("containers/lightbox/LightBoxNewResource"))
 const LightBoxVisit = asyncComponent(() => import("containers/lightbox/LightBoxVisit"))
@@ -195,7 +188,13 @@ class AuthedLightBox extends Component {
             </Route>
 
             <Route exact path="/manga_gallery/:id">
-              <LightBoxManga locationToPush="/manga_gallery" location={location}/>
+              <LightBoxShowResource
+                hasComments
+                resourceType='manga'
+                resourcePlural='mangas'
+                locationToPush='/manga_gallery'
+                location={location}
+              />
             </Route>
 
             <Route exact path ="/visits/:id">
