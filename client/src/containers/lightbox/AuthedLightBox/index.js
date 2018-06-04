@@ -4,9 +4,8 @@ import { Switch, Route } from 'react-router-dom'
 
 import asyncComponent from "containers/AsyncComponent"
 
-const LightBoxPost = asyncComponent(() => import("containers/lightbox/LightBoxPost"))
-const LightBoxProject = asyncComponent(() => import("containers/lightbox/LightBoxProject"))
-const LightBoxGraphic = asyncComponent(() => import("containers/lightbox/LightBoxGraphic"))
+const LightBoxShowResource = asyncComponent(() => import("containers/lightbox/LightBoxShowResource"))
+
 const LightBoxGeneric = asyncComponent(() => import("containers/lightbox/LightBoxGeneric"))
 const LightBoxShowMedium = asyncComponent(() => import("containers/lightbox/LightBoxShowMedium"))
 
@@ -45,7 +44,13 @@ class AuthedLightBox extends Component {
               <LightBoxNewResource locationToPush="/graphics" location={location}/>
             </Route>
             <Route exact path="/graphics/:id">
-              <LightBoxGraphic locationToPush="/graphics" location={location}/>
+              <LightBoxShowResource
+                hasComments
+                fullscreenable
+                resourceType='graphic'
+                resourcePlural='graphics'
+                location={location}
+              />
             </Route>
             <Route exact path="/graphics/:id/edit">
               <LightBoxEditResource locationToPush="/graphics" location={location}/>
@@ -55,7 +60,12 @@ class AuthedLightBox extends Component {
               <LightBoxNewResource locationToPush="/posts" location={location}/>
             </Route>
             <Route exact path="/posts/:id">
-              <LightBoxPost locationToPush="/posts" location={location}/>
+              <LightBoxShowResource
+                hasComments
+                resourceType='post'
+                resourcePlural='posts'
+                location={location}
+              />
             </Route>
             <Route exact path="/posts/:id/edit">
               <LightBoxEditResource locationToPush="/posts" location={location}/>
@@ -65,7 +75,12 @@ class AuthedLightBox extends Component {
               <LightBoxNewResource locationToPush="/projects" location={location}/>
             </Route>
             <Route exact path="/projects/:id">
-              <LightBoxProject locationToPush="/projects" location={location}/>
+              <LightBoxShowResource
+                hasComments
+                resourceType='project'
+                resourcePlural='projects'
+                location={location}
+              />
             </Route>
             <Route exact path="/projects/:id/edit">
               <LightBoxEditResource locationToPush="/projects" location={location}/>
@@ -75,7 +90,11 @@ class AuthedLightBox extends Component {
               <LightBoxNewResource locationToPush="/users" location={location}/>
             </Route>
             <Route exact path="/users/:id">
-              <LightBoxUser locationToPush="/users" location={location}/>
+              <LightBoxShowResource
+                resourceType='user'
+                resourcePlural='users'
+                location={location}
+              />
             </Route>
             <Route exact path="/users/:id/edit">
               <LightBoxEditResource locationToPush="/users" location={location}/>
@@ -88,7 +107,11 @@ class AuthedLightBox extends Component {
               <LightBoxNewResource locationToPush="/resumes" location={location}/>
             </Route>
             <Route exact path="/resumes/:id">
-              <LightBoxResume locationToPush="/resumes" location={location}/>
+              <LightBoxShowResource
+                resourceType='resume'
+                resourcePlural='resumes'
+                location={location}
+              />
             </Route>
             <Route exact path="/resumes/:id/edit">
               <LightBoxEditResource locationToPush="/resumes" location={location}/>
@@ -98,7 +121,11 @@ class AuthedLightBox extends Component {
               <LightBoxNewResource locationToPush="/roles" location={location}/>
             </Route>
             <Route exact path="/roles/:id">
-              <LightBoxRole locationToPush="/roles" location={location}/>
+              <LightBoxShowResource
+                resourceType='role'
+                resourcePlural='roles'
+                location={location}
+              />
             </Route>
             <Route exact path="/roles/:id/edit">
               <LightBoxEditResource locationToPush="/roles" location={location}/>
@@ -108,7 +135,11 @@ class AuthedLightBox extends Component {
               <LightBoxNewResource locationToPush="/notifications" location={location}/>
             </Route>
             <Route exact path="/notifications/:id">
-              <LightBoxNotification locationToPush="/notifications" location={location}/>
+              <LightBoxShowResource
+                resourceType='notification'
+                resourcePlural='notifications'
+                location={location}
+              />
             </Route>
             <Route exact path="/notifications/:id/edit">
               <LightBoxEditResource locationToPush="/notifications" location={location}/>
@@ -118,7 +149,11 @@ class AuthedLightBox extends Component {
               <LightBoxNewResource locationToPush="/comments" location={location}/>
             </Route>
             <Route exact path="/comments/:id">
-              <LightBoxComment locationToPush="/comments" location={location}/>
+              <LightBoxShowResource
+                resourceType='comment'
+                resourcePlural='comments'
+                location={location}
+              />
             </Route>
             <Route exact path="/comments/:id/edit">
               <LightBoxEditResource locationToPush="/comments" location={location}/>
@@ -128,7 +163,11 @@ class AuthedLightBox extends Component {
               <LightBoxNewResource locationToPush="/media" location={location}/>
             </Route>
             <Route exact path="/media/:id">
-              <LightBoxMedium locationToPush="/media" location={location}/>
+              <LightBoxShowResource
+                resourceType='medium'
+                resourcePlural='media'
+                location={location}
+              />
             </Route>
             <Route exact path="/media/:id/edit">
               <LightBoxEditResource locationToPush="/media" location={location}/>
@@ -144,7 +183,12 @@ class AuthedLightBox extends Component {
               <LightBoxNewResource locationToPush="/mangas" location={location}/>
             </Route>
             <Route exact path="/mangas/:id">
-              <LightBoxManga locationToPush="/mangas" location={location}/>
+              <LightBoxShowResource
+                hasComments
+                resourceType='manga'
+                resourcePlural='mangas'
+                location={location}
+              />
             </Route>
             <Route exact path="/mangas/:id/edit">
               <LightBoxEditResource locationToPush="/mangas" location={location}/>

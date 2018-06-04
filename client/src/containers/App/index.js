@@ -7,12 +7,16 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import './style.css'
 import 'styles/animations.css' //animations only load correctly when loaded very last
 
-import AuthedContainer from "containers/AuthedContainer"
-import MobileContainer from "containers/mobile/MobileContainer"
-import AuthedLightBoxContainer from "containers/lightbox/AuthedLightBoxContainer"
-import NotificationsBlock from "containers/NotificationsBlock"
+import AuthedContainer from 'containers/AuthedContainer'
+import MobileContainer from 'containers/mobile/MobileContainer'
+import AuthedLightBoxContainer from 'containers/lightbox/AuthedLightBoxContainer'
+import NotificationsBlock from 'containers/NotificationsBlock'
+import { apiUrl } from 'utils/http'
+import { userAuth } from 'redux/actions'
 
-import { userAuth } from "redux/actions"
+ahoy.configure({
+  urlPrefix: apiUrl()
+})
 
 class App extends Component {
   componentDidMount() {

@@ -1,4 +1,5 @@
 import * as helpers from 'redux/actions/http/helpers.js'
+import { apiUrl } from 'utils/http'
 export * from 'redux/actions/http/resources.js'
 export * from 'redux/actions/http/search.js'
 export * from 'redux/actions/http/users.js'
@@ -6,9 +7,9 @@ export * from 'redux/actions/http/users.js'
 export function categoriesFetch(type) {
   switch (type) {
     case "all":
-      return fetch(`${helpers.fetchAPIURL()}/api/categories?type=${type}`)
+      return fetch(`${apiUrl()}/api/categories?type=${type}`)
     default:
-      return fetch(`${helpers.fetchAPIURL()}/api/categories?type=${type}&mode=withAllCat`)
+      return fetch(`${apiUrl()}/api/categories?type=${type}&mode=withAllCat`)
   }
 }
 
@@ -17,13 +18,13 @@ export function commentCreate(comment) {
   resourceToSend["comment"] = comment
 
   if(comment.user_id) {
-    return fetch(`${helpers.fetchAPIURL()}/authed/comments`, {
+    return fetch(`${apiUrl()}/authed/comments`, {
       method: "POST",
       headers: helpers.authedHeaders(),
       body: JSON.stringify(resourceToSend)
     })
   } else {
-    return fetch(`${helpers.fetchAPIURL()}/api/comments`, {
+    return fetch(`${apiUrl()}/api/comments`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -37,7 +38,7 @@ export function commentCreate(comment) {
 export function notificationCreate(notification) {
   let resourceToSend = {}
   resourceToSend["notification"] = notification
-  return fetch(`${helpers.fetchAPIURL()}/api/notifications`, {
+  return fetch(`${apiUrl()}/api/notifications`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -48,9 +49,9 @@ export function notificationCreate(notification) {
 }
 
 export function showMediumFetch(id, type) {
-  return fetch(`${helpers.fetchAPIURL()}/api/media/${id}/${type}`)
+  return fetch(`${apiUrl()}/api/media/${id}/${type}`)
 }
 
 export function siteStatsVisitFetch() {
-  return fetch(`${helpers.fetchAPIURL()}/api/anon_site_stats`)
+  return fetch(`${apiUrl()}/api/anon_site_stats`)
 }

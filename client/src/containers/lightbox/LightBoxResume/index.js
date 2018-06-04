@@ -25,7 +25,7 @@ class LightBoxResume extends Component {
                 <LightBoxErrorPage errorContent={this.props.errorContent}/>
               }
               {this.props.resume.id &&
-                <LightBoxResumeContent {...this.props.resume} location={this.props.location} resumeHost={this.props.resumeHost}/>
+                <LightBoxResumeContent {...this.props.resume} location={this.props.location}/>
               }
               <button onClick={() => history.push(this.props.locationToPush)} title="Close (Esc)" type="button" className="ltbx-close">×</button>
             </div>
@@ -39,7 +39,6 @@ class LightBoxResume extends Component {
 
 const mapStateToProps = state => ({
   resume: state.resume.content,
-  resumeHost: state.resumeHost.host,
   successContent: state.successMessages.items,
   errorContent: state.errorMessages.items,
   isFetching: state.post.isFetching

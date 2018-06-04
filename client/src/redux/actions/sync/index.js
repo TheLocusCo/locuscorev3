@@ -1,5 +1,3 @@
-import * as httpHelpers from 'redux/actions/http/helpers.js'
-
 export * from 'redux/actions/sync/categories.js'
 export * from 'redux/actions/sync/comments.js'
 export * from 'redux/actions/sync/db.js'
@@ -11,7 +9,6 @@ export * from 'redux/actions/sync/dashboard.js'
 export const GENERIC_API_FAILURE = 'GENERIC_API_FAILURE'
 export const REMOVE_ERROR_MESSAGE = 'REMOVE_ERROR_MESSAGE'
 export const REMOVE_SUCCESS_MESSAGE = 'REMOVE_SUCCESS_MESSAGE'
-export const RECEIVE_API_URL = 'RECEIVE_API_URL'
 export const TOGGLE_FULLSCREEN_LIGHTBOX = 'TOGGLE_FULLSCREEN_LIGHTBOX'
 export const UPDATE_ACTIVE_CONTACT_FORM = 'UPDATE_ACTIVE_CONTACT_FORM'
 export const UPDATE_ERROR_MESSAGES = 'UPDATE_ERROR_MESSAGES'
@@ -82,13 +79,6 @@ export function genericAPIError(data) {
   return {
     type: GENERIC_API_FAILURE,
     //errorLog: data.error
-  }
-}
-
-export function receiveAPIURL() {
-  return {
-    type: RECEIVE_API_URL,
-    apiUrl: httpHelpers.fetchAPIURL()
   }
 }
 

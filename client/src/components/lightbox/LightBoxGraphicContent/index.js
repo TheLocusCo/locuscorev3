@@ -102,7 +102,7 @@ class LightBoxGraphicContent extends Component {
   render() {
     var props = this.props
     return (
-      <article style={{textAlign: 'center'}}>
+      <article className='portfolio-item' style={{textAlign: 'center'}}>
         {props.library === "scenejs" &&
           <Script
             url={this.buildUrl()}

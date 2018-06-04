@@ -27,22 +27,6 @@ export function resume(
   }
 }
 
-export function resumeHost(
-  state = {
-    host: ""
-  },
-  action
-) {
-  switch(action.type) {
-    case sync.RECEIVE_RESUME_HOST:
-      return Object.assign({}, state, {
-        host: action.resumeHost
-      })
-    default:
-      return state
-  }
-}
-
 export function resumes(
   state = {
     isFetching: false,

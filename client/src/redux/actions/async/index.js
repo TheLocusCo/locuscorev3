@@ -47,12 +47,6 @@ export function fetchAdminShortcuts(role) {
   }
 }
 
-export function fetchResumeHost() {
-  return dispatch => {
-    return dispatch(sync.receiveResumeHost())
-  }
-}
-
 export function fetchWelcomeShortcuts() {
   return dispatch => {
     return dispatch(sync.receiveWelcomeShortcuts())

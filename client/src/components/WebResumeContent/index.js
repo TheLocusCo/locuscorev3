@@ -1,6 +1,7 @@
 import React from 'react'
 
 import './style.css'
+import { resumeHost } from 'utils/http'
 
 export const WebResumeContent = props => {
   return (
@@ -11,7 +12,7 @@ export const WebResumeContent = props => {
           <span className="helper" />
         </h2>
         <div style={ { marginBottom: "20px" } } className="centered">
-          <a className="button" href={props.resumeHost + "/primary_resume_download"}>
+          <a className="button" href={resumeHost() + "/primary_resume_download"}>
             <i className="icon-download"/>
             Download My Two Page Resume
           </a>

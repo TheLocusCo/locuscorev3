@@ -50,22 +50,6 @@ export function adminShortcuts(
   }
 }
 
-export function apiUrl(
-  state = {
-    url: ""
-  },
-  action
-) {
-  switch (action.type) {
-    case sync.RECEIVE_API_URL:
-      return Object.assign({}, state, {
-        url: action.apiUrl
-      })
-    default:
-      return state
-  }
-}
-
 export function authedNavigation(
   state = {
     items: []

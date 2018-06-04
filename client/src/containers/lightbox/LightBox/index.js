@@ -4,9 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 
 import asyncComponent from "containers/AsyncComponent"
 
-const LightBoxPost = asyncComponent(() => import("containers/lightbox/LightBoxPost"))
-const LightBoxProject = asyncComponent(() => import("containers/lightbox/LightBoxProject"))
-const LightBoxGraphic = asyncComponent(() => import("containers/lightbox/LightBoxGraphic"))
+const LightBoxShowResource = asyncComponent(() => import("containers/lightbox/LightBoxShowResource"))
 const LightBoxGeneric = asyncComponent(() => import("containers/lightbox/LightBoxGeneric"))
 const LightBoxShowMedium = asyncComponent(() => import("../LightBoxShowMedium"))
 const EmptyPage = asyncComponent(() => import("components/EmptyPage"))
@@ -16,30 +14,50 @@ const LightBoxSiteStats = asyncComponent(() => import("containers/lightbox/Light
 
 class LightBox extends Component {
   render() {
+    const { location } = this.props
     return (
       <ReactCSSTransitionReplace
         transitionName="cross-fade"
         transitionEnterTimeout={1000}
         transitionLeaveTimeout={1000}
       >
-        <div key={this.props.location.pathname}>
-          <Switch location={this.props.location}>
+        <div key={location.pathname}>
+          <Switch location={location}>
             {// Prevent new route paths from muddling up the authenticated part of the site (this gets parsed first)
             }
             <Route exact path="/search">
-              <LightBoxSearch location={this.props.location}/>
+              <LightBoxSearch location={location}/>
             </Route>
             <Route exact path="/posts/new" component={EmptyPage} />
             <Route exact path="/projects/new" component={EmptyPage} />
             <Route exact path="/graphics/new" component={EmptyPage} />
             <Route exact path="/posts/:id">
-              <LightBoxPost locationToPush="/blog" location={this.props.location}/>
+              <LightBoxShowResource
+                hasComments
+                resourceType='post'
+                resourcePlural='posts'
+                locationToPush='/blog'
+                location={location}
+              />
             </Route>
             <Route exact path="/projects/:id">
-              <LightBoxProject locationToPush="/portfolio" location={this.props.location}/>
+              <LightBoxShowResource
+                hasComments
+                resourceType='project'
+                resourcePlural='projects'
+                locationToPush='/portfolio'
+                location={location}
+              />
             </Route>
             <Route exact path="/graphics/:id">
-              <LightBoxGraphic locationToPush="/graphics_welcome" location={this.props.location}/>
+              <LightBoxShowResource
+                hasComments
+                fullscreenable
+                resourceType='graphic'
+                resourcePlural='graphics'
+                locationToPush='/graphics_welcome'
+                location={location}
+              />
             </Route>
             <Route exact path="/media/:id/show_image">
               <LightBoxShowMedium locationToPush="/" location={this.props.location}/>

@@ -1,15 +1,16 @@
 import * as helpers from 'redux/actions/http/helpers.js'
+import { apiUrl } from 'utils/http'
 
 export function userActivityFetch(id) {
-  return fetch(`${helpers.fetchAPIURL()}/authed/users/${id}/activity`, helpers.genericAuthedGet())
+  return fetch(`${apiUrl()}/authed/users/${id}/activity`, helpers.genericAuthedGet())
 }
 
 export function userAuth() {
-  return fetch(`${helpers.fetchAPIURL()}/auth/validate_token`, helpers.genericAuthedGet())
+  return fetch(`${apiUrl()}/auth/validate_token`, helpers.genericAuthedGet())
 }
 
 export function userLogout() {
-  return fetch(`${helpers.fetchAPIURL()}/auth/sign_out`, {
+  return fetch(`${apiUrl()}/auth/sign_out`, {
     method: "DELETE",
     headers: {
       "access-token": localStorage.accessToken || "",
@@ -22,7 +23,7 @@ export function userLogout() {
 }
 
 export function userLogin(user) {
-  return fetch(`${helpers.fetchAPIURL()}/auth/sign_in`, {
+  return fetch(`${apiUrl()}/auth/sign_in`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -36,9 +37,9 @@ export function userLogin(user) {
 }
 
 export function userNotificationsFetch(userId) {
-  return fetch(`${helpers.fetchAPIURL()}/authed/notifications?mode=forUser&forUser=${userId}`, helpers.genericAuthedGet())
+  return fetch(`${apiUrl()}/authed/notifications?mode=forUser&forUser=${userId}`, helpers.genericAuthedGet())
 }
 
 export function userRoleFetch(user) {
-  return fetch(`${helpers.fetchAPIURL()}/authed/roles/${user.role_id}`, helpers.genericAuthedGet())
+  return fetch(`${apiUrl()}/authed/roles/${user.role_id}`, helpers.genericAuthedGet())
 }

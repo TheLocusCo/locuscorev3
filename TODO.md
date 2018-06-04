@@ -55,7 +55,7 @@ update react-addons-css-transition to react-transition-group
 update material-ui to 1.0.0
     update redux-form-material-ui when it leaves 5.0 beta
 Refactor lightbox and page containers to remove DRY violations
-
+refactor asynccomponent to hocs
 
 SteamWizard
   top games per genre?

@@ -13,11 +13,11 @@ import { notification, notifications } from 'redux/reducers/notifications.js'
 import { post, posts } from 'redux/reducers/posts.js'
 import { project, projects } from 'redux/reducers/projects.js'
 import { editItem, newItem, uploadItem } from 'redux/reducers/resources.js'
-import { resume, resumeHost, resumes } from 'redux/reducers/resumes.js'
+import { resume, resumes } from 'redux/reducers/resumes.js'
 import { role, roles } from 'redux/reducers/roles.js'
 import { searchAbility, currentSearch, currentSearchResults } from 'redux/reducers/search.js'
 import {
-  activeCategory, activeContactForm, adminShortcuts, apiUrl, authedNavigation,
+  activeCategory, activeContactForm, adminShortcuts, authedNavigation,
   contactForms, currentPage, lightbox, navigation, tableHeaders,
   welcomeButtonSliders, welcomeShortcuts, welcomeTabs, errorLog
 } from 'redux/reducers/ui.js'
@@ -29,7 +29,6 @@ const rootReducer = combineReducers({
   activeCategory,
   activeContactForm,
   adminShortcuts,
-  apiUrl,
   authedNavigation,
   currentUser,
   currentPage,
@@ -62,7 +61,6 @@ const rootReducer = combineReducers({
   previewComment,
   renderCount,
   resume,
-  resumeHost,
   resumes,
   searchAbility,
   role,

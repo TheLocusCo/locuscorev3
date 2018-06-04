@@ -31,8 +31,6 @@ export function fetchResource(resourceType, resourcePlural, id) {
         switch (resourceType) {
           case "medium":
             return dispatch(receiveUploadItem(response))
-          case "resume":
-            return dispatch(sync.receiveResumeHost())
           default:
             return null
         }
