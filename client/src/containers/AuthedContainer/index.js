@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import './style.css'
-import Routes from "containers/Routes"
-import AuthedRoutes from "containers/AuthedRoutes"
+import Routes from "containers/routes/Routes"
+import AuthedRoutes from "containers/routes/AuthedRoutes"
 import Navigation from "containers/Navigation"
 import AuthedNavigation from "containers/AuthedNavigation"
 import ContentFooter from "components/ContentFooter"
