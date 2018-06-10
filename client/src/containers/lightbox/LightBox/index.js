@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ReactCSSTransitionReplace from 'react-css-transition-replace'
 import { Switch, Route } from 'react-router-dom'
 
-import asyncComponent from "containers/AsyncComponent"
+import asyncComponent from 'hocs/AsyncComponent'
 
 const LightBoxShowResource = asyncComponent(() => import("containers/lightbox/LightBoxShowResource"))
 const LightBoxGeneric = asyncComponent(() => import("containers/lightbox/LightBoxGeneric"))

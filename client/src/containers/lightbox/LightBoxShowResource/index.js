@@ -6,7 +6,7 @@ import SuccessBlock from 'containers/SuccessBlock'
 import LightBoxErrorPage from 'components/lightbox/LightBoxErrorPage'
 import { fetchResource, toggleFullscreenLightBox, deleteUploadItem } from 'redux/actions'
 import { humanize } from 'utils/string'
-import asyncComponent from "containers/AsyncComponent"
+import asyncComponent from 'hocs/AsyncComponent'
 
 const LightBoxPostContent = asyncComponent(() => import('components/lightbox/LightBoxPostContent'))
 const LightBoxComments = asyncComponent(() => import('containers/lightbox/LightBoxComments'))
