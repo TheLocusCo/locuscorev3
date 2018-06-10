@@ -4,7 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { Route } from 'react-router-dom'
 
 import './style.css'
-import NotificationsItem from 'components/NotificationsItem'
+import NotificationsItem from 'components/iteratorItems/NotificationsItem'
 import { fetchUserNotifications, dismissUserNotification } from 'redux/actions'
 
 class NotificationsBlock extends Component {

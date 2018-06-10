@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import './style.css'
-import NavigationButton from 'components/NavigationButton'
+import NavigationButton from 'components/buttons/NavigationButton'
 import { fetchNavigation } from 'redux/actions'
 import { apiUrl } from 'utils/http'
 

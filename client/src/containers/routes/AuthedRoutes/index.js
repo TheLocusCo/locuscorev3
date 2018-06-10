@@ -11,8 +11,8 @@ import Portfolio from "containers/pages/Portfolio"
 import Contact from "containers/pages/Contact"
 import Login from "containers/pages/Login"
 import SearchResults from "containers/pages/SearchResults"
-import EmptyPage from "components/EmptyPage"
-import UnknownPage from "components/UnknownPage"
+import EmptyPage from "components/pages/EmptyPage"
+import UnknownPage from "components/pages/UnknownPage"
 
 const Graphics = Loadable({
   loader: () => import("containers/pages/Graphics"),

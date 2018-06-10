@@ -7,7 +7,7 @@ import asyncComponent from 'hocs/AsyncComponent'
 const LightBoxShowResource = asyncComponent(() => import("containers/lightbox/LightBoxShowResource"))
 const LightBoxGeneric = asyncComponent(() => import("containers/lightbox/LightBoxGeneric"))
 const LightBoxShowMedium = asyncComponent(() => import("../LightBoxShowMedium"))
-const EmptyPage = asyncComponent(() => import("components/EmptyPage"))
+const EmptyPage = asyncComponent(() => import("components/pages/EmptyPage"))
 
 const LightBoxSearch = asyncComponent(() => import("containers/lightbox/LightBoxSearch"))
 const LightBoxSiteStats = asyncComponent(() => import("containers/lightbox/LightBoxSiteStats"))

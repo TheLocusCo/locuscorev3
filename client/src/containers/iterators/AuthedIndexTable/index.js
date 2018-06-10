@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-import DestroyButton from 'components/DestroyButton'
+import DestroyButton from 'components/buttons/DestroyButton'
 
 class AuthedIndexTableBlock extends Component {
   linkClass(type, item, itemIndex) {

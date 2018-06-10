@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import './style.css'
 import ButtonSliderItem from 'containers/ButtonSliderItem'
-import ButtonSliderPagerButton from 'components/ButtonSliderPagerButton'
+import ButtonSliderPagerButton from 'components/buttons/ButtonSliderPagerButton'
 //import ReactCSSTransitionReplace from 'react-css-transition-replace'
 //import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { setButtonSliderContent } from "redux/actions"

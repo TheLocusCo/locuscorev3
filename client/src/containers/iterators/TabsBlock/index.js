@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import './style.css'
 import TabsItem from 'components/iteratorItems/TabsItem'
-import TabsButton from 'components/TabsButton'
+import TabsButton from 'components/buttons/TabsButton'
 import { setTabContent } from 'redux/actions'
 
 class TabsBlock extends Component {

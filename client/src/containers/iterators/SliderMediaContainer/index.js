@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-import SliderMediaImage from 'components/SliderMediaImage'
-import ButtonSliderPagerButton from 'components/ButtonSliderPagerButton'
+import SliderMediaImage from 'components/iteratorItems/SliderMediaImage'
+import ButtonSliderPagerButton from 'components/buttons/ButtonSliderPagerButton'
 
 import largePlaceholder from 'images/large_placeholder.jpg'
 

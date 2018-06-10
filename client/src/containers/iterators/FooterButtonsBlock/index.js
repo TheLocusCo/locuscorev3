@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { humanize } from 'utils/string'
-import DestroyButton from 'components/DestroyButton'
+import DestroyButton from 'components/buttons/DestroyButton'
 import { deleteEditItem, deleteNewItem } from 'redux/actions'
 
 // Update footer based on current path
