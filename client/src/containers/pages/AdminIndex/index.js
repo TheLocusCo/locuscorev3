@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import ShortcutsBlock from 'containers/ShortcutsBlock'
 import { connect } from 'react-redux'
+
+import ShortcutsBlock from 'containers/ShortcutsBlock'
 import { fetchAdminShortcuts } from "redux/actions"
 
 class AdminIndex extends Component {

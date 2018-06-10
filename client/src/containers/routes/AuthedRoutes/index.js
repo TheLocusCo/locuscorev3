@@ -3,84 +3,84 @@ import ReactCSSTransitionReplace from 'react-css-transition-replace'
 import { Switch, Route } from 'react-router-dom'
 import Loadable from 'react-loadable'
 
-import Home from "containers/Home"
-import AboutMe from "containers/AboutMe"
-import WebResume from "containers/WebResume"
-import Blog from "containers/Blog"
-import Portfolio from "containers/Portfolio"
-import Contact from "containers/Contact"
-import Login from "containers/Login"
-import SearchResults from "containers/SearchResults"
+import Home from "containers/pages/Home"
+import AboutMe from "containers/pages/AboutMe"
+import WebResume from "containers/pages/WebResume"
+import Blog from "containers/pages/Blog"
+import Portfolio from "containers/pages/Portfolio"
+import Contact from "containers/pages/Contact"
+import Login from "containers/pages/Login"
+import SearchResults from "containers/pages/SearchResults"
 import EmptyPage from "components/EmptyPage"
 import UnknownPage from "components/UnknownPage"
 
 const Graphics = Loadable({
-  loader: () => import("containers/Graphics"),
+  loader: () => import("containers/pages/Graphics"),
   loading: EmptyPage
 })
 
 const AuthedGraphics = Loadable({
-  loader: () => import("containers/AuthedGraphics"),
+  loader: () => import("containers/pages/AuthedGraphics"),
   loading: EmptyPage
 })
 
 const AuthedPosts = Loadable({
-  loader: () => import("containers/AuthedPosts"),
+  loader: () => import("containers/pages/AuthedPosts"),
   loading: EmptyPage
 })
 
 const AuthedProjects = Loadable({
-  loader: () => import("containers/AuthedProjects"),
+  loader: () => import("containers/pages/AuthedProjects"),
   loading: EmptyPage
 })
 
 const AdminIndex = Loadable({
-  loader: () => import("containers/AdminIndex"),
+  loader: () => import("containers/pages/AdminIndex"),
   loading: EmptyPage
 })
 
 const Users = Loadable({
-  loader: () => import("containers/Users"),
+  loader: () => import("containers/pages/Users"),
   loading: EmptyPage
 })
 
 const Roles = Loadable({
-  loader: () => import("containers/Roles"),
+  loader: () => import("containers/pages/Roles"),
   loading: EmptyPage
 })
 
 const Resumes = Loadable({
-  loader: () => import("containers/Resumes"),
+  loader: () => import("containers/pages/Resumes"),
   loading: EmptyPage
 })
 
 const Notifications = Loadable({
-  loader: () => import("containers/Notifications"),
+  loader: () => import("containers/pages/Notifications"),
   loading: EmptyPage
 })
 
 const Comments = Loadable({
-  loader: () => import("containers/Comments"),
+  loader: () => import("containers/pages/Comments"),
   loading: EmptyPage
 })
 
 const Media = Loadable({
-  loader: () => import("containers/Media"),
+  loader: () => import("containers/pages/Media"),
   loading: EmptyPage
 })
 
 const Mangas = Loadable({
-  loader: () => import("containers/Mangas"),
+  loader: () => import("containers/pages/Mangas"),
   loading: EmptyPage
 })
 
 const MangaGallery = Loadable({
-  loader: () => import("containers/MangaGallery"),
+  loader: () => import("containers/pages/MangaGallery"),
   loading: EmptyPage
 })
 
 const Visits = Loadable({
-  loader: () => import("containers/Visits"),
+  loader: () => import("containers/pages/Visits"),
   loading: EmptyPage
 })
 

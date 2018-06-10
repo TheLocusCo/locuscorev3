@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from "react-redux"
+import { connect } from 'react-redux'
 
 import './style.css'
 import ContactContent from 'components/ContactContent'

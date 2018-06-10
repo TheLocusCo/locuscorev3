@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import './style.css'
-import Routes from 'containers/Routes'
+import Routes from 'containers/routes/Routes'
 import MobileNavigation from 'containers/mobile/MobileNavigation'
 
 import { fetchNavigation } from 'redux/actions'

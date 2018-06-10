@@ -9,7 +9,7 @@ import GalleryCategoryButtonsBlock from 'containers/GalleryCategoryButtonsBlock'
 import SuccessBlock from 'containers/SuccessBlock'
 import ErrorBlock from 'containers/ErrorBlock'
 import PaginationContainer from 'containers/PaginationContainer'
-import EmptyPage from "components/EmptyPage"
+import EmptyPage from 'components/EmptyPage'
 
 import { fetchSearchResults } from 'redux/actions'
 

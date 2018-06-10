@@ -1,37 +1,36 @@
 import React, { Component } from 'react'
-import { connect } from "react-redux"
+import { connect } from 'react-redux'
+
 import AuthedIndexTable from 'containers/AuthedIndexTable'
-//import ReactCSSTransitionReplace from 'react-css-transition-replace'
-//import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import SuccessBlock from 'containers/SuccessBlock'
 import ErrorBlock from 'containers/ErrorBlock'
 import PaginationContainer from 'containers/PaginationContainer'
 import { fetchResources } from 'redux/actions'
 
-class Roles extends Component {
+class Resumes extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchResources('roles', this.props.currentPage.roles))
+    this.props.dispatch(fetchResources('resumes', this.props.currentPage.resumes))
   }
 
   render() {
-    const { roles, isFetching } = this.props
+    const { resumes, isFetching } = this.props
     return (
       <div className="main-content">
         <div className="page-content">
           <div>
             <h1 className="section-heading larger">
-              Roles
+              Resumes
             </h1>
             <SuccessBlock content={this.props.successContent}/>
             <ErrorBlock content={this.props.errorContent}/>
             <span className="helper"/>
-            {isFetching && roles.items.length === 0 && <h1 className="section-heading larger">Loading...</h1>}
-            {roles.items.length === 0 && <h1 className="section-heading larger">No roles found!</h1>}
-            {roles.items.length > 0 &&
-              <AuthedIndexTable items={roles.items} headers={this.props.headers.roles} itemIndex="roles" />
+            {isFetching && resumes.items.length === 0 && <h1 className="section-heading larger">Loading...</h1>}
+            {resumes.items.length === 0 && <h1 className="section-heading larger">No resumes found!</h1>}
+            {resumes.items.length > 0 &&
+              <AuthedIndexTable items={resumes.items} headers={this.props.headers.resumes} itemIndex="resumes" />
             }
-            {roles.items.length > 0 && roles.totalPages > 1 &&
-              <PaginationContainer items={roles} itemIndex="roles" />
+            {resumes.items.length > 0 && resumes.totalPages > 1 &&
+              <PaginationContainer items={resumes} itemIndex="resumes" />
             }
           </div>
         </div>
@@ -41,7 +40,7 @@ class Roles extends Component {
 }
 
 const mapStateToProps = state => ({
-  roles: state.roles,
+  resumes: state.resumes,
   isFetching: state.posts.isFetching,
   headers: state.tableHeaders.tree,
   successContent: state.successMessages.items,
@@ -49,4 +48,4 @@ const mapStateToProps = state => ({
   currentPage: state.currentPage
 })
 
-export default connect(mapStateToProps)(Roles)
+export default connect(mapStateToProps)(Resumes)

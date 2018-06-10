@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
-import { connect } from "react-redux"
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+
 import AuthedIndexTable from 'containers/AuthedIndexTable'
-//import ReactCSSTransitionReplace from 'react-css-transition-replace'
-//import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import SuccessBlock from 'containers/SuccessBlock'
 import ErrorBlock from 'containers/ErrorBlock'
 import PaginationContainer from 'containers/PaginationContainer'
-import { fetchResources } from "redux/actions"
+import { fetchResources } from 'redux/actions'
 
 class AuthedPosts extends Component {
   componentWillMount() {

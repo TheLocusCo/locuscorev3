@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { connect } from "react-redux"
 
 import AuthedIndexTable from 'containers/AuthedIndexTable'
-//import ReactCSSTransitionReplace from 'react-css-transition-replace'
-//import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import SuccessBlock from 'containers/SuccessBlock'
 import ErrorBlock from 'containers/ErrorBlock'
 import PaginationContainer from 'containers/PaginationContainer'
