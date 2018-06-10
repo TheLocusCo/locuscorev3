@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-import SuccessItem from 'components/SuccessItem'
+import SuccessItem from 'components/iteratorItems/SuccessItem'
 import { dismissSuccess } from 'redux/actions'
 
 class SuccessBlock extends Component {

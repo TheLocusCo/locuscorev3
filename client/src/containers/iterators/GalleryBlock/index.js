@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import './style.css'
-import GalleryItem from 'components/GalleryItem'
-import MangaGalleryItem from 'components/MangaGalleryItem'
+import GalleryItem from 'components/iteratorItems/GalleryItem'
+import MangaGalleryItem from 'components/iteratorItems/MangaGalleryItem'
 
 class GalleryBlock extends Component {
   renderContent(props) {

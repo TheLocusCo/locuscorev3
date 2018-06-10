@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-import ErrorItem from 'components/ErrorItem'
+import ErrorItem from 'components/iteratorItems/ErrorItem'
 import { dismissError } from "redux/actions"
 
 class ErrorBlock extends Component {

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import './style.css'
-import TabsItem from 'components/TabsItem'
+import TabsItem from 'components/iteratorItems/TabsItem'
 import TabsButton from 'components/TabsButton'
 import { setTabContent } from 'redux/actions'
 
