@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import { connect } from "react-redux"
+import { connect } from 'react-redux'
 
 import ButtonSliderItemContent from 'components/ButtonSliderItemContent'
 

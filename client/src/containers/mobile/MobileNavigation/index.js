@@ -1,4 +1,4 @@
-import { connect } from "react-redux"
+import { connect } from 'react-redux'
 
 import MobileNavigation from 'components/mobile/MobileNavigation'
 import { getNavigation } from 'redux/selectors'

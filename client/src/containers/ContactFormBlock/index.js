@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-//import { connect } from "react-redux"
+//import { connect } from 'react-redux'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 //import ReactCSSTransitionReplace from 'react-css-transition-replace'
 import ContactForm from 'components/ContactForm'

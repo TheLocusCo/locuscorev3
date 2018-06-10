@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
-import { connect } from "react-redux"
+import { connect } from 'react-redux'
 
 import { humanize } from 'utils/string'
 import DestroyButton from 'components/DestroyButton'

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ImageLoader from 'react-load-image';
 import CircularProgress from 'material-ui/CircularProgress'
-import { connect } from "react-redux"
+import { connect } from 'react-redux'
 import ReactTooltip from 'react-tooltip'
 
 import './style.css'

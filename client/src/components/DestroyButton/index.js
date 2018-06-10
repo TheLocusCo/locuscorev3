@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from "react-redux"
+import { connect } from 'react-redux'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 import { Route } from 'react-router-dom'

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import { connect } from "react-redux"
+import { connect } from 'react-redux'
 
 import LightBoxCommentContent from 'components/lightbox/LightBoxCommentContent'
 import LightBoxCommentForm from 'components/lightbox/LightBoxCommentForm'

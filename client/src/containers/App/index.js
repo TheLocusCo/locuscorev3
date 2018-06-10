@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from "react-redux"
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ahoy from 'ahoy.js'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'

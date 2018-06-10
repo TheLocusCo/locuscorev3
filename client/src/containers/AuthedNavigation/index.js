@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { connect } from "react-redux"
+import { connect } from 'react-redux'
 import { withRouter } from "react-router-dom"
 import NavigationButton from 'components/NavigationButton'
 import { fetchRoleNavigation } from "redux/actions"
