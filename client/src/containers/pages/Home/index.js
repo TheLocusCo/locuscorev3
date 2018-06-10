@@ -5,8 +5,8 @@ import { connect } from 'react-redux'
 import ReactTooltip from 'react-tooltip'
 
 import './style.css'
-import ShortcutsBlock from 'containers/ShortcutsBlock'
-import SuccessBlock from 'containers/SuccessBlock'
+import ShortcutsBlock from 'containers/iterators/ShortcutsBlock'
+import SuccessBlock from 'containers/iterators/SuccessBlock'
 import { fetchWelcomeShortcuts } from 'redux/actions'
 
 function Preloader(props) {

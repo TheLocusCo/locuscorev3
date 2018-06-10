@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ButtonSliderBlock from 'containers/ButtonSliderBlock'
+import ButtonSliderBlock from 'containers/iterators/ButtonSliderBlock'
 import { connect } from 'react-redux'
 
 import './style.css'

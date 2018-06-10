@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import './style.css'
-import ContactFormBlock from 'containers/ContactFormBlock'
-import ContactFormButtonsBlock from 'containers/ContactFormButtonsBlock'
+import ContactFormBlock from 'containers/iterators/ContactFormBlock'
+import ContactFormButtonsBlock from 'containers/iterators/ContactFormButtonsBlock'
 
 export const ContactContent = props => {
   return (

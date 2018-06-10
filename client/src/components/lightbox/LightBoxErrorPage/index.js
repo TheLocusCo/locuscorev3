@@ -1,5 +1,5 @@
 import React from 'react'
-import ErrorBlock from 'containers/ErrorBlock'
+import ErrorBlock from 'containers/iterators/ErrorBlock'
 
 export const LightBoxErrorPage = props => {
   return (

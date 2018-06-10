@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import LoginForm from 'components/LoginForm'
-import ErrorBlock from 'containers/ErrorBlock'
+import ErrorBlock from 'containers/iterators/ErrorBlock'
 import { userLogin } from 'redux/actions'
 
 function submit(values, dispatch) {

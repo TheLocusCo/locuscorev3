@@ -3,18 +3,18 @@ import { connect } from 'react-redux'
 import Loadable from 'react-loadable'
 
 import { humanize } from 'utils/string'
-import ShortcutsBlock from 'containers/ShortcutsBlock'
-import GalleryBlock from 'containers/GalleryBlock'
-import GalleryCategoryButtonsBlock from 'containers/GalleryCategoryButtonsBlock'
-import SuccessBlock from 'containers/SuccessBlock'
-import ErrorBlock from 'containers/ErrorBlock'
-import PaginationContainer from 'containers/PaginationContainer'
+import ShortcutsBlock from 'containers/iterators/ShortcutsBlock'
+import GalleryBlock from 'containers/iterators/GalleryBlock'
+import GalleryCategoryButtonsBlock from 'containers/iterators/GalleryCategoryButtonsBlock'
+import SuccessBlock from 'containers/iterators/SuccessBlock'
+import ErrorBlock from 'containers/iterators/ErrorBlock'
+import PaginationContainer from 'containers/iterators/PaginationContainer'
 import EmptyPage from 'components/EmptyPage'
 
 import { fetchSearchResults } from 'redux/actions'
 
 const AuthedIndexTable = Loadable({
-  loader: () => import('containers/AuthedIndexTable'),
+  loader: () => import('containers/iterators/AuthedIndexTable'),
   loading: EmptyPage
 })
 

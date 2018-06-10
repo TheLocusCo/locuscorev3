@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router-dom'
 
 import './style.css'
-import FooterButtonsBlock from 'containers/FooterButtonsBlock'
+import FooterButtonsBlock from 'containers/iterators/FooterButtonsBlock'
 import { userAuthDestroy } from "redux/actions"
 
 // Update footer based on current path

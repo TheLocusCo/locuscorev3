@@ -4,7 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import './style.css'
 import Routes from "containers/routes/Routes"
 import AuthedRoutes from "containers/routes/AuthedRoutes"
-import Navigation from "containers/Navigation"
+import Navigation from "containers/iterators/Navigation"
 import AuthedNavigation from "containers/AuthedNavigation"
 import ContentFooter from "components/ContentFooter"
 import AuthedContentFooter from "containers/AuthedContentFooter"

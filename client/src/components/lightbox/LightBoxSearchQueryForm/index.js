@@ -8,7 +8,7 @@ import { TextField, Checkbox, SelectField, DatePicker } from 'redux-form-materia
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-import ErrorBlock from 'containers/ErrorBlock'
+import ErrorBlock from 'containers/iterators/ErrorBlock'
 import submit from 'components/lightbox/LightBoxSearchQueryForm/submit'
 import { humanize } from 'utils/string'
 

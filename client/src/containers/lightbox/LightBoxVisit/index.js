@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
 
-import SuccessBlock from 'containers/SuccessBlock'
+import SuccessBlock from 'containers/iterators/SuccessBlock'
 import LightBoxErrorPage from 'components/lightbox/LightBoxErrorPage'
 import LightBoxVisitContent from 'components/lightbox/LightBoxVisitContent'
 import { fetchResource } from "redux/actions"

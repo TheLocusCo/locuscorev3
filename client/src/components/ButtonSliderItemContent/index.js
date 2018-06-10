@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import './style.css'
-import TabsBlock from 'containers/TabsBlock'
+import TabsBlock from 'containers/iterators/TabsBlock'
 import NextSlideButton from 'components/NextSlideButton'
 
 class ButtonSliderItemContent extends Component {

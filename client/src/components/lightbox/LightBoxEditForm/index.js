@@ -8,7 +8,7 @@ import MenuItem from 'material-ui/MenuItem'
 import { TextField, Checkbox, SelectField, DatePicker } from 'redux-form-material-ui'
 
 import AuthedContentFooter from "containers/AuthedContentFooter"
-import ErrorBlock from 'containers/ErrorBlock'
+import ErrorBlock from 'containers/iterators/ErrorBlock'
 import submit from 'components/lightbox/LightBoxEditForm/submit'
 import { humanize } from 'utils/string'
 import MarkdownToolbar from 'components/MarkdownToolbar'

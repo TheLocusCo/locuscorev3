@@ -8,7 +8,7 @@ import Multiselect from 'react-widgets/lib/Multiselect'
 import 'react-widgets/dist/css/react-widgets.css'
 
 import AuthedContentFooter from "containers/AuthedContentFooter"
-import ErrorBlock from 'containers/ErrorBlock'
+import ErrorBlock from 'containers/iterators/ErrorBlock'
 import submit from 'components/lightbox/LightBoxNewForm/submit'
 import { humanize } from 'utils/string'
 import MarkdownToolbar from 'components/MarkdownToolbar'

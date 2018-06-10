@@ -4,7 +4,7 @@ import { Markdown } from 'react-showdown'
 
 import './style.css'
 import AuthedContentFooter from 'containers/AuthedContentFooter'
-import SliderMediaContainer from 'containers/SliderMediaContainer'
+import SliderMediaContainer from 'containers/iterators/SliderMediaContainer'
 
 export const LightBoxPostContent = props => {
   const renderCategoriesAsURLTags = (categories) => {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import ShortcutsBlock from 'containers/ShortcutsBlock'
-import PaginationContainer from 'containers/PaginationContainer'
+import ShortcutsBlock from 'containers/iterators/ShortcutsBlock'
+import PaginationContainer from 'containers/iterators/PaginationContainer'
 import { fetchResources } from 'redux/actions'
 
 class Graphics extends Component {

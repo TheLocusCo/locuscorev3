@@ -10,7 +10,7 @@ import 'styles/animations.css' //animations only load correctly when loaded very
 import AuthedContainer from 'containers/AuthedContainer'
 import MobileContainer from 'containers/mobile/MobileContainer'
 import AuthedLightBoxContainer from 'containers/lightbox/AuthedLightBoxContainer'
-import NotificationsBlock from 'containers/NotificationsBlock'
+import NotificationsBlock from 'containers/iterators/NotificationsBlock'
 import { apiUrl } from 'utils/http'
 import { userAuth } from 'redux/actions'
 

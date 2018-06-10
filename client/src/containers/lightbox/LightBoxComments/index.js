@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import LightBoxCommentContent from 'components/lightbox/LightBoxCommentContent'
 import LightBoxCommentForm from 'components/lightbox/LightBoxCommentForm'
-import SuccessBlock from 'containers/SuccessBlock'
+import SuccessBlock from 'containers/iterators/SuccessBlock'
 
 import { setCommentFormVisibility, removePreviewCommentAndSetCommentFormVisibility } from 'redux/actions'
 

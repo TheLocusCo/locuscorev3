@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import GalleryBlock from 'containers/GalleryBlock'
-import GalleryCategoryButtonsBlock from 'containers/GalleryCategoryButtonsBlock'
+import GalleryBlock from 'containers/iterators/GalleryBlock'
+import GalleryCategoryButtonsBlock from 'containers/iterators/GalleryCategoryButtonsBlock'
 import { fetchResources, cleanupAfterGallery } from 'redux/actions'
 
 class MangaGallery extends Component {
