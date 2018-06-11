@@ -4,11 +4,13 @@ import { Route } from 'react-router-dom'
 
 import LightBoxSearchQueryBuilder from 'containers/lightbox/LightBoxSearchQueryBuilder'
 
-import { fetchSearchAbility, deleteCurrentSearch } from 'redux/actions'
+import { fetchSearchAbility, deleteCurrentSearchAndResetTree } from 'redux/actions'
 
 class LightBoxSearch extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchSearchAbility(this.props.currentUserId))
+    if(this.props.needsUpdate || this.props.currentUser) {
+      this.props.dispatch(fetchSearchAbility(this.props.currentUserId))
+    }
   }
 
   render() {
@@ -19,11 +21,11 @@ class LightBoxSearch extends Component {
           <div className="ltbx-container">
             <div className="ltbx-content">
               {isFetching && <h1 className="section-heading larger">Loading...</h1>}
-              {searchAbility.graphics &&
+              {!searchAbility.isFetching &&
                 <LightBoxSearchQueryBuilder searchAbility={searchAbility} location={location}/>
               }
               <button
-                onClick={() => this.props.dispatch(deleteCurrentSearch())}
+                onClick={() => this.props.dispatch(deleteCurrentSearchAndResetTree())}
                 title="Reset Search Options"
                 type="button"
                 className="ltbx-close ltbx-back">
@@ -48,9 +50,10 @@ class LightBoxSearch extends Component {
 // history should SET THE CURRENT VALUE so going back works correctly after user navigates some searches
 
 const mapStateToProps = state => ({
-  searchAbility: state.searchAbility.tree,
-  isFetching: state.post.isFetching,
-  currentUserId: state.currentUser.id
+  searchAbility: state.searchAbility.filteredTree,
+  isFetching: state.searchAbility.isFetching,
+  currentUserId: state.currentUser.id,
+  needsUpdate: state.searchAbility.needsUpdate
 })
 
 export default connect(mapStateToProps)(LightBoxSearch)

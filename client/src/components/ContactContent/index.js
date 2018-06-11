@@ -64,12 +64,12 @@ export const ContactContent = props => {
             View My Location
           </Link>
         </div>
-          {this.props.contactForms.length > 0 &&
+          {props.contactForms.length > 0 &&
             <div className="content-switch">
               {window.innerWidth > 980 &&
-                <ContactFormButtonsBlock contactForms={this.props.contactForms} activeContactForm={this.props.activeContactForm}/>
+                <ContactFormButtonsBlock contactForms={props.contactForms} activeContactForm={props.activeContactForm}/>
               }
-              <ContactFormBlock content={this.props.contactForms} activeContactForm={this.props.activeContactForm}/>
+              <ContactFormBlock content={props.contactForms} activeContactForm={props.activeContactForm}/>
             </div>
           }
       </div>

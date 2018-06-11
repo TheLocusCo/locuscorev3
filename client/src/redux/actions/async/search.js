@@ -5,6 +5,13 @@ export const RECEIVE_SEARCH_ABILITY = 'RECEIVE_SEARCH_ABILITY'
 export const RECEIVE_SEARCH_RESULTS = 'RECEIVE_SEARCH_RESULTS'
 export const RECEIVE_SELECTS_FOR_SEARCH = 'RECEIVE_SELECTS_FOR_SEARCH'
 
+export function deleteCurrentSearchAndResetTree() {
+  return dispatch => {
+    dispatch(sync.deleteCurrentSearch())
+    dispatch(sync.resetFilteredSearchAbility())
+  }
+}
+
 export function fetchSearchAbility(currentUserId) {
   return dispatch => {
     dispatch(sync.requestSearchAbility())
@@ -81,6 +88,13 @@ export function searchSubmit(values, history) {
         dispatch(sync.errorMessageAsObject(response))
       }
     })
+  }
+}
+
+export function updateCurrentSearchModelAndTree(model) {
+  return dispatch => {
+    dispatch(sync.updateCurrentSearchModel(model))
+    dispatch(sync.filterSearchAbility(model))
   }
 }
 

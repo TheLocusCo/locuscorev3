@@ -3,8 +3,10 @@ import * as sync from 'redux/actions/sync'
 
 export function searchAbility(
   state = {
-    tree: {},
-    isFetching: false,
+    fetchedTree: {},
+    filteredTree: {},
+    needsUpdate: true,
+    isFetching: false
   },
   action
 ) {
@@ -16,8 +18,20 @@ export function searchAbility(
     case async.RECEIVE_SEARCH_ABILITY:
       return Object.assign({}, state, {
         isFetching: false,
-        tree: action.searchAbility,
+        needsUpdate: false,
+        fetchedTree: action.searchAbility,
+        filteredTree: action.searchAbility,
         lastUpdated: action.receivedAt
+      })
+    case sync.FILTER_SEARCH_ABILITY:
+      let baseTree = {}
+      baseTree[action.model] = state.fetchedTree[action.model]
+      return Object.assign({}, state, {
+        filteredTree: baseTree
+      })
+    case sync.RESET_FILTERED_SEARCH_ABILITY:
+      return Object.assign({}, state, {
+        filteredTree: state.fetchedTree
       })
     default:
       return state
