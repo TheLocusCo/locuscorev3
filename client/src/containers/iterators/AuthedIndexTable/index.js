@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import { Transition, animated } from 'react-spring'
 
 import DestroyButton from 'components/buttons/DestroyButton'
 
@@ -50,34 +50,38 @@ class AuthedIndexTableBlock extends Component {
     }
   }
 
-  renderRows(items, headers, itemIndex) {
-    return items.map(item => {
-      return (
-        <tr key={item.id}>
-          {this.renderItemFromHeader(item, headers)}
-          <td>
+  renderRowItem(item, headers, itemIndex, styles) {
+    return (
+      <tr key={item.id}>
+        {this.renderItemFromHeader(item, headers, styles)}
+        <td>
+          <animated.div className='table-transition-button-override' style={styles}>
             <Link className={this.linkClass("r", item, itemIndex)} to={this.renderLink(itemIndex, item.id)}>
               <i className="icon-eye"></i>
               Show
             </Link>
-          </td>
-          {this.props.currentUser.role["pf_" + itemIndex].includes('u') &&
-            <td>
+          </animated.div>
+        </td>
+        {this.props.currentUser.role["pf_" + itemIndex].includes('u') &&
+          <td>
+            <animated.div className='table-transition-button-override' style={styles}>
               <Link className={this.linkClass("u", item, itemIndex)} to={this.renderLink(itemIndex, item.id) + "/edit"}>
                 <i className="icon-pencil"></i>
                 Edit
               </Link>
-            </td>
-          }
-          {this.props.currentUser.role["pf_" + itemIndex].includes('d') &&
-            <td>
+            </animated.div>
+          </td>
+        }
+        {this.props.currentUser.role["pf_" + itemIndex].includes('d') &&
+          <td>
+            <animated.div className='table-transition-button-override' style={styles}>
               <DestroyButton item={item} disabled={this.isDisabled(item, itemIndex)}>
                 Destroy
               </DestroyButton>
-            </td>
-          }
-        </tr>
-      )}
+            </animated.div>
+          </td>
+        }
+      </tr>
     )
   }
 
@@ -85,22 +89,55 @@ class AuthedIndexTableBlock extends Component {
     return ("/" + itemIndex + "/" + itemId)
   }
 
-  renderItemFromHeader(item, headers) {
+  renderItemFromHeader(item, headers, styles) {
     var count = 0
     return Object.keys(headers).map(header => {
       count++
       switch (headers[header]) {
         case "string": case "custom":
-          return (<td key={count}>{ item[header] }</td>)
+          return (
+            <td key={count}>
+              <animated.div style={styles}>
+                { item[header] }
+              </animated.div>
+            </td>
+          )
         case "array":
-          return (<td key={count}>{ item[header].filter(word => word !== "All Categories").join(", ") }</td>)
+          return (
+            <td key={count}>
+              <animated.div style={styles}>
+                { item[header].filter(word => word !== "All Categories").join(", ") }
+              </animated.div>
+            </td>
+          )
         case "categories":
-          return (<td key={count}>{ item[header].filter(object => object.name !== "All Categories").map(function(elem) { return elem.name }).join(", ") }</td>)
+          return (
+            <td key={count}>
+              <animated.div style={styles}>
+                { item[header].filter(
+                    object => object.name !== "All Categories"
+                  ).map(function(elem) { return elem.name }).join(", ")
+                }
+              </animated.div>
+            </td>
+          )
         case "boolean": case "custom_boolean":
           if (item[header]) {
-            return (<td className="centered" key={count}><i className="icon-check"/></td>)
+            return (
+              <td className="centered" key={count}>
+                <animated.div style={styles}>
+                  <i className="icon-check"/>
+                </animated.div>
+              </td>
+            )
           } else {
-            return (<td className="centered" key={count}><i className="icon-cancel"/></td>)
+            return (
+              <td className="centered" key={count}>
+                <animated.div style={styles}>
+                  <i className="icon-cancel"/>
+                </animated.div>
+              </td>
+            )
           }
         default:
           return null
@@ -132,7 +169,7 @@ class AuthedIndexTableBlock extends Component {
     return (
       <div className="box-dark">
         <table>
-          <ReactCSSTransitionGroup component="tbody" transitionName="group-fade-wait" transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionAppear={true}>
+          <tbody>
             <tr>
               {this.renderHeaders(this.props.headers)}
               <th>
@@ -149,8 +186,17 @@ class AuthedIndexTableBlock extends Component {
                 </th>
               }
             </tr>
-            {this.renderRows(this.props.items, this.props.headers, this.props.itemIndex)}
-          </ReactCSSTransitionGroup>
+            <Transition
+              native
+              keys={this.props.items.map((item, index) => item.id)}
+              from={{ opacity: 0, paddingTop: 0, paddingLeft: 0, paddingRight: 0, margin: 0 }}
+              enter={{ opacity: 1, paddingTop: 3, paddingLeft: 8, paddingRight: 8, margin: 2 }}
+              leave={{ opacity: 0, height: 0, paddingTop: 0, paddingLeft: 0, paddingRight: 0, margin: 0 }}>
+              {this.props.items.map((item, index) =>
+                styles => this.renderRowItem(item, this.props.headers, this.props.itemIndex, styles)
+              )}
+            </Transition>
+          </tbody>
         </table>
       </div>
     )
