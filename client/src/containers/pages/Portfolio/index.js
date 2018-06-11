@@ -30,9 +30,9 @@ class Portfolio extends Component {
 }
 
 const mapStateToProps = state => ({
-  projects: state.projects.items,
+  projects: state.projects.filteredItems,
   isFetching: state.projects.isFetching,
-  activeCategory: state.activeCategory
+  activeCategory: state.projects.activeCategory
 })
 
 export default connect(mapStateToProps)(Portfolio)

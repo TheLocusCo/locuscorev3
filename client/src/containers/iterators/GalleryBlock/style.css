@@ -1,7 +1,10 @@
 .portfolio-grid {
-  margin: 0 0 -30px;
+  display: flex;
   overflow: hidden;
-  text-align: justify;
+  flex-flow: row wrap;
+  align-items: flex-end;
+  justify-content: center;
+  align-content: space-between;
 }
 
 .mobile-grid {

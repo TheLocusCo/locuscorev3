@@ -6,6 +6,8 @@ export * from 'redux/actions/sync/search.js'
 export * from 'redux/actions/sync/users.js'
 export * from 'redux/actions/sync/dashboard.js'
 
+export const FILTER_MANGAS = 'FILTER_MANGAS'
+export const FILTER_PROJECTS = 'FILTER_PROJECTS'
 export const GENERIC_API_FAILURE = 'GENERIC_API_FAILURE'
 export const REMOVE_ERROR_MESSAGE = 'REMOVE_ERROR_MESSAGE'
 export const REMOVE_SUCCESS_MESSAGE = 'REMOVE_SUCCESS_MESSAGE'

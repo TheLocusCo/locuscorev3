@@ -1,4 +1,5 @@
 import React from 'react'
+import { animated } from 'react-spring'
 
 import './style.css'
 import placeholder from 'components/iteratorItems/GalleryItem/portfolio_placeholder.jpg'
@@ -15,14 +16,14 @@ export const GalleryItem = props => {
   }
 
   return (
-    <li className="gallery-item" key={props.id}>
+    <animated.li style={props.styles} className="gallery-item" key={props.id}>
       <Link to={props.href}>
         {renderMedia(props)}
         <div className="overlay" />
         <div className="ind-open"/>
         <span>{props.name}</span>
       </Link>
-    </li>
+    </animated.li>
   )
 }
 

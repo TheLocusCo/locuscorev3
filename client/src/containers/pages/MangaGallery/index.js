@@ -34,9 +34,9 @@ class MangaGallery extends Component {
 }
 
 const mapStateToProps = state => ({
-  mangas: state.mangas.items,
+  mangas: state.mangas.filteredItems,
   isFetching: state.posts.isFetching,
-  activeCategory: state.activeCategory
+  activeCategory: state.mangas.activeCategory
 })
 
 export default connect(mapStateToProps)(MangaGallery)

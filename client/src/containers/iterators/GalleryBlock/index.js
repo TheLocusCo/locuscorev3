@@ -1,36 +1,38 @@
 import React, { Component } from 'react'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import { Transition } from 'react-spring'
+//import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import './style.css'
 import GalleryItem from 'components/iteratorItems/GalleryItem'
 import MangaGalleryItem from 'components/iteratorItems/MangaGalleryItem'
 
 class GalleryBlock extends Component {
-  renderContent(props) {
-    return props.content.map(indivProps => {
-      if (indivProps.categories.filter(item => item.name === props.activeCategory.name).length > 0) {
-        switch (props.type) {
-          case "mangas":
-            return (
-              <MangaGalleryItem {...indivProps} key={indivProps.id}/>
-            )
-          default:
-            return (
-              <GalleryItem {...indivProps} key={indivProps.id}/>
-            )
-        }
-      } else {
-        return null
-      }
-    })
+  renderContent(indivProps, type, styles) {
+    switch (type) {
+      case "mangas":
+        return (
+          <MangaGalleryItem {...indivProps} styles={styles} key={indivProps.id}/>
+        )
+      default:
+        return (
+          <GalleryItem {...indivProps} styles={styles} key={indivProps.id}/>
+        )
+    }
   }
 
   render() {
     return (
       <ul className={window.innerWidth > 980 ? 'portfolio-grid' : 'mobile-grid portfolio-grid'}>
-        <ReactCSSTransitionGroup transitionName="group-fade-wait" transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
-          {this.renderContent(this.props)}
-        </ReactCSSTransitionGroup>
+        <Transition
+          native
+          keys={this.props.content.map(item => item.id)}
+          from={{ width: 0, opacity: 0, display: 'inline-block' }}
+          enter={{ width: 262, opacity: 1, display: 'inline-block' }}
+          leave={{ width: 0, opacity: 0, display: 'none' }}>
+          {this.props.content.map(item =>
+            styles => this.renderContent(item, this.props.type, styles))
+          }
+        </Transition>
       </ul>
     )
   }

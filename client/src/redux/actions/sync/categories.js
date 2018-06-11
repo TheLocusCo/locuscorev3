@@ -14,10 +14,9 @@ export function requestCategories() {
   }
 }
 
-export function setActiveCategory(category) {
+export function filterFromActiveCategory(mode, category) {
   return {
-    type: UPDATE_ACTIVE_CATEGORY,
-    activeCategory: category.name,
-    activeCategoryId: category.id
+    type: `FILTER_${mode.toUpperCase()}`,
+    activeCategory: category
   }
 }

@@ -32,6 +32,8 @@ export function mangas(
     isFetching: false,
     didInvalidate: false,
     items: [],
+    filteredItems: [],
+    activeCategory: {id: 0, name: 'All Categories'},
     totalPages: 1,
     paginationMeta: {}
   },
@@ -48,6 +50,7 @@ export function mangas(
         isFetching: false,
         didInvalidate: false,
         items: action.mangas,
+        filteredItems: action.mangas,
         lastUpdated: action.receivedAt,
         totalPages: action.totalPages,
         paginationMeta: action.paginationMeta
@@ -57,11 +60,24 @@ export function mangas(
         isFetching: false,
         didInvalidate: false,
         items: [],
+        filteredItems: [],
         totalPages: 1,
         paginationMeta: {}
       })
-    case "CLEANUP_AFTER_DESTROY_MEDIUM":
-      return { items: state.items.filter(objectInState => objectInState.id !== action.idToCleanup) }
+    case sync.FILTER_MANGAS:
+      return Object.assign({}, state, {
+        filteredItems: state.items.filter(objectInState =>
+          objectInState.categories.filter(item =>
+            item.name === action.activeCategory.name
+          ).length > 0
+        ),
+        activeCategory: action.activeCategory
+      })
+    case "CLEANUP_AFTER_DESTROY_MANGA":
+      return Object.assign({}, state, {
+        items: state.items.filter(objectInState =>
+          objectInState.id !== action.idToCleanup)
+      })
     default:
       return state
   }

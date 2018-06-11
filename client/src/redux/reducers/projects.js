@@ -32,6 +32,8 @@ export function projects(
     isFetching: false,
     didInvalidate: false,
     items: [],
+    filteredItems: [],
+    activeCategory: {id: 0, name: 'All Categories'},
     totalPages: 1,
     paginationMeta: {}
   },
@@ -48,12 +50,25 @@ export function projects(
         isFetching: false,
         didInvalidate: false,
         items: action.projects,
+        filteredItems: action.projects,
         lastUpdated: action.receivedAt,
         totalPages: action.totalPages,
         paginationMeta: action.paginationMeta
       })
+    case sync.FILTER_PROJECTS:
+      return Object.assign({}, state, {
+        filteredItems: state.items.filter(objectInState =>
+          objectInState.categories.filter(item =>
+            item.name === action.activeCategory.name
+          ).length > 0
+        ),
+        activeCategory: action.activeCategory
+      })
     case "CLEANUP_AFTER_DESTROY_PROJECT":
-      return { items: state.items.filter(objectInState => objectInState.id !== action.idToCleanup) }
+      return Object.assign({}, state, {
+        items: state.items.filter(objectInState =>
+          objectInState.id !== action.idToCleanup)
+      })
     default:
       return state
   }

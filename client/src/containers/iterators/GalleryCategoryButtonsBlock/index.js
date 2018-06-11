@@ -3,7 +3,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
 
 import './style.css'
-import { setActiveCategory, fetchCategories } from 'redux/actions'
+import { filterFromActiveCategory, fetchCategories } from 'redux/actions'
 
 class GalleryCategoryButtonsBlock extends Component {
   componentWillMount() {
@@ -15,7 +15,7 @@ class GalleryCategoryButtonsBlock extends Component {
   }
 
   setToActive(category, e) {
-    this.props.dispatch(setActiveCategory(category))
+    this.props.dispatch(filterFromActiveCategory(this.props.mode, category))
   }
 
   renderGalleryCategoryButtons(props) {
