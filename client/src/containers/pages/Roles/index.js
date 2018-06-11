@@ -40,11 +40,12 @@ class Roles extends Component {
 
 const mapStateToProps = state => ({
   roles: state.roles,
-  isFetching: state.posts.isFetching,
+  isFetching: state.roles.isFetching,
   headers: state.tableHeaders.tree,
   successContent: state.successMessages.items,
   errorContent: state.errorMessages.items,
-  currentPage: state.currentPage
+  currentPage: state.currentPage,
+  needsUpdate: state.roles.needsUpdate
 })
 
 export default connect(mapStateToProps)(Roles)

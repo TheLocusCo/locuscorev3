@@ -7,7 +7,9 @@ import { fetchResources } from 'redux/actions'
 
 class Blog extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchResources('posts', this.props.currentPage.posts, '', 'withoutHidden'))
+    if(this.props.needsUpdate) {
+      this.props.dispatch(fetchResources('posts', this.props.currentPage.posts, '', 'withoutHidden'))
+    }
   }
 
   render() {
@@ -38,7 +40,8 @@ class Blog extends Component {
 const mapStateToProps = state => ({
   posts: state.posts,
   isFetching: state.posts.isFetching,
-  currentPage: state.currentPage
+  currentPage: state.currentPage,
+  needsUpdate: state.posts.needsUpdate
 })
 
 export default connect(mapStateToProps)(Blog)

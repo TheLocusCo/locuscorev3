@@ -187,6 +187,7 @@ export function resourceEdit(resource, history) {
         dispatch(sync.editResourceSuccess(resource.field_meta.resource_type, response.data))
         dispatch(sync.deleteEditItem())
         dispatch(sync.successMessage("Successfully updated " + resource.field_meta.resource_type + " \"" + resource.meta_title + "\""))
+        dispatch(fetchResources(resource.field_meta.resource_plural, 1))
         history.push(resource.href)
       } else {
         dispatch(sync.editResourceFailure(response))
@@ -203,6 +204,7 @@ export function resourceNew(resource, history) {
         dispatch(sync.createResourceSuccess(resource.field_meta.resource_type, response.data))
         dispatch(sync.deleteNewItem())
         dispatch(sync.successMessage("Successfully created " + resource.field_meta.resource_type))
+        dispatch(fetchResources(resource.field_meta.resource_plural, 1))
         history.push(response.data.href)
       } else {
         dispatch(sync.createResourceFailure(response))

@@ -4,7 +4,7 @@ import * as sync from 'redux/actions/sync'
 export function role(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     content: {}
   },
   action
@@ -13,12 +13,12 @@ export function role(
     case sync.REQUEST_ROLE:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
     case async.RECEIVE_ROLE:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         content: action.role,
         lastUpdated: action.receivedAt
       })
@@ -30,7 +30,7 @@ export function role(
 export function roles(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     items: [],
     totalPages: 1,
     paginationMeta: {}
@@ -41,12 +41,12 @@ export function roles(
     case sync.REQUEST_ROLES:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
     case async.RECEIVE_ROLES:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         items: action.roles,
         lastUpdated: action.receivedAt,
         totalPages: action.totalPages,

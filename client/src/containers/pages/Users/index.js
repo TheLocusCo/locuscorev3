@@ -41,11 +41,12 @@ class Users extends Component {
 
 const mapStateToProps = state => ({
   users: state.users,
-  isFetching: state.posts.isFetching,
+  isFetching: state.users.isFetching,
   headers: state.tableHeaders.tree,
   successContent: state.successMessages.items,
   errorContent: state.errorMessages.items,
-  currentPage: state.currentPage
+  currentPage: state.currentPage,
+  needsUpdate: state.users.needsUpdate
 })
 
 export default connect(mapStateToProps)(Users)

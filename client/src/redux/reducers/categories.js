@@ -4,7 +4,7 @@ import * as sync from 'redux/actions/sync'
 export function categories(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     items: []
   },
   action
@@ -13,19 +13,19 @@ export function categories(
     case sync.REQUEST_CATEGORIES:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
     case async.RECEIVE_CATEGORIES:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         items: action.categories,
         lastUpdated: action.receivedAt
       })
     case sync.EMPTY_CATEGORIES:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         items: [],
         lastUpdated: action.receivedAt
       })

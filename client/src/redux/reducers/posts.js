@@ -4,7 +4,7 @@ import * as sync from 'redux/actions/sync'
 export function post(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     content: {}
   },
   action
@@ -13,12 +13,12 @@ export function post(
     case sync.REQUEST_POST:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
     case async.RECEIVE_POST:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         content: action.post,
         lastUpdated: action.receivedAt
       })
@@ -30,7 +30,7 @@ export function post(
 export function posts(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     items: [],
     totalPages: 1,
     paginationMeta: {}
@@ -41,12 +41,12 @@ export function posts(
     case sync.REQUEST_POSTS:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
     case async.RECEIVE_POSTS:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         items: action.posts,
         lastUpdated: action.receivedAt,
         totalPages: action.totalPages,

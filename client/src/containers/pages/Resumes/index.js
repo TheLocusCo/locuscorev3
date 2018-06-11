@@ -9,7 +9,9 @@ import { fetchResources } from 'redux/actions'
 
 class Resumes extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchResources('resumes', this.props.currentPage.resumes))
+    if(this.props.needsUpdate) {
+      this.props.dispatch(fetchResources('resumes', this.props.currentPage.resumes))
+    }
   }
 
   render() {
@@ -41,11 +43,12 @@ class Resumes extends Component {
 
 const mapStateToProps = state => ({
   resumes: state.resumes,
-  isFetching: state.posts.isFetching,
+  isFetching: state.resumes.isFetching,
   headers: state.tableHeaders.tree,
   successContent: state.successMessages.items,
   errorContent: state.errorMessages.items,
-  currentPage: state.currentPage
+  currentPage: state.currentPage,
+  needsUpdate: state.resumes.needsUpdate
 })
 
 export default connect(mapStateToProps)(Resumes)

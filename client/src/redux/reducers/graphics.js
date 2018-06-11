@@ -4,7 +4,7 @@ import * as sync from 'redux/actions/sync'
 export function graphic(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     content: {}
   },
   action
@@ -13,12 +13,12 @@ export function graphic(
     case sync.REQUEST_GRAPHIC:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
     case async.RECEIVE_GRAPHIC:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         content: action.graphic,
         lastUpdated: action.receivedAt
       })
@@ -30,7 +30,7 @@ export function graphic(
 export function graphics(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     items: [],
     totalPages: 1,
     paginationMeta: {}
@@ -41,12 +41,12 @@ export function graphics(
     case sync.REQUEST_GRAPHICS:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
     case async.RECEIVE_GRAPHICS:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         items: action.graphics,
         lastUpdated: action.receivedAt,
         totalPages: action.totalPages,

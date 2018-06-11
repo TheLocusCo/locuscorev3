@@ -4,7 +4,7 @@ import * as sync from 'redux/actions/sync'
 export function notification(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     content: {}
   },
   action
@@ -13,12 +13,12 @@ export function notification(
     case sync.REQUEST_NOTIFICATION:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
     case async.RECEIVE_NOTIFICATION:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         content: action.notification,
         lastUpdated: action.receivedAt
       })
@@ -30,7 +30,7 @@ export function notification(
 export function notifications(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     items: [],
     totalPages: 1,
     paginationMeta: {}
@@ -41,12 +41,12 @@ export function notifications(
     case sync.REQUEST_NOTIFICATIONS:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
     case async.RECEIVE_NOTIFICATIONS:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         items: action.notifications,
         lastUpdated: action.receivedAt,
         totalPages: action.totalPages,

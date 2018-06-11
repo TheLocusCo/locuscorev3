@@ -12,7 +12,9 @@ import { fetchResources } from 'redux/actions'
 
 class AuthedGraphics extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchResources('graphics', this.props.currentPage.graphics))
+    if(this.props.needsUpdate) {
+      this.props.dispatch(fetchResources('graphics', this.props.currentPage.graphics))
+    }
   }
 
   render() {
@@ -50,11 +52,12 @@ class AuthedGraphics extends Component {
 
 const mapStateToProps = state => ({
   graphics: state.graphics,
-  isFetching: state.posts.isFetching,
+  isFetching: state.graphics.isFetching,
   headers: state.tableHeaders.tree,
   successContent: state.successMessages.items,
   errorContent: state.errorMessages.items,
-  currentPage: state.currentPage
+  currentPage: state.currentPage,
+  needsUpdate: state.graphics.needsUpdate
 })
 
 export default connect(mapStateToProps)(AuthedGraphics)

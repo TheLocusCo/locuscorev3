@@ -4,7 +4,7 @@ import * as sync from 'redux/actions/sync'
 export function manga(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     content: {}
   },
   action
@@ -13,12 +13,12 @@ export function manga(
     case sync.REQUEST_MANGA:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
     case async.RECEIVE_MANGA:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         content: action.manga,
         lastUpdated: action.receivedAt
       })
@@ -30,7 +30,7 @@ export function manga(
 export function mangas(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     items: [],
     filteredItems: [],
     activeCategory: {id: 0, name: 'All Categories'},
@@ -43,26 +43,17 @@ export function mangas(
     case sync.REQUEST_MANGAS:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
     case async.RECEIVE_MANGAS:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         items: action.mangas,
         filteredItems: action.mangas,
         lastUpdated: action.receivedAt,
         totalPages: action.totalPages,
         paginationMeta: action.paginationMeta
-      })
-    case "CLEANUP_AFTER_MANGAS_GALLERY":
-      return Object.assign({}, state, {
-        isFetching: false,
-        didInvalidate: false,
-        items: [],
-        filteredItems: [],
-        totalPages: 1,
-        paginationMeta: {}
       })
     case sync.FILTER_MANGAS:
       return Object.assign({}, state, {
@@ -74,9 +65,11 @@ export function mangas(
         activeCategory: action.activeCategory
       })
     case "CLEANUP_AFTER_DESTROY_MANGA":
+      let filteredItems = state.items.filter(objectInState =>
+        objectInState.id !== action.idToCleanup)
       return Object.assign({}, state, {
-        items: state.items.filter(objectInState =>
-          objectInState.id !== action.idToCleanup)
+        items: filteredItems,
+        filteredItems: filteredItems
       })
     default:
       return state

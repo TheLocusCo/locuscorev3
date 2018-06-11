@@ -81,12 +81,12 @@ export function contactForms(
     case sync.REQUEST_CONTACT_FORMS:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
       case sync.RECEIVE_CONTACT_FORMS:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         items: action.contactForms,
         lastUpdated: action.receivedAt
       })

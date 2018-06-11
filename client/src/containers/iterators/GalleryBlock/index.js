@@ -26,9 +26,9 @@ class GalleryBlock extends Component {
         <Transition
           native
           keys={this.props.content.map(item => item.id)}
-          from={{ width: 0, opacity: 0, display: 'inline-block' }}
-          enter={{ width: 262, opacity: 1, display: 'inline-block' }}
-          leave={{ width: 0, opacity: 0, display: 'none' }}>
+          from={{ width: 0, opacity: 0 }}
+          enter={{ width: 262, opacity: 1 }}
+          leave={{ width: 0, opacity: 0 }}>
           {this.props.content.map(item =>
             styles => this.renderContent(item, this.props.type, styles))
           }

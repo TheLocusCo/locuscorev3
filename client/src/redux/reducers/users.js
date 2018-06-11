@@ -32,7 +32,7 @@ export function currentUser(state = {
 export function user(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     content: {}
   },
   action
@@ -41,12 +41,12 @@ export function user(
     case sync.REQUEST_USER:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
     case async.RECEIVE_USER:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         content: action.user,
         lastUpdated: action.receivedAt
       })
@@ -58,7 +58,7 @@ export function user(
 export function users(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     items: [],
     totalPages: 1,
     paginationMeta: {}
@@ -69,12 +69,12 @@ export function users(
     case sync.REQUEST_USERS:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
     case async.RECEIVE_USERS:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         items: action.users,
         lastUpdated: action.receivedAt,
         totalPages: action.totalPages,
@@ -90,18 +90,18 @@ export function users(
 export function userNotifications(state = {
   items: [],
   isFetching: false,
-  didInvalidate: false
+  needsUpdate: true
 }, action) {
   switch (action.type) {
     case sync.REQUEST_USER_NOTIFICATIONS:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
     case async.RECEIVE_USER_NOTIFICATIONS:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         items: action.userNotifications,
         lastUpdated: action.receivedAt,
         totalPages: action.totalPages,

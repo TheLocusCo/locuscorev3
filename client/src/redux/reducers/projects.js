@@ -4,7 +4,7 @@ import * as sync from 'redux/actions/sync'
 export function project(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     content: {}
   },
   action
@@ -13,12 +13,12 @@ export function project(
     case sync.REQUEST_PROJECT:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
     case async.RECEIVE_PROJECT:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         content: action.project,
         lastUpdated: action.receivedAt
       })
@@ -30,7 +30,7 @@ export function project(
 export function projects(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     items: [],
     filteredItems: [],
     activeCategory: {id: 0, name: 'All Categories'},
@@ -43,12 +43,12 @@ export function projects(
     case sync.REQUEST_PROJECTS:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
     case async.RECEIVE_PROJECTS:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         items: action.projects,
         filteredItems: action.projects,
         lastUpdated: action.receivedAt,
@@ -65,9 +65,11 @@ export function projects(
         activeCategory: action.activeCategory
       })
     case "CLEANUP_AFTER_DESTROY_PROJECT":
+      let filteredItems = state.items.filter(objectInState =>
+        objectInState.id !== action.idToCleanup)
       return Object.assign({}, state, {
-        items: state.items.filter(objectInState =>
-          objectInState.id !== action.idToCleanup)
+        items: filteredItems,
+        filteredItems: filteredItems
       })
     default:
       return state

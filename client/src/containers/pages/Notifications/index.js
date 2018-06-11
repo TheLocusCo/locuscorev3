@@ -9,7 +9,9 @@ import { fetchResources } from 'redux/actions'
 
 class Notifications extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchResources('notifications', this.props.currentPage.notifications))
+    if(this.props.needsUpdate) {
+      this.props.dispatch(fetchResources('notifications', this.props.currentPage.notifications))
+    }
   }
 
   render() {
@@ -45,7 +47,8 @@ const mapStateToProps = state => ({
   headers: state.tableHeaders.tree,
   successContent: state.successMessages.items,
   errorContent: state.errorMessages.items,
-  currentPage: state.currentPage
+  currentPage: state.currentPage,
+  needsUpdate: state.notifications.needsUpdate
 })
 
 export default connect(mapStateToProps)(Notifications)

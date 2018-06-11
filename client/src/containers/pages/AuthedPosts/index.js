@@ -10,7 +10,9 @@ import { fetchResources } from 'redux/actions'
 
 class AuthedPosts extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchResources('posts', this.props.currentPage.posts, '', 'withHidden'))
+    if(this.props.needsUpdate) {
+      this.props.dispatch(fetchResources('posts', this.props.currentPage.posts, '', 'withHidden'))
+    }
   }
 
   render() {
@@ -52,7 +54,8 @@ const mapStateToProps = state => ({
   headers: state.tableHeaders.tree,
   successContent: state.successMessages.items,
   errorContent: state.errorMessages.items,
-  currentPage: state.currentPage
+  currentPage: state.currentPage,
+  needsUpdate: state.posts.needsUpdate
 })
 
 export default connect(mapStateToProps)(AuthedPosts)

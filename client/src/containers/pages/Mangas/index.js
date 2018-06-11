@@ -10,7 +10,9 @@ import { fetchResources } from 'redux/actions'
 
 class Mangas extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchResources('mangas', this.props.currentPage.mangas, '', 'paginated'))
+    if(this.props.needsUpdate || this.props.mangas.items.length > 10) {
+      this.props.dispatch(fetchResources('mangas', this.props.currentPage.mangas, '', 'paginated'))
+    }
   }
 
   render() {
@@ -48,11 +50,12 @@ class Mangas extends Component {
 
 const mapStateToProps = state => ({
   mangas: state.mangas,
-  isFetching: state.posts.isFetching,
+  isFetching: state.mangas.isFetching,
   headers: state.tableHeaders.tree,
   successContent: state.successMessages.items,
   errorContent: state.errorMessages.items,
-  currentPage: state.currentPage
+  currentPage: state.currentPage,
+  needsUpdate: state.mangas.needsUpdate
 })
 
 export default connect(mapStateToProps)(Mangas)

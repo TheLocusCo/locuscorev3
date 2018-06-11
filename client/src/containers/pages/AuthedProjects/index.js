@@ -10,7 +10,9 @@ import { fetchResources } from 'redux/actions'
 
 class AuthedProjects extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchResources('projects', this.props.currentPage.projects, '', 'paginated'))
+    if(this.props.needsUpdate) {
+      this.props.dispatch(fetchResources('projects', this.props.currentPage.projects, '', 'paginated'))
+    }
   }
 
   render() {
@@ -48,11 +50,12 @@ class AuthedProjects extends Component {
 
 const mapStateToProps = state => ({
   projects: state.projects,
-  isFetching: state.posts.isFetching,
+  isFetching: state.projects.isFetching,
   headers: state.tableHeaders.tree,
   successContent: state.successMessages.items,
   errorContent: state.errorMessages.items,
-  currentPage: state.currentPage
+  currentPage: state.currentPage,
+  needsUpdate: state.projects.needsUpdate
 })
 
 export default connect(mapStateToProps)(AuthedProjects)

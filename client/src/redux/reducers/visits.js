@@ -4,7 +4,7 @@ import * as sync from 'redux/actions/sync'
 export function visit(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     content: {event_days: [], event_links: []}
   },
   action
@@ -13,12 +13,12 @@ export function visit(
     case sync.REQUEST_VISIT:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
     case async.RECEIVE_VISIT:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         content: action.visit,
         lastUpdated: action.receivedAt
       })
@@ -30,7 +30,7 @@ export function visit(
 export function visits(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     items: [],
     totalPages: 1,
     paginationMeta: {}
@@ -41,12 +41,12 @@ export function visits(
     case sync.REQUEST_VISITS:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
     case async.RECEIVE_VISITS:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         items: action.visits,
         lastUpdated: action.receivedAt,
         totalPages: action.totalPages,

@@ -4,7 +4,7 @@ import * as sync from 'redux/actions/sync'
 export function comment(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     content: {}
   },
   action
@@ -13,12 +13,12 @@ export function comment(
     case sync.REQUEST_COMMENT:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
     case async.RECEIVE_COMMENT:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         content: action.comment,
         lastUpdated: action.receivedAt
       })
@@ -47,7 +47,7 @@ export function commentFormVisibility(
 export function comments(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     items: [],
     totalPages: 1,
     paginationMeta: {}
@@ -58,12 +58,12 @@ export function comments(
     case sync.REQUEST_COMMENTS:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
     case async.RECEIVE_COMMENTS:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         items: action.comments,
         lastUpdated: action.receivedAt,
         totalPages: action.totalPages,

@@ -4,7 +4,7 @@ import * as sync from 'redux/actions/sync'
 export function medium(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     content: {}
   },
   action
@@ -13,12 +13,12 @@ export function medium(
     case sync.REQUEST_MEDIUM:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
     case async.RECEIVE_MEDIUM:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         content: action.medium,
         lastUpdated: action.receivedAt
       })
@@ -30,7 +30,7 @@ export function medium(
 export function media(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     items: [],
     totalPages: 1,
     paginationMeta: {}
@@ -41,12 +41,12 @@ export function media(
     case sync.REQUEST_MEDIA:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
     case async.RECEIVE_MEDIA:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         items: action.media,
         lastUpdated: action.receivedAt,
         totalPages: action.totalPages,

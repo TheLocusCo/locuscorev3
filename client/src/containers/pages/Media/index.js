@@ -9,7 +9,9 @@ import { fetchResources } from 'redux/actions'
 
 class Media extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchResources('media', this.props.currentPage.media, '', 'paginated'))
+    if(this.props.needsUpdate) {
+      this.props.dispatch(fetchResources('media', this.props.currentPage.media, '', 'paginated'))
+    }
   }
 
   render() {
@@ -41,11 +43,12 @@ class Media extends Component {
 
 const mapStateToProps = state => ({
   media: state.media,
-  isFetching: state.posts.isFetching,
+  isFetching: state.media.isFetching,
   successContent: state.successMessages.items,
   headers: state.tableHeaders.tree,
   errorContent: state.errorMessages.items,
-  currentPage: state.currentPage
+  currentPage: state.currentPage,
+  needsUpdate: state.media.needsUpdate
 })
 
 export default connect(mapStateToProps)(Media)

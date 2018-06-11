@@ -4,7 +4,7 @@ import * as sync from 'redux/actions/sync'
 export function editItem(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     content: {}
   },
   action
@@ -13,19 +13,19 @@ export function editItem(
     case sync.REQUEST_EDIT_ITEM:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
       case async.RECEIVE_EDIT_ITEM:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         content: action.resource,
         lastUpdated: action.receivedAt
       })
     case sync.DELETE_EDIT_ITEM:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         content: {}
       })
     default:
@@ -36,7 +36,7 @@ export function editItem(
 export function newItem(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     content: {}
   },
   action
@@ -45,19 +45,19 @@ export function newItem(
     case sync.REQUEST_NEW_ITEM:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        needsUpdate: false
       })
     case async.RECEIVE_NEW_ITEM:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         content: action.resource,
         lastUpdated: action.receivedAt
       })
     case sync.DELETE_NEW_ITEM:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         content: {}
       })
     default:
@@ -68,7 +68,7 @@ export function newItem(
 export function uploadItem(
   state = {
     isFetching: false,
-    didInvalidate: false,
+    needsUpdate: true,
     content: {}
   },
   action
@@ -77,14 +77,14 @@ export function uploadItem(
     case async.RECEIVE_UPLOAD_ITEM:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         content: action.resource,
         lastUpdated: action.receivedAt
       })
     case sync.DELETE_UPLOAD_ITEM:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
+        needsUpdate: false,
         content: {}
       })
     default:

@@ -3,15 +3,13 @@ import { connect } from 'react-redux'
 
 import GalleryBlock from 'containers/iterators/GalleryBlock'
 import GalleryCategoryButtonsBlock from 'containers/iterators/GalleryCategoryButtonsBlock'
-import { fetchResources, cleanupAfterGallery } from 'redux/actions'
+import { fetchResources } from 'redux/actions'
 
 class MangaGallery extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchResources('mangas', 0, '', 'all'))
-  }
-
-  componentWillUnmount() {
-    this.props.dispatch(cleanupAfterGallery("mangas"))
+    if(this.props.needsUpdate || this.props.mangas.length < 11) {
+      this.props.dispatch(fetchResources('mangas', 0, '', 'all'))
+    }
   }
 
   render() {
@@ -36,7 +34,8 @@ class MangaGallery extends Component {
 const mapStateToProps = state => ({
   mangas: state.mangas.filteredItems,
   isFetching: state.posts.isFetching,
-  activeCategory: state.mangas.activeCategory
+  activeCategory: state.mangas.activeCategory,
+  needsUpdate: state.mangas.needsUpdate
 })
 
 export default connect(mapStateToProps)(MangaGallery)

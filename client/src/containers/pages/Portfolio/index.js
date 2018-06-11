@@ -7,7 +7,9 @@ import { fetchResources } from 'redux/actions'
 
 class Portfolio extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchResources('projects', 0, '', 'all'))
+    if(this.props.needsUpdate) {
+      this.props.dispatch(fetchResources('projects', 0, '', 'all'))
+    }
   }
 
   render() {
@@ -32,7 +34,8 @@ class Portfolio extends Component {
 const mapStateToProps = state => ({
   projects: state.projects.filteredItems,
   isFetching: state.projects.isFetching,
-  activeCategory: state.projects.activeCategory
+  activeCategory: state.projects.activeCategory,
+  needsUpdate: state.projects.needsUpdate
 })
 
 export default connect(mapStateToProps)(Portfolio)

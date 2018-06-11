@@ -9,7 +9,9 @@ import { fetchResources } from 'redux/actions'
 
 class Comments extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchResources('comments', this.props.currentPage.comments))
+    if(this.props.needsUpdate) {
+      this.props.dispatch(fetchResources('comments', this.props.currentPage.comments))
+    }
   }
 
   render() {
@@ -41,11 +43,12 @@ class Comments extends Component {
 
 const mapStateToProps = state => ({
   comments: state.comments,
-  isFetching: state.posts.isFetching,
+  isFetching: state.comments.isFetching,
   headers: state.tableHeaders.tree,
   successContent: state.successMessages.items,
   errorContent: state.errorMessages.items,
-  currentPage: state.currentPage
+  currentPage: state.currentPage,
+  needsUpdate: state.comments.needsUpdate
 })
 
 export default connect(mapStateToProps)(Comments)
