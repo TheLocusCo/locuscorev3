@@ -3,19 +3,15 @@
     * https://www.andrewhfarmer.com/detect-image-load/
 
 ### Stuff to implement
-* Polling / Caching for fetches to API
 * params update pagination so pagination is remembered from external visits
 * SceneJS?
 * Refresh button / polling for notifications while authed
 * Better ways to handle uploads in dev?
 * Secure resume microservice using names as ids instead of ids
-* Portfolio / Manga Gallery Pages slow down when lots of elements are present
-    * Infinite scroll to prevent lots of loading?
 * Cleanup old media files when media is changed / deleted
 * Notifications putting entries into notifications seen by users table so users can't overwrite seen notifications
 * Graph view for Visit search
 * Clear state between visits to fix overlapping columns issue? (notable in searches)
-* Test no lightbox for blog
 
 #### Stuff to nearly never implement
 * Scroll to top button
@@ -29,7 +25,7 @@
 * Blog post about using rails with prawn as a microservice in elixir
 * Blog post about engineers building a thing and losing interest because the "hard" parts are solved
 * Blog post about code splitting saving significant time
-* Add info about create-react-app to on new things part 1 / 2
+* Blog post about react-spring good and bad, caveats
 
 File sizes after gzip:
 
@@ -54,8 +50,6 @@ https://github.com/knsv/mermaid
 update react-addons-css-transition to react-transition-group
 update material-ui to 1.0.0
     update redux-form-material-ui when it leaves 5.0 beta
-Refactor lightbox and page containers to remove DRY violations
-refactor asynccomponent to hocs
 
 SteamWizard
   top games per genre?
