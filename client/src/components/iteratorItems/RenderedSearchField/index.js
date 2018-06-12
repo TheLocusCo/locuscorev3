@@ -35,14 +35,14 @@ let RenderedSearchField = props => {
     case "string":
       if(ability[1].nested_action.search_type === 'fuzzy' || ability[1].nested_action.search_type === 'basic') {
         return (
-          <animated.div style={styles} className="text-field" key={index-1}>
+          <animated.div style={styles} className="search-text-field" key={index}>
             <i className="icon-cancel-circled farther-form-tooltip-icon" onClick={() => dispatch(deleteFieldFromCurrentSearch(ability[0]))} />
             <Field name={ability[0]} component={renderTextField} label={ability[1].logical} fullWidth={true}/>
           </animated.div>
         )
       } else if (ability[1].nested_action.select_from) {
         return (
-          <animated.div style={styles} className="text-field" key={index-1}>
+          <animated.div style={styles} className="search-text-field" key={index}>
             <i className="icon-cancel-circled farther-form-tooltip-icon" onClick={() => dispatch(deleteFieldFromCurrentSearch(ability[0]))} />
             <Field name={ability[0]} component={SelectField} hintText={ability[1].logical} fullWidth={true} floatingLabelText={ability[1].logical + "..."}>
               {renderMenuItems(currentSearch.forSelects[ability[0]])}
@@ -54,7 +54,7 @@ let RenderedSearchField = props => {
       }
     case "order":
       return (
-          <animated.div style={styles} className="text-field" key={index-1}>
+          <animated.div style={styles} className="search-text-field" key={index}>
             <i className="icon-cancel-circled farther-form-tooltip-icon" onClick={() => dispatch(deleteFieldFromCurrentSearch(ability[0]))} />
             <Field name={ability[0]} component={SelectField} hintText={ability[1].logical} fullWidth={true} floatingLabelText={ability[1].logical + "..."}>
               {renderMenuItems(ability[1].nested_action.select_from)}
@@ -63,7 +63,7 @@ let RenderedSearchField = props => {
         )
     case "boolean":
       return (
-        <animated.div style={styles} className='search-boolean-field' key={index-1}>
+        <animated.div style={styles} className='search-boolean-field' key={index}>
           <i className="icon-cancel-circled farther-form-tooltip-icon" style={{marginTop: "24px", marginLeft: "-29px"}} onClick={() => dispatch(deleteFieldFromCurrentSearch(ability[0]))} />
           <br/>
           <Field name={ability[0]} component={Checkbox} label={ability[1].logical} fullwidth={true}/>
@@ -71,7 +71,7 @@ let RenderedSearchField = props => {
       )
     case "date":
       return (
-        <animated.div style={styles} className='search-date-field' key={index-1}>
+        <animated.div style={styles} className='search-date-field' key={index}>
           <i className="icon-cancel-circled farther-form-tooltip-icon" style={{marginTop: "55px"}} onClick={() => dispatch(deleteFieldFromCurrentSearch(ability[0]))} />
           <p className="form-description">{`${ability[1].logical}:`}</p>
           <div style={{marginLeft: "16px", marginTop: "-20px", marginBottom: "20px"}}>
@@ -89,7 +89,7 @@ let RenderedSearchField = props => {
       )
     case "hidden": case "params":
       return (
-        <animated.div style={styles} key={index-1} className="text-field">
+        <animated.div style={styles} key={index} className="text-field">
           <i className="icon-cancel-circled farther-form-tooltip-icon" style={{marginTop: "0px"}} onClick={() => dispatch(deleteFieldFromCurrentSearch(ability[0]))} />
           {ability[1].logical + "..."}
         </animated.div>

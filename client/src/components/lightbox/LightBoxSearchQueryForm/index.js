@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import ReactTooltip from 'react-tooltip'
 import { reduxForm } from 'redux-form'
-import { Transition } from 'react-spring'
+import { Transition, animated } from 'react-spring'
 
 import './style.css'
 import ErrorBlock from 'containers/iterators/ErrorBlock'
@@ -17,14 +17,39 @@ let LightBoxSearchQueryForm = props => {
       return null
     } else {
       return (
-        <Transition
-          native
-          from={{ opacity: 0 }}
-          enter={{ opacity: 1 }}
-          leave={{ opacity: 0 }}
-          key={index}>
-          { styles => currentSearch.fields.includes(ability[0]) ? <RenderedSearchField ability={ability} currentSearch={currentSearch} dispatch={dispatch} index={index} styles={styles} /> : <SearchFieldButton ability={ability} currentSearch={currentSearch} dispatch={dispatch} change={change} index={index} styles={styles} /> }
-        </Transition>
+        <div key={index}>
+          <Transition
+            native
+            from={{ opacity: 0, marginBottom: 0, marginLeft: 0, marginRight: 0 }}
+            enter={{ opacity: 1, marginBottom: 10, marginLeft: 15, marginRight: 15 }}
+            leave={{ display: 'none' }}>
+            { styles => currentSearch.fields.includes(ability[0]) &&
+              <RenderedSearchField
+                ability={ability}
+                currentSearch={currentSearch}
+                dispatch={dispatch}
+                index={index}
+                styles={styles}
+              />
+            }
+          </Transition>
+          <Transition
+            native
+            from={{ opacity: 0, marginBottom: 0, marginLeft: 0, marginRight: 0, height: 0, fontSize: 0 }}
+            enter={{ opacity: 1, marginBottom: 10, marginLeft: 15, marginRight: 15, height: 30, fontSize: 13 }}
+            leave={{ display: 'none' }}>
+            { styles => !currentSearch.fields.includes(ability[0]) &&
+              <SearchFieldButton
+                ability={ability}
+                currentSearch={currentSearch}
+                dispatch={dispatch}
+                change={change}
+                index={index}
+                styles={styles}
+              />
+            }
+          </Transition>
+        </div>
       )
     }
   }
@@ -34,12 +59,19 @@ let LightBoxSearchQueryForm = props => {
     <form onSubmit={handleSubmit(submit)}>
       <ReactTooltip />
       <ErrorBlock content={errorContent} />
-        {Object.entries(searchAbility[currentSearch.model]).map((ability, index) =>
-          renderSearchFields(ability, currentSearch, dispatch, change, index * 2)
-        )}
-      <div className="form-button centered">
-        <button type="submit" className="button centered" disabled={pristine || submitting}>Submit your search for {humanize(currentSearch.model)}</button>
-      </div>
+      {Object.entries(searchAbility[currentSearch.model]).map((ability, index) =>
+        renderSearchFields(ability, currentSearch, dispatch, change, index * 2)
+      )}
+      { currentSearch.fields.length > 0 &&
+        <div className="form-button centered">
+          <button
+            type="submit"
+            className="button centered"
+            disabled={pristine || submitting}>
+            Submit your search for {humanize(currentSearch.model)}
+          </button>
+        </div>
+      }
     </form>
   )
 }

@@ -9,16 +9,20 @@ import { updateCurrentSearchModelAndTree } from 'redux/actions'
 
 class LightBoxSearchQueryBuilder extends Component {
   renderSearchAbility(ability, index, currentSearch, styles) {
-    return (
-      <animated.div
-        style={styles}
-        key={index}
-        onClick={() => this.props.dispatch(updateCurrentSearchModelAndTree(ability[0]))}
-        title={"Search" + ability[0]}
-        className="button full-width-button">
-        <i className={"icon-" + ability[1].icon}/>Search {humanize(ability[0])}
-      </animated.div>
-    )
+    if(currentSearch.model) {
+      return null
+    } else {
+      return (
+        <animated.div
+          style={styles}
+          key={index}
+          onClick={() => this.props.dispatch(updateCurrentSearchModelAndTree(ability[0]))}
+          title={'Search ' + ability[0]}
+          className="button full-width-button">
+          <i className={"icon-" + ability[1].icon}/>Search {humanize(ability[0])}
+        </animated.div>
+      )
+    }
   }
 
   render() {
@@ -35,15 +39,20 @@ class LightBoxSearchQueryBuilder extends Component {
           <Transition
             native
             keys={Object.entries(searchAbility).map((ability, index) => index)}
-            from={{ height: 0, opacity: 0, marginBottom: 0 }}
-            enter={{ height: 30, opacity: 1, marginBottom: 15 }}
-            leave={{ height: 0, opacity: 0, marginBottom: 0 }}>
+            from={{ height: 0, opacity: 0, marginBottom: 0, fontSize: 0 }}
+            enter={{ height: 30, opacity: 1, marginBottom: 15, fontSize: 13 }}
+            leave={{ height: 0, opacity: 0, marginBottom: 0, fontSize: 0 }}>
             {Object.entries(searchAbility).map((ability, index) =>
               styles => this.renderSearchAbility(ability, index, currentSearch, styles)
             )}
           </Transition>
           {currentSearch.model !== "" &&
-            <LightBoxSearchQueryForm history={history} searchAbility={searchAbility} currentSearch={currentSearch} errorContent={errorContent}/>
+            <LightBoxSearchQueryForm
+              history={history}
+              searchAbility={searchAbility}
+              currentSearch={currentSearch}
+              errorContent={errorContent}
+            />
           }
         </article>
       )}/>
