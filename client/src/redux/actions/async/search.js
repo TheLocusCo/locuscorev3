@@ -81,7 +81,7 @@ export function searchSubmit(values, history) {
       return response.json()
     }).then(response => {
       if (Object.keys(response).includes("data")) {
-        dispatch(sync.deleteCurrentSearch())
+        dispatch(deleteCurrentSearchAndResetTree())
         dispatch(receiveSearchResults(response))
         history.push(`/search_results?${params}`)
       } else {
