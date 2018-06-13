@@ -38,7 +38,13 @@ class LightBoxSiteStats extends Component {
                   </Footer>
                 </ThemedDashboard>
               }
-              <button onClick={() => history.push(this.props.locationToPush)} title="Close (Esc)" type="button" className="ltbx-close">×</button>
+              <button
+                onClick={() => history.go(-1)}
+                title="Go back to the previous page"
+                type="button"
+                className="ltbx-close ltbx-back">
+                <i className="icon-back"/>
+              </button>
             </div>
           </div>
           <div className="ltbx-bg" onClick={() => history.push(this.props.locationToPush)} />

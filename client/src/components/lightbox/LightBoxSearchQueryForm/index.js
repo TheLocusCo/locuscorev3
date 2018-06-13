@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import ReactTooltip from 'react-tooltip'
 import { reduxForm } from 'redux-form'
-import { Transition, animated } from 'react-spring'
+import { Transition } from 'react-spring'
 
 import './style.css'
 import ErrorBlock from 'containers/iterators/ErrorBlock'

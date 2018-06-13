@@ -17,6 +17,8 @@ const LightBoxSearch = asyncComponent(() => import("containers/lightbox/LightBox
 const LightBoxSiteStats = asyncComponent(() => import("containers/lightbox/LightBoxSiteStats"))
 const LightBoxUserActivity = asyncComponent(() => import("containers/lightbox/LightBoxUserActivity"))
 
+const LightBoxSolarSystem = asyncComponent(() => import("containers/lightbox/LightBoxSolarSystem"))
+
 class AuthedLightBox extends Component {
   render() {
     const { location } = this.props
@@ -207,6 +209,10 @@ class AuthedLightBox extends Component {
 
             <Route path="/site_stats">
               <LightBoxSiteStats locationToPush="/" location={location}/>
+            </Route>
+
+            <Route path="/solar_system">
+              <LightBoxSolarSystem locationToPush="/" location={location}/>
             </Route>
           </Switch>
         </div>

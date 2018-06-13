@@ -12,6 +12,8 @@ const EmptyPage = asyncComponent(() => import("components/pages/EmptyPage"))
 const LightBoxSearch = asyncComponent(() => import("containers/lightbox/LightBoxSearch"))
 const LightBoxSiteStats = asyncComponent(() => import("containers/lightbox/LightBoxSiteStats"))
 
+const LightBoxSolarSystem = asyncComponent(() => import("containers/lightbox/LightBoxSolarSystem"))
+
 class LightBox extends Component {
   render() {
     const { location } = this.props
@@ -70,6 +72,9 @@ class LightBox extends Component {
             </Route>
             <Route path="/site_stats">
               <LightBoxSiteStats locationToPush="/" location={this.props.location}/>
+            </Route>
+            <Route path="/solar_system">
+              <LightBoxSolarSystem locationToPush="/" location={location}/>
             </Route>
           </Switch>
         </div>

@@ -14,3 +14,11 @@ export const apiUrl = () => {
     return `${process.env.REACT_APP_BASE_ENDPOINT}:${process.env.REACT_APP_API_PORT}`
   }
 }
+
+export const currentHost = () => {
+  if (process.env.NODE_ENV === 'production') {
+    return "https://thelocus.co"
+  } else {
+    return `${process.env.REACT_APP_BASE_ENDPOINT}:3000`
+  }
+}
