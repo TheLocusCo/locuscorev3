@@ -2,9 +2,9 @@ SceneJS.Types.addType("objects/space/planets/sun", {
 
     init:function (params) {
 
-        var texturePath = SceneJS.getConfigs("pluginPath") + "node/objects/space/planets/sun/";
+        var texturePath = SceneJS.getConfigs("pluginPath") + "/node/objects/space/planets/sun/";
 
-        this.addNode(                 
+        this.addNode(
             {
                 type: "rotate",
                 id: "sunInneryaw",
@@ -46,7 +46,7 @@ SceneJS.Types.addType("objects/space/planets/sun", {
                                     }
                                 ]
                             },
-                            {   
+                            {
                                 type: "layer",
                                 priority: 0,
                                 nodes: [
@@ -137,17 +137,6 @@ SceneJS.Types.addType("objects/space/planets/sun", {
                         ]
                     }
                 ]
-            }
-        );
-
-        this._tick = this.getScene().on("tick",
-            function () {
-                this.getScene().getNode("myShader", function(sunShader) {
-                    sunShader.setParams({
-                        time: time
-                    });
-                    time += 0.1;
-                });
             }
         );
     },
