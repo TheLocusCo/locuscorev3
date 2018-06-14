@@ -4,14 +4,13 @@
 
 ### Stuff to implement
 * params update pagination so pagination is remembered from external visits
-* SceneJS?
 * Refresh button / polling for notifications while authed
 * Better ways to handle uploads in dev?
-* Secure resume microservice using names as ids instead of ids
 * Cleanup old media files when media is changed / deleted
 * Notifications putting entries into notifications seen by users table so users can't overwrite seen notifications
 * Graph view for Visit search
 * Clear state between visits to fix overlapping columns issue? (notable in searches)
+* react-load-script for scenejs
 
 #### Stuff to nearly never implement
 * Scroll to top button

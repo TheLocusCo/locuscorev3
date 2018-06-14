@@ -42,7 +42,7 @@ class LightBoxSiteStats extends Component {
                 onClick={() => history.go(-1)}
                 title="Go back to the previous page"
                 type="button"
-                className="ltbx-close ltbx-back">
+                className="ltbx-close">
                 <i className="icon-back"/>
               </button>
             </div>
