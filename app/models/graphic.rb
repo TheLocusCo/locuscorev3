@@ -7,7 +7,7 @@ class Graphic < ApplicationRecord
   before_destroy { |g| g.categories.clear }
   before_destroy { |g| g.comments.clear }
 
-  scope :get_meta_titles_for_page, -> (page) { order("created_at DESC").select(:id, :created_at, :title, :library).where.not(library: "scenejs").limit(10).offset(10 * (page - 1)) }
+  scope :get_meta_titles_for_page, -> (page) { order("created_at DESC").select(:id, :created_at, :title, :library).limit(10).offset(10 * (page - 1)) }
 
   def self.many_to_many_as
     {categories: :categories}

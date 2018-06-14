@@ -39,7 +39,7 @@ class Search
     shash[:graphics][:haml_description]  = {icon: 'doc-text', type: s, logical: 'Search Web Graphics by their detailed description', nested_action: {search_type: 'basic'}}
     shash[:graphics][:index_description] = {icon: 'doc-text', type: s, logical: 'Search Web Graphics by their short description',    nested_action: {search_type: 'basic'}}
     shash[:graphics][:category]          = {icon: 'tag',      type: s, logical: 'Search Web Graphics by their categories',           nested_action: {select_from: 'Category.belonging_to("graphics").pluck(:name).uniq.sort', join_on: {name: :categories, field: :name}}}
-    shash[:graphics][:scenejs]           = {icon: 'globe',    type: b, logical: 'Search Web Graphics by whether it uses SceneJS',    nested_action: {}}
+    shash[:graphics][:library]           = {icon: 'globe',    type: h, logical: 'Search Web Graphics by whether it uses SceneJS',    nested_action: {embedded: '.where("library = \'scenejs\'")'}}
     shash[:graphics][:created_at]        = {icon: 'calendar', type: d, logical: 'Search Web Graphics by when they were created',     nested_action: {select_from: {earliest: 'Graphic.pluck(:created_at).min', latest: 'Graphic.pluck(:created_at).max'}}}
     shash[:graphics][:order]             = {icon: 'menu',     type: o, logical: 'Change the order of the search results',            nested_action: {select_from: ["title DESC", "title ASC", "created_at ASC"]}}
 
