@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Script from 'react-load-script'
 import P5Wrapper from 'react-p5-wrapper'
 
+import SolarSystem from 'components/SolarSystem'
 import AuthedContentFooter from 'containers/AuthedContentFooter'
 
 import { Markdown } from 'react-showdown'
@@ -58,11 +58,18 @@ class LightBoxGraphicContent extends Component {
     this.setState({ scriptLoaded: true })
   }
 
-  renderGraphicBinding(library, scriptContent) {
+  renderGraphicBinding(library, scriptContent, title) {
     var { width, height, fullscreen, paramOne, paramTwo, paramThree, paramFour, paramFive, paramSix } = this.state
     switch (library) {
       case "scenejs":
-        return (<canvas height="700" id="theCanvas" width="855" tabIndex="0" style={{ imageRendering: "-webkit-optimize-contrast !important"}}></canvas>)
+        switch (title) {
+          case "Solar System":
+            let fixedWidth = window.innerWidth * 0.9
+            let fixedHeight = window.innerHeight * 0.86
+            return(<SolarSystem width={fixedWidth} height={fixedHeight}/>)
+          default:
+            return null
+        }
       case "processing":
         let sketch = this.parsedSketch(scriptContent)
         return (<P5Wrapper width={width} height={height} sketch={sketch} fullscreen={fullscreen} paramOne={paramOne} paramTwo={paramTwo} paramThree={paramThree} paramFour={paramFour} paramFive={paramFive} paramSix={paramSix} />)
@@ -100,25 +107,14 @@ class LightBoxGraphicContent extends Component {
   }
 
   render() {
-    var props = this.props
+    const { title, library, script_content, content_description, extra_params, location } = this.props
     return (
       <article className='portfolio-item' style={{textAlign: 'center'}}>
-        {props.library === "scenejs" &&
-          <Script
-            url={this.buildUrl()}
-            onCreate={this.handleScriptCreate.bind(this)}
-            onError={this.handleScriptError.bind(this)}
-            onLoad={this.handleScriptLoad.bind(this)}
-          />
-        }
-        <h1 className="section-heading larger">{props.title}</h1>
-        {this.renderGraphicBinding(props.library, props.script_content)}
-        <Markdown markup={ props.content_description } />
-        {this.state.scriptLoaded &&
-          <script type="text/javascript" dangerouslySetInnerHTML={{ __html: props.script_content }} />
-        }
-        {this.renderParamsButtons(props.extra_params)}
-        <AuthedContentFooter location={props.location} />
+        <h1 className="section-heading larger">{title}</h1>
+        {this.renderGraphicBinding(library, script_content, title)}
+        <Markdown markup={ content_description } />
+        {this.renderParamsButtons(extra_params)}
+        <AuthedContentFooter location={location} />
       </article>
     )
   }

@@ -4,7 +4,7 @@ import ReactTooltip from 'react-tooltip'
 
 export const MarkdownToolbar = props => {
   return (
-    <table style={{marginTop: "25px"}} className="centered">
+    <table style={{marginTop: "25px"}} className="centered show-table">
       <ReactTooltip />
       <tbody>
         <tr>

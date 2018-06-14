@@ -6,6 +6,7 @@ export * from 'redux/actions/sync/search.js'
 export * from 'redux/actions/sync/users.js'
 export * from 'redux/actions/sync/dashboard.js'
 
+export const CLEAR_CACHED_GRAPHIC = 'CLEAR_CACHED_GRAPHIC'
 export const FILTER_MANGAS = 'FILTER_MANGAS'
 export const FILTER_PROJECTS = 'FILTER_PROJECTS'
 export const GENERIC_API_FAILURE = 'GENERIC_API_FAILURE'
@@ -38,6 +39,12 @@ export const REQUEST_ROLES = 'REQUEST_ROLES'
 export const REQUEST_ROLE = 'REQUEST_ROLE'
 export const REQUEST_VISITS = 'REQUEST_VISITS'
 export const REQUEST_VISIT = 'REQUEST_VISIT'
+
+export function clearCachedGraphic() {
+  return {
+    type: CLEAR_CACHED_GRAPHIC
+  }
+}
 
 export function cleanupAfterGallery(mode) {
   var action = {}

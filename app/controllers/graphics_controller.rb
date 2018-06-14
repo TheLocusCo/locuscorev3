@@ -6,7 +6,7 @@ class GraphicsController < ApplicationController
   # GET /graphics
   # GET /graphics.json
   def index
-    @graphics = Graphic.fetch_ordered_by_page(params["page"]).where.not(library: "scenejs")
+    @graphics = Graphic.fetch_ordered_by_page(params["page"])
   end
 
   # GET /graphics/1

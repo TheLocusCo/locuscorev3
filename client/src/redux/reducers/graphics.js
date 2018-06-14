@@ -22,6 +22,12 @@ export function graphic(
         content: action.graphic,
         lastUpdated: action.receivedAt
       })
+    case sync.CLEAR_CACHED_GRAPHIC:
+      return Object.assign({}, state, {
+        isFetching: false,
+        needsUpdate: true,
+        content: {}
+      })
     default:
       return state
   }

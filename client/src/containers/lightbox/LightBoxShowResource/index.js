@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom'
 
 import SuccessBlock from 'containers/iterators/SuccessBlock'
 import LightBoxErrorPage from 'components/lightbox/LightBoxErrorPage'
-import { fetchResource, toggleFullscreenLightBox, deleteUploadItem } from 'redux/actions'
+import { fetchResource, toggleFullscreenLightBox, deleteUploadItem, clearCachedGraphic } from 'redux/actions'
 import { humanize } from 'utils/string'
 import asyncComponent from 'hocs/AsyncComponent'
 
@@ -29,6 +29,10 @@ class LightBoxResource extends Component {
   componentWillUnmount() {
     if(this.props.resourceType === 'medium') {
       this.props.dispatch(deleteUploadItem())
+    }
+
+    if(this.props.resourceType === 'graphic') {
+      this.props.dispatch(clearCachedGraphic())
     }
   }
 
@@ -131,7 +135,7 @@ class LightBoxResource extends Component {
                 className="ltbx-close">
                 ×
               </button>
-              {fullscreenable &&
+              {fullscreenable && object.content && !object.content.fullscreen_by_default &&
                 <button
                   onClick={() => this.props.dispatch(toggleFullscreenLightBox())}
                   title="Fullscreen"
@@ -157,7 +161,7 @@ const mapStateToProps = (state, ownProps) => ({
   errorContent: state.errorMessages.items,
   successContent: state.successMessages.items,
   isFetching: state[`${ownProps.resourceType}`].isFetching,
-  showAsFullscreen: state.lightbox.showAsFullscreen,
+  showAsFullscreen: (state[`${ownProps.resourceType}`].content.fullscreen_by_default ? true : state.lightbox.showAsFullscreen),
   currentUser: state.currentUser,
 })
 

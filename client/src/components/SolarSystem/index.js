@@ -921,10 +921,9 @@ class SolarSystem extends React.Component {
   }
 
   render() {
+    const { width, height } = this.props
     return (
-      <article className='portfolio-item' style={{textAlign: 'center'}}>
-        <canvas id='scene' style={{width: '980px', height: '980px'}}/>
-      </article>
+      <canvas id='scene' style={{width: `${width}px`, height: `${height}px`}}/>
     )
   }
 }
