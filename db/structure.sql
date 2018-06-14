@@ -206,6 +206,39 @@ ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
 
 
 --
+-- Name: friendly_id_slugs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE friendly_id_slugs (
+    id integer NOT NULL,
+    slug character varying NOT NULL,
+    sluggable_id integer NOT NULL,
+    sluggable_type character varying(50),
+    scope character varying,
+    created_at timestamp without time zone
+);
+
+
+--
+-- Name: friendly_id_slugs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE friendly_id_slugs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: friendly_id_slugs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE friendly_id_slugs_id_seq OWNED BY friendly_id_slugs.id;
+
+
+--
 -- Name: graphics; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -222,7 +255,8 @@ CREATE TABLE graphics (
     extra_params character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    library character varying(255)
+    library character varying(255),
+    slug character varying
 );
 
 
@@ -326,7 +360,8 @@ CREATE TABLE mangas (
     licensed_at text DEFAULT ''::text,
     chapters_at text DEFAULT '{}'::text,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    slug character varying
 );
 
 
@@ -434,7 +469,8 @@ CREATE TABLE media (
     generic_file_name character varying,
     generic_content_type character varying,
     generic_file_size integer,
-    generic_updated_at timestamp without time zone
+    generic_updated_at timestamp without time zone,
+    slug character varying
 );
 
 
@@ -540,7 +576,8 @@ CREATE TABLE posts (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     hidden boolean DEFAULT false,
-    published_at timestamp without time zone DEFAULT now()
+    published_at timestamp without time zone DEFAULT now(),
+    slug character varying
 );
 
 
@@ -669,7 +706,8 @@ CREATE TABLE projects (
     role character varying(255),
     link character varying(255),
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    slug character varying
 );
 
 
@@ -796,7 +834,8 @@ CREATE TABLE resumes (
     prawn_content text DEFAULT 'This is a blank pdf'::text,
     company character varying(255) DEFAULT ''::character varying,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    slug character varying
 );
 
 
@@ -840,7 +879,8 @@ CREATE TABLE roles (
     pf_mangas character varying(255) DEFAULT ''::character varying,
     pf_notifications character varying(255) DEFAULT 'cr'::character varying,
     pf_comments character varying(255) DEFAULT 'cr'::character varying,
-    pf_visits character varying DEFAULT ''::character varying
+    pf_visits character varying DEFAULT ''::character varying,
+    slug character varying
 );
 
 
@@ -905,7 +945,8 @@ CREATE TABLE users (
     confirmation_sent_at timestamp without time zone,
     unconfirmed_email character varying,
     tokens json,
-    locked_at timestamp without time zone
+    locked_at timestamp without time zone,
+    slug character varying
 );
 
 
@@ -954,6 +995,13 @@ ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_s
 --
 
 ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq'::regclass);
+
+
+--
+-- Name: friendly_id_slugs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY friendly_id_slugs ALTER COLUMN id SET DEFAULT nextval('friendly_id_slugs_id_seq'::regclass);
 
 
 --
@@ -1134,6 +1182,14 @@ ALTER TABLE ONLY categories
 
 ALTER TABLE ONLY comments
     ADD CONSTRAINT comments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: friendly_id_slugs friendly_id_slugs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY friendly_id_slugs
+    ADD CONSTRAINT friendly_id_slugs_pkey PRIMARY KEY (id);
 
 
 --
@@ -1459,6 +1515,83 @@ CREATE UNIQUE INDEX index_ahoy_visits_on_visit_token ON ahoy_visits USING btree 
 
 
 --
+-- Name: index_friendly_id_slugs_on_slug_and_sluggable_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_friendly_id_slugs_on_slug_and_sluggable_type ON friendly_id_slugs USING btree (slug, sluggable_type);
+
+
+--
+-- Name: index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope ON friendly_id_slugs USING btree (slug, sluggable_type, scope);
+
+
+--
+-- Name: index_friendly_id_slugs_on_sluggable_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_friendly_id_slugs_on_sluggable_id ON friendly_id_slugs USING btree (sluggable_id);
+
+
+--
+-- Name: index_friendly_id_slugs_on_sluggable_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_friendly_id_slugs_on_sluggable_type ON friendly_id_slugs USING btree (sluggable_type);
+
+
+--
+-- Name: index_graphics_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_graphics_on_slug ON graphics USING btree (slug);
+
+
+--
+-- Name: index_mangas_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_mangas_on_slug ON mangas USING btree (slug);
+
+
+--
+-- Name: index_media_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_media_on_slug ON media USING btree (slug);
+
+
+--
+-- Name: index_posts_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_posts_on_slug ON posts USING btree (slug);
+
+
+--
+-- Name: index_projects_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_projects_on_slug ON projects USING btree (slug);
+
+
+--
+-- Name: index_resumes_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_resumes_on_slug ON resumes USING btree (slug);
+
+
+--
+-- Name: index_roles_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_roles_on_slug ON roles USING btree (slug);
+
+
+--
 -- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1470,6 +1603,13 @@ CREATE UNIQUE INDEX index_users_on_confirmation_token ON users USING btree (conf
 --
 
 CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
+
+
+--
+-- Name: index_users_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_slug ON users USING btree (slug);
 
 
 --
@@ -1974,6 +2114,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 (20180326005341),
 (20180329212329),
 (20180408073426),
-(20180528041419);
+(20180528041419),
+(20180614194330),
+(20180614195253),
+(20180614200635);
 
 

@@ -4,7 +4,7 @@ import { resumeHost } from 'utils/http'
 
 export const LightBoxResumeContent = props => {
   const generateResumeLink = (props, type) => {
-    return(resumeHost() + "/resumes/" + props.id + "?" + type + "=true")
+    return(resumeHost() + props.href + "?" + type + "=true")
   }
 
   return (

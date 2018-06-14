@@ -33,6 +33,7 @@ gem 'prawn'
 gem 'ahoy_matey'
 gem 'maxminddb'
 gem 'redcarpet'
+gem 'friendly_id'
 # gem 'textacular' # gem isn't adding its methods correctly
 
 # gem 'locuscorev3_mangas', path: '../locuscorev3_mangas'

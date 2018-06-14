@@ -3,6 +3,8 @@ require 'fileutils'
 
 class Resume < ApplicationRecord
   DEFAULT_PAGINATION_COLUMN = :title
+  extend FriendlyId
+  friendly_id :title, use: :slugged
 
   scope :get_meta_titles_for_page, -> (page) { order("created_at DESC").select(:id, :created_at, :title).limit(10).offset(10 * (page - 1)) }
 

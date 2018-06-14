@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   DEFAULT_PAGINATION_COLUMN = :username
+  extend FriendlyId
+  friendly_id :username, use: :slugged
 
   before_save :downcase
   before_save :ensure_unique
@@ -31,7 +33,8 @@ class User < ApplicationRecord
       :agent_list, :security_hash, :role_id, :provider, :uid, :reset_password_token,
       :reset_password_sent_at, :remember_created_at, :current_sign_in_at,
       :last_sign_in_at, :last_sign_in_ip, :confirmation_token, :confirmed_at,
-      :confirmation_sent_at, :unconfirmed_email, :locked_at,:created_at, :updated_at
+      :confirmation_sent_at, :unconfirmed_email, :locked_at,:created_at, :updated_at,
+      :slug
     ]
   end
 

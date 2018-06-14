@@ -1,5 +1,7 @@
 class Graphic < ApplicationRecord
   DEFAULT_PAGINATION_COLUMN = :title
+  extend FriendlyId
+  friendly_id :title, use: :slugged
 
   has_and_belongs_to_many :categories, join_table: :graphics_categories
   has_and_belongs_to_many :comments, join_table: :graphics_comments
@@ -14,7 +16,7 @@ class Graphic < ApplicationRecord
   end
 
   def self.fields_to_not_show
-    [:id, :category, :canvas_id, :load_from_file, :created_at, :updated_at]
+    [:id, :category, :canvas_id, :load_from_file, :created_at, :updated_at, :slug]
   end
 
   def self.text_fields

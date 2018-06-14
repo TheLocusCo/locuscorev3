@@ -56,7 +56,7 @@ class AuthedIndexTableBlock extends Component {
         {this.renderItemFromHeader(item, headers, styles)}
         <td>
           <animated.div className='table-transition-button-override' style={styles}>
-            <Link className={this.linkClass("r", item, itemIndex)} to={this.renderLink(itemIndex, item.id)}>
+            <Link className={this.linkClass("r", item, itemIndex)} to={item.href}>
               <i className="icon-eye"></i>
               Show
             </Link>
@@ -65,7 +65,7 @@ class AuthedIndexTableBlock extends Component {
         {this.props.currentUser.role["pf_" + itemIndex].includes('u') &&
           <td>
             <animated.div className='table-transition-button-override' style={styles}>
-              <Link className={this.linkClass("u", item, itemIndex)} to={this.renderLink(itemIndex, item.id) + "/edit"}>
+              <Link className={this.linkClass("u", item, itemIndex)} to={item.href + "/edit"}>
                 <i className="icon-pencil"></i>
                 Edit
               </Link>
@@ -83,10 +83,6 @@ class AuthedIndexTableBlock extends Component {
         }
       </tr>
     )
-  }
-
-  renderLink(itemIndex, itemId) {
-    return ("/" + itemIndex + "/" + itemId)
   }
 
   renderItemFromHeader(item, headers, styles) {

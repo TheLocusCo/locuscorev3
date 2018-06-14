@@ -1,5 +1,7 @@
 class Role < ApplicationRecord
   DEFAULT_PAGINATION_COLUMN = :name
+  extend FriendlyId
+  friendly_id :name, use: :slugged
 
   validates :name, presence: true
   validates :pf_graphics, format: { with: /\A[c|r|u|d|\W]*\z/, message: "Please use 'c', 'r', 'u', 'd', or any combination thereof (or 'crud')" }

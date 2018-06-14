@@ -1,4 +1,4 @@
-json.(graphic, :id, :title, :icon, :library, :load_from_file, :fullscreen_by_default, :content_description, :basic_description)
+json.(graphic, :id, :title, :icon, :library, :load_from_file, :fullscreen_by_default, :content_description, :basic_description, :slug)
 
 if graphic.extra_params.blank?
   json.extra_params Hash.class_eval("{}")
@@ -13,6 +13,6 @@ if defined?(index).nil?
   json.script_content graphic.script_content
 end
 
-json.href "/graphics/#{graphic.id}"
+json.href "/graphics/#{graphic.slug}"
 json.meta_title graphic.title
 json.field_meta Graphic.map_field_metadata

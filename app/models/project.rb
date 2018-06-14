@@ -1,5 +1,7 @@
 class Project < ApplicationRecord
   DEFAULT_PAGINATION_COLUMN = :name
+  extend FriendlyId
+  friendly_id :name, use: :slugged
 
   validates :name, presence: true
   validates :main_description, presence: true
@@ -18,10 +20,6 @@ class Project < ApplicationRecord
 
   def self.many_to_many_as
     {categories: :categories, media: :media}
-  end
-
-  def self.fields_to_not_show
-    [:id, :created_at, :updated_at]
   end
 
   def self.text_fields

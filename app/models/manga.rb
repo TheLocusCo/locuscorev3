@@ -1,5 +1,8 @@
 class Manga < ApplicationRecord
   DEFAULT_PAGINATION_COLUMN = :created_at
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   has_and_belongs_to_many :categories, join_table: :mangas_categories
   has_and_belongs_to_many :comments, join_table: :mangas_comments
 
@@ -13,7 +16,7 @@ class Manga < ApplicationRecord
   end
 
   def self.fields_to_not_show
-    [:id, :needs_update, :created_at, :updated_at]
+    [:id, :needs_update, :created_at, :updated_at, :slug]
   end
 
   def self.text_fields

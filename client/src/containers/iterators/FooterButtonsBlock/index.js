@@ -10,7 +10,7 @@ import { deleteEditItem, deleteNewItem } from 'redux/actions'
 class FooterButtonsBlock extends Component {
   isShow() {
     return (
-      Number.isInteger(parseInt(this.props.location.pathname.split("/").reverse()[0], 10))
+      !this.isEdit() && !this.isNew()
     )
   }
 

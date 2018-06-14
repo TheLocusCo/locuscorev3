@@ -1,8 +1,8 @@
 GIT
   remote: https://locus2deploy:3070929095024945685@github.com/TheLocusCo/locuscorev3_mangas.git
-  revision: 51d7128860a71693d80e0eae822153777360c173
+  revision: 74f8da685f17690fad7ed537b1630b3794c5bcf2
   specs:
-    locuscorev3_mangas (0.1.7)
+    locuscorev3_mangas (0.2.1)
       nokogiri
       pg
       rails (~> 5.1.5)
@@ -96,6 +96,8 @@ GEM
     errbase (0.1.0)
     erubi (1.7.1)
     ffi (1.9.21)
+    friendly_id (5.2.4)
+      activerecord (>= 4.0.0)
     geocoder (1.4.7)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -244,6 +246,7 @@ DEPENDENCIES
   cancancan
   devise (~> 4.4.3)
   devise_token_auth (~> 0.1.43)
+  friendly_id
   jbuilder (~> 2.5)
   light-service
   listen (>= 3.0.5, < 3.2)

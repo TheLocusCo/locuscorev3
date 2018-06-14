@@ -74,7 +74,7 @@ class MediaController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_medium
-      @medium = Medium.find(params[:id])
+      @medium = Medium.friendly.find(params[:id])
     end
 
     def create_params

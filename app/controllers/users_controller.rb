@@ -49,7 +49,7 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params.except(:role))
       if user_params[:role]
-        @user.role_id = Role.find_by_name(user_params[:role]).id
+        @user.role_id = Role.friendly.find_by_name(user_params[:role]).id
         @user.save if @user.changed?
       end
       render :show, status: :ok, location: @user

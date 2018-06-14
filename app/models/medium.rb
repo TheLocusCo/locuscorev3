@@ -1,5 +1,7 @@
 class Medium < ApplicationRecord
   DEFAULT_PAGINATION_COLUMN = :created_at
+  extend FriendlyId
+  friendly_id :name, use: :slugged
 
   has_attached_file :image, styles: { thumb: "250x180#", slider_show: "480x367#", slider_big: "640x390#", slider_small: "200x280#" }# , default_url: "/images/:style/missing.png"
   has_attached_file :generic, s3_permissions: :private, path: "/uploads2/:class/:id_partition/:style/:filename"
@@ -24,7 +26,8 @@ class Medium < ApplicationRecord
     [
       :id, :local_media, :arc_media, :arc_media_generic, :created_at, :updated_at,
       :image_file_name, :image_content_type, :image_file_size, :image_updated_at,
-      :generic_file_name, :generic_content_type, :generic_file_size, :generic_updated_at
+      :generic_file_name, :generic_content_type, :generic_file_size, :generic_updated_at,
+      :slug
     ]
   end
 

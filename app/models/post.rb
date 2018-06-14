@@ -1,5 +1,7 @@
 class Post < ApplicationRecord
   DEFAULT_PAGINATION_COLUMN = :title
+  extend FriendlyId
+  friendly_id :title, use: :slugged
 
   before_save :titleize
 
@@ -20,10 +22,6 @@ class Post < ApplicationRecord
 
   def self.many_to_many_as
     {categories: :categories, media: :media}
-  end
-
-  def self.fields_to_not_show
-    [:id, :created_at, :updated_at]
   end
 
   def self.text_fields

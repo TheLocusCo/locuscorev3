@@ -52,7 +52,7 @@ module ActiveRecordExtension
     def map_field_metadata
       returned = self.columns.map { |c| { "#{c.name}".to_sym => c.type } }.reduce Hash.new, :merge # generate a hash of all of the fields and their types
 
-      returned = self.respond_to?(:fields_to_not_show) ? returned.except(*self.fields_to_not_show) : returned.except(:id, :created_at, :updated_at)
+      returned = self.respond_to?(:fields_to_not_show) ? returned.except(*self.fields_to_not_show) : returned.except(:id, :created_at, :updated_at, :slug)
       returned = returned.merge(self.text_fields) if self.respond_to?(:text_fields)
       returned = returned.merge(self.many_to_many_as) if self.respond_to?(:many_to_many_as)
       returned = self.respond_to?(:tooltips) ? returned.merge(self.tooltips) : returned.merge({tooltips: {}})
