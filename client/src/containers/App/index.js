@@ -11,6 +11,7 @@ import AuthedContainer from 'containers/AuthedContainer'
 import MobileContainer from 'containers/mobile/MobileContainer'
 import AuthedLightBoxContainer from 'containers/lightbox/AuthedLightBoxContainer'
 import NotificationsBlock from 'containers/iterators/NotificationsBlock'
+import HeaderLogo from 'components/HeaderLogo'
 import { apiUrl } from 'utils/http'
 import { userAuth } from 'redux/actions'
 
@@ -58,7 +59,7 @@ class App extends Component {
                   <div className="header-top-left-center" />
                   <div className="logo-background">
                     <Link to="/">
-                      <img src="/images/main_logo.png" alt="locus" />
+                      <HeaderLogo />
                     </Link>
                   </div>
                 </div>
