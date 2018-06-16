@@ -1,9 +1,15 @@
 import React from 'react'
+import Script from 'react-load-script'
 
 import { currentHost } from 'utils/http'
 
 class SolarSystem extends React.Component {
-  componentDidMount() {
+  state = {
+    scriptError: false,
+    scriptLoad: false
+  }
+
+  handleScriptLoad() {
     window.SceneJS.configure({
       pluginPath: `${currentHost()}/js/scenejs_plugins`
     });
@@ -920,10 +926,26 @@ class SolarSystem extends React.Component {
     });
   }
 
+  handleScriptError() {
+    this.setState({ scriptError: true })
+  }
+
   render() {
     const { width, height } = this.props
     return (
-      <canvas id='scene' style={{width: `${width}px`, height: `${height}px`}}/>
+      <div>
+        <Script
+          url={currentHost() + '/js/scenejs.min.js'}
+          onError={this.handleScriptError.bind(this)}
+          onLoad={this.handleScriptLoad.bind(this)}
+        />
+        {this.state.scriptError &&
+          <h1 className="section-heading larger">
+            SceneJS failed to load, please refresh the page!
+          </h1>
+        }
+        <canvas id='scene' style={{width: `${width}px`, height: `${height}px`}}/>
+      </div>
     )
   }
 }
