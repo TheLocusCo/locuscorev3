@@ -35,6 +35,7 @@ gem 'maxminddb'
 gem 'redcarpet'
 gem 'friendly_id'
 gem 'bootsnap', require: false
+gem 'sprockets', '>= 3.7.2'
 # gem 'textacular' # gem isn't adding its methods correctly
 
 # gem 'locuscorev3_mangas', path: '../locuscorev3_mangas'
