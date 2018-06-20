@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     token_validations: 'custom/token_validations'
   }
 
+  get '/sitemap.xml', to:  'sitemap#index', as: 'sitemap', defaults: { format: 'xml' }
+
   mount Locuscorev3Mangas::Engine, at: "/"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
