@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactTooltip from 'react-tooltip'
 import { Uploader, UploadField } from '@navjobs/upload'
+import { connect } from 'react-redux'
 
 import { humanize } from 'utils/string'
 import ProgressBar from 'components/ProgressBar'
@@ -12,7 +13,6 @@ let LightBoxUploadForm = props => {
     var count = 0
     return Object.entries(props.field_meta).map(indivField => {
       count++
-      console.log('test url ' + apiUrl())
       switch (indivField[1]) {
         case "upload":
           return (
@@ -35,6 +35,7 @@ let LightBoxUploadForm = props => {
                 }}
                 onComplete={({ response, status }) => {
                   if (Object.keys(response).includes("data") && Object.keys(response.data).includes("id")) {
+                    console.log('successful upload, in oncomplete')
                     props.dispatch(receiveResource(props.field_meta.resource_type, response))
                     props.dispatch(successMessage("Successfully uploaded data for " + props.field_meta.resource_type + " \"" + props.meta_title + "\""))
                   } else {
@@ -71,4 +72,9 @@ let LightBoxUploadForm = props => {
   )
 }
 
-export default LightBoxUploadForm
+const mapDispatchToProps = (dispatch) => {
+  return { dispatch }
+}
+
+
+export default connect(mapDispatchToProps)(LightBoxUploadForm)

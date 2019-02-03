@@ -15,6 +15,8 @@ class Medium < ApplicationRecord
   before_destroy { |m| m.categories.clear }
   before_destroy { |m| m.posts.clear }
   before_destroy { |m| m.projects.clear }
+  before_destroy { |m| m.image.destroy if m.image_file_name }
+  before_destroy { |m| m.generic.destroy if m.generic_file_name }
 
   scope :get_meta_titles_for_page, -> (page) { order("created_at DESC").select(:id, :created_at, :updated_at).limit(10).offset(10 * (page - 1)) }
 
