@@ -162,7 +162,7 @@ const mapStateToProps = (state, ownProps) => ({
   successContent: state.successMessages.items,
   isFetching: state[`${ownProps.resourceType}`].isFetching,
   showAsFullscreen: (state[`${ownProps.resourceType}`].content.fullscreen_by_default ? true : state.lightbox.showAsFullscreen),
-  currentUser: state.currentUser,
+  currentUser: state.currentUser
 })
 
 export default connect(mapStateToProps)(LightBoxResource)

@@ -21,5 +21,6 @@ You also need a database.yml in the config directory.
     1. `cd client && ln -s ../.env .env.local`
 2. API
   1. `bundle install`
-  1. `foreman start -f Procfile.dev`
+  2. Edit `.env` and make sure it has the latest IP
+  3. `source .env && foreman start -f Procfile.dev`
 3. Navigate to REACT_APP_BASE_ENDPOINT:FRONTEND_PORT to see if the app works

@@ -77,6 +77,7 @@ export function resourcePatch(resourcePlural, resourceType, resource) {
   })
 }
 
+// this is unused, don't use it to debug uploads
 export function resourceUpload(resourcePlural, resourceType, resource) {
   let form_data = new FormData()
 

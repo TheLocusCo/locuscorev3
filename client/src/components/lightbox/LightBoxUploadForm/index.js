@@ -5,12 +5,14 @@ import { Uploader, UploadField } from '@navjobs/upload'
 import { humanize } from 'utils/string'
 import ProgressBar from 'components/ProgressBar'
 import { receiveResource, successMessage } from "redux/actions"
+import { apiUrl } from 'utils/http'
 
 let LightBoxUploadForm = props => {
   const renderFields = (props) => {
     var count = 0
     return Object.entries(props.field_meta).map(indivField => {
       count++
+      console.log('test url ' + apiUrl())
       switch (indivField[1]) {
         case "upload":
           return (
@@ -18,7 +20,7 @@ let LightBoxUploadForm = props => {
               <Uploader
                 request={{
                   fileName: 'file',
-                  url: `${props.apiUrl}/authed/${props.field_meta.resource_plural}/${props.id}/upload_${indivField[0]}`,
+                  url: `${apiUrl()}/authed/${props.field_meta.resource_plural}/${props.id}/upload_${indivField[0]}`,
                   method: 'PATCH',
                   headers: {// Can't send "Content-Type": "application/json", or it will bork the multipart send
                     Accept: "application/json",
