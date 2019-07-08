@@ -17,6 +17,18 @@
 !/log/.keep
 !/tmp/.keep
 
+# production
+/public/fonts
+/public/css
+/public/asset-manifest.json
+/public/images
+/public/js
+/public/manifest.json
+/public/service-worker.js
+/public/static
+/public/favicon.ico
+/public/index.html
+
 .byebug_history
 .env
 /client/.env.local

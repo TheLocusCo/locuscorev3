@@ -24,3 +24,7 @@ You also need a database.yml in the config directory.
   2. Edit `.env` and make sure it has the latest IP
   3. `source .env && foreman start -f Procfile.dev`
 3. Navigate to REACT_APP_BASE_ENDPOINT:FRONTEND_PORT to see if the app works
+
+## Notes & Tricks
+* Removing the hidden flag from all dotfiles in windows:
+  `attrib -H R:\linux\shared\*.* /S`

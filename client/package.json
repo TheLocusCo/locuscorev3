@@ -51,10 +51,10 @@
     "styled-components": "^3.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "node node_modules/react-scripts/scripts/start.js",
+    "build": "node node_modules/react-scripts/scripts/build.js",
+    "test": "node node_modules/react-scripts/scripts/test.js --env=jsdom",
+    "eject": "node node_modules/react-scripts/scripts/eject.js"
   },
   "devDependencies": {
     "redux-logger": "^3.0.6"

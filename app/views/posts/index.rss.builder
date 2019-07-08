@@ -22,7 +22,7 @@ xml.rss :version => "2.0", "xmlns:atom" => "http://www.w3.org/2005/Atom" do
         xml.title post.title
         xml.description markdown.render(post.content.html_safe)
         xml.pubDate post.created_at.to_s(:rfc822)
-        xml.link post_url(post)
+        xml.link post_url(post).gsub('/api', '')
       end
     end
   end
