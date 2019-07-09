@@ -1,13 +1,11 @@
 GIT
   remote: https://locus2deploy:3070929095024945685@github.com/TheLocusCo/locuscorev3_mangas.git
-  revision: 053390edab8f08b5c44189e483b91b81e9262b5c
+  revision: c6318e1d0cd8c13bcc96476cc53cdfe6219c8089
   specs:
-    locuscorev3_mangas (0.3.0)
-      capybara
-      capybara-webkit
+    locuscorev3_mangas (0.3.2)
       nokogiri
       pg
-      rails (~> 5.1.5)
+      rails (>= 5.0.1)
       rest-client
 
 GEM
@@ -265,10 +263,12 @@ DEPENDENCIES
   bootsnap
   byebug
   cancancan
-  devise (~> 4.4.3)
-  devise_token_auth (~> 0.1.43)
+  capybara
+  capybara-webkit
+  devise
+  devise_token_auth
   friendly_id
-  jbuilder (~> 2.5)
+  jbuilder
   light-service
   listen (>= 3.0.5, < 3.2)
   locuscorev3_mangas!
@@ -280,16 +280,16 @@ DEPENDENCIES
   prawn
   pry
   pry-rails
-  puma (~> 3.7)
+  puma
   rack-cors
-  rails (~> 5.1.4)
+  rails
   rails_12factor
   rake
   redcarpet
   rest-client
   spring
-  spring-watcher-listen (~> 2.0.0)
-  sprockets (>= 3.7.2)
+  spring-watcher-listen
+  sprockets
   tzinfo-data
 
 RUBY VERSION
