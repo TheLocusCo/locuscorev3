@@ -38,8 +38,6 @@ gem 'bootsnap', require: false
 gem 'sprockets', '>= 3.7.2'
 # gem 'textacular' # gem isn't adding its methods correctly
 
-# gem 'locuscorev3_mangas', path: '../locuscorev3_mangas'
-gem 'locuscorev3_mangas', git: "https://#{ENV['locuscore_deploy']}:#{ENV['locuscore_deploy_password']}@github.com/TheLocusCo/locuscorev3_mangas.git"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -63,6 +61,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # gem 'locuscorev3_mangas', path: '../locuscorev3_mangas'
+  gem 'locuscorev3_mangas', git: "https://#{ENV['locuscore_deploy']}:#{ENV['locuscore_deploy_password']}@github.com/TheLocusCo/locuscorev3_mangas.git"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
