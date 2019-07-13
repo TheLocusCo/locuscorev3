@@ -1,8 +1,10 @@
 GIT
   remote: https://locus2deploy:3070929095024945685@github.com/TheLocusCo/locuscorev3_mangas.git
-  revision: c6318e1d0cd8c13bcc96476cc53cdfe6219c8089
+  revision: 4382b3322707347026d7b2c6a03c57e53f5c08d5
   specs:
     locuscorev3_mangas (0.3.2)
+      capybara
+      capybara-webkit
       nokogiri
       pg
       rails (>= 5.0.1)
@@ -263,8 +265,6 @@ DEPENDENCIES
   bootsnap
   byebug
   cancancan
-  capybara
-  capybara-webkit
   devise
   devise_token_auth
   friendly_id
