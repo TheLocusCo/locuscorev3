@@ -38,7 +38,7 @@ gem 'bootsnap', require: false
 gem 'sprockets'
 # gem 'textacular' # gem isn't adding its methods correctly
 # gem 'locuscorev3_mangas', path: '../locuscorev3_mangas'
-gem 'locuscorev3_mangas', git: "https://#{ENV['locuscore_deploy']}:#{ENV['locuscore_deploy_password']}@github.com/TheLocusCo/locuscorev3_mangas.git"
+gem 'locuscorev3_mangas', git: "https://github.com/TheLocusCo/locuscorev3_mangas.git"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

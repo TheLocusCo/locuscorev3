@@ -28,3 +28,5 @@ You also need a database.yml in the config directory.
 ## Notes & Tricks
 * Removing the hidden flag from all dotfiles in windows:
   `attrib -H R:\linux\shared\*.* /S`
+* bundle config for private repositories: https://bundler.io/v1.16/bundle_config.html
+  * https://gist.github.com/sebboh/f1dfe4f096746c45f3e9ea06a09743a0
