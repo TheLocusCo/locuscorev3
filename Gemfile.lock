@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/TheLocusCo/locuscorev3_mangas.git
-  revision: 79f63e9be5568bbeca2d911be2078b6051d81d0b
+  revision: 7b6763523b7d7e5764898d60a936a3ec68619c1f
   specs:
-    locuscorev3_mangas (0.3.4)
+    locuscorev3_mangas (0.4.0)
       nokogiri
       pg
       rails (>= 5.0.1)
