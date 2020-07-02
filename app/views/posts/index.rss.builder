@@ -9,7 +9,7 @@ xml.instruct! :xml, version: "1.0"
 
 xml.rss :version => "2.0", "xmlns:atom" => "http://www.w3.org/2005/Atom" do
   xml.channel do
-    xml.tag!("atom:link",  "href"=>"https://thelocus.co/blog.rss", "rel"=>"self", "type"=>"application/rss+xml")
+    xml.tag!("atom:link",  "href"=>"https://thelocus.co/api/posts.rss", "rel"=>"self", "type"=>"application/rss+xml")
     xml.title title
     xml.link 'https://thelocus.co'
     xml.description description

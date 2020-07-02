@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.5.0'
+ruby '2.6.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
@@ -34,7 +34,6 @@ gem 'ahoy_matey'
 gem 'maxminddb'
 gem 'redcarpet'
 gem 'friendly_id'
-gem 'bootsnap', require: false
 gem 'sprockets'
 # gem 'textacular' # gem isn't adding its methods correctly
 # gem 'locuscorev3_mangas', path: '../locuscorev3_mangas'
@@ -64,6 +63,7 @@ group :development do
   gem 'spring-watcher-listen'
   gem 'capybara'
   gem 'capybara-webkit'
+  gem 'selenium-webdriver'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

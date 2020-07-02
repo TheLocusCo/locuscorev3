@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   # Include default devise modules.
   devise :database_authenticatable,
-          :rememberable, :trackable, :validatable, :lockable
+         :rememberable, :trackable, :validatable, :lockable
   include DeviseTokenAuth::Concerns::User
 
   validates :username, presence: true, length: { in: 6..20 }
