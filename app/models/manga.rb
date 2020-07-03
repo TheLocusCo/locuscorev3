@@ -20,11 +20,11 @@ class Manga < ApplicationRecord
   end
 
   def self.text_fields
-    {name: :text, sources: :text, header_image_location: :text, description: :text, downloaded_chapters: :text, licensed_at: :text, chapters_at: :text, genres: :disabled}
+    {name: :text, sources: :text, header_image_location: :text, description: :text, downloaded_chapters: :text, licensed_at: :text, chapters_at: :text, genres: :text}
   end
 
   def self.tooltips
-    {tooltips: {genres: "This field is only here for reference due to how the manga parser works, may remove someday"}}
+    {tooltips: {}}
   end
 
   def self.select_fields

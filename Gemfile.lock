@@ -1,8 +1,7 @@
-GIT
-  remote: https://github.com/TheLocusCo/locuscorev3_mangas.git
-  revision: 9a3fec8fe8d3e5005ca0cdb5e9bcb7d5fb70e9e3
+PATH
+  remote: ../locuscorev3_mangas
   specs:
-    locuscorev3_mangas (0.6.1)
+    locuscorev3_mangas (0.6.2)
       nokogiri
       open_uri_redirections
       pg
