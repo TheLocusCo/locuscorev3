@@ -1,5 +1,6 @@
-PATH
-  remote: ../locuscorev3_mangas
+GIT
+  remote: https://github.com/TheLocusCo/locuscorev3_mangas.git
+  revision: f0e1dbfc7361178d28aee0dbb2e391439ff52d3a
   specs:
     locuscorev3_mangas (0.6.2)
       nokogiri
