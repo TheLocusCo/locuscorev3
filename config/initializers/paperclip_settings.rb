@@ -8,6 +8,9 @@ Paperclip::Attachment.default_options[:s3_region] = 'us-west-1'
 Paperclip::Attachment.default_options[:s3_permissions] = 'public-read'
 Paperclip::Attachment.default_options[:s3_protocol] = 'https'
 Paperclip::Attachment.default_options[:path] = "/uploads2/:class/:id_partition/:style/:hash.:extension"
+Paperclip.options[:content_type_mappings] = {
+  tta: %w(application/octet-stream)
+}
 
 #Paperclip::Attachment.default_options[:fog_directory] = ""
 #Paperclip::Attachment.default_options[:fog_host] = "http://localhost:3000"
